@@ -10,6 +10,12 @@
   <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/scale-extreme.css"/>
 
 
+  <!-- Select2 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <!-- Select2 Bootstrap 5 Theme CSS (helps with Bootstrap 5 styling and dark mode) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+
+
   <style>
     :root {
       --page-bg: #f0f2f5;
@@ -61,27 +67,55 @@
     }
     
     .controls-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 15px;
-      margin-bottom: 25px;
-      flex-wrap: wrap;
-    }
-    .controls-container button, .controls-container select {
-      padding: 8px 12px;
-      border-radius: 6px;
-      border: 1px solid var(--secondary-text-color);
-      background-color: var(--card-bg);
-      color: var(--text-color);
-      cursor: pointer;
-      transition: background-color 0.2s, border-color 0.2s;
-    }
-    .controls-container button:hover, .controls-container select:hover {
-      background-color: var(--highlight-border);
-      color: white;
-      border-color: var(--highlight-border);
-    }
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Vertically align items */
+  gap: 10px; /* Reduced gap slightly, adjust as needed */
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+/* Style the Select2 container to fit better */
+.controls-container .select2-container {
+  min-width: 180px; /* Example width, adjust as needed */
+  width: auto !important; /* Important to override default Select2 inline style if it's too wide/narrow */
+  flex-grow: 1; /* Allow it to take available space if other items are smaller */
+  max-width: 250px; /* Example max-width */
+}
+
+/* --- Custom Select2 Dark Mode Styles --- */
+/* These rules help the select2-bootstrap-5-theme adapt to your 'data-theme' attribute for dark mode */
+html[data-theme='dark'] .select2-container--bootstrap-5 .select2-selection {
+    background-color: var(--card-bg); /* Use your dark theme card background */
+    border-color: var(--secondary-text-color); /* Dark theme border */
+}
+
+html[data-theme='dark'] .select2-container--bootstrap-5 .select2-selection--single .select2-selection__rendered {
+    color: var(--text-color); /* Dark theme text color */
+}
+
+html[data-theme='dark'] .select2-container--bootstrap-5 .select2-dropdown {
+    background-color: var(--card-bg);
+    border-color: var(--secondary-text-color);
+}
+
+html[data-theme='dark'] .select2-container--bootstrap-5 .select2-results__option {
+    color: var(--text-color);
+}
+
+html[data-theme='dark'] .select2-container--bootstrap-5 .select2-results__option--highlighted {
+    background-color: var(--highlight-border); /* Dark theme highlight color */
+    color: var(--night-card-text); /* Text color on highlight */
+}
+
+html[data-theme='dark'] .select2-container--bootstrap-5 .select2-selection--single .select2-selection__arrow b {
+    border-color: var(--text-color) transparent transparent transparent;
+}
+html[data-theme='dark'] .select2-container--bootstrap-5.select2-container--open .select2-selection--single .select2-selection__arrow b {
+    border-color: transparent transparent var(--text-color) transparent;
+}
+/* --- End of Custom Select2 Dark Mode Styles --- */
+    
 
     .clock-box {
       position: relative;
@@ -356,9 +390,9 @@ html[data-theme='dark'] .clock-box.dynamic-bg-evening .off-hours-indicator {
       <div class="local-time-display" id="local-time-display">Your Time: --:--:--</div>
     </div>
 
-    <div class="controls-container">
-      <button id="theme-toggle-btn"><i class="fas fa-lightbulb"></i> Toggle Theme</button>
-      <button id="format-toggle-btn"><i class="fas fa-clock"></i> Toggle 12/24hr</button>
+        <div class="controls-container">
+      <button id="theme-toggle-btn" class="btn btn-outline-primary"><i class="fas fa-lightbulb"></i> Toggle Theme</button>
+      <button id="format-toggle-btn" class="btn btn-outline-secondary"><i class="fas fa-clock"></i> Toggle 12/24hr</button>
       <select id="sort-clocks-select">
         <option value="default">Default Order</option>
         <option value="label-asc">Name (A-Z)</option>
@@ -371,10 +405,17 @@ html[data-theme='dark'] .clock-box.dynamic-bg-evening .off-hours-indicator {
     <div class="row g-3" id="clock-container"></div>
   </div>
 
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
   <script src="https://unpkg.com/@popperjs/core@2"></script>
   <script src="https://unpkg.com/tippy.js@6"></script>
 <!-- Add SweetAlert2 JS -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- jQuery (must come before Select2) -->
+  
+  <!-- Select2 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
   <script>
     let clocksData = [
@@ -791,6 +832,17 @@ function getTimeIcon(hour) {
     document.getElementById('sort-clocks-select').addEventListener('change', (e) => { 
         sortClocks(e.target.value);
     });
+
+// Initialize Select2
+  $(document).ready(function() { // Ensures the DOM is fully loaded
+      $('#sort-clocks-select').select2({
+          theme: "bootstrap-5", // Apply the Bootstrap 5 theme
+          width: 'style', // Let Select2 inherit width from its container or CSS (important for flex)
+                          // You can also use 'resolve' or a fixed width like '200px'
+          minimumResultsForSearch: Infinity // Optional: hide search box if you have few options
+      });
+  });
+
 
     createClockCards();
     setInterval(updateAllClocks, 1000);
