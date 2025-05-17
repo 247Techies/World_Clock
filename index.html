@@ -829,20 +829,23 @@ function getTimeIcon(hour) {
       localStorage.setItem('use24HourFormat', use24HourFormat);
       updateAllClocks(); 
     });
-    document.getElementById('sort-clocks-select').addEventListener('change', (e) => { 
-        sortClocks(e.target.value);
+    
+    // Initialize Select2 and attach its change event
+    $(document).ready(function() { 
+        const $sortSelect = $('#sort-clocks-select'); // Cache the jQuery object
+
+        $sortSelect.select2({
+            theme: "bootstrap-5", 
+            width: 'style', // Let Select2 inherit width, can also use 'resolve' or fixed value
+            minimumResultsForSearch: Infinity // Optional: hide search box
+        }).on('change', function() { // Listen for 'change' event using jQuery on the Select2 enhanced element
+            const selectedValue = $(this).val(); // Get the selected value using jQuery's .val()
+            console.log('Select2 sort changed to:', selectedValue); // For debugging
+            sortClocks(selectedValue);
+        });
+
+        // If you have other things in $(document).ready(), they would go here.
     });
-
-// Initialize Select2
-  $(document).ready(function() { // Ensures the DOM is fully loaded
-      $('#sort-clocks-select').select2({
-          theme: "bootstrap-5", // Apply the Bootstrap 5 theme
-          width: 'style', // Let Select2 inherit width from its container or CSS (important for flex)
-                          // You can also use 'resolve' or a fixed width like '200px'
-          minimumResultsForSearch: Infinity // Optional: hide search box if you have few options
-      });
-  });
-
 
     createClockCards();
     setInterval(updateAllClocks, 1000);
