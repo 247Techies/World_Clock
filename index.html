@@ -3,215 +3,345 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>World Clocks</title>
+  <title>Advanced World Clocks</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/dist/tippy.css"/>
   <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/scale-extreme.css"/>
 
   <style>
+    :root {
+      --page-bg: #f0f2f5;
+      --text-color: #333;
+      --card-bg: #ffffff;
+      --card-shadow: rgba(0, 0, 0, 0.06);
+      --secondary-text-color: #555;
+      /* --night-card-bg: #343a40; -- Replaced by dynamic-bg-deepnight or dark theme card */
+      --night-card-text: #ffffff; /* Used for text on dark backgrounds */
+      --highlight-border: #007bff;
+      /* --off-hours-label-bg: rgba(255, 0, 0, 0.08); -- Removed */
+      /* --off-hours-text: red; -- Removed */
+    }
+
+    html[data-theme='dark'] {
+      --page-bg: #1a1a1a;
+      --text-color: #e0e0e0;
+      --card-bg: #2c2c2c;
+      --card-shadow: rgba(0, 0, 0, 0.2);
+      --secondary-text-color: #aaa;
+      /* --night-card-bg: #222226; -- Replaced by dynamic-bg-deepnight or dark theme card */
+      --night-card-text: #e0e0e0; /* Used for text on dark backgrounds */
+      --highlight-border: #0d6efd;
+      /* --off-hours-label-bg: rgba(255, 80, 80, 0.15); -- Removed */
+      /* --off-hours-text: #ff5050; -- Removed */
+    }
+
     body {
-      background-color: #f0f2f5;
+      background-color: var(--page-bg);
+      color: var(--text-color);
+      transition: background-color 0.3s, color 0.3s;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     .title-box {
       text-align: center;
-      margin: 30px 0 10px;
+      margin: 20px 0 10px;
     }
 
     .main-title {
-      font-size: 2.5rem;
+      font-size: 2.3rem;
       font-weight: bold;
     }
 
-    .local-time {
+    .local-time-display {
       font-size: 1.1rem;
-      color: #555;
-      margin-bottom: 30px;
+      color: var(--secondary-text-color);
+      margin-bottom: 15px;
+    }
+    
+    .controls-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+    }
+    .controls-container button, .controls-container select {
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--secondary-text-color);
+      background-color: var(--card-bg);
+      color: var(--text-color);
+      cursor: pointer;
+      transition: background-color 0.2s, border-color 0.2s;
+    }
+    .controls-container button:hover, .controls-container select:hover {
+      background-color: var(--highlight-border);
+      color: white;
+      border-color: var(--highlight-border);
     }
 
-    /* --- Clock Card Structure --- */
     .clock-box {
       position: relative;
       display: flex;
-      flex-direction: column; /* Stacks header and additional timezones */
+      flex-direction: column;
       border-radius: 12px;
-      padding: 20px 25px;
-      background-color: #ffffff;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-      transition: background 0.3s, color 0.3s;
+      padding: 15px 20px;
+      background-color: var(--card-bg); /* Default background */
+      box-shadow: 0 4px 12px var(--card-shadow);
+      transition: background 0.3s, color 0.3s, border-color 0.3s, transform 0.2s ease-out, box-shadow 0.2s ease-out;
       overflow: hidden;
       width: 100%;
-      height: 100%; /* Relies on Bootstrap's d-flex on parent col */
+      height: 100%;
+      border: 2px solid transparent; /* For highlight */
+    }
+    .clock-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+    html[data-theme='dark'] .clock-box:hover {
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
     }
 
-    .clock-box.night {
-      background-color: #343a40;
-      color: #ffffff;
+    .clock-box.highlight-local {
+        border-color: var(--highlight-border);
     }
 
-    /* Header row: flag + main time details */
+    /* New Dynamic Backgrounds based on greeting timeframes */
+    .clock-box.dynamic-bg-morning { background-image: linear-gradient(to bottom right, #fceabb, #f8b500); color: #333; }
+    .clock-box.dynamic-bg-afternoon { background-image: linear-gradient(to bottom right, #a1c4fd, #c2e9fb); color: #333; }
+    .clock-box.dynamic-bg-evening { background-image: linear-gradient(to bottom right, #ff7e5f, #feb47b); color: #333; }
+    .clock-box.dynamic-bg-deepnight { background-image: linear-gradient(to bottom right, #232526, #414345); color: var(--night-card-text); }
+
+    /* Ensure text color consistency for dark theme with light dynamic backgrounds */
+    html[data-theme='dark'] .clock-box.dynamic-bg-morning,
+    html[data-theme='dark'] .clock-box.dynamic-bg-afternoon,
+    html[data-theme='dark'] .clock-box.dynamic-bg-evening {
+        color: #333; /* Dark text for light backgrounds, even in dark theme */
+    }
+    html[data-theme='dark'] .clock-box.dynamic-bg-deepnight {
+        color: var(--night-card-text); /* Light text for dark background in dark theme */
+    }
+
+
     .clock-box-header {
       display: flex;
-      flex-direction: row;
-      align-items: flex-start;
+      align-items: flex-start; 
       width: 100%;
+      margin-bottom: 10px;
+      position: relative; 
     }
-
+    
+    .time-icon-display { 
+      font-size: 1.4rem; 
+      margin-right: 10px; 
+      align-self: center; 
+    }
+    
+    
     .flag {
-      width: 60px;
-      height: 40px;
-      margin-right: 20px;
+      width: 50px;
+      height: 33px;
+      margin-right: 15px;
       object-fit: cover;
-      border-radius: 5px;
-      align-self: flex-start;
+      border-radius: 4px;
+      align-self: center; 
     }
 
-    /* Wrapper for main time, greeting, country, next to flag */
     .main-clock-details {
       flex-grow: 1;
       display: flex;
       flex-direction: column;
     }
     
-    /* This div is mainly for JS query selectors, can be styled if needed */
-    .main-time-info {
-      /* display: flex; flex-direction: column; */ /* if children need flex control */
-    }
-
-    .time {
-      font-size: 2.2rem;
+    .main-time-info .time {
+      font-size: 2rem;
       font-weight: bold;
     }
-    .clock-box.off-hours .time {
-      color: red;
+    /* Removed: .clock-box.off-hours .main-time-info .time { color: var(--off-hours-text); } */
+
+    .main-time-info .date-display {
+        font-size: 0.85rem;
+        color: var(--secondary-text-color); /* Default, might be overridden by dynamic-bg or dark theme */
+    }
+    .dynamic-bg-deepnight .main-time-info .date-display, /* Style for deepnight background */
+    html[data-theme='dark'] .clock-box .main-time-info .date-display { /* General dark theme */
+        color: #bbb; 
+    }
+    /* Ensure date display has correct color on light dynamic backgrounds in dark theme */
+    html[data-theme='dark'] .clock-box.dynamic-bg-morning .main-time-info .date-display,
+    html[data-theme='dark'] .clock-box.dynamic-bg-afternoon .main-time-info .date-display,
+    html[data-theme='dark'] .clock-box.dynamic-bg-evening .main-time-info .date-display {
+        color: #555; /* Or inherit from .clock-box text color */
     }
 
-    .greeting {
-      font-size: 1.3rem;
-      margin-top: 5px;
+
+    .main-time-info .greeting, .main-time-info .countdown-status {
+      font-size: 1.1rem;
+      margin-top: 3px;
+      font-weight: 500;
+    }
+    .main-time-info .countdown-status {
+      font-size: 0.9rem;
+      color: var(--secondary-text-color); /* Changed from --off-hours-text */
+    }
+    .dynamic-bg-deepnight .main-time-info .countdown-status,
+    html[data-theme='dark'] .clock-box .main-time-info .countdown-status {
+        color: #aaa; /* Lighter for dark backgrounds */
+    }
+    html[data-theme='dark'] .clock-box.dynamic-bg-morning .main-time-info .countdown-status,
+    html[data-theme='dark'] .clock-box.dynamic-bg-afternoon .main-time-info .countdown-status,
+    html[data-theme='dark'] .clock-box.dynamic-bg-evening .main-time-info .countdown-status {
+        color: #555; 
+    }
+
+
+    .clock-box:not(.off-hours) .main-time-info .countdown-status {
+        display: none;
+    }
+
+    .main-time-info .country {
+      font-size: 0.95rem;
       font-weight: 600;
     }
-
-    .country {
-      font-size: 1rem;
-      color: inherit;
-      /* margin-bottom: auto; */ /* Removed */
+    .main-time-info .utc-offset {
+        font-size: 0.75rem;
+        color: var(--secondary-text-color); /* Default */
+        margin-top: -2px;
+    }
+    .dynamic-bg-deepnight .main-time-info .utc-offset, /* Style for deepnight background */
+    html[data-theme='dark'] .clock-box .main-time-info .utc-offset { /* General dark theme */
+        color: #aaa;
+    }
+    html[data-theme='dark'] .clock-box.dynamic-bg-morning .main-time-info .utc-offset,
+    html[data-theme='dark'] .clock-box.dynamic-bg-afternoon .main-time-info .utc-offset,
+    html[data-theme='dark'] .clock-box.dynamic-bg-evening .main-time-info .utc-offset {
+        color: #555;
     }
 
-    /* Absolutely Positioned Elements */
-    .off-label {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(255, 0, 0, 0.08);
-      z-index: 1;
-      pointer-events: none;
+    .clock-actions {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        display: flex;
+        gap: 8px;
     }
-    .off-label span {
-      position: absolute;
-      bottom: 12px; right: 12px;
-      color: red; font-size: 1rem; font-weight: 500;
+    .clock-actions button {
+        background: none;
+        border: none;
+        color: var(--secondary-text-color); /* Default */
+        cursor: pointer;
+        padding: 3px;
+        font-size: 0.9rem;
+    }
+    .dynamic-bg-deepnight .clock-actions button, /* Style for deepnight background */
+    html[data-theme='dark'] .clock-box .clock-actions button { /* General dark theme */
+        color: #ccc;
+    }
+    html[data-theme='dark'] .clock-box.dynamic-bg-morning .clock-actions button,
+    html[data-theme='dark'] .clock-box.dynamic-bg-afternoon .clock-actions button,
+    html[data-theme='dark'] .clock-box.dynamic-bg-evening .clock-actions button {
+        color: #555;
     }
 
-    .time-icon {
-      position: absolute;
-      top: 8px;
-      right: 15px;
-      font-size: 1.6rem;
-      z-index: 3;
+    .clock-actions button:hover {
+        color: var(--highlight-border);
     }
 
-    /* --- Additional Timezones Grid --- */
+    /* .off-label and related styles removed */
+
     .additional-timezones-grid {
-      margin-top: 15px; /* Space from the .clock-box-header */
-      width: 100%; /* Takes full width */
+      margin-top: 10px;
+      width: 100%;
+      border-top: 1px solid rgba(128,128,128,0.2);
+      padding-top: 5px;
     }
+    .additional-timezones-grid:empty { display: none; }
 
     .additional-timezones-items-row {
       display: flex;
       justify-content: space-around;
-      flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+      flex-wrap: wrap;
       width: 100%;
+      gap: 5px;
+      margin-bottom:10px;
     }
 
     .tz-column-item {
-      flex: 1 1 auto; /* Allow shrinking/growing, basis from content */
-      min-width: 80px; /* Adjust for minimum readable width on mobile */
+      flex: 1 1 auto;
+      min-width: 75px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 5px 2px 0; /* Top padding, small horizontal */
+      padding: 3px 1px 0;
       cursor: default;
       text-align: center;
+      font-size: 0.75rem;
     }
 
-    .tz-name-item {
-      font-weight: 600;
-      font-size: 0.8rem;
-      line-height: 1.2;
-      color: inherit;
-      opacity: 0.9;
-      width: 100%; /* For text centering within the column */
+    .tz-name-item { font-weight: 600; }
+    .tz-time-item { margin-top: 2px; }
+    
+    .dynamic-bg-deepnight .additional-timezones-grid,
+    html[data-theme='dark'] .clock-box .additional-timezones-grid {
+        border-top-color: rgba(200,200,200,0.2);
+    }
+    .dynamic-bg-deepnight .tz-column-item { color: var(--night-card-text); opacity: 0.9;}
+    html[data-theme='dark'] .clock-box .tz-column-item { color: var(--text-color); opacity: 0.9;}
+
+    /* Ensure additional timezone items have correct color on light dynamic backgrounds in dark theme */
+    html[data-theme='dark'] .clock-box.dynamic-bg-morning .tz-column-item,
+    html[data-theme='dark'] .clock-box.dynamic-bg-afternoon .tz-column-item,
+    html[data-theme='dark'] .clock-box.dynamic-bg-evening .tz-column-item {
+        color: #333; opacity: 0.9;
     }
 
-    .tz-time-item {
-      font-size: 0.8rem;
-      line-height: 1.2;
-      color: inherit;
-      opacity: 0.9;
-      margin-top: 4px; /* Space between name and time */
-      width: 100%; /* For text centering within the column */
-    }
 
-    .clock-box.night .tz-column-item {
-        color: #e0e0e0;
-    }
-    .clock-box.night .tz-column-item .tz-name-item,
-    .clock-box.night .tz-column-item .tz-time-item {
-        opacity: 1;
-    }
-
-    /* --- Tippy.js Custom Styling --- */
+    /* Tippy.js Custom Styling */
     .tippy-box[data-theme~='custom-light'] {
-      background-color: #f18a2f;
-      color: #212529;
-      border: 1px solid #f18a2f;
-      text-align:center;
+      background-color: #f8f9fa; color: #212529; border: 1px solid #dee2e6; text-align:center;
     }
-    .tippy-box[data-theme~='custom-light'][data-placement^='top'] > .tippy-arrow::before {
-      border-top-color: #f18a2f;
+    html[data-theme='dark'] .tippy-box[data-theme~='custom-light'] {
+      background-color: #3e3e3e; color: #e0e0e0; border-color: #555;
     }
-    .tippy-box[data-theme~='custom-light'][data-placement^='bottom'] > .tippy-arrow::before {
-      border-bottom-color: #f18a2f;
-    }
-    .tippy-box[data-theme~='custom-light'] .tippy-arrow {
-        color: #f18a2f;
-    }
-    .tippy-box[data-theme~='custom-light'] ul {
-        list-style: none;
-        padding: 5px 0;
-        margin: 0;
-        text-align: center;
-        display: inline-block; /* For centering the UL block */
-    }
-    .tippy-box[data-theme~='custom-light'] strong {
-  display: block; /* This forces the title to take its own line */
-  margin-bottom: 4px; /* Adds a small space between the title and the list */
-  /* text-align: center; will be inherited from .tippy-box[data-theme~='custom-light'] */
+    .tippy-box[data-theme~='custom-light'] strong { display: block; margin-bottom: 4px; }
+    .tippy-box[data-theme~='custom-light'] ul { list-style: none; padding: 5px 0; margin: 0; text-align: center; display: inline-block; }
+    .tippy-box[data-theme~='custom-light'] ul li { padding: 2px 10px; }
+    .tippy-box[data-theme~='custom-light'][data-placement^='top'] > .tippy-arrow::before { border-top-color: #dee2e6; }
+    .tippy-box[data-theme~='custom-light'][data-placement^='bottom'] > .tippy-arrow::before { border-bottom-color: #dee2e6; }
+    .tippy-box[data-theme~='custom-light'] .tippy-arrow { color: #f8f9fa; }
+    html[data-theme='dark'] .tippy-box[data-theme~='custom-light'][data-placement^='top'] > .tippy-arrow::before { border-top-color: #555; }
+    html[data-theme='dark'] .tippy-box[data-theme~='custom-light'][data-placement^='bottom'] > .tippy-arrow::before { border-bottom-color: #555; }
+    html[data-theme='dark'] .tippy-box[data-theme~='custom-light'] .tippy-arrow { color: #3e3e3e; }
+
+.off-hours-indicator {
+    color: var(--secondary-text-color); /* Default color */
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-right: 8px; /* Space between label and button */
+    align-self: center; /* Vertically align with the button icon */
+    display: none; /* Hidden by default, JS will show it */
 }
 
-/* Your existing rule for the UL, which is correct for centering the list itself */
-.tippy-box[data-theme~='custom-light'] ul {
-    list-style: none;
-    padding: 5px 0;
-    margin: 0;
-    text-align: center; /* Centers text within <li> elements */
-    display: inline-block; /* Allows the <ul> block itself to be centered */
+/* Adjust color for dark theme or specific dark backgrounds */
+html[data-theme='dark'] .off-hours-indicator,
+.clock-box.dynamic-bg-deepnight .off-hours-indicator {
+    color: #aaa;
+}
+/* Adjust color for light dynamic backgrounds when in dark theme */
+html[data-theme='dark'] .clock-box.dynamic-bg-morning .off-hours-indicator,
+html[data-theme='dark'] .clock-box.dynamic-bg-afternoon .off-hours-indicator,
+html[data-theme='dark'] .clock-box.dynamic-bg-evening .off-hours-indicator {
+    color: #555; /* Or a color suitable for light backgrounds */
 }
 
-/* Your existing rule for LIs */
-.tippy-box ul li {
-    padding: 2px 10px; /* Adjust for city name spacing */
+/* Ensure .clock-actions can align items */
+.clock-actions {
+    /* position: absolute; top: 8px; right: 8px; - Already there */
+    display: flex;
+    align-items: center; /* Added for vertical alignment of text and button */
+    gap: 8px;
 }
 
   </style>
@@ -220,125 +350,160 @@
   <div class="container">
 
     <div class="title-box">
-      <div class="main-title">24/7 Techies Office Time</div>
-      <div class="local-time" id="local-time">Local Time: --:--:--</div>
+      <div class="main-title">Global Office Dashboard</div>
+      <div class="local-time-display" id="local-time-display">Your Time: --:--:--</div>
     </div>
 
-    <div class="row g-3" id="clock-container">
+    <div class="controls-container">
+      <button id="theme-toggle-btn"><i class="fas fa-lightbulb"></i> Toggle Theme</button>
+      <button id="format-toggle-btn"><i class="fas fa-clock"></i> Toggle 12/24hr</button>
+      <select id="sort-clocks-select">
+        <option value="default">Default Order</option>
+        <option value="label-asc">Name (A-Z)</option>
+        <option value="label-desc">Name (Z-A)</option>
+        <option value="time-asc">Time (Earliest)</option>
+        <option value="time-desc">Time (Latest)</option>
+      </select>
     </div>
 
+    <div class="row g-3" id="clock-container"></div>
   </div>
 
   <script src="https://unpkg.com/@popperjs/core@2"></script>
   <script src="https://unpkg.com/tippy.js@6"></script>
 
   <script>
-    const clocks = [
+    let clocksData = [
       {
-        id: "usa",
-        label: "USA",
-        tz: "America/New_York",
-        workStart: "10:30",
-        workEnd: "24:30",
+        id: "usa", label: "USA", tz: "America/New_York",
+        workStart: "10:30", // Work hours: 10:30 AM
+        workEnd: "24:30",   // Work hours: to 12:30 AM (next day)
         flag: "https://flagcdn.com/us.svg",
         additionalTimezones: [
-          { name: "Eastern", iana: "America/New_York" },
-          { name: "Central", iana: "America/Chicago" },
-          { name: "Mountain", iana: "America/Denver" },
-          { name: "Pacific", iana: "America/Los_Angeles" }
+          { name: "Eastern", iana: "America/New_York" }, { name: "Central", iana: "America/Chicago" },
+          { name: "Mountain", iana: "America/Denver" }, { name: "Pacific", iana: "America/Los_Angeles" }
         ]
       },
       {
-        id: "canada",
-        label: "Canada",
-        tz: "America/Toronto",
-        workStart: "10:30",
-        workEnd: "24:30",
+        id: "canada", label: "Canada", tz: "America/Toronto",
+        workStart: "10:30", // Work hours: 10:30 AM
+        workEnd: "24:30",   // Work hours: to 12:30 AM (next day)
         flag: "https://flagcdn.com/ca.svg",
         additionalTimezones: [
-          { name: "Atlantic", iana: "America/Halifax" },
-          { name: "Eastern", iana: "America/Toronto" },
-          { name: "Central", iana: "America/Winnipeg" },
-          { name: "Mountain", iana: "America/Edmonton" },
+          { name: "Atlantic", iana: "America/Halifax" }, { name: "Eastern", iana: "America/Toronto" },
+          { name: "Central", iana: "America/Winnipeg" }, { name: "Mountain", iana: "America/Edmonton" },
           { name: "Pacific", iana: "America/Vancouver" }
         ]
       },
       {
-        id: "uk",
-        label: "UK",
-        tz: "Europe/London",
-        workStart: "11:30",
-        workEnd: "19:30",
+        id: "uk", label: "UK", tz: "Europe/London",
+        workStart: "11:30", // Work hours: 11:30 AM
+        workEnd: "19:30",   // Work hours: to 7:30 PM
         flag: "https://flagcdn.com/gb.svg"
       },
       {
-        id: "aus",
-        label: "Australia",
-        tz: "Australia/Sydney",
-        workStart: "09:30",
-        workEnd: "19:30",
+        id: "aus", label: "Australia", tz: "Australia/Sydney",
+        workStart: "09:30", // Work hours: 9:30 AM
+        workEnd: "19:30",   // Work hours: to 7:30 PM
         flag: "https://flagcdn.com/au.svg",
         additionalTimezones: [
           { name: "Sydney (AEST)", iana: "Australia/Sydney" },
-          { name: "Adelaide (ACST)", iana: "Australia/Darwin" },
+          { name: "Adelaide (ACST)", iana: "Australia/Darwin" }, // Note: Australia/Darwin is ACST, typically. Adelaide is ACST/ACDT.
           { name: "Perth (AWST)", iana: "Australia/Perth" }
         ]
       },
     ];
 
-    const timezoneCities = {
-      "America/New_York": ["New York", "Philadelphia", "Washington D.C.", "Boston", "Atlanta"],
-      "America/Chicago": ["Chicago", "Houston", "Dallas", "Minneapolis", "New Orleans"],
-      "America/Denver": ["Denver", "Phoenix", "Salt Lake City", "Albuquerque", "Boise"],
-      "America/Los_Angeles": ["Los Angeles", "San Francisco", "San Diego", "Seattle", "Portland"],
-      "America/Toronto": ["Toronto", "Montreal", "Ottawa", "Mississauga", "Hamilton"],
-      "America/Halifax": ["Halifax", "Moncton", "Saint John", "Dartmouth", "Charlottetown"],
-      "America/Winnipeg": ["Winnipeg", "Saskatoon", "Regina", "Thunder Bay", "Brandon"],
-      "America/Edmonton": ["Edmonton", "Calgary", "Red Deer", "Lethbridge", "St. Albert"],
-      "America/Vancouver": ["Vancouver", "Victoria", "Surrey", "Burnaby", "Richmond"],
-      "Europe/London": ["London", "Birmingham", "Manchester", "Glasgow", "Liverpool"],
-      "Australia/Sydney": ["Sydney", "Melbourne", "Canberra", "Gold Coast", "Newcastle"],
-      "Australia/Darwin": ["Darwin", "Alice Springs", "Palmerston", "Katherine", "Nhulunbuy"],
-      "Australia/Perth": ["Perth", "Fremantle", "Mandurah", "Bunbury", "Rockingham"]
+    const timezoneCities = { 
+        "America/New_York": ["New York", "Philadelphia", "Washington D.C.", "Boston", "Atlanta"], "America/Chicago": ["Chicago", "Houston", "Dallas", "Minneapolis", "New Orleans"], "America/Denver": ["Denver", "Phoenix", "Salt Lake City", "Albuquerque", "Boise"], "America/Los_Angeles": ["Los Angeles", "San Francisco", "San Diego", "Seattle", "Portland"], "America/Toronto": ["Toronto", "Montreal", "Ottawa", "Mississauga", "Hamilton"], "America/Halifax": ["Halifax", "Moncton", "Saint John", "Dartmouth", "Charlottetown"], "America/Winnipeg": ["Winnipeg", "Saskatoon", "Regina", "Thunder Bay", "Brandon"], "America/Edmonton": ["Edmonton", "Calgary", "Red Deer", "Lethbridge", "St. Albert"], "America/Vancouver": ["Vancouver", "Victoria", "Surrey", "Burnaby", "Richmond"], "Europe/London": ["London", "Birmingham", "Manchester", "Glasgow", "Liverpool"], "Australia/Sydney": ["Sydney", "Melbourne", "Canberra", "Gold Coast", "Newcastle"], "Australia/Darwin": ["Darwin", "Alice Springs", "Palmerston", "Katherine", "Nhulunbuy"], "Australia/Perth": ["Perth", "Fremantle", "Mandurah", "Bunbury", "Rockingham"]
     };
+    
+    let use24HourFormat = localStorage.getItem('use24HourFormat') === 'true';
+    let currentTheme = localStorage.getItem('pageTheme') || 'light';
+    document.documentElement.setAttribute('data-theme', currentTheme);
 
-    function pad(num) {
-      return String(num).padStart(2, '0');
-    }
+    const userLocalTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-    function timeToMinutes(str) {
-      const [h, m] = str.split(':').map(Number);
-      return h * 60 + m;
-    }
+    function pad(num) { return String(num).padStart(2, '0'); }
+    function timeToMinutes(timeStr) { const [h, m] = timeStr.split(':').map(Number); return h * 60 + m; }
 
     function getGreeting(hour) {
-      if (hour >= 5 && hour < 12) return "Good Morning";
-      if (hour >= 12 && hour < 17) return "Good Afternoon";
-      return "Good Evening";
+      if (hour >= 5 && hour < 12) return "Good morning";      // 5:00 AM - 11:59 AM
+      if (hour >= 12 && hour < 17) return "Good afternoon";   // 12:00 PM - 4:59 PM
+      if (hour >= 17 && hour < 21) return "Good evening";     // 5:00 PM - 8:59 PM
+      return "Hello";                                        // 9:00 PM - 4:59 AM
     }
 
-    function getIcon(hour) {
-      if (hour >= 5 && hour < 9) return '<i class="fas fa-sunrise text-warning"></i>';
-      if (hour >= 9 && hour < 17) return '<i class="fas fa-sun text-warning"></i>';
-      return '<i class="fas fa-moon text-light"></i>';
+    // REPLACE your existing getTimeIcon function with this one:
+function getTimeIcon(hour) {
+  let gifName = "";
+  let altText = "";
+  const iconWidth = "40px"; // Desired width for your GIFs
+  const iconHeight = "40px"; // Desired height for your GIFs
+
+  // Match these conditions to your getGreeting logic for consistency
+  if (hour >= 5 && hour < 12) {         // "Good morning" timeframe
+    gifName = "morning.png";
+    altText = "Sunrise animation";
+  } else if (hour >= 12 && hour < 17) { // "Good afternoon" timeframe
+    gifName = "afternoon.png";
+    altText = "Sun animation";
+  } else if (hour >= 17 && hour < 21) { // "Good evening" timeframe
+    gifName = "evening.png";
+    altText = "Evening/haze animation";
+  } else {                              // "Hello" (night) timeframe
+    gifName = "night.png";
+    altText = "Night animation";
+  }
+  // Assuming GIFs are in the same directory as your HTML file.
+  // If they are in a subfolder (e.g., 'images'), change src to "images/${gifName}"
+  return `<img src="${gifName}" alt="${altText}" style="width: ${iconWidth}; height: ${iconHeight}; object-fit: contain;">`;
+}
+    
+    function getDynamicBackgroundClass(hour) {
+        if (hour >= 5 && hour < 12) return 'dynamic-bg-morning';   // 5:00 AM - 11:59 AM
+        if (hour >= 12 && hour < 17) return 'dynamic-bg-afternoon'; // 12:00 PM - 4:59 PM
+        if (hour >= 17 && hour < 21) return 'dynamic-bg-evening';   // 5:00 PM - 8:59 PM
+        return 'dynamic-bg-deepnight';                             // 9:00 PM - 4:59 AM
     }
 
-    function getTooltipContent(ianaTimezone) {
-        const cities = timezoneCities[ianaTimezone];
-        if (!cities || cities.length === 0) {
-            return "Major cities not available.";
-        }
-        let listItems = cities.map(city => `<li>${city}</li>`).join('');
-        return `<strong>Major Cities:</strong><ul>${listItems}</ul>`;
+    function getFormattedTime(dateObj, timeZone, includeSeconds = true) {
+      const options = { timeZone, hour12: !use24HourFormat, hour: 'numeric', minute: 'numeric' };
+      if (includeSeconds) options.second = 'numeric';
+      return dateObj.toLocaleTimeString('en-US', options);
+    }
+
+    function getFormattedDate(dateObj, timeZone) {
+      return dateObj.toLocaleDateString('en-US', { timeZone, weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' });
+    }
+
+    function getUTCOffset(dateObj, timeZone) {
+        try {
+            const parts = Intl.DateTimeFormat('en-US', {timeZoneName: 'longOffset', timeZone}).formatToParts(dateObj);
+            const tzNamePart = parts.find(part => part.type === 'timeZoneName');
+            return tzNamePart ? tzNamePart.value.replace('GMT', 'UTC') : '';
+        } catch (e) { return ''; } 
+    }
+    
+    function formatCountdown(ms) {
+        if (ms < 0) ms = 0;
+        let s = Math.floor(ms / 1000);
+        let m = Math.floor(s / 60);
+        s = s % 60;
+        let h = Math.floor(m / 60);
+        m = m % 60;
+        if (h > 0) return `${h}h ${m}m ${s}s`;
+        if (m > 0) return `${m}m ${s}s`;
+        return `${s}s`;
     }
 
     function createClockCards() {
       const container = document.getElementById("clock-container");
-      container.innerHTML = ''; // Clear existing cards
+      container.innerHTML = '';
 
-      clocks.forEach(clock => {
+      clocksData.forEach(clock => {
         const col = document.createElement("div");
-        col.className = "col-12 col-md-6 d-flex"; // Bootstrap column
+        col.className = "col-12 col-lg-6 d-flex";
 
         let additionalTimezonesHTML = '';
         if (clock.additionalTimezones && clock.additionalTimezones.length > 0) {
@@ -348,116 +513,261 @@
               <div class="tz-column-item" data-timezone-iana="${subTz.iana}">
                 <div class="tz-name-item">${subTz.name}</div>
                 <div class="tz-time-item" id="sub-tz-time-${clock.id}-${index}">--:--</div>
-              </div>
-            `;
+              </div>`;
           });
           columnsHTML += '</div>';
           additionalTimezonesHTML = `<div class="additional-timezones-grid">${columnsHTML}</div>`;
         }
 
+        const isLocal = clock.tz === userLocalTimeZone;
+
         col.innerHTML = `
-          <div class="clock-box" id="clock-${clock.id}">
-            <div class="off-label d-none"><span>OFF HOURS</span></div>
-            <div class="time-icon" id="icon-${clock.id}"></div>
-            
+          <div class="clock-box ${isLocal ? 'highlight-local' : ''}" id="clock-${clock.id}" data-clock-id="${clock.id}">
+            <!-- Removed <div class="off-label"><span>OFF HOURS</span></div> -->
+            <div class="clock-actions">
+ <span class="off-hours-indicator">OFF HOURS</span>
+                <button class="copy-time-btn" title="Copy Time & Date"><i class="fas fa-copy"></i></button>
+            </div>
             <div class="clock-box-header">
+              <div class="time-icon-display"></div> 
               <img src="${clock.flag}" class="flag" alt="${clock.label} Flag">
               <div class="main-clock-details">
-                <div class="main-time-info"> 
+                <div class="main-time-info">
                   <div class="time">--:--:--</div>
-                  <div class="greeting">--</div>
+                  <div class="date-display">---</div>
                   <div class="country">${clock.label}</div>
+                  <div class="utc-offset">---</div>
+                  <div class="greeting">--</div>
+                  <div class="countdown-status">--</div>
                 </div>
               </div>
             </div>
-            
-            ${additionalTimezonesHTML} 
-          </div>
-        `;
+            ${additionalTimezonesHTML}
+          </div>`;
         container.appendChild(col);
       });
       initializeTooltips();
+      addEventListenersToClockActions();
     }
+    
+           function updateClock(clock) {
+      const now = new Date();
+      const nowEpoch = now.getTime(); // Current instant as epoch milliseconds
 
-    function initializeTooltips() {
-        tippy('.tz-column-item[data-timezone-iana]', {
-            content(reference) {
-                const iana = reference.getAttribute('data-timezone-iana');
-                return getTooltipContent(iana);
-            },
-            allowHTML: true,
-            animation: 'scale-extreme',
-            inertia: true,
-            theme: 'custom-light',
-            placement: 'bottom',
-	          offset: [0, 5], // Adjusted offset slightly for the new structure
+      let h_tz, m_tz; // Hour and minute in the target timezone
+      // yearCurrentTZ, monthCurrentTZ_0_indexed, dayCurrentTZ are NOT directly used for epoch construction anymore to avoid Date.UTC issues
+
+      try {
+        const formatter = new Intl.DateTimeFormat([], {
+          timeZone: clock.tz,
+          hour: 'numeric', minute: 'numeric',
+          // No need for year/month/day parts from here for the new epoch logic
+          hour12: false
         });
-    }
+        const parts = formatter.formatToParts(now);
+        const tzValues = {};
+        parts.forEach(part => {
+          if (part.type !== 'literal') {
+            tzValues[part.type] = parseInt(part.value, 10);
+          }
+        });
 
-    function updateClock(clock) {
-      const now = new Date().toLocaleString("en-US", { timeZone: clock.tz });
-      const date = new Date(now);
-      const h = date.getHours(), m = date.getMinutes(), s = date.getSeconds();
-      const timeStr = `${pad(h)}:${pad(m)}:${pad(s)}`;
-      const workMin = h * 60 + m;
-      const start = timeToMinutes(clock.workStart);
-      let end = timeToMinutes(clock.workEnd);
-      if (end <= start) {
-          end += 24 * 60;
+        h_tz = tzValues.hour;
+        m_tz = tzValues.minute;
+
+        if (isNaN(h_tz) || isNaN(m_tz)) {
+          throw new Error("Failed to parse hour/minute from Intl.DateTimeFormat");
+        }
+      } catch (e) {
+        const clockBox = document.getElementById("clock-" + clock.id);
+        if (clockBox) {
+          clockBox.querySelector('.main-time-info .time').textContent = "TZ Error";
+          // ... (other error display logic)
+        }
+        console.error("Error processing time for timezone:", clock.tz, e);
+        return;
       }
-      let adjustedWorkMin = workMin;
-      if (end > 24 * 60 && h < (start / 60) ) {
-          adjustedWorkMin += 24*60;
+
+      const timeStr = getFormattedTime(now, clock.tz);
+      const dateStr = getFormattedDate(now, clock.tz); // Still uses 'now' and 'clock.tz' for display
+      const offsetStr = getUTCOffset(now, clock.tz);   // Still uses 'now' and 'clock.tz' for display
+      const greeting = getGreeting(h_tz); // Uses correct h_tz
+
+      // --- Work Hours, inWork, and Countdown Logic ---
+      const workStartMin = timeToMinutes(clock.workStart); // e.g., UK 11:30 -> 690
+      const workEndMin = timeToMinutes(clock.workEnd);     // e.g., UK 19:30 -> 1170
+                                                          // USA 10:30 -> 630, 24:30 -> 1470
+      const currentMinInTZ = h_tz * 60 + m_tz; // e.g., UK 11:57 -> 717
+
+      // Calculate epoch for 00:00 local time on the current day in clock.tz
+      // nowEpoch = current UTC. currentMinInTZ = minutes past local midnight.
+      // So, nowEpoch - (currentMinInTZ * 60000) = UTC epoch of local midnight.
+      const epochAtStartOfTodayInTZ = nowEpoch - (currentMinInTZ * 60 * 1000);
+
+      // Calculate start and end epochs based on this local midnight anchor
+      // These are the UTC timestamps corresponding to local work start/end times.
+      let startEpoch = epochAtStartOfTodayInTZ + (workStartMin * 60 * 1000);
+      let endEpoch = epochAtStartOfTodayInTZ + (workEndMin * 60 * 1000);
+      // For USA 10:30 to 24:30: workEndMin is 1470.
+      // endEpoch will correctly be 00:30 on the "next calendar day" relative to epochAtStartOfTodayInTZ.
+
+      // If workEndMin < workStartMin (e.g. 22:00 to 06:00), then endEpoch as calculated
+      // would be for 06:00 on the *same day* as startEpoch (22:00).
+      // We need to shift it to the next calendar day.
+      if (workEndMin < workStartMin) { // This implies a "classic" overnight shift like 22:00-06:00
+          endEpoch += (24 * 60 * 60 * 1000);
       }
+      // After this, startEpoch and endEpoch define one contiguous work interval in UTC epoch time.
+      // UK 11:30-19:30: startEpoch=11:30 today, endEpoch=19:30 today. workEndMin > workStartMin, no +24h.
+      // USA 10:30-24:30: startEpoch=10:30 today, endEpoch=00:30 tomorrow (due to large workEndMin). workEndMin > workStartMin, no +24h here, handled by workEndMin magnitude.
+      // Hypothetical 22:00-06:00: startEpoch=22:00 today, endEpoch=06:00 tomorrow (due to +24h adjustment).
 
-      const inWork = start <= adjustedWorkMin && adjustedWorkMin < end;
+      let inWork = (nowEpoch >= startEpoch && nowEpoch < endEpoch);
+      // UK 11:57: nowEpoch (correct UTC for 11:57 UK)
+      // startEpoch (correct UTC for 11:30 UK today)
+      // endEpoch (correct UTC for 19:30 UK today)
+      // Comparison should be: (11:57 UK >= 11:30 UK) && (11:57 UK < 19:30 UK) -> true.
 
-      const greeting = getGreeting(h);
-      const iconHTML = getIcon(h);
-      const night = (h < 6 || h >= 19);
+      let countdownMsg = "";
+      if (inWork) {
+        countdownMsg = `Work ends in: ${formatCountdown(endEpoch - nowEpoch)}`;
+      } else {
+        // Not in work. Determine if the next shift is today's (later) or tomorrow's.
+        if (nowEpoch < startEpoch) {
+          // Current time is before the start of "today's" shift period (defined by startEpoch)
+          countdownMsg = `Work starts in: ${formatCountdown(startEpoch - nowEpoch)}`;
+        } else {
+          // Current time is after the end of "today's" shift period (nowEpoch >= endEpoch)
+          // So, the next shift will start 24 hours after the 'startEpoch' we calculated.
+          const nextDayShiftStartEpoch = startEpoch + (24 * 60 * 60 * 1000);
+          countdownMsg = `Work starts in: ${formatCountdown(nextDayShiftStartEpoch - nowEpoch)}`;
+        }
+      }
+      // --- End of Work Hours & Countdown Logic ---
+
+      const timeIconHTML = getTimeIcon(h_tz);
+      const dynamicBgClass = getDynamicBackgroundClass(h_tz);
 
       const clockBox = document.getElementById("clock-" + clock.id);
-      // Selectors using .main-time-info are still valid
       clockBox.querySelector('.main-time-info .time').textContent = timeStr;
+      clockBox.querySelector('.main-time-info .date-display').textContent = dateStr;
+      clockBox.querySelector('.main-time-info .utc-offset').textContent = offsetStr;
       clockBox.querySelector('.main-time-info .greeting').textContent = greeting;
-      // country is also within main-time-info, so no change to how it's found implicitly
-      clockBox.querySelector(`#icon-${clock.id}`).innerHTML = iconHTML;
+      clockBox.querySelector('.main-time-info .countdown-status').textContent = countdownMsg;
+      clockBox.querySelector('.time-icon-display').innerHTML = timeIconHTML;
 
-      const off = clockBox.querySelector('.off-label');
-      if (!inWork) {
-        clockBox.classList.add('off-hours');
-        off.classList.remove('d-none');
-      } else {
-        clockBox.classList.remove('off-hours');
-        off.classList.add('d-none');
+      clockBox.classList.toggle('off-hours', !inWork);
+      const offHoursIndicator = clockBox.querySelector('.off-hours-indicator');
+      if (offHoursIndicator) {
+        offHoursIndicator.style.display = inWork ? 'none' : 'inline';
       }
-      clockBox.classList.toggle('night', night);
 
-      if (clock.additionalTimezones && clock.additionalTimezones.length > 0) {
+      ['dynamic-bg-morning', 'dynamic-bg-afternoon', 'dynamic-bg-evening', 'dynamic-bg-deepnight'].forEach(cls => clockBox.classList.remove(cls));
+      clockBox.classList.add(dynamicBgClass);
+
+      if (clock.additionalTimezones) {
         clock.additionalTimezones.forEach((subTz, index) => {
           const timeElement = document.getElementById(`sub-tz-time-${clock.id}-${index}`);
           if (timeElement) {
-            const nowSub = new Date().toLocaleString("en-US", { timeZone: subTz.iana });
-            const dateSub = new Date(nowSub);
-            const hSub = dateSub.getHours();
-            const mSub = dateSub.getMinutes();
-            const timeStrSub = `${pad(hSub)}:${pad(mSub)}`;
-            timeElement.textContent = timeStrSub;
+            try {
+              timeElement.textContent = getFormattedTime(now, subTz.iana, false);
+            } catch (e) {
+              timeElement.textContent = "N/A";
+            }
           }
         });
       }
     }
 
-    function updateAllClocks() {
-      clocks.forEach(clock => updateClock(clock));
-      const now = new Date();
-      document.getElementById("local-time").textContent =
-        `Your Time: ${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+    function initializeTooltips() { 
+      tippy('.tz-column-item[data-timezone-iana]', {
+        content(reference) { const iana = reference.getAttribute('data-timezone-iana'); return getTooltipContent(iana); },
+        allowHTML: true, animation: 'scale-extreme', inertia: true, theme: 'custom-light', placement: 'bottom', offset: [0, 5],
+      });
+            // tippy('.clock-actions button');  
     }
+    
+    function getTooltipContent(ianaTimezone) { 
+        const cities = timezoneCities[ianaTimezone];
+        if (!cities || cities.length === 0) return "Major cities not available.";
+        return `<strong>Major Cities:</strong><ul>${cities.map(city => `<li>${city}</li>`).join('')}</ul>`;
+    }
+
+    function addEventListenersToClockActions() {
+        document.querySelectorAll('.copy-time-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const clockBox = this.closest('.clock-box');
+                const clockId = clockBox.dataset.clockId;
+                const clock = clocksData.find(c => c.id === clockId);
+                if (clock) {
+                    const nowInTZ = new Date(new Date().toLocaleString("en-US", { timeZone: clock.tz }));
+                    const timeToCopy = `${getFormattedDate(nowInTZ, clock.tz)}, ${getFormattedTime(nowInTZ, clock.tz)} (${getUTCOffset(nowInTZ, clock.tz)}) - ${clock.label}`;
+                    navigator.clipboard.writeText(timeToCopy)
+                        .then(() => alert(`${clock.label} time copied!`))
+                        .catch(err => console.error('Failed to copy: ', err));
+                }
+            });
+        });
+    }
+
+    function sortClocks(criteria) { 
+        const nowForSort = new Date();
+        switch (criteria) {
+            case 'label-asc': clocksData.sort((a, b) => a.label.localeCompare(b.label)); break;
+            case 'label-desc': clocksData.sort((a, b) => b.label.localeCompare(a.label)); break;
+            case 'time-asc':
+                clocksData.sort((a, b) => {
+                    const timeA = new Date(nowForSort.toLocaleString("en-US", { timeZone: a.tz })).getTime();
+                    const timeB = new Date(nowForSort.toLocaleString("en-US", { timeZone: b.tz })).getTime();
+                    return timeA - timeB;
+                });
+                break;
+            case 'time-desc':
+                clocksData.sort((a, b) => {
+                    const timeA = new Date(nowForSort.toLocaleString("en-US", { timeZone: a.tz })).getTime();
+                    const timeB = new Date(nowForSort.toLocaleString("en-US", { timeZone: b.tz })).getTime();
+                    return timeB - timeA;
+                });
+                break;
+            case 'default': 
+                clocksData.sort((a,b) => { 
+                    const originalOrder = ["usa", "canada", "uk", "aus"]; 
+                    return originalOrder.indexOf(a.id) - originalOrder.indexOf(b.id);
+                });
+                break;
+        }
+        createClockCards(); 
+        updateAllClocks(); 
+    }
+
+    function updateAllClocks() {
+      clocksData.forEach(clock => updateClock(clock));
+      const now = new Date();
+      document.getElementById("local-time-display").textContent =
+        `Your Time: ${getFormattedTime(now, userLocalTimeZone)} (${getFormattedDate(now, userLocalTimeZone)})`;
+    }
+
+    document.getElementById('theme-toggle-btn').addEventListener('click', () => { 
+      currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', currentTheme);
+      localStorage.setItem('pageTheme', currentTheme);
+      // updateAllClocks(); // Re-render might be needed if CSS relies heavily on theme for dynamic bg choice.
+                           // However, dynamic bg classes should handle their own text colors.
+                           // Dark theme specific overrides for sub-elements are in CSS.
+    });
+    document.getElementById('format-toggle-btn').addEventListener('click', () => { 
+      use24HourFormat = !use24HourFormat;
+      localStorage.setItem('use24HourFormat', use24HourFormat);
+      updateAllClocks(); 
+    });
+    document.getElementById('sort-clocks-select').addEventListener('change', (e) => { 
+        sortClocks(e.target.value);
+    });
 
     createClockCards();
     setInterval(updateAllClocks, 1000);
     updateAllClocks();
+
   </script>
 </body>
 </html>
