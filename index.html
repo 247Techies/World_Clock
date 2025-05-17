@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/dist/tippy.css"/>
   <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/scale-extreme.css"/>
 
+
   <style>
     :root {
       --page-bg: #f0f2f5;
@@ -371,6 +372,8 @@ html[data-theme='dark'] .clock-box.dynamic-bg-evening .off-hours-indicator {
 
   <script src="https://unpkg.com/@popperjs/core@2"></script>
   <script src="https://unpkg.com/tippy.js@6"></script>
+<!-- Add SweetAlert2 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <script>
     let clocksData = [
@@ -693,18 +696,42 @@ function getTimeIcon(hour) {
         return `<strong>Major Cities:</strong><ul>${cities.map(city => `<li>${city}</li>`).join('')}</ul>`;
     }
 
-    function addEventListenersToClockActions() {
+        function addEventListenersToClockActions() {
         document.querySelectorAll('.copy-time-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const clockBox = this.closest('.clock-box');
                 const clockId = clockBox.dataset.clockId;
                 const clock = clocksData.find(c => c.id === clockId);
                 if (clock) {
-                    const nowInTZ = new Date(new Date().toLocaleString("en-US", { timeZone: clock.tz }));
-                    const timeToCopy = `${getFormattedDate(nowInTZ, clock.tz)}, ${getFormattedTime(nowInTZ, clock.tz)} (${getUTCOffset(nowInTZ, clock.tz)}) - ${clock.label}`;
+                    const nowForCopy = new Date(); // Use a fresh Date object for accuracy
+                    const timeToCopy = `${getFormattedDate(nowForCopy, clock.tz)}, ${getFormattedTime(nowForCopy, clock.tz)} (${getUTCOffset(nowForCopy, clock.tz)}) - ${clock.label}`;
+                    
                     navigator.clipboard.writeText(timeToCopy)
-                        .then(() => alert(`${clock.label} time copied!`))
-                        .catch(err => console.error('Failed to copy: ', err));
+                        .then(() => {
+                            Swal.fire({
+                                icon: 'success',
+                                title: `${clock.label} Time Copied!`,
+                                html: `You copied:<br><strong>${timeToCopy}</strong>`,
+                                timer: 2500, // Auto-close after 2.5 seconds
+                                showConfirmButton: false,
+                                // Optional: Adjust for theme if default styling isn't perfect
+                                // background: document.documentElement.getAttribute('data-theme') === 'dark' ? '#343a40' : '#fff',
+                                // color: document.documentElement.getAttribute('data-theme') === 'dark' ? '#fff' : '#545454',
+                                // customClass: {
+                                // popup: 'your-custom-popup-class', // If you need more specific CSS
+                                // title: 'your-custom-title-class',
+                                // htmlContainer: 'your-custom-html-class'
+                                // }
+                            });
+                        })
+                        .catch(err => {
+                            console.error('Failed to copy: ', err);
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Copy Failed',
+                                text: 'Could not copy the time to clipboard. Your browser might not support this feature or permissions might be denied.',
+                            });
+                        });
                 }
             });
         });
