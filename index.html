@@ -232,10 +232,10 @@ margin-top: 15px;
         color: #555; 
     }
 
-
-    .clock-box:not(.off-hours) .main-time-info .countdown-status {
+	/*Enable below to hide work ends in countdown*/
+    /*.clock-box:not(.off-hours) .main-time-info .countdown-status {
         display: none;
-    }
+    }*/
 
     .main-time-info .country {
       font-size: 0.95rem;
@@ -386,7 +386,7 @@ html[data-theme='dark'] .clock-box.dynamic-bg-evening .off-hours-indicator {
   <div class="container">
 
     <div class="title-box">
-      <div class="main-title">24/7 Techies Office Dashboard</div>
+      <div class="main-title">Global Office Dashboard</div>
       <div class="local-time-display" id="local-time-display">Your Time: --:--:--</div>
     </div>
 
@@ -473,9 +473,9 @@ html[data-theme='dark'] .clock-box.dynamic-bg-evening .off-hours-indicator {
     function timeToMinutes(timeStr) { const [h, m] = timeStr.split(':').map(Number); return h * 60 + m; }
 
     function getGreeting(hour) {
-      if (hour >= 5 && hour < 12) return "Good morning";      // 5:00 AM - 11:59 AM
-      if (hour >= 12 && hour < 17) return "Good afternoon";   // 12:00 PM - 4:59 PM
-      if (hour >= 17 && hour < 21) return "Good evening";     // 5:00 PM - 8:59 PM
+      if (hour >= 5 && hour < 12) return "Good Morning";      // 5:00 AM - 11:59 AM
+      if (hour >= 12 && hour < 17) return "Good Afternoon";   // 12:00 PM - 4:59 PM
+      if (hour >= 17 && hour < 21) return "Good Evening";     // 5:00 PM - 8:59 PM
       return "Hello";                                        // 9:00 PM - 4:59 AM
     }
 
@@ -530,16 +530,23 @@ function getTimeIcon(hour) {
         } catch (e) { return ''; } 
     }
     
-    function formatCountdown(ms) {
+        function formatCountdown(ms) {
         if (ms < 0) ms = 0;
-        let s = Math.floor(ms / 1000);
-        let m = Math.floor(s / 60);
-        s = s % 60;
-        let h = Math.floor(m / 60);
-        m = m % 60;
-        if (h > 0) return `${h}h ${m}m ${s}s`;
-        if (m > 0) return `${m}m ${s}s`;
-        return `${s}s`;
+        let totalSeconds = Math.floor(ms / 1000);
+        let minutes = Math.floor(totalSeconds / 60);
+        let hours = Math.floor(minutes / 60);
+        
+        let seconds = totalSeconds % 60; // Keep this if you want seconds for the last minute
+        minutes = minutes % 60;
+
+        if (hours > 0) {
+            return `${hours}h ${minutes}m`; // Hours and minutes
+        }
+        if (minutes > 0) {
+            return `${minutes}m`; // Only minutes
+        }
+        // Only show seconds if less than a minute remains
+        return `${seconds}s`; // Shows "59s", "58s", ..., "0s"
     }
 
     function createClockCards() {
