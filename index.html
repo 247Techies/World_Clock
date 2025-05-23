@@ -92,7 +92,7 @@
     html[data-theme='dark'] .tippy-box[data-theme~='custom-light'][data-placement^='bottom'] > .tippy-arrow::before { border-bottom-color: #555; }
     html[data-theme='dark'] .tippy-box[data-theme~='custom-light'] .tippy-arrow { color: #3e3e3e; }
     .time-conversion-card { background-color: var(--card-bg); border-radius: 12px; box-shadow: 0 4px 12px var(--card-shadow); padding: 20px; margin-top: 30px; margin-bottom: 30px; }
-    .conversion-flags-container { display: flex; justify-content: space-around; align-items: center; margin-bottom: 25px; gap: 15px; }
+    .conversion-flags-container { margin-bottom: 25px;}
     .conversion-flag-item { position: relative; cursor: pointer; padding: 5px; border: 3px solid transparent; border-radius: 50%; transition: border-color 0.2s ease-in-out; }
     .conversion-flag-item img { width: 60px; height: 60px; object-fit: cover; border-radius: 50%; display: block; }
     .conversion-flag-item.selected { border-color: var(--selected-highlight); }
@@ -112,6 +112,17 @@
     html[data-theme='dark'] span.arrowUp::after { border-bottom-color: var(--text-color); }
     html[data-theme='dark'] span.arrowDown::after { border-top-color: var(--text-color); }
     html[data-theme='dark'] .numInputWrapper span:hover { background: var(--highlight-border) !important; }
+
+/* SweetAlert2 Mobile Centering */
+@media (max-width: 767px) { /* Target screens smaller than Bootstrap's 'md' breakpoint */
+    .mobile-friendly-swal.swal2-popup {
+        width: 90% !important; /* Ensure it's not too wide, allowing margins to center it */
+        margin-left: auto !important;
+        margin-right: auto !important;
+        /* SweetAlert2 uses transform for centering, this should help if width was the issue */
+    }
+}
+
   </style>
 </head>
 <body>
@@ -214,22 +225,34 @@
     let flatpickrInstance;
     let selectedConversionCountry = null;
 
-    function initializeConversionFlags() {
+        function initializeConversionFlags() {
         flagsContainer.innerHTML = '';
+        // Add Bootstrap row and gutter classes, and center the content
+        flagsContainer.className = 'conversion-flags-container row justify-content-center g-3'; // g-3 for gap
+
         conversionCountriesData.forEach(country => {
+            // Create a column div for each flag
+            const colDiv = document.createElement('div');
+            // On extra-small (mobile), take 6/12 columns (2 per row).
+            // On large screens and up, let it take auto width.
+            // text-center to center the flag item within the column.
+            colDiv.className = 'col-6 col-lg-auto text-center'; 
+
             const flagDiv = document.createElement('div');
-            flagDiv.className = 'conversion-flag-item';
+            // d-inline-block to allow text-center to work and keep circular shape
+            flagDiv.className = 'conversion-flag-item d-inline-block'; 
             flagDiv.dataset.countryId = country.id;
             flagDiv.innerHTML = `<img src="${country.flag}" alt="${country.name} Flag"><div class="selected-tick"><i class="fas fa-check"></i></div>`;
-            // Removed: flagDiv.title = country.name;
+            
             flagDiv.addEventListener('click', () => handleConversionCountrySelect(country));
-            flagsContainer.appendChild(flagDiv);
-            // Initialize Tippy directly on the newly created element
-            tippy(flagDiv, {
-                content: country.name, // Provide content directly to Tippy
-                placement: 'top',      // Optional: set placement
-                animation: 'scale-extreme', // Optional: consistent animation
-                // theme: 'custom-light', // Optional: if you want your custom theme
+            
+            colDiv.appendChild(flagDiv); // Append flag to column
+            flagsContainer.appendChild(colDiv); // Append column to container
+
+            tippy(flagDiv, { // Initialize Tippy for each flag individually
+                content: country.name,
+                placement: 'top',
+                animation: 'scale-extreme',
             });
         });
     }
