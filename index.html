@@ -473,21 +473,20 @@
     // --- Function to build the menu from JSON data ---
     async function buildMenu() {
         try {
-            const response = await fetch('team.json'); // Fetch the JSON file
+            const response = await fetch('team.json');
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
-            const teamMembers = await response.json(); // Parse JSON into an array
+            const teamMembers = await response.json();
 
-            // Clear any existing menu items
-            contextMenu.innerHTML = ''; 
+            contextMenu.innerHTML = '';
 
-            // Create and append a menu item for each team member
             teamMembers.forEach(person => {
                 const menuItem = document.createElement('li');
                 menuItem.className = 'menu-item';
                 menuItem.setAttribute('data-ext', person.ext);
 
+                // The HTML template now uses person.TeamsName instead of person.country
                 menuItem.innerHTML = `
                     <div class="item-left">
                         <div class="name">
@@ -498,7 +497,7 @@
                             <span class="position">
                                 <strong>Position:</strong> ${person.position}
                             </span>
-                            <span class="country">(${person.country})</span>
+                            <span class="country">(${person.TeamsName})</span> <!-- CHANGE IS HERE -->
                         </div>
                     </div>
                     <div class="item-right">
@@ -508,7 +507,6 @@
                 contextMenu.appendChild(menuItem);
             });
             
-            // Re-attach click listeners after building the menu
             addMenuItemListeners();
 
         } catch (error) {
@@ -517,19 +515,16 @@
         }
     }
     
-    // --- Initial call to build the menu on page load ---
     buildMenu();
 
-
-    // --- Functionality for menu items ---
     function addMenuItemListeners() {
         document.querySelectorAll(".menu-item").forEach(item => {
             item.addEventListener("click", () => {
                 const ext = item.getAttribute("data-ext");
-                if (ext) { // Make sure we don't alert on an error message
+                if (ext) {
                     alert(`You clicked on the person with extension: ${ext}`);
                 }
-                hideMenu(); // Hide menu after clicking an item
+                hideMenu();
             });
         });
     }
@@ -540,8 +535,10 @@
         showMenu(event.clientX, event.clientY);
     });
     
-    document.addEventListener("click", () => {
-        hideMenu();
+    document.addEventListener("click", (event) => {
+        if (!contextMenu.contains(event.target)) {
+            hideMenu();
+        }
     });
 
     document.addEventListener("keyup", (event) => {
