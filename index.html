@@ -113,6 +113,76 @@
     html[data-theme='dark'] span.arrowDown::after { border-top-color: var(--text-color); }
     html[data-theme='dark'] .numInputWrapper span:hover { background: var(--highlight-border) !important; }
 
+    /* Context Menu Container */
+    #context-menu {
+        position: absolute; /* Crucial for placing it anywhere on the page */
+        display: none; /* Hidden by default */
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1), 0 2px 5px rgba(0, 0, 0, 0.08);
+        padding: 8px 0;
+        list-style: none;
+        margin: 0;
+        min-width: 400px;
+        z-index: 1000;
+        border: 1px solid #e9ecef;
+    }
+
+    /* Menu Item Styling */
+    .menu-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 20px;
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
+        border-bottom: 1px solid #f1f3f5;
+    }
+
+    .menu-item:last-child {
+        border-bottom: none;
+    }
+
+    .menu-item:hover {
+        background-color: #ececec;
+    }
+
+    /* Left Side of Menu Item */
+    .item-left .name {
+        font-size: 1.1em; /* Bigger name */
+        font-weight: 500;
+        color: #f68d2e;
+        margin-bottom: 2px;
+    }
+
+    .item-left .name i {
+        margin-right: 12px;
+        color: #495057;
+        width: 20px; /* Align icons */
+        text-align: center;
+    }
+
+    .item-left .details {
+        font-size: 0.85em; /* Smaller details */
+        color: #6c757d;
+        padding-left: 35px; /* Align with name text */
+    }
+
+    .details strong {
+        margin-right: 1px;
+    }
+
+    /* Right Side of Menu Item */
+    .item-right .ext {
+        font-size: 0.9em;
+        color: #ffffff;
+        background-color: #5ea8f1;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+
 /* SweetAlert2 Mobile Centering */
 @media (max-width: 767px) { /* Target screens smaller than Bootstrap's 'md' breakpoint */
     .mobile-friendly-swal.swal2-popup {
@@ -123,9 +193,17 @@
     }
 }
 
+
+
   </style>
 </head>
 <body>
+
+    <!-- The Custom Context Menu (now an empty container) -->
+<ul id="context-menu">
+    <!-- Menu items will be inserted here by JavaScript -->
+</ul>
+
   <div class="container">
     <div class="title-box">
       <div class="main-title">24/7 Techies Clock Dashboard</div>
@@ -388,6 +466,108 @@
     document.getElementById('copy-conversion-result-btn').addEventListener('click', function() { const textToCopy = conversionResultText.textContent; if (textToCopy && textToCopy !== '--' && !textToCopy.includes('-- Error --')) { navigator.clipboard.writeText(textToCopy) .then(() => Swal.fire({ icon: 'success', title: 'Copied!', text: 'Converted time copied.', timer: 2000, showConfirmButton: false })) .catch(err => { console.error('Failed to copy result: ', err); Swal.fire({icon: 'error', title: 'Copy Failed'}); }); } else { Swal.fire({icon: 'warning', title: 'Nothing to Copy', timer: 2000, showConfirmButton: false}); } });
     document.getElementById('theme-toggle-btn').addEventListener('click', () => { currentTheme = currentTheme === 'light' ? 'dark' : 'light'; document.documentElement.setAttribute('data-theme', currentTheme); localStorage.setItem('pageTheme', currentTheme); });
     document.getElementById('format-toggle-btn').addEventListener('click', () => { use24HourFormat = !use24HourFormat; localStorage.setItem('use24HourFormat', use24HourFormat); updateAllClocks(); if (conversionResultContainer.style.display === 'block' && !conversionResultText.textContent.includes('-- Error --')) { document.getElementById('convert-time-btn').click(); } });
+
+    document.addEventListener("DOMContentLoaded", () => {
+    const contextMenu = document.getElementById("context-menu");
+
+    // --- Function to build the menu from JSON data ---
+    async function buildMenu() {
+        try {
+            const response = await fetch('team.json'); // Fetch the JSON file
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const teamMembers = await response.json(); // Parse JSON into an array
+
+            // Clear any existing menu items
+            contextMenu.innerHTML = ''; 
+
+            // Create and append a menu item for each team member
+            teamMembers.forEach(person => {
+                const menuItem = document.createElement('li');
+                menuItem.className = 'menu-item';
+                menuItem.setAttribute('data-ext', person.ext);
+
+                menuItem.innerHTML = `
+                    <div class="item-left">
+                        <div class="name">
+                            <i class="${person.icon}"></i>
+                            ${person.name}
+                        </div>
+                        <div class="details">
+                            <span class="position">
+                                <strong>Position:</strong> ${person.position}
+                            </span>
+                            <span class="country">(${person.country})</span>
+                        </div>
+                    </div>
+                    <div class="item-right">
+                        <span class="ext">EXT: ${person.ext}</span>
+                    </div>
+                `;
+                contextMenu.appendChild(menuItem);
+            });
+            
+            // Re-attach click listeners after building the menu
+            addMenuItemListeners();
+
+        } catch (error) {
+            console.error("Could not fetch or build the menu:", error);
+            contextMenu.innerHTML = '<li class="menu-item">Error loading data.</li>';
+        }
+    }
+    
+    // --- Initial call to build the menu on page load ---
+    buildMenu();
+
+
+    // --- Functionality for menu items ---
+    function addMenuItemListeners() {
+        document.querySelectorAll(".menu-item").forEach(item => {
+            item.addEventListener("click", () => {
+                const ext = item.getAttribute("data-ext");
+                if (ext) { // Make sure we don't alert on an error message
+                    alert(`You clicked on the person with extension: ${ext}`);
+                }
+                hideMenu(); // Hide menu after clicking an item
+            });
+        });
+    }
+
+    // --- Show/Hide Logic (remains the same) ---
+    document.addEventListener("contextmenu", (event) => {
+        event.preventDefault();
+        showMenu(event.clientX, event.clientY);
+    });
+    
+    document.addEventListener("click", () => {
+        hideMenu();
+    });
+
+    document.addEventListener("keyup", (event) => {
+        if (event.key === "Escape") {
+            hideMenu();
+        }
+    });
+
+    function showMenu(x, y) {
+        const winWidth = window.innerWidth;
+        const winHeight = window.innerHeight;
+        const menuWidth = contextMenu.offsetWidth;
+        const menuHeight = contextMenu.offsetHeight;
+
+        let newX = (x + menuWidth > winWidth) ? winWidth - menuWidth - 5 : x;
+        let newY = (y + menuHeight > winHeight) ? winHeight - menuHeight - 5 : y;
+        
+        contextMenu.style.left = `${newX}px`;
+        contextMenu.style.top = `${newY}px`;
+        contextMenu.style.display = "block";
+    }
+
+    function hideMenu() {
+        contextMenu.style.display = "none";
+    }
+});
 
 </script>
 </body>

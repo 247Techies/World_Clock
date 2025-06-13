@@ -1,0 +1,37 @@
+[
+    {
+      "name": "Jane Doe",
+      "position": "CEO & Founder",
+      "country": "USA",
+      "ext": "1001",
+      "icon": "fa-solid fa-user-tie"
+    },
+    {
+      "name": "John Smiths",
+      "position": "Lead Engineer",
+      "country": "Canada",
+      "ext": "1002",
+      "icon": "fa-solid fa-user-gear"
+    },
+    {
+      "name": "Priya Sharma",
+      "position": "UX/UI Designer",
+      "country": "India",
+      "ext": "1003",
+      "icon": "fa-solid fa-user-pen"
+    },
+    {
+      "name": "Michael Chen",
+      "position": "Project Manager",
+      "country": "UK",
+      "ext": "1004",
+      "icon": "fa-solid fa-user-group"
+    },
+    {
+      "name": "Aisha Khan",
+      "position": "QA Specialist",
+      "country": "Germany",
+      "ext": "1005",
+      "icon": "fa-solid fa-user-check"
+    }
+  ]
