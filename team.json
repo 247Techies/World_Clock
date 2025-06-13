@@ -1,114 +1,114 @@
 [
     {
-      "name": "Ahsan",
+      "name": "Austin",
       "ext": "1214",
-      "country": "Austin",
-      "position": "STL-SD",
+      "TeamsName": "Ahsan",
+      "position": "Senior Tech Lead",
       "icon": "fa-solid fa-user"
     },
     {
-      "name": "Akitha",
+      "name": "Alex",
       "ext": "1225",
-      "country": "Alex",
-      "position": "STL-SS",
+      "TeamsName": "Akitha",
+      "position": "Senior Tech Lead",
       "icon": "fa-solid fa-user"
     },
     {
-      "name": "Sham",
+      "name": "Ron",
       "ext": "1247",
-      "country": "Ron",
-      "position": "TL",
+      "TeamsName": "Sham",
+      "position": "Tech Lead",
       "icon": "fa-solid fa-user"
     },
     {
-      "name": "Rizvi",
+      "name": "Richard",
       "ext": "1249",
-      "country": "Richard",
-      "position": "TL",
+      "TeamsName": "Rizvi",
+      "position": "Tech Lead",
       "icon": "fa-solid fa-user"
     },
     {
-      "name": "Thanush",
+      "name": "Thomas",
       "ext": "1248",
-      "country": "Thomas",
-      "position": "TL",
+      "TeamsName": "Thanush",
+      "position": "Tech Lead",
       "icon": "fa-solid fa-user"
     },
     {
-      "name": "Fazlur",
+      "name": "Farrel",
       "ext": "1202",
-      "country": "Farrel",
+      "TeamsName": "Fazlur",
       "position": "PT",
       "icon": "fa-solid fa-user"
     },
     {
-      "name": "Saad",
+      "name": "Simon",
       "ext": "1271",
-      "country": "Simon",
-      "position": "T",
+      "TeamsName": "Saad",
+      "position": "Techie",
       "icon": "fa-solid fa-user"
     },
     {
-      "name": "Isuru",
+      "name": "Ian",
       "ext": "1278",
-      "country": "Ian",
-      "position": "T",
+      "TeamsName": "Isuru",
+      "position": "Techie",
       "icon": "fa-solid fa-user"
     },
     {
-      "name": "Ravin",
+      "name": "Ryan",
       "ext": "1279",
-      "country": "Ryan",
-      "position": "T",
+      "TeamsName": "Ravin",
+      "position": "Techie",
       "icon": "fa-solid fa-user"
     },
     {
-      "name": "Rajinth",
+      "name": "Raymond",
       "ext": "1282",
-      "country": "Raymond",
-      "position": "T",
+      "TeamsName": "Rajinth",
+      "position": "Techie",
       "icon": "fa-solid fa-user"
     },
     {
-      "name": "Sridaran",
+      "name": "Steve",
       "ext": "1283",
-      "country": "Steve",
-      "position": "T",
+      "TeamsName": "Sridaran",
+      "position": "Techie",
       "icon": "fa-solid fa-user"
     },
     {
-      "name": "Haritha",
+      "name": "Harry",
       "ext": "1288",
-      "country": "Harry",
-      "position": "T",
+      "TeamsName": "Haritha",
+      "position": "Techie",
       "icon": "fa-solid fa-user"
     },
     {
-      "name": "Mayukha",
+      "name": "Mike",
       "ext": "1291",
-      "country": "Mike",
-      "position": "T",
+      "TeamsName": "Mayukha",
+      "position": "Techie",
       "icon": "fa-solid fa-user"
     },
     {
-      "name": "Himaru",
+      "name": "Harris",
       "ext": "1298",
-      "country": "Harris",
-      "position": "T",
+      "TeamsName": "Himaru",
+      "position": "Techie",
       "icon": "fa-solid fa-user"
     },
     {
-      "name": "Dinath",
+      "name": "Dennis",
       "ext": "1304",
-      "country": "Dennis",
-      "position": "T",
+      "TeamsName": "Dinath",
+      "position": "Techie",
       "icon": "fa-solid fa-user"
     },
     {
-      "name": "Arafath",
+      "name": "Aiden",
       "ext": "1303",
-      "country": "Aiden",
-      "position": "T",
+      "TeamsName": "Arafath",
+      "position": "Techie",
       "icon": "fa-solid fa-user"
     }
   ]
