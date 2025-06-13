@@ -1,37 +1,114 @@
 [
     {
-      "name": "Jane Doe",
-      "position": "CEO & Founder",
-      "country": "USA",
-      "ext": "1001",
-      "icon": "fa-solid fa-user-tie"
+      "name": "Ahsan",
+      "ext": "1214",
+      "country": "Austin",
+      "position": "STL-SD",
+      "icon": "fa-solid fa-user"
     },
     {
-      "name": "John Smiths",
-      "position": "Lead Engineer",
-      "country": "Canada",
-      "ext": "1002",
-      "icon": "fa-solid fa-user-gear"
+      "name": "Akitha",
+      "ext": "1225",
+      "country": "Alex",
+      "position": "STL-SS",
+      "icon": "fa-solid fa-user"
     },
     {
-      "name": "Priya Sharma",
-      "position": "UX/UI Designer",
-      "country": "India",
-      "ext": "1003",
-      "icon": "fa-solid fa-user-pen"
+      "name": "Sham",
+      "ext": "1247",
+      "country": "Ron",
+      "position": "TL",
+      "icon": "fa-solid fa-user"
     },
     {
-      "name": "Michael Chen",
-      "position": "Project Manager",
-      "country": "UK",
-      "ext": "1004",
-      "icon": "fa-solid fa-user-group"
+      "name": "Rizvi",
+      "ext": "1249",
+      "country": "Richard",
+      "position": "TL",
+      "icon": "fa-solid fa-user"
     },
     {
-      "name": "Aisha Khan",
-      "position": "QA Specialist",
-      "country": "Germany",
-      "ext": "1005",
-      "icon": "fa-solid fa-user-check"
+      "name": "Thanush",
+      "ext": "1248",
+      "country": "Thomas",
+      "position": "TL",
+      "icon": "fa-solid fa-user"
+    },
+    {
+      "name": "Fazlur",
+      "ext": "1202",
+      "country": "Farrel",
+      "position": "PT",
+      "icon": "fa-solid fa-user"
+    },
+    {
+      "name": "Saad",
+      "ext": "1271",
+      "country": "Simon",
+      "position": "T",
+      "icon": "fa-solid fa-user"
+    },
+    {
+      "name": "Isuru",
+      "ext": "1278",
+      "country": "Ian",
+      "position": "T",
+      "icon": "fa-solid fa-user"
+    },
+    {
+      "name": "Ravin",
+      "ext": "1279",
+      "country": "Ryan",
+      "position": "T",
+      "icon": "fa-solid fa-user"
+    },
+    {
+      "name": "Rajinth",
+      "ext": "1282",
+      "country": "Raymond",
+      "position": "T",
+      "icon": "fa-solid fa-user"
+    },
+    {
+      "name": "Sridaran",
+      "ext": "1283",
+      "country": "Steve",
+      "position": "T",
+      "icon": "fa-solid fa-user"
+    },
+    {
+      "name": "Haritha",
+      "ext": "1288",
+      "country": "Harry",
+      "position": "T",
+      "icon": "fa-solid fa-user"
+    },
+    {
+      "name": "Mayukha",
+      "ext": "1291",
+      "country": "Mike",
+      "position": "T",
+      "icon": "fa-solid fa-user"
+    },
+    {
+      "name": "Himaru",
+      "ext": "1298",
+      "country": "Harris",
+      "position": "T",
+      "icon": "fa-solid fa-user"
+    },
+    {
+      "name": "Dinath",
+      "ext": "1304",
+      "country": "Dennis",
+      "position": "T",
+      "icon": "fa-solid fa-user"
+    },
+    {
+      "name": "Arafath",
+      "ext": "1303",
+      "country": "Aiden",
+      "position": "T",
+      "icon": "fa-solid fa-user"
     }
   ]
