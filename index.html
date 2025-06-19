@@ -429,7 +429,7 @@
             conversionResultText.textContent = resultString;
 
             // NEW: Populate source time display
-            const sourceDisplayString = `${flatpickrInstance.altInput.value} (${$conversionTimezoneSelect.find('option:selected').text()})`;
+            const sourceDisplayString = `${flatpickrInstance.altInput.value} (${selectedConversionCountry.name} / ${$conversionTimezoneSelect.find('option:selected').text()})`;
             sourceTimeText.textContent = sourceDisplayString;
 
             // Show both result blocks and clear any error
