@@ -197,6 +197,49 @@
     html[data-theme='dark'] .item-top .name { color: #e9ecef; }
     html[data-theme='dark'] .item-bottom .details { color: #aaa; }
 
+    /* NEW: Search Bar Styling */
+    #context-menu .search-wrapper {
+        position: sticky; /* Keeps it at the top when scrolling */
+        top: 0;
+        background-color: var(--card-bg, #ffffff);
+        padding: 8px 10px;
+        border-bottom: 1px solid #e0e0e0;
+        cursor: default; /* It's not a clickable item */
+    }
+    #context-menu .search-wrapper:hover {
+        background-color: var(--card-bg, #ffffff); /* Override hover effect */
+    }
+    #context-menu .search-icon {
+        position: absolute;
+        top: 50%;
+        left: 20px;
+        transform: translateY(-50%);
+        color: #999;
+        font-size: 0.9em;
+    }
+    #context-menu-search {
+        width: 100%;
+        padding: 6px 10px 6px 30px; /* Left padding for icon */
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 0.9em;
+        background-color: var(--page-bg, #f0f2f5);
+        color: var(--text-color, #333);
+    }
+    #context-menu-search:focus {
+        outline: none;
+        border-color: var(--highlight-border, #007bff);
+        box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+    }
+
+    /* Dark Theme Adjustments for Search */
+    html[data-theme='dark'] #context-menu .search-wrapper {
+        border-bottom-color: #444;
+    }
+    html[data-theme='dark'] #context-menu-search {
+        border-color: #555;
+    }
+
 
 /* SweetAlert2 Mobile Centering */
 @media (max-width: 767px) { /* Target screens smaller than Bootstrap's 'md' breakpoint */
@@ -214,10 +257,14 @@
 </head>
 <body>
 
-    <!-- The Custom Context Menu (now an empty container) -->
-<ul id="context-menu">
-    <!-- Menu items will be inserted here by JavaScript -->
-</ul>
+    <ul id="context-menu">
+        <!-- NEW: Search bar container -->
+        <li id="context-menu-search-wrapper" class="search-wrapper">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="context-menu-search" placeholder="Search by Name or Teams Name...">
+        </li>
+        <!-- Menu items will be inserted here by JavaScript -->
+    </ul>
 
   <div class="container">
     <div class="title-box">
@@ -507,6 +554,9 @@
             teamMembers.forEach(person => {
                 const menuItem = document.createElement('li');
                 menuItem.className = 'menu-item';
+                menuItem.setAttribute('data-name', person.name.toLowerCase());
+                menuItem.setAttribute('data-teamsname', person.TeamsName.toLowerCase());
+                menuItem.style.display = 'flex'; // Ensure it's visible by default
                 menuItem.setAttribute('data-ext', person.ext);
                 menuItem.innerHTML = `
                     <div class="item-top">
@@ -526,6 +576,34 @@
         }
     }
     buildMenu();
+
+        // --- NEW: Search functionality ---
+    const searchInput = document.getElementById('context-menu-search');
+    const searchWrapper = document.getElementById('context-menu-search-wrapper');
+
+    // Filter the list as the user types
+    searchInput.addEventListener('input', () => {
+        const searchTerm = searchInput.value.toLowerCase();
+        const menuItems = document.querySelectorAll('#context-menu .menu-item');
+
+        menuItems.forEach(item => {
+            const name = item.dataset.name || '';
+            const teamsName = item.dataset.teamsname || '';
+
+            if (name.includes(searchTerm) || teamsName.includes(searchTerm)) {
+                item.style.display = 'flex';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    });
+
+    // Prevent menu from closing when clicking inside the search bar
+    searchWrapper.addEventListener('click', (event) => {
+        event.stopPropagation();
+    });
+
+    
     function addMenuItemListeners() {
         document.querySelectorAll(".menu-item").forEach(item => {
             item.addEventListener("click", () => {
@@ -548,6 +626,17 @@
         contextMenu.style.left = `${newX}px`;
         contextMenu.style.top = `${newY}px`;
         contextMenu.style.display = "block";
+
+            const searchInput = document.getElementById('context-menu-search');
+            searchInput.value = ''; // Clear previous search
+
+            // Make all items visible again
+            document.querySelectorAll('#context-menu .menu-item').forEach(item => {
+                item.style.display = 'flex';
+            });
+
+            searchInput.focus(); // Automatically focus the search bar
+            
     }
     function hideMenu() { contextMenu.style.display = "none"; }
 });
