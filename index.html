@@ -127,7 +127,7 @@
         border: 1px solid #e9ecef;
         max-height: 255px; /* NEW: Limit height to show ~5 items */
         overflow-y: auto;  /* NEW: Add scrollbar when content exceeds max-height */
-        padding: 5px 0;    /* Adjusted padding */
+        padding: 0;    /* Adjusted padding */
     }
 
     /* Optional: Prettier scrollbar for modern browsers */
@@ -140,6 +140,49 @@
     }
     html[data-theme='dark'] #context-menu::-webkit-scrollbar-thumb {
         background-color: #555;
+    }
+
+    /* NEW: Search Bar Styling */
+    #context-menu .search-wrapper {
+        position: sticky; /* Keeps it at the top when scrolling */
+        top: 0;
+        background-color: var(--card-bg, #ffffff);
+        padding: 8px 10px;
+        border-bottom: 1px solid #e0e0e0;
+        cursor: default; /* It's not a clickable item */
+    }
+    #context-menu .search-wrapper:hover {
+        background-color: var(--card-bg, #ffffff); /* Override hover effect */
+    }
+    #context-menu .search-icon {
+        position: absolute;
+        top: 50%;
+        left: 20px;
+        transform: translateY(-50%);
+        color: #999;
+        font-size: 0.9em;
+    }
+    #context-menu-search {
+        width: 100%;
+        padding: 6px 10px 6px 30px; /* Left padding for icon */
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 0.9em;
+        background-color: var(--page-bg, #f0f2f5);
+        color: var(--text-color, #333);
+    }
+    #context-menu-search:focus {
+        outline: none;
+        border-color: var(--highlight-border, #007bff);
+        box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+    }
+
+    /* Dark Theme Adjustments for Search */
+    html[data-theme='dark'] #context-menu .search-wrapper {
+        border-bottom-color: #444;
+    }
+    html[data-theme='dark'] #context-menu-search {
+        border-color: #555;
     }
 
     /* Menu Item Styling */
@@ -197,74 +240,28 @@
     html[data-theme='dark'] .item-top .name { color: #e9ecef; }
     html[data-theme='dark'] .item-bottom .details { color: #aaa; }
 
-    /* NEW: Search Bar Styling */
-    #context-menu .search-wrapper {
-        position: sticky; /* Keeps it at the top when scrolling */
-        top: 0;
-        background-color: var(--card-bg, #ffffff);
-        padding: 8px 10px;
-        border-bottom: 1px solid #e0e0e0;
-        cursor: default; /* It's not a clickable item */
-    }
-    #context-menu .search-wrapper:hover {
-        background-color: var(--card-bg, #ffffff); /* Override hover effect */
-    }
-    #context-menu .search-icon {
-        position: absolute;
-        top: 50%;
-        left: 20px;
-        transform: translateY(-50%);
-        color: #999;
-        font-size: 0.9em;
-    }
-    #context-menu-search {
-        width: 100%;
-        padding: 6px 10px 6px 30px; /* Left padding for icon */
-        border: 1px solid #ccc;
-        border-radius: 6px;
-        font-size: 0.9em;
-        background-color: var(--page-bg, #f0f2f5);
-        color: var(--text-color, #333);
-    }
-    #context-menu-search:focus {
-        outline: none;
-        border-color: var(--highlight-border, #007bff);
-        box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
-    }
 
-    /* Dark Theme Adjustments for Search */
-    html[data-theme='dark'] #context-menu .search-wrapper {
-        border-bottom-color: #444;
+    /* SweetAlert2 Mobile Centering */
+    @media (max-width: 767px) { /* Target screens smaller than Bootstrap's 'md' breakpoint */
+        .mobile-friendly-swal.swal2-popup {
+            width: 90% !important; /* Ensure it's not too wide, allowing margins to center it */
+            margin-left: auto !important;
+            margin-right: auto !important;
+            /* SweetAlert2 uses transform for centering, this should help if width was the issue */
+        }
     }
-    html[data-theme='dark'] #context-menu-search {
-        border-color: #555;
-    }
-
-
-/* SweetAlert2 Mobile Centering */
-@media (max-width: 767px) { /* Target screens smaller than Bootstrap's 'md' breakpoint */
-    .mobile-friendly-swal.swal2-popup {
-        width: 90% !important; /* Ensure it's not too wide, allowing margins to center it */
-        margin-left: auto !important;
-        margin-right: auto !important;
-        /* SweetAlert2 uses transform for centering, this should help if width was the issue */
-    }
-}
-
-
-
   </style>
 </head>
 <body>
 
-    <ul id="context-menu">
-        <!-- NEW: Search bar container -->
-        <li id="context-menu-search-wrapper" class="search-wrapper">
-            <i class="fas fa-search search-icon"></i>
-            <input type="text" id="context-menu-search" placeholder="Search by Name or Teams Name...">
-        </li>
-        <!-- Menu items will be inserted here by JavaScript -->
-    </ul>
+<ul id="context-menu">
+    <!-- NEW: Search bar container -->
+    <li id="context-menu-search-wrapper" class="search-wrapper">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" id="context-menu-search" placeholder="Search by Name or Teams Name...">
+    </li>
+    <!-- Menu items will be inserted here by JavaScript -->
+</ul>
 
   <div class="container">
     <div class="title-box">
@@ -303,9 +300,7 @@
                     </div>
                 </div>
             </div>
-             <!-- NEW/MODIFIED: Wrapper for all outputs -->
             <div id="conversion-outputs-wrapper" class="mt-4" style="display: none;">
-                <!-- NEW: Source time display -->
                 <div id="source-time-display" class="mb-3">
                     <p class="text-center text-muted small mb-1">Selected source time:</p>
                     <div class="conversion-result-display text-center">
@@ -313,7 +308,6 @@
                         <button id="copy-source-time-btn" class="btn btn-sm btn-outline-secondary ms-2" title="Copy Source Time"><i class="fas fa-copy"></i></button>
                     </div>
                 </div>
-                <!-- Converted time display -->
                 <div id="conversion-result-display-area">
                     <p class="text-center text-muted small mb-1">Converted Time in Sri Lanka (Asia/Colombo):</p>
                     <div class="conversion-result-display text-center">
@@ -321,7 +315,6 @@
                         <button id="copy-conversion-result-btn" class="btn btn-sm btn-outline-secondary ms-2" title="Copy Result"><i class="fas fa-copy"></i></button>
                     </div>
                 </div>
-                <!-- Error text display -->
                 <div id="conversion-error-text" class="text-danger text-center small mt-2"></div>
             </div>
         </div>
@@ -373,7 +366,6 @@
     const conversionDatetimeSelectionArea = document.getElementById('conversion-datetime-selection-area');
     const $conversionTimezoneSelect = $('#conversion-timezone-select'); 
     const selectedConversionCountryNameInline = document.getElementById('selected-conversion-country-name-inline');
-    // NEW/MODIFIED: Get all output containers
     const conversionOutputsWrapper = document.getElementById('conversion-outputs-wrapper');
     const sourceTimeDisplay = document.getElementById('source-time-display');
     const sourceTimeText = document.getElementById('source-time-text');
@@ -423,7 +415,7 @@
         }
         $conversionTimezoneSelect.trigger('change'); 
         conversionDatetimeSelectionArea.style.display = 'block';
-        conversionOutputsWrapper.style.display = 'none'; // Hide all outputs
+        conversionOutputsWrapper.style.display = 'none';
     }
     
     $conversionTimezoneSelect.on('change', function (e) {
@@ -431,14 +423,13 @@
         if (selectedTzIana && selectedTzIana !== "") { 
             flatpickrInput.disabled = false;
             if (flatpickrInstance.selectedDates.length === 0) { flatpickrInstance.setDate(new Date(), false); }
-            conversionOutputsWrapper.style.display = 'none'; // Hide outputs on change
+            conversionOutputsWrapper.style.display = 'none';
         } else { 
             flatpickrInput.disabled = true;
             flatpickrInstance.clear();
         }
     });
 
-    // NEW: Function to reset the entire conversion section
     function resetConversionSection() {
         document.querySelectorAll('.conversion-flag-item').forEach(el => el.classList.remove('selected'));
         selectedConversionCountry = null;
@@ -452,15 +443,13 @@
         conversionResultText.textContent = '--';
     }
 
-    // NEW: Add event listener for the reset button
     document.getElementById('reset-conversion-btn').addEventListener('click', resetConversionSection);
 
-    // MODIFIED: 'convert-time-btn' event listener
     document.getElementById('convert-time-btn').addEventListener('click', function() {
         const sourceTzIana = $conversionTimezoneSelect.val();
         const selectedDates = flatpickrInstance.selectedDates;
         
-        conversionOutputsWrapper.style.display = 'block'; // Show the wrapper for any outcome
+        conversionOutputsWrapper.style.display = 'block';
 
         if (!selectedConversionCountry || !sourceTzIana || sourceTzIana === "" || selectedDates.length === 0) {
             sourceTimeDisplay.style.display = 'none';
@@ -490,11 +479,9 @@
             const resultString = `${getFormattedDate(sourceDateEpoch, colomboTimezone)}, ${getFormattedTime(sourceDateEpoch, colomboTimezone)} (${getUTCOffset(sourceDateEpoch, colomboTimezone).replace(/([+-])(\d{2}):(\d{2})/, "UTC$1$2:$3")}) (Asia / Colombo)`;
             conversionResultText.textContent = resultString;
 
-            // NEW: Populate source time display
             const sourceDisplayString = `${flatpickrInstance.altInput.value} (${selectedConversionCountry.name} / ${$conversionTimezoneSelect.find('option:selected').text()})`;
             sourceTimeText.textContent = sourceDisplayString;
 
-            // Show both result blocks and clear any error
             sourceTimeDisplay.style.display = 'block';
             conversionResultDisplayArea.style.display = 'block';
             conversionErrorText.textContent = '';
@@ -506,7 +493,6 @@
         }
     });
 
-    // NEW: Add event listener for the source time copy button
     document.getElementById('copy-source-time-btn').addEventListener('click', function() {
         const textToCopy = sourceTimeText.textContent;
         if (textToCopy && textToCopy !== '--') {
@@ -518,12 +504,10 @@
         }
     });
     
-    // Existing event listeners (unchanged)
     document.getElementById('copy-conversion-result-btn').addEventListener('click', function() { const textToCopy = conversionResultText.textContent; if (textToCopy && textToCopy !== '--' && !textToCopy.includes('-- Error --')) { navigator.clipboard.writeText(textToCopy) .then(() => Swal.fire({ icon: 'success', title: 'Copied!', text: 'Converted time copied.', timer: 2000, showConfirmButton: false })) .catch(err => { console.error('Failed to copy result: ', err); Swal.fire({icon: 'error', title: 'Copy Failed'}); }); } else { Swal.fire({icon: 'warning', title: 'Nothing to Copy', timer: 2000, showConfirmButton: false}); } });
     document.getElementById('theme-toggle-btn').addEventListener('click', () => { currentTheme = currentTheme === 'light' ? 'dark' : 'light'; document.documentElement.setAttribute('data-theme', currentTheme); localStorage.setItem('pageTheme', currentTheme); });
     document.getElementById('format-toggle-btn').addEventListener('click', () => { use24HourFormat = !use24HourFormat; localStorage.setItem('use24HourFormat', use24HourFormat); updateAllClocks(); if (conversionOutputsWrapper.style.display === 'block' && !conversionErrorText.textContent) { document.getElementById('convert-time-btn').click(); } });
 
-    // Initialization on document ready
     $(document).ready(function() { 
         $('#sort-clocks-select').select2({ theme: "bootstrap-5", width: 'style', minimumResultsForSearch: Infinity })
             .on('change', function() { sortClocks($(this).val()); });
@@ -535,7 +519,7 @@
             altInput: true, altFormat: "F j, Y at h:i K", minuteIncrement: 1
         });
         
-        resetConversionSection(); // Use reset function for initial setup
+        resetConversionSection();
         initializeConversionFlags();
     });
 
@@ -544,89 +528,98 @@
     updateAllClocks();
     
     document.addEventListener("DOMContentLoaded", () => {
-    const contextMenu = document.getElementById("context-menu");
-    async function buildMenu() {
-        try {
-            const response = await fetch('team.json');
-            if (!response.ok) { throw new Error(`HTTP error! Status: ${response.status}`); }
-            const teamMembers = await response.json();
-            contextMenu.innerHTML = ''; 
-            teamMembers.forEach(person => {
-                const menuItem = document.createElement('li');
-                menuItem.className = 'menu-item';
-                menuItem.setAttribute('data-name', person.name.toLowerCase());
-                menuItem.setAttribute('data-teamsname', person.TeamsName.toLowerCase());
-                menuItem.style.display = 'flex'; // Ensure it's visible by default
-                menuItem.setAttribute('data-ext', person.ext);
-                menuItem.innerHTML = `
-                    <div class="item-top">
-                        <span class="name">${person.name}</span>
-                    </div>
-                    <div class="item-bottom">
-                        <span class="details">Position: ${person.position} | ${person.TeamsName}</span>
-                        <span class="ext">EXT: ${person.ext}</span>
-                    </div>
-                `;
-                contextMenu.appendChild(menuItem);
-            });
-            addMenuItemListeners();
-        } catch (error) {
-            console.error("Could not fetch or build the menu:", error);
-            contextMenu.innerHTML = '<li class="menu-item">Error loading data.</li>';
-        }
-    }
-    buildMenu();
+        const contextMenu = document.getElementById("context-menu");
+        
+        async function buildMenu() {
+            try {
+                const response = await fetch('team.json');
+                if (!response.ok) { throw new Error(`HTTP error! Status: ${response.status}`); }
+                const teamMembers = await response.json();
+                
+                // Clear only old menu items, not the search bar
+                contextMenu.querySelectorAll('.menu-item').forEach(item => item.remove());
 
-        // --- NEW: Search functionality ---
-    const searchInput = document.getElementById('context-menu-search');
-    const searchWrapper = document.getElementById('context-menu-search-wrapper');
+                teamMembers.forEach(person => {
+                    const menuItem = document.createElement('li');
+                    menuItem.className = 'menu-item';
+                    menuItem.setAttribute('data-ext', person.ext);
+                    menuItem.setAttribute('data-name', person.name.toLowerCase());
+                    menuItem.setAttribute('data-teamsname', person.TeamsName.toLowerCase());
+                    menuItem.style.display = 'flex'; // Ensure it's visible by default
 
-    // Filter the list as the user types
-    searchInput.addEventListener('input', () => {
-        const searchTerm = searchInput.value.toLowerCase();
-        const menuItems = document.querySelectorAll('#context-menu .menu-item');
-
-        menuItems.forEach(item => {
-            const name = item.dataset.name || '';
-            const teamsName = item.dataset.teamsname || '';
-
-            if (name.includes(searchTerm) || teamsName.includes(searchTerm)) {
-                item.style.display = 'flex';
-            } else {
-                item.style.display = 'none';
+                    menuItem.innerHTML = `
+                        <div class="item-top">
+                            <span class="name">${person.name}</span>
+                        </div>
+                        <div class="item-bottom">
+                            <span class="details">Position: ${person.position} | ${person.TeamsName}</span>
+                            <span class="ext">EXT: ${person.ext}</span>
+                        </div>
+                    `;
+                    contextMenu.appendChild(menuItem);
+                });
+                addMenuItemListeners();
+            } catch (error) {
+                console.error("Could not fetch or build the menu:", error);
+                const errorItem = document.createElement('li');
+                errorItem.className = 'menu-item';
+                errorItem.textContent = 'Error loading data.';
+                contextMenu.appendChild(errorItem);
             }
-        });
-    });
+        }
+        buildMenu();
+        
+        // --- NEW: Search functionality ---
+        const searchInput = document.getElementById('context-menu-search');
+        const searchWrapper = document.getElementById('context-menu-search-wrapper');
 
-    // Prevent menu from closing when clicking inside the search bar
-    searchWrapper.addEventListener('click', (event) => {
-        event.stopPropagation();
-    });
+        // Filter the list as the user types
+        searchInput.addEventListener('input', () => {
+            const searchTerm = searchInput.value.toLowerCase();
+            const menuItems = document.querySelectorAll('#context-menu .menu-item');
 
-    
-    function addMenuItemListeners() {
-        document.querySelectorAll(".menu-item").forEach(item => {
-            item.addEventListener("click", () => {
-                const ext = item.getAttribute("data-ext");
-                if (ext) { alert(`You clicked on the person with extension: ${ext}`); }
-                hideMenu();
+            menuItems.forEach(item => {
+                const name = item.dataset.name || '';
+                const teamsName = item.dataset.teamsname || '';
+
+                if (name.includes(searchTerm) || teamsName.includes(searchTerm)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
             });
         });
-    }
-    document.addEventListener("contextmenu", (event) => { event.preventDefault(); showMenu(event.clientX, event.clientY); });
-    document.addEventListener("click", () => { hideMenu(); });
-    document.addEventListener("keyup", (event) => { if (event.key === "Escape") { hideMenu(); } });
-    function showMenu(x, y) {
-        const winWidth = window.innerWidth;
-        const winHeight = window.innerHeight;
-        const menuWidth = contextMenu.offsetWidth;
-        const menuHeight = contextMenu.offsetHeight;
-        let newX = (x + menuWidth > winWidth) ? winWidth - menuWidth - 5 : x;
-        let newY = (y + menuHeight > winHeight) ? winHeight - menuHeight - 5 : y;
-        contextMenu.style.left = `${newX}px`;
-        contextMenu.style.top = `${newY}px`;
-        contextMenu.style.display = "block";
 
+        // Prevent menu from closing when clicking inside the search bar
+        searchWrapper.addEventListener('click', (event) => {
+            event.stopPropagation();
+        });
+
+        function addMenuItemListeners() {
+            document.querySelectorAll(".menu-item").forEach(item => {
+                item.addEventListener("click", () => {
+                    const ext = item.getAttribute("data-ext");
+                    if (ext) { alert(`You clicked on the person with extension: ${ext}`); }
+                    hideMenu();
+                });
+            });
+        }
+
+        document.addEventListener("contextmenu", (event) => { event.preventDefault(); showMenu(event.clientX, event.clientY); });
+        document.addEventListener("click", () => { hideMenu(); });
+        document.addEventListener("keyup", (event) => { if (event.key === "Escape") { hideMenu(); } });
+
+        function showMenu(x, y) {
+            const winWidth = window.innerWidth;
+            const winHeight = window.innerHeight;
+            const menuWidth = contextMenu.offsetWidth;
+            const menuHeight = contextMenu.offsetHeight;
+            let newX = (x + menuWidth > winWidth) ? winWidth - menuWidth - 5 : x;
+            let newY = (y + menuHeight > winHeight) ? winHeight - menuHeight - 5 : y;
+            contextMenu.style.left = `${newX}px`;
+            contextMenu.style.top = `${newY}px`;
+            contextMenu.style.display = "block";
+            
             const searchInput = document.getElementById('context-menu-search');
             searchInput.value = ''; // Clear previous search
 
@@ -636,11 +629,10 @@
             });
 
             searchInput.focus(); // Automatically focus the search bar
-            
-    }
-    function hideMenu() { contextMenu.style.display = "none"; }
-});
+        }
 
+        function hideMenu() { contextMenu.style.display = "none"; }
+    });
 </script>
 </body>
 </html>
