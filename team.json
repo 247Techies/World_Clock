@@ -38,16 +38,9 @@
       "name": "Farrel",
       "ext": "1202",
       "TeamsName": "Fazlur",
-      "position": "PT",
-      "icon": "fa-solid fa-user"
-    },
-    {
-      "name": "Simon",
-      "ext": "1271",
-      "TeamsName": "Saad",
       "position": "Techie",
       "icon": "fa-solid fa-user"
-    },
+    },    
     {
       "name": "Ian",
       "ext": "1278",
@@ -63,13 +56,6 @@
       "icon": "fa-solid fa-user"
     },
     {
-      "name": "Raymond",
-      "ext": "1282",
-      "TeamsName": "Rajinth",
-      "position": "Techie",
-      "icon": "fa-solid fa-user"
-    },
-    {
       "name": "Steve",
       "ext": "1283",
       "TeamsName": "Sridaran",
@@ -80,13 +66,6 @@
       "name": "Harry",
       "ext": "1288",
       "TeamsName": "Haritha",
-      "position": "Techie",
-      "icon": "fa-solid fa-user"
-    },
-    {
-      "name": "Mike",
-      "ext": "1291",
-      "TeamsName": "Mayukha",
       "position": "Techie",
       "icon": "fa-solid fa-user"
     },
@@ -108,6 +87,13 @@
       "name": "Aiden",
       "ext": "1303",
       "TeamsName": "Arafath",
+      "position": "Techie",
+      "icon": "fa-solid fa-user"
+    },
+    {
+      "name": "Mark",
+      "ext": "1306",
+      "TeamsName": "Imesh Akalanka",
       "position": "Techie",
       "icon": "fa-solid fa-user"
     }
