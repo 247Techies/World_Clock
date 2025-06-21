@@ -88,7 +88,8 @@
       "ext": "1303",
       "TeamsName": "Arafath",
       "position": "Techie",
-      "icon": "fa-solid fa-user"
+      "icon": "fa-solid fa-user",
+      "email": "rizvi.williams@yourcompany.com"
     },
     {
       "name": "Mark",

@@ -545,6 +545,7 @@
                     menuItem.setAttribute('data-ext', person.ext);
                     menuItem.setAttribute('data-name', person.name.toLowerCase());
                     menuItem.setAttribute('data-teamsname', person.TeamsName.toLowerCase());
+                    menuItem.setAttribute('data-email', person.email);
                     menuItem.style.display = 'flex'; // Ensure it's visible by default
 
                     menuItem.innerHTML = `
@@ -598,9 +599,21 @@
         function addMenuItemListeners() {
             document.querySelectorAll(".menu-item").forEach(item => {
                 item.addEventListener("click", () => {
-                    const ext = item.getAttribute("data-ext");
-                    if (ext) { alert(`You clicked on the person with extension: ${ext}`); }
-                    hideMenu();
+                    const email = item.getAttribute("data-email");
+                    
+                    // Check if the email attribute exists and is not empty
+                    if (email) { 
+                        // Construct the Teams URL
+                        const teamsUrl = `https://teams.microsoft.com/l/chat/0/0?users=${email}&topicName=Hello`;
+                        
+                        // Open the URL in a new browser tab
+                        window.open(teamsUrl, '_blank');
+                    } else {
+                        // Optional: Alert the user if the email is missing
+                        alert('No email address is configured for this person.');
+                    }
+                    
+                    hideMenu(); // Hide the menu after clicking
                 });
             });
         }
