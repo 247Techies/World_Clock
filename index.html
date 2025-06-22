@@ -234,6 +234,14 @@
     html[data-theme='dark'] .item-top .name { color: #e9ecef; }
     html[data-theme='dark'] .item-bottom .details { color: #aaa; }
 
+    /* NEW: Dark Mode Fix for Time Conversion Card Text */
+    html[data-theme='dark'] .time-conversion-card {
+        color: var(--text-color);
+    }
+    html[data-theme='dark'] .time-conversion-card .text-muted {
+        color: var(--secondary-text-color) !important;
+    }
+
     /* SweetAlert2 Mobile Centering */
     @media (max-width: 767px) {
         .mobile-friendly-swal.swal2-popup {
