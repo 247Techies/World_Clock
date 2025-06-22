@@ -106,9 +106,17 @@
     {
       "name": "Mark",
       "ext": "1306",
-      "TeamsName": "Imesh Akalanka",
+      "TeamsName": "Imesh",
       "position": "Techie",
       "icon": "fa-solid fa-user",
       "email": "imesham@eurekasl.com"
+    },
+    {
+      "name": "Moss",
+      "ext": "1306",
+      "TeamsName": "Ibrahim",
+      "position": "Techie",
+      "icon": "fa-solid fa-user",
+      "email": "ibrahimm@eurekasl.com"
     }
   ]
