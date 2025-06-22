@@ -4,84 +4,96 @@
       "ext": "1214",
       "TeamsName": "Ahsan",
       "position": "Senior Tech Lead",
-      "icon": "fa-solid fa-user"
+      "icon": "fa-solid fa-user",
+      "email": "ahsanm@eurekasl.com"
     },
     {
       "name": "Alex",
       "ext": "1225",
       "TeamsName": "Akitha",
       "position": "Senior Tech Lead",
-      "icon": "fa-solid fa-user"
+      "icon": "fa-solid fa-user",
+      "email": "akithaa@eurekasl.com"
     },
     {
       "name": "Ron",
       "ext": "1247",
       "TeamsName": "Sham",
       "position": "Tech Lead",
-      "icon": "fa-solid fa-user"
+      "icon": "fa-solid fa-user",
+      "email": "shamr@eurekasl.com"
     },
     {
       "name": "Richard",
       "ext": "1249",
       "TeamsName": "Rizvi",
       "position": "Tech Lead",
-      "icon": "fa-solid fa-user"
+      "icon": "fa-solid fa-user",
+      "email": "rizvir@eurekasl.com"
     },
     {
       "name": "Thomas",
       "ext": "1248",
       "TeamsName": "Thanush",
       "position": "Tech Lead",
-      "icon": "fa-solid fa-user"
+      "icon": "fa-solid fa-user",
+      "email": "thanushyanthant@eurekasl.com"
     },
     {
       "name": "Farrel",
       "ext": "1202",
       "TeamsName": "Fazlur",
       "position": "Techie",
-      "icon": "fa-solid fa-user"
+      "icon": "fa-solid fa-user",
+      "email": "fazlurr@eurekasl.com"
     },    
     {
       "name": "Ian",
       "ext": "1278",
       "TeamsName": "Isuru",
       "position": "Techie",
-      "icon": "fa-solid fa-user"
+      "icon": "fa-solid fa-user",
+      "email": "isurup@eurekasl.com"
     },
     {
       "name": "Ryan",
       "ext": "1279",
       "TeamsName": "Ravin",
       "position": "Techie",
-      "icon": "fa-solid fa-user"
+      "icon": "fa-solid fa-user",
+      "email": "ravinc@eurekasl.com"
     },
     {
       "name": "Steve",
       "ext": "1283",
       "TeamsName": "Sridaran",
       "position": "Techie",
-      "icon": "fa-solid fa-user"
+      "icon": "fa-solid fa-user",
+      "email": "sridarans@eurekasl.com"
     },
     {
       "name": "Harry",
       "ext": "1288",
       "TeamsName": "Haritha",
       "position": "Techie",
-      "icon": "fa-solid fa-user"
+      "icon": "fa-solid fa-user",
+      "email": "haritham@eurekasl.com"
     },
     {
       "name": "Harris",
       "ext": "1298",
       "TeamsName": "Himaru",
       "position": "Techie",
-      "icon": "fa-solid fa-user"
+      "icon": "fa-solid fa-user",
+      "email": "himaruf@eurekasl.com"
     },
     {
       "name": "Dennis",
       "ext": "1304",
       "TeamsName": "Dinath",
       "position": "Techie",
-      "icon": "fa-solid fa-user"
+      "icon": "fa-solid fa-user",
+      "email": "dinathm@eurekasl.com"
     },
     {
       "name": "Aiden",
@@ -96,6 +108,7 @@
       "ext": "1306",
       "TeamsName": "Imesh Akalanka",
       "position": "Techie",
-      "icon": "fa-solid fa-user"
+      "icon": "fa-solid fa-user",
+      "email": "imesham@eurekasl.com"
     }
   ]
