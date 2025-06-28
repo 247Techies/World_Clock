@@ -1,122 +1,202 @@
 [
-    {
-      "name": "Austin",
-      "ext": "1214",
-      "TeamsName": "Ahsan",
-      "position": "Senior Tech Lead",
-      "icon": "fa-solid fa-user",
-      "email": "ahsanm@eurekasl.com"
-    },
-    {
-      "name": "Alex",
-      "ext": "1225",
-      "TeamsName": "Akitha",
-      "position": "Senior Tech Lead",
-      "icon": "fa-solid fa-user",
-      "email": "akithaa@eurekasl.com"
-    },
-    {
-      "name": "Ron",
-      "ext": "1247",
-      "TeamsName": "Sham",
-      "position": "Tech Lead",
-      "icon": "fa-solid fa-user",
-      "email": "shamr@eurekasl.com"
-    },
-    {
-      "name": "Richard",
-      "ext": "1249",
-      "TeamsName": "Rizvi",
-      "position": "Tech Lead",
-      "icon": "fa-solid fa-user",
-      "email": "rizvir@eurekasl.com"
-    },
-    {
-      "name": "Thomas",
-      "ext": "1248",
-      "TeamsName": "Thanush",
-      "position": "Tech Lead",
-      "icon": "fa-solid fa-user",
-      "email": "thanushyanthant@eurekasl.com"
-    },
-    {
-      "name": "Farrel",
-      "ext": "1202",
-      "TeamsName": "Fazlur",
-      "position": "Techie",
-      "icon": "fa-solid fa-user",
-      "email": "fazlurr@eurekasl.com"
-    },    
-    {
-      "name": "Ian",
-      "ext": "1278",
-      "TeamsName": "Isuru",
-      "position": "Techie",
-      "icon": "fa-solid fa-user",
-      "email": "isurup@eurekasl.com"
-    },
-    {
-      "name": "Ryan",
-      "ext": "1279",
-      "TeamsName": "Ravin",
-      "position": "Techie",
-      "icon": "fa-solid fa-user",
-      "email": "ravinc@eurekasl.com"
-    },
-    {
-      "name": "Steve",
-      "ext": "1283",
-      "TeamsName": "Sridaran",
-      "position": "Techie",
-      "icon": "fa-solid fa-user",
-      "email": "sridarans@eurekasl.com"
-    },
-    {
-      "name": "Harry",
-      "ext": "1288",
-      "TeamsName": "Haritha",
-      "position": "Techie",
-      "icon": "fa-solid fa-user",
-      "email": "haritham@eurekasl.com"
-    },
-    {
-      "name": "Harris",
-      "ext": "1298",
-      "TeamsName": "Himaru",
-      "position": "Techie",
-      "icon": "fa-solid fa-user",
-      "email": "himaruf@eurekasl.com"
-    },
-    {
-      "name": "Dennis",
-      "ext": "1304",
-      "TeamsName": "Dinath",
-      "position": "Techie",
-      "icon": "fa-solid fa-user",
-      "email": "dinathm@eurekasl.com"
-    },
-    {
-      "name": "Aiden",
-      "ext": "1303",
-      "TeamsName": "Arafath",
-      "position": "Techie",
-      "icon": "fa-solid fa-user",
-      "email": "arafathm@eurekasl.com"
-    },
-    {
-      "name": "Mark",
-      "ext": "1306",
-      "TeamsName": "Imesh",
-      "position": "Techie",
-      "icon": "fa-solid fa-user",
-      "email": "imesham@eurekasl.com"
-    },
-    {
-      "name": "Moss",
-      "ext": "1307",
-      "TeamsName": "Ibrahim",
-      "position": "Techie",
-      "icon": "fa-solid fa-user",
-      "email": "ibrahimm@eurekasl.com"
-    }
-  ]
+  {
+    "name": "Austin",
+    "ext": "1214",
+    "TeamsName": "Ahsan",
+    "position": "Senior Tech Lead",
+    "icon": "fa-solid fa-users-gear",
+    "email": "ahsanm@eurekasl.com"
+  },
+  {
+    "name": "Alex",
+    "ext": "1225",
+    "TeamsName": "Akitha",
+    "position": "Senior Tech Lead",
+    "icon": "fa-solid fa-users-gear",
+    "email": "akithaa@eurekasl.com"
+  },
+  {
+    "name": "Ron",
+    "ext": "1247",
+    "TeamsName": "Sham",
+    "position": "Tech Lead",
+    "icon": "fa-solid fa-users-gear",
+    "email": "shamr@eurekasl.com"
+  },
+  {
+    "name": "Richard",
+    "ext": "1249",
+    "TeamsName": "Rizvi",
+    "position": "Tech Lead",
+    "icon": "fa-solid fa-users-gear",
+    "email": "rizvir@eurekasl.com"
+  },
+  {
+    "name": "Thomas",
+    "ext": "1248",
+    "TeamsName": "Thanush",
+    "position": "Tech Lead",
+    "icon": "fa-solid fa-users-gear",
+    "email": "thanushyanthant@eurekasl.com"
+  },
+  {
+    "name": "Farrel",
+    "ext": "1202",
+    "TeamsName": "Fazlur",
+    "position": "Techie",
+    "icon": "fa-solid fa-users-gear",
+    "email": "fazlurr@eurekasl.com"
+  },
+  {
+    "name": "Ian",
+    "ext": "1278",
+    "TeamsName": "Isuru",
+    "position": "Techie",
+    "icon": "fa-solid fa-users-gear",
+    "email": "isurup@eurekasl.com"
+  },
+  {
+    "name": "Ryan",
+    "ext": "1279",
+    "TeamsName": "Ravin",
+    "position": "Techie",
+    "icon": "fa-solid fa-users-gear",
+    "email": "ravinc@eurekasl.com"
+  },
+  {
+    "name": "Steve",
+    "ext": "1283",
+    "TeamsName": "Sridaran",
+    "position": "Techie",
+    "icon": "fa-solid fa-users-gear",
+    "email": "sridarans@eurekasl.com"
+  },
+  {
+    "name": "Harry",
+    "ext": "1288",
+    "TeamsName": "Haritha",
+    "position": "Techie",
+    "icon": "fa-solid fa-users-gear",
+    "email": "haritham@eurekasl.com"
+  },
+  {
+    "name": "Harris",
+    "ext": "1298",
+    "TeamsName": "Himaru",
+    "position": "Techie",
+    "icon": "fa-solid fa-users-gear",
+    "email": "himaruf@eurekasl.com"
+  },
+  {
+    "name": "Dennis",
+    "ext": "1304",
+    "TeamsName": "Dinath",
+    "position": "Techie",
+    "icon": "fa-solid fa-users-gear",
+    "email": "dinathm@eurekasl.com"
+  },
+  {
+    "name": "Aiden",
+    "ext": "1303",
+    "TeamsName": "Arafath",
+    "position": "Techie",
+    "icon": "fa-solid fa-users-gear",
+    "email": "arafathm@eurekasl.com"
+  },
+  {
+    "name": "Mark",
+    "ext": "1306",
+    "TeamsName": "Imesh",
+    "position": "Techie",
+    "icon": "fa-solid fa-users-gear",
+    "email": "imesham@eurekasl.com"
+  },
+  {
+    "name": "Moss",
+    "ext": "1307",
+    "TeamsName": "Ibrahim",
+    "position": "Techie",
+    "icon": "fa-solid fa-users-gear",
+    "email": "ibrahimm@eurekasl.com"
+  },
+  {
+    "name": "Leo",
+    "ext": "1201",
+    "TeamsName": "Zuhry",
+    "position": "Senior Team Lead - Inbound Sales",
+    "icon": "fa-brands fa-salesforce",
+    "email": "zuhryr@eurekasl.com"
+  },
+  {
+    "name": "Alan",
+    "ext": "1228",
+    "TeamsName": "Athik",
+    "position": "Sales",
+    "icon": "fa-brands fa-salesforce",
+    "email": "athikm@eurekasl.com"
+  },
+  {
+    "name": "Tony",
+    "ext": "1233",
+    "TeamsName": "Sabeel",
+    "position": "Sales",
+    "icon": "fa-brands fa-salesforce",
+    "email": "sabeels@eurekasl.com"
+  },
+  {
+    "name": "Adam",
+    "ext": "1238",
+    "TeamsName": "Aqiel",
+    "position": "Sales",
+    "icon": "fa-brands fa-salesforce",
+    "email": "aqielf@eurekasl.com"
+  },
+  {
+    "name": "Peter",
+    "ext": "1265",
+    "TeamsName": "Pasindu",
+    "position": "Sales",
+    "icon": "fa-brands fa-salesforce",
+    "email": "pasindug@eurekasl.com"
+  },
+  {
+    "name": "Brian",
+    "ext": "1289",
+    "TeamsName": "Aqeel Buhary",
+    "position": "Sales",
+    "icon": "fa-brands fa-salesforce",
+    "email": "aqeelb@eurekasl.com"
+  },
+  {
+    "name": "Shaun",
+    "ext": "1297",
+    "TeamsName": "Irshan",
+    "position": "Sales",
+    "icon": "fa-brands fa-salesforce",
+    "email": "Irshanm@eurekasl.com"
+  },
+  {
+    "name": "Aaron",
+    "ext": "1300",
+    "TeamsName": "Ayaaz",
+    "position": "Sales",
+    "icon": "fa-brands fa-salesforce",
+    "email": "ayaaza@eurekasl.com"
+  },
+  {
+    "name": "Scott",
+    "ext": "1301",
+    "TeamsName": "Shifer",
+    "position": "Sales",
+    "icon": "fa-brands fa-salesforce",
+    "email": "shifarm@eurekasl.com"
+  },
+  {
+    "name": "Nash",
+    "ext": "1302",
+    "TeamsName": "Aazath",
+    "position": "Sales",
+    "icon": "fa-brands fa-salesforce",
+    "email": "aazathf@eurekasl.com"
+  }
+]
