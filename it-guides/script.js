@@ -121,7 +121,7 @@ $(document).ready(function() {
     // Event listener for ticket copy button (no changes)
     copyTicketBtn.on('click', function() {
         const textToCopy = $(this).data('copy-text');
-        const formattedText = `> ${textToCopy} >`;
+        const formattedText = ` > ${textToCopy} `;
         copyToClipboard(formattedText, 'Ticket description copied!');
     });
 
