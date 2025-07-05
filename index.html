@@ -242,6 +242,20 @@
         color: var(--secondary-text-color) !important;
     }
 
+    .fixed-icon {
+        position: fixed; /* This is the key to keeping it in place */
+        bottom: 20px;    /* 20 pixels from the bottom */
+        right: 20px;     /* 20 pixels from the right */
+        z-index: 9999;   /* Ensures it's on top of other content */
+    }
+
+    /* Optional: Add a subtle effect on hover */
+    .fixed-icon:hover {
+        opacity: 0.8;
+        transform: scale(1.1);
+        transition: all 0.2s ease-in-out;
+    }
+
     /* SweetAlert2 Mobile Centering */
     @media (max-width: 767px) {
         .mobile-friendly-swal.swal2-popup {
@@ -250,6 +264,8 @@
             margin-right: auto !important;
         }
     }
+
+
   </style>
 </head>
 <body>
@@ -319,6 +335,13 @@
         </div>
     </div>
   </div>
+
+    <!-- ====================================================== -->
+    <!--      Floating 24/7 Monitor Icon                      -->
+    <!-- ====================================================== -->
+    <a href="it-guides/it-guides.html" class="fixed-icon">
+        <img src="247-monitor.gif" alt="IT Guides and 24/7 Monitoring">
+    </a>
 
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="https://unpkg.com/@popperjs/core@2"></script>
