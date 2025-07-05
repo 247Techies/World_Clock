@@ -242,17 +242,38 @@
         color: var(--secondary-text-color) !important;
     }
 
-    .fixed-icon {
-        position: fixed; /* This is the key to keeping it in place */
-        bottom: 20px;    /* 20 pixels from the bottom */
-        right: 20px;     /* 20 pixels from the right */
-        z-index: 9999;   /* Ensures it's on top of other content */
+    /* The circular button container (the <a> link) */
+    .fixed-icon-circle {
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        z-index: 9999;
+
+        /* ---- New Styles for the Circular Shape & Size ---- */
+        width: 60px;          /* Chat button size */
+        height: 60px;         /* Chat button size */
+        border-radius: 50%;   /* This makes it a perfect circle */
+        background-color: #f0f0f0; /* Fallback color if the GIF is transparent */
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* A nice shadow to lift it off the page */
+        
+        /* ---- For perfectly centering the GIF inside the circle ---- */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden; /* Hides anything that spills out of the circle */
     }
 
-    /* Optional: Add a subtle effect on hover */
-    .fixed-icon:hover {
-        opacity: 0.8;
+    /* The animated GIF image inside the button */
+    .icon-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Ensures the GIF fills the circle without distortion */
+    }
+
+    /* Optional: A more prominent effect on hover */
+    .fixed-icon-circle:hover {
         transform: scale(1.1);
+        box-shadow: 0 6px 15px rgba(0,0,0,0.3);
         transition: all 0.2s ease-in-out;
     }
 
@@ -337,10 +358,10 @@
   </div>
 
     <!-- ====================================================== -->
-    <!--      Floating 24/7 Monitor Icon                      -->
+    <!--      Floating 24/7 Monitor Icon (Circular)           -->
     <!-- ====================================================== -->
-    <a href="it-guides/it-guides.html" class="fixed-icon">
-        <img src="247-monitor.gif" alt="IT Guides and 24/7 Monitoring">
+    <a href="it-guides/it-guides.html" class="fixed-icon-circle">
+        <img src="247-monitor.gif" alt="IT Guides and 24/7 Monitoring" class="icon-image">
     </a>
 
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
