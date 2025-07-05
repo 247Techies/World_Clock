@@ -5,26 +5,66 @@ $(document).ready(function() {
     const stepsListEl = $('#steps-list');
     const copyTicketBtn = $('#copy-ticket-btn');
     
-    let commandsData = []; // To store the fetched commands
+    let commandsData = []; // To store the full original commands data
 
-    // Initialize Select2
-    select.select2({
-        theme: 'bootstrap-5',
-        placeholder: 'Search by keyword (e.g., sfc, dns, ip)...',
-        allowClear: true,
-    });
-    
-    // Fetch JSON data and populate the dropdown
+    // =================================================================
+    // NEW: Custom Matcher Function for Select2
+    // This function tells Select2 how to perform the search.
+    // =================================================================
+    function commandMatcher(params, data) {
+        // If there are no search terms, return all the data
+        if ($.trim(params.term) === '') {
+            return data;
+        }
+
+        // Don't display the placeholder in the results
+        if (typeof data.id === 'undefined' || data.id === '') {
+            return null;
+        }
+
+        // Find the original command object using the ID from Select2's data
+        const originalCommand = commandsData.find(c => c.id === data.id);
+        if (!originalCommand) {
+            return null;
+        }
+
+        const searchTerm = params.term.toLowerCase();
+
+        // Check if the search term is in the title
+        if (originalCommand.title.toLowerCase().includes(searchTerm)) {
+            return data;
+        }
+
+        // Check if the search term is in any of the keywords
+        if (originalCommand.keywords && originalCommand.keywords.length) {
+            if (originalCommand.keywords.some(keyword => keyword.toLowerCase().includes(searchTerm))) {
+                return data;
+            }
+        }
+
+        // If it doesn't match, do not return the data
+        return null;
+    }
+
+    // Fetch JSON data and initialize Select2
     fetch('commands.json')
         .then(response => response.json())
         .then(data => {
-            commandsData = data;
-            // Add a placeholder option first
-            select.append(new Option('', ''));
-            // Populate dropdown with titles from JSON
-            data.forEach(command => {
-                const option = new Option(command.title, command.id);
-                select.append(option);
+            commandsData = data; // Store the original data with all details
+
+            // =================================================================
+            // UPDATED: Select2 Initialization
+            // We now pass the data directly and include our custom matcher.
+            // =================================================================
+            select.select2({
+                theme: 'bootstrap-5',
+                placeholder: 'Search by keyword (e.g., sfc, dns, ip)...',
+                allowClear: true,
+                matcher: commandMatcher, // <-- This is the key change
+                data: [
+                    { id: '', text: '' }, // Add a blank option for the placeholder
+                    ...data.map(command => ({ id: command.id, text: command.title }))
+                ]
             });
         })
         .catch(error => {
@@ -44,19 +84,15 @@ $(document).ready(function() {
         displayCommandDetails(command);
     });
 
-    // Function to display the details of the selected command
+    // Function to display the details of the selected command (no changes here)
     function displayCommandDetails(command) {
-        // Populate Ticket Description
         ticketDescriptionEl.text(command.ticket_template);
-        // Store the raw text in a data attribute for the copy button
         copyTicketBtn.data('copy-text', command.ticket_template);
 
-        // Populate Steps
-        stepsListEl.empty(); // Clear previous steps
+        stepsListEl.empty();
         const ol = $('<ol class="list-group list-group-numbered"></ol>');
         command.execution.forEach(exec => {
             const li = $(`<li class="list-group-item">${exec.step}</li>`);
-            // If there's a command, create a code block with a copy button
             if (exec.command) {
                 const codeBlock = $(`
                     <div class="step-code">
@@ -66,7 +102,6 @@ $(document).ready(function() {
                         </button>
                     </div>
                 `);
-                // Store the command text in a data attribute on the button
                 codeBlock.find('.copy-code-btn').data('copy-text', exec.command);
                 li.append(codeBlock);
             }
@@ -74,10 +109,10 @@ $(document).ready(function() {
         });
         stepsListEl.append(ol);
         
-        resultsArea.removeClass('d-none'); // Show the results
+        resultsArea.removeClass('d-none');
     }
 
-    // Generic copy function using SweetAlert for feedback
+    // Generic copy function using SweetAlert for feedback (no changes here)
     function copyToClipboard(text, successMessage) {
         navigator.clipboard.writeText(text).then(() => {
             Swal.fire({
@@ -92,14 +127,14 @@ $(document).ready(function() {
         });
     }
 
-    // Event listener for the ticket description copy button
+    // Event listener for the ticket description copy button (no changes here)
     copyTicketBtn.on('click', function() {
         const textToCopy = $(this).data('copy-text');
         const formattedText = `> ${textToCopy} >`;
         copyToClipboard(formattedText, 'Ticket description copied!');
     });
 
-    // Event listener for dynamically created code copy buttons
+    // Event listener for dynamically created code copy buttons (no changes here)
     $(document).on('click', '.copy-code-btn', function() {
         const textToCopy = $(this).data('copy-text');
         copyToClipboard(textToCopy, 'Command copied!');
