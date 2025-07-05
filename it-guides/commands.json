@@ -222,6 +222,118 @@
           "step": "Click 'Reset' to confirm. This will remove extensions, custom settings, and startup configurations."
         }
       ]
+    },
+    {
+      "id": "inspect_services_msconfig",
+      "title": "Inspect Services via MSConfig",
+      "description": "Opens the System Configuration tool (msconfig) to review and identify non-essential or suspicious services running at startup.",
+      "keywords": ["msconfig", "services", "startup", "disable service", "troubleshoot performance"],
+      "ticket_template": "Accessed MSConfig to inspect and evaluate services. Reviewed non-Microsoft and third-party services for potential issues or unnecessary startups.",
+      "platform": "windows",
+      "requires_admin": true,
+      "execution": [
+        {
+          "step": "Press `Win + R` to open the Run dialog.",
+          "command": "msconfig"
+        },
+        {
+          "step": "Navigate to the 'Services' tab."
+        },
+        {
+          "step": "Check the box for 'Hide all Microsoft services' to view only third-party services."
+        },
+        {
+          "step": "Review the remaining services for any suspicious or unnecessary entries. Disable any known unwanted services.",
+          "command": null
+        },
+        {
+          "step": "Click 'Apply' and then 'OK'. Restart the system if prompted."
+        }
+      ]
+    },
+    {
+      "id": "review_services_msc",
+      "title": "Open Services and Review Running Services",
+      "description": "Opens the Services management console (services.msc) to inspect the status, startup type, and behavior of system and third-party services.",
+      "keywords": ["services", "services.msc", "windows services", "service status", "startup type"],
+      "ticket_template": "Opened services.msc to review the list of running and automatic services. Checked for misconfigured, unnecessary, or suspicious services.",
+      "platform": "windows",
+      "requires_admin": true,
+      "execution": [
+        {
+          "step": "Press `Win + R` to open the Run dialog.",
+          "command": "services.msc"
+        },
+        {
+          "step": "Scroll through the list to review services by their 'Status' and 'Startup Type'."
+        },
+        {
+          "step": "Double-click any service to view its properties, description, dependencies, and to change its startup behavior."
+        },
+        {
+          "step": "Identify any unnecessary or suspicious services. Use caution when disabling services and ensure they are not critical to system stability.",
+          "command": null
+        }
+      ]
+    },
+    {
+      "id": "remove_remote_apps",
+      "title": "Check and Remove Remote/Suspicious Applications",
+      "description": "Manually reviews installed applications in Program Files and Apps list for any remote access or suspicious tools, and removes them if necessary.",
+      "keywords": ["remove apps", "program files", "remote apps", "uninstall", "review installed programs"],
+      "ticket_template": "Reviewed installed applications in Program Files and Apps for any remote access or unauthorized tools. Removed identified unwanted software.",
+      "platform": "windows",
+      "requires_admin": true,
+      "execution": [
+        {
+          "step": "Open File Explorer and navigate to `C:\\Program Files` and `C:\\Program Files (x86)`."
+        },
+        {
+          "step": "Manually review the folders for names related to remote tools (e.g., AnyDesk, TeamViewer, Chrome Remote Desktop, UltraViewer, etc.)."
+        },
+        {
+          "step": "Open `Settings > Apps > Installed Apps` (or `Control Panel > Programs and Features` on older systems)."
+        },
+        {
+          "step": "Search for and uninstall any remote access or suspicious apps found in the list.",
+          "command": null
+        },
+        {
+          "step": "If prompted, follow the uninstaller steps and restart the system after removal."
+        }
+      ]
+    },
+    {
+      "id": "printer_troubleshooting",
+      "title": "Troubleshoot Printer Issues",
+      "description": "Performs standard troubleshooting steps to resolve common printer issues such as offline status, driver errors, or connectivity problems.",
+      "keywords": ["printer", "troubleshoot", "offline printer", "printer driver", "printer spooler"],
+      "ticket_template": "Performed printer troubleshooting steps including spooler reset, driver check, and connectivity validation to resolve printing issues.",
+      "platform": "windows",
+      "requires_admin": true,
+      "execution": [
+        {
+          "step": "Ensure the printer is powered on and properly connected via USB or network.",
+          "command": null
+        },
+        {
+          "step": "Open `Settings > Bluetooth & devices > Printers & scanners` and verify the printer appears and is not marked as 'Offline'."
+        },
+        {
+          "step": "Right-click the printer and select 'Run the troubleshooter' to auto-detect issues.",
+          "command": null
+        },
+        {
+          "step": "Restart the Print Spooler service.",
+          "command": "net stop spooler && net start spooler"
+        },
+        {
+          "step": "Open `Control Panel > Devices and Printers` to remove and re-add the printer if needed."
+        },
+        {
+          "step": "Check for updated printer drivers via Device Manager or the printer manufacturer's website."
+        }
+      ]
     }
-    
+
   ]
