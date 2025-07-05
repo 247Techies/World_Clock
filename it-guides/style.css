@@ -1,12 +1,65 @@
 body {
     background-color: #f8f9fa;
+    /* Adding a subtle gradient for a more professional look */
+    background-image: linear-gradient(to top, #e9ecef 0%, #f8f9fa 100%);
+    min-height: 100vh;
 }
 
-/* Style for code blocks within the steps list */
+/* Main application card styling */
+.app-card {
+    border: none;
+    border-radius: 15px;
+}
+
+/* Make the search box bigger and more prominent */
+.select2-container--bootstrap-5 .select2-selection {
+    font-size: 1.15rem;
+    padding: 8px 16px;
+    min-height: 50px;
+}
+
+.select2-container--bootstrap-5.select2-container--open .select2-selection {
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
+}
+
+/* Styling for the placeholder shown on page load */
+#initial-placeholder i {
+    opacity: 0.3;
+}
+
+/* --- Card Header Color Classes --- */
+.card-header {
+    font-weight: 500;
+}
+
+.card-header.header-blue {
+    background-color: #0d6efd; /* Bootstrap primary */
+    color: white;
+}
+
+.card-header.header-green {
+    background-color: #198754; /* Bootstrap success */
+    color: white;
+}
+
+/* Make the copy button in the colored header visible */
+.card-header button {
+    color: white;
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.card-header button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+/* Styling for code blocks within the steps list */
 .step-code {
     background-color: #e9ecef;
-    padding: 10px;
+    padding: 1rem;
     border-radius: 5px;
+    border: 1px solid #dee2e6;
     font-family: 'Courier New', Courier, monospace;
     display: flex;
     justify-content: space-between;
@@ -15,12 +68,12 @@ body {
 }
 
 .step-code code {
-    white-space: pre-wrap; /* Allows long commands to wrap */
+    white-space: pre-wrap;
     word-break: break-all;
 }
 
-/* Ensure select2 dropdown blends with bootstrap theme */
-.select2-container--bootstrap-5 .select2-selection {
-    font-size: 1.1rem;
-    padding: 0.5rem 1rem;
+.step-code .btn {
+    --bs-btn-padding-y: .25rem; 
+    --bs-btn-padding-x: .5rem; 
+    --bs-btn-font-size: .8rem;
 }

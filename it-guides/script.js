@@ -1,48 +1,25 @@
 $(document).ready(function() {
     const select = $('#command-select');
-    const resultsArea = $('#results-area');
+    // Get references to the new elements
+    const initialPlaceholder = $('#initial-placeholder');
+    const ticketCard = $('#ticket-card');
+    const stepsCard = $('#steps-card');
+    // Get specific elements for population
     const ticketDescriptionEl = $('#ticket-description');
     const stepsListEl = $('#steps-list');
     const copyTicketBtn = $('#copy-ticket-btn');
     
-    let commandsData = []; // To store the full original commands data
+    let commandsData = [];
 
-    // =================================================================
-    // NEW: Custom Matcher Function for Select2
-    // This function tells Select2 how to perform the search.
-    // =================================================================
+    // Custom Matcher Function (no changes here, still perfect)
     function commandMatcher(params, data) {
-        // If there are no search terms, return all the data
-        if ($.trim(params.term) === '') {
-            return data;
-        }
-
-        // Don't display the placeholder in the results
-        if (typeof data.id === 'undefined' || data.id === '') {
-            return null;
-        }
-
-        // Find the original command object using the ID from Select2's data
+        if ($.trim(params.term) === '') return data;
+        if (typeof data.id === 'undefined' || data.id === '') return null;
         const originalCommand = commandsData.find(c => c.id === data.id);
-        if (!originalCommand) {
-            return null;
-        }
-
+        if (!originalCommand) return null;
         const searchTerm = params.term.toLowerCase();
-
-        // Check if the search term is in the title
-        if (originalCommand.title.toLowerCase().includes(searchTerm)) {
-            return data;
-        }
-
-        // Check if the search term is in any of the keywords
-        if (originalCommand.keywords && originalCommand.keywords.length) {
-            if (originalCommand.keywords.some(keyword => keyword.toLowerCase().includes(searchTerm))) {
-                return data;
-            }
-        }
-
-        // If it doesn't match, do not return the data
+        if (originalCommand.title.toLowerCase().includes(searchTerm)) return data;
+        if (originalCommand.keywords?.some(k => k.toLowerCase().includes(searchTerm))) return data;
         return null;
     }
 
@@ -50,19 +27,14 @@ $(document).ready(function() {
     fetch('commands.json')
         .then(response => response.json())
         .then(data => {
-            commandsData = data; // Store the original data with all details
-
-            // =================================================================
-            // UPDATED: Select2 Initialization
-            // We now pass the data directly and include our custom matcher.
-            // =================================================================
+            commandsData = data;
             select.select2({
                 theme: 'bootstrap-5',
                 placeholder: 'Search by keyword (e.g., sfc, dns, ip)...',
                 allowClear: true,
-                matcher: commandMatcher, // <-- This is the key change
+                matcher: commandMatcher,
                 data: [
-                    { id: '', text: '' }, // Add a blank option for the placeholder
+                    { id: '', text: '' },
                     ...data.map(command => ({ id: command.id, text: command.title }))
                 ]
             });
@@ -76,28 +48,47 @@ $(document).ready(function() {
     select.on('change', function() {
         const selectedId = $(this).val();
         if (!selectedId) {
-            resultsArea.addClass('d-none'); // Hide results if nothing is selected
+            // If selection is cleared, show placeholder and hide cards
+            initialPlaceholder.removeClass('d-none');
+            ticketCard.addClass('d-none');
+            stepsCard.addClass('d-none');
             return;
         }
-
+        
+        // If an item is selected, hide placeholder and show cards
+        initialPlaceholder.addClass('d-none');
+        ticketCard.removeClass('d-none');
+        stepsCard.removeClass('d-none');
+        
         const command = commandsData.find(c => c.id === selectedId);
         displayCommandDetails(command);
     });
 
-    // Function to display the details of the selected command (no changes here)
+    // Function to display the details of the selected command
     function displayCommandDetails(command) {
+        // --- NEW: Apply custom header colors and styles ---
+        $('#ticket-card .card-header')
+            .removeClass('header-blue header-green')
+            .addClass('header-blue');
+        $('#steps-card .card-header')
+            .removeClass('header-blue header-green')
+            .addClass('header-green');
+        copyTicketBtn.addClass('btn-outline-light'); // Use a light button for dark header
+
+        // Populate Ticket Description
         ticketDescriptionEl.text(command.ticket_template);
         copyTicketBtn.data('copy-text', command.ticket_template);
 
+        // Populate Steps
         stepsListEl.empty();
         const ol = $('<ol class="list-group list-group-numbered"></ol>');
         command.execution.forEach(exec => {
-            const li = $(`<li class="list-group-item">${exec.step}</li>`);
+            const li = $(`<li class="list-group-item border-0 ps-0">${exec.step}</li>`);
             if (exec.command) {
                 const codeBlock = $(`
                     <div class="step-code">
                         <code>${exec.command}</code>
-                        <button class="btn btn-sm btn-outline-secondary copy-code-btn" title="Copy Command">
+                        <button class="btn btn-dark copy-code-btn" title="Copy Command">
                             <i class="fa-regular fa-copy"></i>
                         </button>
                     </div>
@@ -108,18 +99,18 @@ $(document).ready(function() {
             ol.append(li);
         });
         stepsListEl.append(ol);
-        
-        resultsArea.removeClass('d-none');
     }
 
-    // Generic copy function using SweetAlert for feedback (no changes here)
+    // Generic copy function (no changes)
     function copyToClipboard(text, successMessage) {
         navigator.clipboard.writeText(text).then(() => {
             Swal.fire({
                 icon: 'success',
                 title: successMessage,
                 showConfirmButton: false,
-                timer: 1500
+                timer: 1500,
+                toast: true,
+                position: 'top-end'
             });
         }).catch(err => {
             console.error('Failed to copy: ', err);
@@ -127,14 +118,14 @@ $(document).ready(function() {
         });
     }
 
-    // Event listener for the ticket description copy button (no changes here)
+    // Event listener for ticket copy button (no changes)
     copyTicketBtn.on('click', function() {
         const textToCopy = $(this).data('copy-text');
         const formattedText = `> ${textToCopy} >`;
         copyToClipboard(formattedText, 'Ticket description copied!');
     });
 
-    // Event listener for dynamically created code copy buttons (no changes here)
+    // Event listener for code copy buttons (no changes)
     $(document).on('click', '.copy-code-btn', function() {
         const textToCopy = $(this).data('copy-text');
         copyToClipboard(textToCopy, 'Command copied!');
