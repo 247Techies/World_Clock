@@ -74,5 +74,154 @@
           "command": "ipconfig /renew"
         }
       ]
+    },
+    {
+      "id": "dism_checkhealth",
+      "title": "Run DISM CheckHealth",
+      "description": "Quickly checks if the Windows image has any corruption and if it can be repaired.",
+      "keywords": ["dism", "checkhealth", "windows image", "corruption", "scan"],
+      "ticket_template": "Executed DISM CheckHealth to assess whether the Windows image is corrupted and repairable.",
+      "platform": "windows",
+      "requires_admin": true,
+      "execution": [
+        {
+          "step": "Open Command Prompt or PowerShell as Administrator.",
+          "command": null
+        },
+        {
+          "step": "Run the DISM CheckHealth command. This is a quick scan and usually finishes in seconds.",
+          "command": "DISM /Online /Cleanup-Image /CheckHealth"
+        }
+      ]
+    },
+    {
+      "id": "dism_scanhealth",
+      "title": "Run DISM ScanHealth",
+      "description": "Performs a more thorough scan to determine if the Windows image has any corruption.",
+      "keywords": ["dism", "scanhealth", "windows image", "corruption", "diagnose"],
+      "ticket_template": "Executed DISM ScanHealth to perform an in-depth scan for corruption in the Windows image.",
+      "platform": "windows",
+      "requires_admin": true,
+      "execution": [
+        {
+          "step": "Open Command Prompt or PowerShell as Administrator.",
+          "command": null
+        },
+        {
+          "step": "Run the DISM ScanHealth command. This may take some time to complete.",
+          "command": "DISM /Online /Cleanup-Image /ScanHealth"
+        }
+      ]
+    },
+    {
+      "id": "enable_builtin_admin",
+      "title": "Enable Built-in Administrator Account",
+      "description": "Enables the default built-in Administrator account in Windows.",
+      "keywords": ["administrator", "enable admin", "built-in admin", "net user"],
+      "ticket_template": "Enabled the built-in Administrator account using the net user command.",
+      "platform": "windows",
+      "requires_admin": true,
+      "execution": [
+        {
+          "step": "Open Command Prompt or PowerShell as Administrator.",
+          "command": null
+        },
+        {
+          "step": "Run the following command to enable the built-in Administrator account.",
+          "command": "net user Administrator /active:yes"
+        }
+      ]
+    },
+    {
+      "id": "disable_builtin_admin",
+      "title": "Disable Built-in Administrator Account",
+      "description": "Disables the default built-in Administrator account in Windows for security.",
+      "keywords": ["administrator", "disable admin", "built-in admin", "net user"],
+      "ticket_template": "Disabled the built-in Administrator account using the net user command.",
+      "platform": "windows",
+      "requires_admin": true,
+      "execution": [
+        {
+          "step": "Open Command Prompt or PowerShell as Administrator.",
+          "command": null
+        },
+        {
+          "step": "Run the following command to disable the built-in Administrator account.",
+          "command": "net user Administrator /active:no"
+        }
+      ]
+    },
+    {
+      "id": "create_admin_user_with_password",
+      "title": "Create New Administrator User (With Password)",
+      "description": "Creates a new local user and adds it to the Administrators group with a specified password.",
+      "keywords": ["create user", "admin user", "new user", "net user", "add admin"],
+      "ticket_template": "Created a new local administrator account with a specified password.",
+      "platform": "windows",
+      "requires_admin": true,
+      "execution": [
+        {
+          "step": "Open Command Prompt or PowerShell as Administrator.",
+          "command": null
+        },
+        {
+          "step": "Create the new user with a password (replace USERNAME and PASSWORD).",
+          "command": "net user USERNAME PASSWORD /add"
+        },
+        {
+          "step": "Add the new user to the Administrators group.",
+          "command": "net localgroup Administrators USERNAME /add"
+        }
+      ]
+    },
+    {
+      "id": "create_admin_user_no_password",
+      "title": "Create New Administrator User (No Password)",
+      "description": "Creates a new local administrator account without setting a password.",
+      "keywords": ["create user", "admin user", "no password", "net user"],
+      "ticket_template": "Created a new local administrator account without a password for temporary access.",
+      "platform": "windows",
+      "requires_admin": true,
+      "execution": [
+        {
+          "step": "Open Command Prompt or PowerShell as Administrator.",
+          "command": null
+        },
+        {
+          "step": "Create the new user with no password (replace USERNAME).",
+          "command": "net user USERNAME \"\" /add"
+        },
+        {
+          "step": "Add the new user to the Administrators group.",
+          "command": "net localgroup Administrators USERNAME /add"
+        }
+      ]
+    },
+    {
+      "id": "reset_edge_browser",
+      "title": "Reset Microsoft Edge",
+      "description": "Resets Microsoft Edge settings to their default state, resolving common browser issues.",
+      "keywords": ["edge", "reset edge", "browser reset", "clear edge settings"],
+      "ticket_template": "Reset Microsoft Edge to default settings to resolve browser-related issues.",
+      "platform": "windows",
+      "requires_admin": false,
+      "execution": [
+        {
+          "step": "Open Microsoft Edge."
+        },
+        {
+          "step": "Click the three dots (⋯) in the top-right corner and select 'Settings'."
+        },
+        {
+          "step": "In the left menu, go to 'Reset settings'."
+        },
+        {
+          "step": "Click on 'Restore settings to their default values'."
+        },
+        {
+          "step": "Click 'Reset' to confirm. This will remove extensions, custom settings, and startup configurations."
+        }
+      ]
     }
+    
   ]
