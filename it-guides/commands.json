@@ -19,6 +19,25 @@
       ]
     },
     {
+      "id": "dism_restorehealth",
+      "title": "Run DISM RestoreHealth",
+      "description": "Uses the Deployment Imaging Service and Management Tool to repair Windows image corruption.",
+      "keywords": ["dism", "restorehealth", "windows image", "cleanup-image", "repair"],
+      "ticket_template": "Ran DISM scan to repair Windows image corruption using the RestoreHealth command.",
+      "platform": "windows",
+      "requires_admin": true,
+      "execution": [
+        {
+          "step": "Open Command Prompt or PowerShell as Administrator.",
+          "command": null
+        },
+        {
+          "step": "Run the DISM RestoreHealth scan. This process may take several minutes.",
+          "command": "DISM /Online /Cleanup-Image /RestoreHealth"
+        }
+      ]
+    },
+    {
       "id": "flush_dns",
       "title": "Flush DNS Cache",
       "description": "Clears the local DNS resolver cache to help resolve network connectivity issues.",
