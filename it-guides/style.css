@@ -116,3 +116,19 @@ body {
     /* The animation property: name, duration, timing, and loop count */
     animation: heartbeat 2.5s ease-in-out infinite;
 }
+
+/* --- Styling for the "Contact Developer" button --- */
+
+.contact-btn {
+    /* Use flexbox to easily align the icon and text */
+    display: inline-flex;
+    align-items: center;
+    font-weight: 500;
+}
+
+.btn-icon {
+    /* Set a fixed height for the icon */
+    height: 24px; 
+    /* Let the width adjust automatically to maintain aspect ratio */
+    width: auto;
+}
