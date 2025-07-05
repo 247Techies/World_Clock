@@ -5,6 +5,13 @@ body {
     min-height: 100vh;
 }
 
+/* Add this new rule to your style.css */
+.app-card h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* This keeps the whole title (logo + text) centered */
+}
+
 /* Main application card styling */
 .app-card {
     border: none;
