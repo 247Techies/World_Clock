@@ -334,6 +334,138 @@
           "step": "Check for updated printer drivers via Device Manager or the printer manufacturer's website."
         }
       ]
+    },
+    {
+      "id": "flush_dns_cache",
+      "title": "Flush DNS Cache",
+      "description": "Clears the local DNS cache to resolve name resolution issues or outdated domain entries.",
+      "keywords": ["dns", "flushdns", "ipconfig", "network", "name resolution"],
+      "ticket_template": "Flushed the local DNS cache using ipconfig to resolve potential name resolution issues.",
+      "platform": "windows",
+      "requires_admin": true,
+      "execution": [
+        {
+          "step": "Open Command Prompt as Administrator.",
+          "command": null
+        },
+        {
+          "step": "Run the following command to flush the DNS cache.",
+          "command": "ipconfig /flushdns"
+        },
+        {
+          "step": "You should see a confirmation message: 'Successfully flushed the DNS Resolver Cache.'"
+        }
+      ]
+    },
+    {
+      "id": "winsock_reset",
+      "title": "Reset Winsock",
+      "description": "Resets the Windows network stack (Winsock) to resolve network connectivity issues caused by corrupted configurations.",
+      "keywords": ["winsock", "network reset", "netsh", "connectivity", "network repair"],
+      "ticket_template": "Performed a Winsock reset to resolve potential corruption in the Windows network stack.",
+      "platform": "windows",
+      "requires_admin": true,
+      "execution": [
+        {
+          "step": "Open Command Prompt as Administrator.",
+          "command": null
+        },
+        {
+          "step": "Run the following command to reset Winsock.",
+          "command": "netsh winsock reset"
+        },
+        {
+          "step": "Restart the computer to complete the reset process."
+        }
+      ]
+    },
+    {
+      "id": "view_arp_cache",
+      "title": "View ARP Cache",
+      "description": "Displays the current ARP (Address Resolution Protocol) cache, showing IP-to-MAC address mappings used for local network communication.",
+      "keywords": ["arp", "arp -a", "network", "mac address", "ip mapping", "cache"],
+      "ticket_template": "Checked ARP cache using 'arp -a' to view IP-to-MAC address mappings on the local network.",
+      "platform": "windows",
+      "requires_admin": false,
+      "execution": [
+        {
+          "step": "Open Command Prompt.",
+          "command": null
+        },
+        {
+          "step": "Run the following command to display the ARP table.",
+          "command": "arp -a"
+        },
+        {
+          "step": "Review the listed dynamic and static IP-to-MAC address mappings for any unexpected devices or conflicts."
+        }
+      ]
+    },
+    {
+      "id": "find_router_ip",
+      "title": "Find Router's IP Address",
+      "description": "Identifies the default gateway IP address, which is typically the local IP of the router.",
+      "keywords": ["router ip", "default gateway", "find router", "ipconfig", "network"],
+      "ticket_template": "Identified the router’s IP address (default gateway) using the ipconfig command.",
+      "platform": "windows",
+      "requires_admin": false,
+      "execution": [
+        {
+          "step": "Open Command Prompt.",
+          "command": null
+        },
+        {
+          "step": "Run the following command.",
+          "command": "ipconfig"
+        },
+        {
+          "step": "Look under the active network adapter for the line labeled 'Default Gateway'. This is your router's IP address."
+        }
+      ]
+    },
+    {
+      "id": "ipconfig_check",
+      "title": "View IP Configuration",
+      "description": "Displays the current network adapter configuration including IP address, subnet mask, and default gateway.",
+      "keywords": ["ipconfig", "network", "ip address", "default gateway", "dns", "subnet mask"],
+      "ticket_template": "Executed 'ipconfig' to review current network configuration including IP address and default gateway.",
+      "platform": "windows",
+      "requires_admin": false,
+      "execution": [
+        {
+          "step": "Open Command Prompt.",
+          "command": null
+        },
+        {
+          "step": "Run the following command to view IP settings.",
+          "command": "ipconfig"
+        },
+        {
+          "step": "Review the output for details such as IPv4 Address, Subnet Mask, and Default Gateway under the active adapter."
+        }
+      ]
+    },
+    {
+      "id": "ipconfig_all",
+      "title": "View Full IP Configuration (ipconfig /all)",
+      "description": "Displays complete network configuration details including IP address, DNS, MAC address, DHCP status, and more.",
+      "keywords": ["ipconfig", "ipconfig /all", "network details", "dns", "dhcp", "mac address"],
+      "ticket_template": "Ran 'ipconfig /all' to obtain detailed network information including DNS, MAC address, and DHCP configuration.",
+      "platform": "windows",
+      "requires_admin": false,
+      "execution": [
+        {
+          "step": "Open Command Prompt.",
+          "command": null
+        },
+        {
+          "step": "Run the following command to view complete network details.",
+          "command": "ipconfig /all"
+        },
+        {
+          "step": "Review the output for the active adapter. Key info includes: IPv4 Address, Subnet Mask, Default Gateway, DNS Servers, MAC Address, and DHCP status."
+        }
+      ]
     }
 
   ]
