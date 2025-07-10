@@ -466,6 +466,116 @@
           "step": "Review the output for the active adapter. Key info includes: IPv4 Address, Subnet Mask, Default Gateway, DNS Servers, MAC Address, and DHCP status."
         }
       ]
+    },
+    {
+      "id": "systeminfo_check",
+      "title": "Get System Information",
+      "description": "Displays detailed system information including OS version, system model, BIOS, memory, and more.",
+      "keywords": ["systeminfo", "os details", "bios version", "system model", "uptime", "windows version"],
+      "ticket_template": "Executed 'systeminfo' to gather detailed information about the operating system and hardware.",
+      "platform": "windows",
+      "requires_admin": false,
+      "execution": [
+        {
+          "step": "Open Command Prompt.",
+          "command": null
+        },
+        {
+          "step": "Run the following command to retrieve system details.",
+          "command": "systeminfo"
+        },
+        {
+          "step": "Review the output for OS Name, Version, System Manufacturer, System Model, BIOS Version, and Installed Memory (RAM)."
+        }
+      ]
+    },
+    {
+      "id": "wmic_cpu_info",
+      "title": "Get CPU Information (WMIC)",
+      "description": "Retrieves processor details such as name, number of cores, and architecture using WMIC.",
+      "keywords": ["wmic", "cpu", "processor", "system info", "hardware"],
+      "ticket_template": "Used WMIC to retrieve CPU information including name and number of cores.",
+      "platform": "windows",
+      "requires_admin": false,
+      "execution": [
+        {
+          "step": "Open Command Prompt.",
+          "command": null
+        },
+        {
+          "step": "Run the following command to view CPU information.",
+          "command": "wmic cpu get Name,NumberOfCores,NumberOfLogicalProcessors"
+        },
+        {
+          "step": "Review the output for CPU model, core count, and logical processor count."
+        }
+      ]
+    },
+    {
+      "id": "wmic_diskdrive_info",
+      "title": "Get Disk Drive Information (WMIC)",
+      "description": "Retrieves physical disk drive details such as model, size, and interface type using WMIC.",
+      "keywords": ["wmic", "disk", "drive info", "hard drive", "ssd", "storage"],
+      "ticket_template": "Used WMIC to retrieve physical disk drive information including model, size, and interface type.",
+      "platform": "windows",
+      "requires_admin": false,
+      "execution": [
+        {
+          "step": "Open Command Prompt.",
+          "command": null
+        },
+        {
+          "step": "Run the following command to view disk drive information.",
+          "command": "wmic diskdrive get Model,Size,InterfaceType,MediaType"
+        },
+        {
+          "step": "Review the output for drive model, total size (in bytes), and interface type (e.g., SATA, NVMe)."
+        }
+      ]
+    },
+    {
+      "id": "wmic_installed_apps",
+      "title": "List Installed Applications (WMIC)",
+      "description": "Displays a list of installed applications and their versions using WMIC.",
+      "keywords": ["wmic", "installed programs", "software list", "app versions", "uninstall"],
+      "ticket_template": "Used WMIC to retrieve a list of installed applications and their version numbers.",
+      "platform": "windows",
+      "requires_admin": true,
+      "execution": [
+        {
+          "step": "Open Command Prompt as Administrator.",
+          "command": null
+        },
+        {
+          "step": "Run the following command to list installed programs with version info.",
+          "command": "wmic product get name, version"
+        },
+        {
+          "step": "Review the output for a complete list of applications and their corresponding versions. Use this to identify outdated or unwanted software."
+        }
+      ]
+    },
+    {
+      "id": "wmic_os_info",
+      "title": "Get Windows OS Version (WMIC)",
+      "description": "Retrieves the Windows operating system name and version using WMIC.",
+      "keywords": ["wmic", "os", "windows version", "caption", "system info"],
+      "ticket_template": "Used WMIC to retrieve the Windows operating system name and version.",
+      "platform": "windows",
+      "requires_admin": false,
+      "execution": [
+        {
+          "step": "Open Command Prompt.",
+          "command": null
+        },
+        {
+          "step": "Run the following command to display OS name and version.",
+          "command": "wmic os get Caption, Version"
+        },
+        {
+          "step": "Review the output for the Windows edition (e.g., Windows 10 Pro) and its exact version number."
+        }
+      ]
     }
 
   ]
