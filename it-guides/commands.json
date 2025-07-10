@@ -588,15 +588,15 @@
       "execution": [
         {
           "step": "Download CCleaner (Standard version) for cleaning junk files and optimizing system settings.",
-          "command": "start https://www.ccleaner.com/ccleaner/download/standard?sourceVariant=CWD-2607-TC-c"
+          "command": "https://www.ccleaner.com/ccleaner/download/standard?sourceVariant=CWD-2607-TC-c"
         },
         {
           "step": "Download SUPERAntiSpyware (Free Edition) for detecting and removing spyware and tracking cookies.",
-          "command": "start https://www.superantispyware.com/downloadfile.html?productid=SUPERANTISPYWAREFREE"
+          "command": "https://www.superantispyware.com/downloadfile.html?productid=SUPERANTISPYWAREFREE"
         },
         {
           "step": "Download Malwarebytes for scanning and removing malware and PUPs (Potentially Unwanted Programs).",
-          "command": "start https://www.malwarebytes.com/mwb-download/thankyou"
+          "command": "https://www.malwarebytes.com/mwb-download/thankyou"
         },
         {
           "step": "Run the downloaded tools one by one to clean up the system, remove threats, and improve overall performance.",
@@ -615,19 +615,19 @@
       "execution": [
         {
           "step": "Install Adblock Plus for Chrome browser.",
-          "command": "start https://adblockplus.org/adblock-plus-chrome"
+          "command": "https://adblockplus.org/adblock-plus-chrome"
         },
         {
           "step": "Install Adblock Plus for Microsoft Edge browser.",
-          "command": "start https://adblockplus.org/adblock-plus-edge"
+          "command": "https://adblockplus.org/adblock-plus-edge"
         },
         {
           "step": "Install Adblock Plus for Mozilla Firefox browser.",
-          "command": "start https://adblockplus.org/adblock-plus-firefox"
+          "command": "https://adblockplus.org/adblock-plus-firefox"
         },
         {
           "step": "Install Adblock Plus for Safari browser.",
-          "command": "start https://adblockplus.org/ad-blocker-safari"
+          "command": "https://adblockplus.org/ad-blocker-safari"
         },
         {
           "step": "After installation, verify the ad blocker icon appears in the browser toolbar and test by visiting an ad-heavy website.",
