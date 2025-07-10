@@ -576,6 +576,66 @@
           "step": "Review the output for the Windows edition (e.g., Windows 10 Pro) and its exact version number."
         }
       ]
+    },
+    {
+      "id": "pc_optimization_tools",
+      "title": "PC Optimization and Cleanup Tools",
+      "description": "Guide to downloading and using optimization tools like CCleaner, SUPERAntiSpyware, and Malwarebytes to improve PC performance.",
+      "keywords": ["pc optimization", "cleanup", "ccleaner", "superantispyware", "malwarebytes", "speed up", "performance"],
+      "ticket_template": "Performed PC optimization by downloading and running system cleanup and malware removal tools.",
+      "platform": "windows",
+      "requires_admin": false,
+      "execution": [
+        {
+          "step": "Download CCleaner (Standard version) for cleaning junk files and optimizing system settings.",
+          "command": "start https://www.ccleaner.com/ccleaner/download/standard?sourceVariant=CWD-2607-TC-c"
+        },
+        {
+          "step": "Download SUPERAntiSpyware (Free Edition) for detecting and removing spyware and tracking cookies.",
+          "command": "start https://www.superantispyware.com/downloadfile.html?productid=SUPERANTISPYWAREFREE"
+        },
+        {
+          "step": "Download Malwarebytes for scanning and removing malware and PUPs (Potentially Unwanted Programs).",
+          "command": "start https://www.malwarebytes.com/mwb-download/thankyou"
+        },
+        {
+          "step": "Run the downloaded tools one by one to clean up the system, remove threats, and improve overall performance.",
+          "command": null
+        }
+      ]
+    },
+    {
+      "id": "browser_ad_blockers",
+      "title": "Install Ad Blockers for Web Browsers",
+      "description": "Guide to installing Adblock Plus extensions for Chrome, Edge, Firefox, and Safari to block ads and enhance browser performance.",
+      "keywords": ["adblock", "ad blocker", "browser extension", "chrome", "edge", "firefox", "safari", "adblock plus"],
+      "ticket_template": "Installed Adblock Plus extensions in supported browsers to block ads and improve browsing experience.",
+      "platform": "windows",
+      "requires_admin": false,
+      "execution": [
+        {
+          "step": "Install Adblock Plus for Chrome browser.",
+          "command": "start https://adblockplus.org/adblock-plus-chrome"
+        },
+        {
+          "step": "Install Adblock Plus for Microsoft Edge browser.",
+          "command": "start https://adblockplus.org/adblock-plus-edge"
+        },
+        {
+          "step": "Install Adblock Plus for Mozilla Firefox browser.",
+          "command": "start https://adblockplus.org/adblock-plus-firefox"
+        },
+        {
+          "step": "Install Adblock Plus for Safari browser.",
+          "command": "start https://adblockplus.org/ad-blocker-safari"
+        },
+        {
+          "step": "After installation, verify the ad blocker icon appears in the browser toolbar and test by visiting an ad-heavy website.",
+          "command": null
+        }
+      ]
     }
+
+
 
   ]
