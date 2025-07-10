@@ -132,4 +132,13 @@ $(document).ready(function() {
         const textToCopy = $(this).data('copy-text');
         copyToClipboard(textToCopy, 'Command copied!');
     });
+
+    // --- New Event Listener for the Reset Button ---
+    $('#reset-btn').on('click', function() {
+        // Clear the Select2 selection
+        select.val(null).trigger('change');
+        // Also hide the "no results" message if it's showing
+        $('#no-results-placeholder').addClass('d-none');
+    });
+    
 });

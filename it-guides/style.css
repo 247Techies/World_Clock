@@ -132,3 +132,15 @@ body {
     /* Let the width adjust automatically to maintain aspect ratio */
     width: auto;
 }
+
+/* --- Styles for Search Bar with Buttons --- */
+
+.search-container {
+    display: flex;
+    align-items: center;
+}
+
+/* Make the select2 search bar grow to fill available space */
+.search-container .select2-container {
+    flex-grow: 1;
+}

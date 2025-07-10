@@ -29,7 +29,27 @@
                             <p class="lead text-muted">A quick reference tool for your most-used commands.</p>
                         </div>
         
-                        <select id="command-select" class="form-select"></select>
+                        <!-- Search container with buttons -->
+                        <div class="search-container">
+                            <select id="command-select" class="form-select"></select>
+                            
+                            <div class="btn-group ms-3" role="group">
+                                <a href="https://247techies.github.io/World_Clock/" 
+                                target="_blank" 
+                                class="btn btn-secondary" 
+                                data-bs-toggle="tooltip" 
+                                title="Home">
+                                    <i class="fas fa-home"></i>
+                                </a>
+                                <button type="button" 
+                                        id="reset-btn" 
+                                        class="btn btn-outline-secondary" 
+                                        data-bs-toggle="tooltip" 
+                                        title="Reset Search">
+                                    <i class="fas fa-sync-alt"></i>
+                                </button>
+                            </div>
+                        </div>
         
                         <!-- Results Area -->
                         <div id="results-area" class="mt-4">
