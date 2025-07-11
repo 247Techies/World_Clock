@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
             description: 'Get instant access to our 24/7 support channels without ever leaving your current tab. This lightweight extension places all our contact information—phone, email, and live chat—into a clean, non-intrusive modal. No more searching through websites; help is always just one click away.',
             icon: 'https://raw.githubusercontent.com/247Techies/World_Clock/39dc379c1a9488d6f78d8a99ef977c29e9e18962/web-store/MyExtentions/247-Info-Modal/icons/icon128.png',
             bannerImage: 'https://raw.githubusercontent.com/247Techies/World_Clock/39dc379c1a9488d6f78d8a99ef977c29e9e18962/web-store/MyExtentions/247-Info-Modal/icons/icon128.png', // Using icon as banner for now
-            downloadLink: 'https://download-directory.github.io/?url=https://github.com/247Techies/World_Clock/tree/39dc379c1a9488d6f78d8a99ef977c29e9e18962/web-store/MyExtentions/247-Info-Modal'
+            downloadLink: 'https://downgit.github.io/#/home?url=https://github.com/247Techies/World_Clock/tree/main/web-store/MyExtentions/247-Info-Modal'
         }, // <-- Make sure you add this comma after the previous extension
         {
             id: 'customer-info-modal',
@@ -21,6 +21,26 @@ document.addEventListener('DOMContentLoaded', () => {
             icon: 'https://raw.githubusercontent.com/247Techies/World_Clock/2097ad478295703a0c9886b406ee0917b10b6c67/web-store/MyExtentions/CX-Renew-VM/icons/icon128.png',
             bannerImage: 'https://raw.githubusercontent.com/247Techies/World_Clock/2097ad478295703a0c9886b406ee0917b10b6c67/web-store/MyExtentions/CX-Renew-VM/icons/icon128.png', // Using icon as banner for now
             downloadLink: 'https://download-directory.github.io/?url=https://github.com/247Techies/World_Clock/tree/main/web-store/MyExtentions/CX-Renew-VM'
+        }, // <-- Make sure you add this comma after the previous extension
+        {
+            id: 'cx-follow-up-reminder',
+            name: 'CX Follow-up Reminder',
+            version: '1.4',
+            tagline: 'A reminder extension for customer follow-ups with countdowns and sound alerts.',
+            description: 'Never miss a crucial customer follow-up again. This essential tool allows you to set timed reminders directly in your browser. Track pending tasks with a visual countdown timer and receive audible alerts, ensuring timely communication and boosting customer satisfaction.',
+            icon: 'https://raw.githubusercontent.com/247Techies/World_Clock/a57026c756a98ea9b93389c67959eae339477828/web-store/MyExtentions/CX-Reminder/images/icon128.png',
+            bannerImage: 'https://raw.githubusercontent.com/247Techies/World_Clock/a57026c756a98ea9b93389c67959eae339477828/web-store/MyExtentions/CX-Reminder/images/icon128.png', // Using icon as banner for now
+            downloadLink: 'https://download-directory.github.io/?url=https://github.com/247Techies/World_Clock/tree/main/web-store/MyExtentions/CX-Reminder'
+        }, // <-- Make sure you add this comma after the previous extension
+        {
+            id: 'proper-case-capitalizer',
+            name: 'Proper Case Capitalizer',
+            version: '1.0',
+            tagline: 'Changes the text in an input field to Proper Case capitalization.',
+            description: 'Instantly format text to perfect Proper Case with a single click. This handy tool ensures that names, titles, and sentences are capitalized correctly, saving you time on manual edits and enhancing the professionalism of your writing in forms, emails, and documents.',
+            icon: 'https://raw.githubusercontent.com/247Techies/World_Clock/a57026c756a98ea9b93389c67959eae339477828/web-store/MyExtentions/Case-Changer/icons/icon128.png',
+            bannerImage: 'https://raw.githubusercontent.com/247Techies/World_Clock/a57026c756a98ea9b93389c67959eae339477828/web-store/MyExtentions/Case-Changer/icons/icon128.png', // Using icon as banner for now
+            downloadLink: 'https://download-directory.github.io/?url=https://github.com/247Techies/World_Clock/tree/main/web-store/MyExtentions/Case-Changer'
         }
     ];
 
