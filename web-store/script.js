@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
             bannerImage: 'https://raw.githubusercontent.com/247Techies/World_Clock/39dc379c1a9488d6f78d8a99ef977c29e9e18962/web-store/MyExtentions/247-Info-Modal/icons/icon128.png', // Using icon as banner for now
             downloadLink: 'https://download-directory.github.io/?url=https://github.com/247Techies/World_Clock/tree/39dc379c1a9488d6f78d8a99ef977c29e9e18962/web-store/MyExtentions/247-Info-Modal'
         }
-        // To add another extension, add a comma here and paste a new object below.
+        // To add another extension,add a comma here and paste a new object below.
     ];
 
     // --- DOM Elements ---
