@@ -11,8 +11,17 @@ document.addEventListener('DOMContentLoaded', () => {
             icon: 'https://raw.githubusercontent.com/247Techies/World_Clock/39dc379c1a9488d6f78d8a99ef977c29e9e18962/web-store/MyExtentions/247-Info-Modal/icons/icon128.png',
             bannerImage: 'https://raw.githubusercontent.com/247Techies/World_Clock/39dc379c1a9488d6f78d8a99ef977c29e9e18962/web-store/MyExtentions/247-Info-Modal/icons/icon128.png', // Using icon as banner for now
             downloadLink: 'https://download-directory.github.io/?url=https://github.com/247Techies/World_Clock/tree/39dc379c1a9488d6f78d8a99ef977c29e9e18962/web-store/MyExtentions/247-Info-Modal'
+        }, // <-- Make sure you add this comma after the previous extension
+        {
+            id: 'customer-info-modal',
+            name: 'Customer Info Modal',
+            version: '1.0',
+            tagline: 'Select a name and date on a page to generate a customer support modal.',
+            description: 'Streamline your customer support workflow by instantly capturing key client details from any webpage. Simply highlight a customer\'s name and a relevant date, and this extension generates a convenient modal, perfect for logging interactions or creating support tickets without switching contexts.',
+            icon: 'https://raw.githubusercontent.com/247Techies/World_Clock/2097ad478295703a0c9886b406ee0917b10b6c67/web-store/MyExtentions/CX-Renew-VM/icons/icon128.png',
+            bannerImage: 'https://raw.githubusercontent.com/247Techies/World_Clock/2097ad478295703a0c9886b406ee0917b10b6c67/web-store/MyExtentions/CX-Renew-VM/icons/icon128.png', // Using icon as banner for now
+            downloadLink: 'https://download-directory.github.io/?url=https://github.com/247Techies/World_Clock/tree/main/web-store/MyExtentions/CX-Renew-VM'
         }
-        // To add another extension,add a comma here and paste a new object below.
     ];
 
     // --- DOM Elements ---
