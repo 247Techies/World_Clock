@@ -242,39 +242,47 @@
         color: var(--secondary-text-color) !important;
     }
 
-    /* The circular button container (the <a> link) */
-    .fixed-icon-circle {
+    /* This is the main container that holds and positions the stack of icons */
+    .fixed-icon-stack {
         position: fixed;
         bottom: 25px;
         right: 25px;
         z-index: 9999;
-
-        /* ---- New Styles for the Circular Shape & Size ---- */
-        width: 60px;          /* Chat button size */
-        height: 60px;         /* Chat button size */
-        border-radius: 50%;   /* This makes it a perfect circle */
-        background-color: #f0f0f0; /* Fallback color if the GIF is transparent */
-        box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* A nice shadow to lift it off the page */
         
-        /* ---- For perfectly centering the GIF inside the circle ---- */
+        /* ---- New styles for stacking ---- */
+        display: flex;
+        flex-direction: column; /* Arrange icons vertically */
+        gap: 15px;              /* This creates a 15px space BETWEEN the icons */
+    }
+
+    /* This style is REUSED for BOTH circular icon buttons */
+    .fixed-icon-circle {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: #f0f0f0;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        
         display: flex;
         justify-content: center;
         align-items: center;
-        overflow: hidden; /* Hides anything that spills out of the circle */
+        overflow: hidden;
+        
+        /* Smooth transition for the hover effect */
+        transition: all 0.2s ease-in-out;
     }
 
-    /* The animated GIF image inside the button */
+    /* The animated GIF image inside each button */
     .icon-image {
         width: 100%;
         height: 100%;
-        object-fit: cover; /* Ensures the GIF fills the circle without distortion */
+        object-fit: cover;
     }
 
-    /* Optional: A more prominent effect on hover */
+    /* The hover effect is applied to BOTH icons */
     .fixed-icon-circle:hover {
         transform: scale(1.1);
         box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-        transition: all 0.2s ease-in-out;
     }
 
     /* SweetAlert2 Mobile Centering */
@@ -358,11 +366,26 @@
   </div>
 
     <!-- ====================================================== -->
-    <!--      Floating 24/7 Monitor Icon (Circular)           -->
+    <!--      Floating Icon Stack                             -->
     <!-- ====================================================== -->
-    <a href="it-guides/it-guides.html" class="fixed-icon-circle">
-        <img src="247-monitor.gif" alt="IT Guides and 24/7 Monitoring" class="icon-image">
-    </a>
+    <div class="fixed-icon-stack">
+
+        <!-- Toolbox Icon (Top) -->
+        <a href="https://247techies.github.io/World_Clock/web-store/index.html" 
+        target="_blank" rel="noopener noreferrer" 
+        class="fixed-icon-circle" 
+        title="Toolbox">
+            <img src="toolbox.gif" alt="Toolbox" class="icon-image">
+        </a>
+
+        <!-- 24/7 Monitor Icon (Bottom) -->
+        <a href="it-guides/it-guides.html" 
+        class="fixed-icon-circle" 
+        title="IT Guides">
+            <img src="247-monitor.gif" alt="IT Guides and 24/7 Monitoring" class="icon-image">
+        </a>
+
+    </div>
 
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="https://unpkg.com/@popperjs/core@2"></script>
