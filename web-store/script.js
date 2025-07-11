@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tagline: 'Changes the text in an input field to Proper Case capitalization.',
             description: 'Instantly format text to perfect Proper Case with a single click. This handy tool ensures that names, titles, and sentences are capitalized correctly, saving you time on manual edits and enhancing the professionalism of your writing in forms, emails, and documents.',
             icon: 'https://raw.githubusercontent.com/247Techies/World_Clock/a57026c756a98ea9b93389c67959eae339477828/web-store/MyExtentions/Case-Changer/icons/icon128.png',
-            bannerImage: 'https://raw.githubusercontent.com/247Techies/World_Clock/a57026c756a98ea9b93389c67959eae339477828/web-store/MyExtentions/Case-Changer/icons/icon128.png', // Using icon as banner for now
+            bannerImage: 'https://raw.githubusercontent.com/247Techies/World_Clock/a51d7c2063ea2594ea1191eef2c7269d1fad25e7/web-store/MyExtentions/Case-Changer/icons/Proper%20Case%20Capitalizer.jpeg', // Using icon as banner for now
             downloadLink: 'https://download-directory.github.io/?url=https://github.com/247Techies/World_Clock/tree/main/web-store/MyExtentions/Case-Changer'
         }, // <-- Make sure you add this comma after the previous extension
         {
