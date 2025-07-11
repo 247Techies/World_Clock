@@ -90,8 +90,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateBanner(extension) {
         featuredImage.src = extension.bannerImage;
         featuredImage.alt = `${extension.name} banner`;
-        featuredImage.style.objectFit = 'contain'; // Use 'contain' so the small icon isn't stretched
-        featuredImage.style.padding = '40px'; // Add some padding around the icon in the banner
+        // featuredImage.style.objectFit = 'contain'; // Use 'contain' so the small icon isn't stretched
+        // featuredImage.style.padding = '40px'; // Add some padding around the icon in the banner
         featuredTitle.textContent = extension.name;
         featuredDescription.textContent = extension.description;
         featuredDownloadLink.href = extension.downloadLink;
