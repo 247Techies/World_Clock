@@ -41,6 +41,36 @@ document.addEventListener('DOMContentLoaded', () => {
             icon: 'https://raw.githubusercontent.com/247Techies/World_Clock/a57026c756a98ea9b93389c67959eae339477828/web-store/MyExtentions/Case-Changer/icons/icon128.png',
             bannerImage: 'https://raw.githubusercontent.com/247Techies/World_Clock/a57026c756a98ea9b93389c67959eae339477828/web-store/MyExtentions/Case-Changer/icons/icon128.png', // Using icon as banner for now
             downloadLink: 'https://download-directory.github.io/?url=https://github.com/247Techies/World_Clock/tree/main/web-store/MyExtentions/Case-Changer'
+        }, // <-- Make sure you add this comma after the previous extension
+        {
+            id: 'safe-close-modal',
+            name: 'Safe Close with Custom Modal',
+            version: '1.1',
+            tagline: 'Click the icon to show a custom modal with a summary before closing Chrome.',
+            description: 'Avoid accidentally closing your browser and losing your work. This extension provides a final confirmation screen, summarizing your session, before you exit Chrome. A simple but powerful safety net for your browsing.',
+            icon: 'https://raw.githubusercontent.com/247Techies/World_Clock/302ea533e2f9132d2b65c475bbacd688ce937422/web-store/MyExtentions/Close-with-Confirm/icons/icon128.png',
+            bannerImage: 'https://raw.githubusercontent.com/247Techies/World_Clock/302ea533e2f9132d2b65c475bbacd688ce937422/web-store/MyExtentions/Close-with-Confirm/icons/icon128.png',
+            downloadLink: 'https://download-directory.github.io/?url=https://github.com/247Techies/World_Clock/tree/main/web-store/MyExtentions/Close-with-Confirm'
+        },
+        {
+            id: 'unlock-fields',
+            name: 'Unlock Fields',
+            version: '1.1',
+            tagline: 'When clicked, allows all textarea fields on the current page to be resized.',
+            description: 'Take back control of web forms. This extension unlocks any fixed-size text area, allowing you to freely resize it to fit your content. Perfect for writing long comments or detailed messages without being constrained by poorly designed websites.',
+            icon: 'https://raw.githubusercontent.com/247Techies/World_Clock/302ea533e2f9132d2b65c475bbacd688ce937422/web-store/MyExtentions/Unlock-Fields/icons/small.png',
+            bannerImage: 'https://raw.githubusercontent.com/247Techies/World_Clock/302ea533e2f9132d2b65c475bbacd688ce937422/web-store/MyExtentions/Unlock-Fields/icons/small.png',
+            downloadLink: 'https://download-directory.github.io/?url=https://github.com/247Techies/World_Clock/tree/main/web-store/MyExtentions/Unlock-Fields'
+        },
+        {
+            id: 'web-page-sticky-notes',
+            name: 'Web Page Sticky Notes',
+            version: '1.8',
+            tagline: 'Add a closeable and persistent sticky note to any webpage via the right-click menu.',
+            description: 'Leave digital sticky notes on any website. With a simple right-click, you can add a personal note that persists even after you close and reopen the page. It\'s the perfect way to jot down reminders, annotate articles, or save temporary information exactly where you need it.',
+            icon: 'https://raw.githubusercontent.com/247Techies/World_Clock/302ea533e2f9132d2b65c475bbacd688ce937422/web-store/MyExtentions/Sticky-Notes/images/icon16.png',
+            bannerImage: 'https://raw.githubusercontent.com/247Techies/World_Clock/302ea533e2f9132d2b65c475bbacd688ce937422/web-store/MyExtentions/Sticky-Notes/images/icon16.png',
+            downloadLink: 'https://download-directory.github.io/?url=https://github.com/247Techies/World_Clock/tree/main/web-store/MyExtentions/Sticky-Notes'
         }
     ];
 
