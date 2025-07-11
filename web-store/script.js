@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tagline: 'Click to view our 24/7 support contact information in a clean modal.',
             description: 'Get instant access to our 24/7 support channels without ever leaving your current tab. This lightweight extension places all our contact information—phone, email, and live chat—into a clean, non-intrusive modal. No more searching through websites; help is always just one click away.',
             icon: 'https://raw.githubusercontent.com/247Techies/World_Clock/39dc379c1a9488d6f78d8a99ef977c29e9e18962/web-store/MyExtentions/247-Info-Modal/icons/icon128.png',
-            bannerImage: 'https://raw.githubusercontent.com/247Techies/World_Clock/02e355cfe200215b3adf9a8fbe64cd5253f060b9/web-store/MyExtentions/247-Info-Modal/icons/247SupportCenter.png', // Using icon as banner for now
+            bannerImage: 'https://raw.githubusercontent.com/247Techies/World_Clock/b493e9d20ea6c1cf6f81f4565efcadcc466da861/web-store/MyExtentions/247-Info-Modal/icons/247SupportCenter.png', // Using icon as banner for now
             downloadLink: 'https://downgit.github.io/#/home?url=https://github.com/247Techies/World_Clock/tree/main/web-store/MyExtentions/247-Info-Modal'
         }, // <-- Make sure you add this comma after the previous extension
         {
