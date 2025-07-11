@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tagline: 'When clicked, allows all textarea fields on the current page to be resized.',
             description: 'Take back control of web forms. This extension unlocks any fixed-size text area, allowing you to freely resize it to fit your content. Perfect for writing long comments or detailed messages without being constrained by poorly designed websites.',
             icon: 'https://raw.githubusercontent.com/247Techies/World_Clock/302ea533e2f9132d2b65c475bbacd688ce937422/web-store/MyExtentions/Unlock-Fields/icons/small.png',
-            bannerImage: 'https://raw.githubusercontent.com/247Techies/World_Clock/302ea533e2f9132d2b65c475bbacd688ce937422/web-store/MyExtentions/Unlock-Fields/icons/small.png',
+            bannerImage: 'https://raw.githubusercontent.com/247Techies/World_Clock/62fed62680c2ffe6a8a3d93d1c29b592caa04429/web-store/MyExtentions/Unlock-Fields/icons/Unlock%20Fields.jpeg',
             downloadLink: 'https://download-directory.github.io/?url=https://github.com/247Techies/World_Clock/tree/main/web-store/MyExtentions/Unlock-Fields'
         },
         {
