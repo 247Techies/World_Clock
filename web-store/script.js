@@ -1,45 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- DATA: Define your extensions here ---
-    // TO ADD MORE: Just copy an object and add it to the array.
     const extensions = [
         {
-            id: 'ai-summarizer',
-            name: 'AI Summarizer',
-            tagline: 'Summarize articles with one click.',
-            description: 'Tired of long articles? Use the power of AI to get a quick summary of any webpage. Perfect for students, researchers, and busy professionals.',
-            icon: 'https://placehold.co/128x128/7F56D9/FFFFFF?text=AI', // Replace with your icon URL
-            bannerImage: 'https://placehold.co/640x480/A486F2/FFFFFF?text=AI+Summarizer', // Replace with your banner URL
-            downloadLink: 'https://download-directory.github.io/?url=https://github.com/247Techies/Chrome-Extensions/tree/main/AI-Summarizer'
-        },
-        {
-            id: 'auto-clicker',
-            name: 'Auto Clicker',
-            tagline: 'Automate mouse clicks easily.',
-            description: 'An easy-to-use and powerful auto clicker. Set custom click intervals and automate repetitive clicking tasks in games or on websites.',
-            icon: 'https://placehold.co/128x128/19B53E/FFFFFF?text=Click', // Replace with your icon URL
-            bannerImage: 'https://placehold.co/640x480/54D674/FFFFFF?text=Auto+Clicker', // Replace with your banner URL
-            downloadLink: 'https://download-directory.github.io/?url=https://github.com/247Techies/Chrome-Extensions/tree/main/Auto-Clicker'
-        },
-        {
-            id: 'yt-shorts-converter',
-            name: 'YouTube Shorts Converter',
-            tagline: 'Watch Shorts as normal videos.',
-            description: 'Automatically redirects YouTube Shorts to the standard video player, giving you full control over playback, timeline scrubbing, and quality settings.',
-            icon: 'https://placehold.co/128x128/FF0000/FFFFFF?text=YT', // Replace with your icon URL
-            bannerImage: 'https://placehold.co/640x480/FF5555/FFFFFF?text=YouTube+Shorts', // Replace with your banner URL
-            downloadLink: 'https://download-directory.github.io/?url=https://github.com/247Techies/Chrome-Extensions/tree/main/Youtube-Shorts-to-Normal-Video'
-        },
-        {
-            id: 'tab-manager',
-            name: 'Chrome Tab Manager',
-            tagline: 'Organize your tabs effortlessly.',
-            description: 'Too many tabs open? This extension helps you group, save, and manage your tabs to keep your browser clean and your workflow organized.',
-            icon: 'https://placehold.co/128x128/1a73e8/FFFFFF?text=Tabs', // Replace with your icon URL
-            bannerImage: 'https://placehold.co/640x480/64A5F5/FFFFFF?text=Tab+Manager', // Replace with your banner URL
-            downloadLink: 'https://download-directory.github.io/?url=https://github.com/247Techies/Chrome-Extensions/tree/main/Chrome-Tab-Manager'
+            id: '247-support-center',
+            name: '24/7 Support Center',
+            version: '1.0',
+            tagline: 'Click to view our 24/7 support contact information in a clean modal.',
+            description: 'Get instant access to our 24/7 support channels without ever leaving your current tab. This lightweight extension places all our contact information—phone, email, and live chat—into a clean, non-intrusive modal. No more searching through websites; help is always just one click away.',
+            icon: 'https://raw.githubusercontent.com/247Techies/World_Clock/39dc379c1a9488d6f78d8a99ef977c29e9e18962/web-store/MyExtentions/247-Info-Modal/icons/icon128.png',
+            bannerImage: 'https://raw.githubusercontent.com/247Techies/World_Clock/39dc379c1a9488d6f78d8a99ef977c29e9e18962/web-store/MyExtentions/247-Info-Modal/icons/icon128.png', // Using icon as banner for now
+            downloadLink: 'https://download-directory.github.io/?url=https://github.com/247Techies/World_Clock/tree/39dc379c1a9488d6f78d8a99ef977c29e9e18962/web-store/MyExtentions/247-Info-Modal'
         }
-        // Add more extensions here...
+        // To add another extension, add a comma here and paste a new object below.
     ];
 
     // --- DOM Elements ---
@@ -58,6 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateBanner(extension) {
         featuredImage.src = extension.bannerImage;
         featuredImage.alt = `${extension.name} banner`;
+        featuredImage.style.objectFit = 'contain'; // Use 'contain' so the small icon isn't stretched
+        featuredImage.style.padding = '40px'; // Add some padding around the icon in the banner
         featuredTitle.textContent = extension.name;
         featuredDescription.textContent = extension.description;
         featuredDownloadLink.href = extension.downloadLink;
@@ -80,12 +55,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Initialization ---
+    // Clear the grid first in case there's any placeholder content
+    extensionGrid.innerHTML = ''; 
 
     // Create and append all extension cards to the grid
     extensions.forEach(ext => {
         const card = document.createElement('div');
         card.className = 'extension-card';
-        card.dataset.id = ext.id; // Store id for easy lookup
+        card.dataset.id = ext.id; 
 
         card.innerHTML = `
             <img src="${ext.icon}" alt="${ext.name} icon" class="icon">
@@ -95,14 +72,12 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `;
         
-        // Add click event listener to each card
         card.addEventListener('click', () => handleCardClick(ext, card));
         
         extensionGrid.appendChild(card);
     });
 
     // --- Initial Page Load ---
-    // Set the first extension as the default featured item when the page loads.
     if (extensions.length > 0) {
         const firstExtension = extensions[0];
         const firstCard = document.querySelector('.extension-card');
@@ -111,5 +86,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (firstCard) {
             firstCard.classList.add('active');
         }
+    } else {
+        // Optional: Handle case where there are no extensions
+        document.querySelector('.featured-banner').style.display = 'none';
+        extensionGrid.innerHTML = '<p>No extensions to display yet.</p>';
     }
 });
