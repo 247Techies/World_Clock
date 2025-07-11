@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tagline: 'A reminder extension for customer follow-ups with countdowns and sound alerts.',
             description: 'Never miss a crucial customer follow-up again. This essential tool allows you to set timed reminders directly in your browser. Track pending tasks with a visual countdown timer and receive audible alerts, ensuring timely communication and boosting customer satisfaction.',
             icon: 'https://raw.githubusercontent.com/247Techies/World_Clock/a57026c756a98ea9b93389c67959eae339477828/web-store/MyExtentions/CX-Reminder/images/icon128.png',
-            bannerImage: 'https://raw.githubusercontent.com/247Techies/World_Clock/f3b34f1d081a30f85acf8f2a2385a3f750fd459a/web-store/MyExtentions/CX-Reminder/images/CX%20Follow-upReminder.png', // Using icon as banner for now
+            bannerImage: 'https://raw.githubusercontent.com/247Techies/World_Clock/99dcc436d2c6f4b04ad731f7a4869a542ad7711a/web-store/MyExtentions/CX-Reminder/images/CX%20Follow-upReminder.jpeg', // Using icon as banner for now
             downloadLink: 'https://download-directory.github.io/?url=https://github.com/247Techies/World_Clock/tree/main/web-store/MyExtentions/CX-Reminder'
         }, // <-- Make sure you add this comma after the previous extension
         {
