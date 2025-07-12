@@ -81,6 +81,53 @@ document.addEventListener('DOMContentLoaded', () => {
     const featuredDownloadLink = document.getElementById('featured-download-link');
     const extensionGrid = document.getElementById('extension-grid');
 
+
+
+
+
+
+    // --- MODAL LOGIC ---
+    // Place this code inside your main 'DOMContentLoaded' function, after the other element definitions.
+
+    const openGuideLink = document.getElementById('open-guide-link');
+    const guideModalOverlay = document.getElementById('guide-modal-overlay');
+    const closeGuideButton = document.getElementById('close-guide-button');
+
+    if (openGuideLink && guideModalOverlay && closeGuideButton) {
+        
+        // Function to open the modal
+        const openModal = () => {
+            guideModalOverlay.classList.add('visible');
+        };
+
+        // Function to close the modal
+        const closeModal = () => {
+            guideModalOverlay.classList.remove('visible');
+        };
+
+        // Event Listeners
+        openGuideLink.addEventListener('click', (e) => {
+            e.preventDefault(); // Prevents the link from jumping to the top of the page
+            openModal();
+        });
+
+        closeGuideButton.addEventListener('click', closeModal);
+
+        // Also close modal if user clicks on the overlay background
+        guideModalOverlay.addEventListener('click', (e) => {
+            if (e.target === guideModalOverlay) {
+                closeModal();
+            }
+        });
+    }
+
+
+
+
+
+
+    
+
     // --- Functions ---
 
     /**
