@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tagline: 'Add a closeable and persistent sticky note to any webpage via the right-click menu.',
             description: 'Leave digital sticky notes on any website. With a simple right-click, you can add a personal note that persists even after you close and reopen the page. It\'s the perfect way to jot down reminders, annotate articles, or save temporary information exactly where you need it.',
             icon: 'https://raw.githubusercontent.com/247Techies/World_Clock/302ea533e2f9132d2b65c475bbacd688ce937422/web-store/MyExtentions/Sticky-Notes/images/icon16.png',
-            bannerImage: 'https://raw.githubusercontent.com/247Techies/World_Clock/302ea533e2f9132d2b65c475bbacd688ce937422/web-store/MyExtentions/Sticky-Notes/images/icon16.png',
+            bannerImage: 'https://raw.githubusercontent.com/247Techies/World_Clock/f5d10ff6fc6d552bc8f1e75b6733f344efbe5346/web-store/MyExtentions/Sticky-Notes/images/WebPageStickyNotes.png',
             downloadLink: 'https://download-directory.github.io/?url=https://github.com/247Techies/World_Clock/tree/main/web-store/MyExtentions/Sticky-Notes'
         }
     ];
