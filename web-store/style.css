@@ -276,3 +276,49 @@ header p {
     margin-top: 30px;
     font-size: 16px;
 }
+
+
+
+
+/* --- Custom Header Styles --- */
+.header-title-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px; /* Adds space between logo and title */
+}
+
+.header-logo {
+    height: 50px; /* Adjust size as needed */
+}
+
+/* Apply the new font to the main title */
+header h1 {
+    font-family: 'Playwrite VN', cursive;
+}
+
+/* --- Subtitle Font Styling --- */
+.custom-subtitle {
+    font-size: 20px; /* Base font size for the subtitle line */
+    margin-top: 15px;
+}
+
+.subtitle-part1 {
+    font-family: 'Tulpen One', sans-serif;
+    font-size: 1.2em; /* Makes this part slightly larger */
+    color: #5f6368;
+}
+
+.author-name {
+    font-family: 'Delius Swash Caps', cursive;
+    font-size: 1.1em;
+    color: #333;
+    font-weight: bold;
+}
+
+.company-name {
+    font-family: 'Gamja Flower', cursive;
+    font-size: 1.3em; /* Makes this part stand out */
+    color: #1a73e8; /* Blue color to match buttons */
+    font-weight: bold;
+}
