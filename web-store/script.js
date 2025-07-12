@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tagline: 'Click the icon to show a custom modal with a summary before closing Chrome.',
             description: 'Avoid accidentally closing your browser and losing your work. This extension provides a final confirmation screen, summarizing your session, before you exit Chrome. A simple but powerful safety net for your browsing.',
             icon: 'https://raw.githubusercontent.com/247Techies/World_Clock/302ea533e2f9132d2b65c475bbacd688ce937422/web-store/MyExtentions/Close-with-Confirm/icons/icon128.png',
-            bannerImage: 'https://raw.githubusercontent.com/247Techies/World_Clock/302ea533e2f9132d2b65c475bbacd688ce937422/web-store/MyExtentions/Close-with-Confirm/icons/icon128.png',
+            bannerImage: 'https://raw.githubusercontent.com/247Techies/World_Clock/a60d2e17c42bc83dc22b3821b344927aed533829/web-store/MyExtentions/Close-with-Confirm/icons/SafeClosewithCustomModal.jpg',
             downloadLink: 'https://download-directory.github.io/?url=https://github.com/247Techies/World_Clock/tree/main/web-store/MyExtentions/Close-with-Confirm'
         },
         {
