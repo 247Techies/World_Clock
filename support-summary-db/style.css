@@ -140,32 +140,29 @@ h1 {
     color: var(--accent-color);
 }
 
-/* --- REVISED SweetAlert Customization --- */
+/* --- FINAL SweetAlert Customization with CSS Grid --- */
 .swal2-title {
     font-weight: 600 !important;
 }
 
-/* Container for each label-value pair */
-.swal-flex-container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start; /* Aligns items to the top of the line */
+.swal-grid-container {
+    display: grid;
+    grid-template-columns: auto 1fr; /* Label column auto-sizes, value column takes the rest */
+    gap: 8px 15px; /* Row and column gap */
     text-align: left;
-    margin-bottom: 12px;
+    margin-top: 1.5em; /* Space below the title */
+    font-size: 1rem;
 }
 
-/* The "Sentence:" and "Tag:" labels */
 .swal-label {
     font-weight: 600;
     color: var(--primary-text-color);
-    flex-basis: 90px;      /* Gives the label a fixed starting width */
-    flex-shrink: 0;         /* Prevents the label from shrinking */
-    margin-right: 10px;
+    grid-column: 1;
+    white-space: nowrap; /* Prevents the label itself from breaking */
 }
 
-/* The actual sentence and tag text */
 .swal-value {
     color: var(--secondary-text-color);
-    flex-grow: 1;           /* Allows the value to take up the rest of the space */
-    line-height: 1.5;
+    grid-column: 2;
+    line-height: 1.6;
 }

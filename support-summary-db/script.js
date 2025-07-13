@@ -63,13 +63,11 @@ $(document).ready(function() {
             Swal.fire({
                 icon: 'success',
                 title: 'Copied to Clipboard!',
-                // UPDATED HTML to use our new flexbox classes
+                // UPDATED HTML to use the new CSS Grid structure
                 html: `
-                    <div class="swal-flex-container">
+                    <div class="swal-grid-container">
                         <div class="swal-label">Sentence:</div>
                         <div class="swal-value">${sentence}</div>
-                    </div>
-                    <div class="swal-flex-container">
                         <div class="swal-label">Tag:</div>
                         <div class="swal-value">${tag}</div>
                     </div>
