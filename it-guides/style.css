@@ -144,3 +144,38 @@ body {
 .search-container .select2-container {
     flex-grow: 1;
 }
+
+
+
+
+
+
+/* --- Styles for the Notice Alert Card --- */
+
+#notice-card {
+    margin-bottom: 1rem;
+}
+
+#notice-alert h5 {
+    margin-bottom: .25rem;
+    font-weight: 600;
+}
+
+.notice-icon {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 1.5rem;
+}
+
+/* Define icons and colors for each alert type */
+#notice-alert.alert-info .notice-icon::before {
+    content: '\f05a'; /* info-circle */
+}
+
+#notice-alert.alert-success .notice-icon::before {
+    content: '\f0eb'; /* lightbulb (for tips) */
+}
+
+#notice-alert.alert-warning .notice-icon::before {
+    content: '\f071'; /* exclamation-triangle */
+}

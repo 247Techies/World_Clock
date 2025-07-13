@@ -16,7 +16,11 @@
           "step": "Run the scan. This may take some time.",
           "command": "sfc /scannow"
         }
-      ]
+      ],
+       "notice": {
+        "type": "info",
+        "content": "The scan may take 5-15 minutes. If SFC finds errors it cannot repair, you may need to run the DISM command afterward."
+      }
     },
     {
       "id": "dism_restorehealth",

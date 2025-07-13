@@ -1,21 +1,24 @@
 $(document).ready(function() {
+    // --- DOM Element References ---
     const select = $('#command-select');
     const initialPlaceholder = $('#initial-placeholder');
     const ticketCard = $('#ticket-card');
     const stepsCard = $('#steps-card');
-    const noResultsPlaceholder = $('#no-results-placeholder'); // <-- Reference to new element
+    const noResultsPlaceholder = $('#no-results-placeholder');
+    const noticeCard = $('#notice-card');
     const ticketDescriptionEl = $('#ticket-description');
     const stepsListEl = $('#steps-list');
     const copyTicketBtn = $('#copy-ticket-btn');
-    
-    let commandsData = [];
 
-    // --- NEW: Initialize Bootstrap Tooltips ---
-    // This looks for any element with data-bs-toggle="tooltip" and activates it.
+    let commandsData = []; // To store the fetched commands
+
+    // --- Initialize Bootstrap Tooltips ---
+    // This is required for the tooltips on the Home and Reset buttons to work.
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+    [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 
-
+    // --- Custom Matcher Function for Select2 Search ---
+    // This function tells Select2 how to search, looking in titles and keywords.
     function commandMatcher(params, data) {
         if ($.trim(params.term) === '') return data;
         if (typeof data.id === 'undefined' || data.id === '') return null;
@@ -27,6 +30,7 @@ $(document).ready(function() {
         return null;
     }
 
+    // --- Fetch JSON data and initialize Select2 ---
     fetch('commands.json')
         .then(response => response.json())
         .then(data => {
@@ -47,17 +51,24 @@ $(document).ready(function() {
             Swal.fire('Error', 'Could not load commands data.', 'error');
         });
 
-    // --- MODIFIED: Event handler for when a command is selected OR cleared ---
+    // --- Event Handlers ---
+
+    // Fired when an item is selected from the dropdown or the selection is cleared
     select.on('change', function() {
-        noResultsPlaceholder.addClass('d-none'); // Always hide "no results" on change
+        // Hide dynamic content first
+        noResultsPlaceholder.addClass('d-none');
+        noticeCard.addClass('d-none');
+        
         const selectedId = $(this).val();
         if (!selectedId) {
+            // If selection is cleared, show the initial placeholder
             initialPlaceholder.removeClass('d-none');
             ticketCard.addClass('d-none');
             stepsCard.addClass('d-none');
             return;
         }
         
+        // If an item is selected, hide the initial placeholder and show result cards
         initialPlaceholder.addClass('d-none');
         ticketCard.removeClass('d-none');
         stepsCard.removeClass('d-none');
@@ -66,36 +77,81 @@ $(document).ready(function() {
         displayCommandDetails(command);
     });
 
-    // --- NEW: Event listener to detect when a search yields no results ---
-    // We listen for typing on the search field that Select2 creates.
+    // Fired when typing in the search box to handle the "no results" message
     $(document).on('keyup', '.select2-search__field', function() {
-        // Use a short timeout to allow Select2 to update its results list in the DOM
         setTimeout(() => {
-            // Check if the "No results found" message is visible
             const noResultsMessage = $('.select2-results__message');
             if (noResultsMessage.length > 0) {
-                // If it is, show our custom placeholder and hide others
+                // If "no results" message exists, show our custom placeholder
                 initialPlaceholder.addClass('d-none');
                 ticketCard.addClass('d-none');
                 stepsCard.addClass('d-none');
+                noticeCard.addClass('d-none');
                 noResultsPlaceholder.removeClass('d-none');
             } else {
-                // If there are results, make sure our placeholder is hidden
+                // Otherwise, make sure it's hidden
                 noResultsPlaceholder.addClass('d-none');
             }
         }, 100);
     });
 
+    // Fired when the "Reset" button is clicked
+    $('#reset-btn').on('click', function() {
+        select.val(null).trigger('change');
+        noResultsPlaceholder.addClass('d-none');
+        noticeCard.addClass('d-none');
+    });
+
+    // Fired when the "Copy" button for the ticket description is clicked
+    copyTicketBtn.on('click', function() {
+        const textToCopy = $(this).data('copy-text');
+        const formattedText = ` > ${textToCopy} `;
+        copyToClipboard(formattedText, 'Ticket description copied!');
+    });
+
+    // Fired when any "Copy" button for a code block is clicked
+    $(document).on('click', '.copy-code-btn', function() {
+        const textToCopy = $(this).data('copy-text');
+        copyToClipboard(textToCopy, 'Command copied!');
+    });
+
+
+    // --- Core Functions ---
+
+    // Main function to populate the results area with command details
     function displayCommandDetails(command) {
+        // Handle the notice card (if data exists)
+        noticeCard.addClass('d-none'); // Hide by default
+        if (command.notice && command.notice.content) {
+            const noticeAlert = $('#notice-alert');
+            const noticeTitle = $('#notice-title');
+            const noticeContent = $('#notice-content');
+
+            const types = {
+                info:    { class: 'alert-info',    title: 'Info' },
+                tip:     { class: 'alert-success', title: 'Tip' },
+                warning: { class: 'alert-warning', title: 'Warning' }
+            };
+            const noticeType = types[command.notice.type] || types.info; // Default to "info"
+
+            noticeAlert.removeClass('alert-info alert-success alert-warning').addClass(noticeType.class);
+            noticeTitle.text(noticeType.title);
+            noticeContent.text(command.notice.content);
+            noticeCard.removeClass('d-none'); // Show the card
+        }
+
+        // Populate the Ticket Description card
         $('#ticket-card .card-header').removeClass('header-blue header-green').addClass('header-blue');
-        $('#steps-card .card-header').removeClass('header-blue header-green').addClass('header-green');
         copyTicketBtn.addClass('btn-outline-light');
         ticketDescriptionEl.text(command.ticket_template);
         copyTicketBtn.data('copy-text', command.ticket_template);
+
+        // Populate the Steps card
+        $('#steps-card .card-header').removeClass('header-blue header-green').addClass('header-green');
         stepsListEl.empty();
         const ol = $('<ol class="list-group list-group-numbered"></ol>');
         command.execution.forEach(exec => {
-            const li = $(`<li class="list-group-item border-0 ps-0">${exec.step}</li>`);
+            const li = $(`<li class="list-group-item border-0 ps-0">${exec.step || ''}</li>`);
             if (exec.command) {
                 const codeBlock = $(`<div class="step-code"><code>${exec.command}</code><button class="btn btn-dark copy-code-btn" title="Copy Command"><i class="fa-regular fa-copy"></i></button></div>`);
                 codeBlock.find('.copy-code-btn').data('copy-text', exec.command);
@@ -106,6 +162,7 @@ $(document).ready(function() {
         stepsListEl.append(ol);
     }
 
+    // Helper function for copying text to the clipboard with user feedback
     function copyToClipboard(text, successMessage) {
         navigator.clipboard.writeText(text).then(() => {
             Swal.fire({
@@ -122,23 +179,4 @@ $(document).ready(function() {
         });
     }
 
-    copyTicketBtn.on('click', function() {
-        const textToCopy = $(this).data('copy-text');
-        const formattedText = ` > ${textToCopy} `;
-        copyToClipboard(formattedText, 'Ticket description copied!');
-    });
-
-    $(document).on('click', '.copy-code-btn', function() {
-        const textToCopy = $(this).data('copy-text');
-        copyToClipboard(textToCopy, 'Command copied!');
-    });
-
-    // --- New Event Listener for the Reset Button ---
-    $('#reset-btn').on('click', function() {
-        // Clear the Select2 selection
-        select.val(null).trigger('change');
-        // Also hide the "no results" message if it's showing
-        $('#no-results-placeholder').addClass('d-none');
-    });
-    
 });
