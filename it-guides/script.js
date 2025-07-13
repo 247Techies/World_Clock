@@ -130,7 +130,8 @@ $(document).ready(function() {
             const types = {
                 info:    { class: 'alert-info',    title: 'Info' },
                 tip:     { class: 'alert-success', title: 'Tip' },
-                warning: { class: 'alert-warning', title: 'Warning' }
+                warning: { class: 'alert-warning', title: 'Warning' },
+                danger:  { class: 'alert-danger',  title: 'Danger' }
             };
             const noticeType = types[command.notice.type] || types.info; // Default to "info"
 

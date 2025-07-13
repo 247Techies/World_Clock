@@ -179,3 +179,7 @@ body {
 #notice-alert.alert-warning .notice-icon::before {
     content: '\f071'; /* exclamation-triangle */
 }
+
+#notice-alert.alert-danger .notice-icon::before {
+    content: '\f12a'; /* This is the "exclamation" icon */
+}

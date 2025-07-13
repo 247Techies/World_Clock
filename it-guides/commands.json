@@ -758,7 +758,7 @@
         }
       ],
       "notice": {
-        "type": "tip",
+        "type": "danger",
         "content": "Disabling startup apps does not uninstall them. You can still launch them manually when needed. Focus on apps with 'High' startup impact."
       }
     },
