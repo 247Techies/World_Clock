@@ -726,11 +726,80 @@
           "step": "To clean up system files (like old Windows updates), click 'Clean up system files' and repeat the selection process."
         }
       ]
+    },
+    {
+      "id": "optimize_startup_apps",
+      "title": "Optimize Startup Applications",
+      "description": "Disables unnecessary startup programs to improve boot time and overall system responsiveness.",
+      "keywords": ["startup", "task manager", "boot time", "disable apps", "performance"],
+      "ticket_template": "Reviewed and disabled non-essential startup applications to improve system startup performance.",
+      "platform": "windows",
+      "requires_admin": false,
+      "execution": [
+        {
+          "step": "Press `Ctrl + Shift + Esc` to open Task Manager.",
+          "command": null
+        },
+        {
+          "step": "Go to the 'Startup' tab to view apps that launch at boot.",
+          "command": null
+        },
+        {
+          "step": "Review the list and check the 'Startup impact' column to identify high-impact apps.",
+          "command": null
+        },
+        {
+          "step": "Right-click non-essential apps and select 'Disable' to prevent them from starting with Windows.",
+          "command": null
+        },
+        {
+          "step": "Close Task Manager and restart the computer to apply changes.",
+          "command": null
+        }
+      ],
+      "notice": {
+        "type": "tip",
+        "content": "Disabling startup apps does not uninstall them. You can still launch them manually when needed. Focus on apps with 'High' startup impact."
+      }
+    },
+    {
+      "id": "adjust_virtual_memory",
+      "title": "Adjust Virtual Memory (Paging File)",
+      "description": "Configures virtual memory settings to improve system performance by increasing paging file size when physical RAM is low.",
+      "keywords": ["virtual memory", "paging file", "virtual ram", "performance", "system settings"],
+      "ticket_template": "Adjusted virtual memory settings by increasing the paging file size to improve system performance.",
+      "platform": "windows",
+      "requires_admin": true,
+      "execution": [
+        {
+          "step": "Open the Start menu, search for 'Advanced system settings', and click on it.",
+          "command": null
+        },
+        {
+          "step": "In the 'System Properties' window, under the 'Advanced' tab, click 'Settings' in the 'Performance' section.",
+          "command": null
+        },
+        {
+          "step": "In 'Performance Options', go to the 'Advanced' tab and click 'Change' under 'Virtual memory'.",
+          "command": null
+        },
+        {
+          "step": "Uncheck 'Automatically manage paging file size for all drives'.",
+          "command": null
+        },
+        {
+          "step": "Select the system drive, choose 'Custom size', and set the Initial and Maximum size in MB (e.g., 1.5x to 3x of physical RAM).",
+          "command": null
+        },
+        {
+          "step": "Click 'Set', then click 'OK', and restart the PC to apply changes.",
+          "command": null
+        }
+      ],
+      "notice": {
+        "type": "info",
+        "content": "Virtual memory helps prevent crashes on systems with low RAM. It's slower than physical RAM, so use it as a performance fallback, not a replacement."
+      }
     }
-
-
-
-
-
 
   ]
