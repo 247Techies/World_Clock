@@ -1,0 +1,225 @@
+[
+    {
+      "category": "Internet Issue",
+      "summaries": [
+        {
+          "text": "Provided assistance in establishing a stable and reliable internet connection.",
+          "tags": ["internet", "connection", "troubleshooting", "stability"]
+        },
+        {
+          "text": "Assisted the client in resolving issues related to internet connectivity.",
+          "tags": ["internet", "connectivity", "troubleshooting", "client support"]
+        },
+        {
+          "text": "Offered support to ensure proper and consistent internet access.",
+          "tags": ["internet", "access", "support", "consistency"]
+        },
+        {
+          "text": "Facilitated troubleshooting to ensure optimal internet connectivity.",
+          "tags": ["internet", "connectivity", "troubleshooting", "optimization"]
+        },
+        {
+          "text": "Resolved issues pertaining to internet connection and ensured proper configuration.",
+          "tags": ["internet", "connection", "configuration", "resolved"]
+        }
+      ]
+    },
+    {
+      "category": "Computer Performance Issue",
+      "summaries": [
+        {
+          "text": "Investigated and resolved computer performance-related issues.",
+          "tags": ["computer", "performance", "investigation", "resolved"]
+        },
+        {
+          "text": "Addressed system slowness and improved overall computer performance.",
+          "tags": ["computer", "performance", "slowness", "improvement"]
+        },
+        {
+          "text": "Troubleshot and optimized the device to resolve performance degradation.",
+          "tags": ["performance", "optimization", "troubleshooting", "degradation"]
+        },
+        {
+          "text": "Diagnosed and fixed issues affecting the speed and responsiveness of the computer.",
+          "tags": ["performance", "speed", "responsiveness", "diagnosis", "fix"]
+        },
+        {
+          "text": "Performed system optimization to enhance computer performance.",
+          "tags": ["system", "optimization", "performance", "enhancement"]
+        }
+      ]
+    },
+    {
+      "category": "Browser Issue",
+      "summaries": [
+        {
+          "text": "Resolved issues related to the internet browser not functioning properly.",
+          "tags": ["browser", "internet", "functionality", "resolved"]
+        },
+        {
+          "text": "Troubleshot and fixed problems affecting internet browser functionality.",
+          "tags": ["browser", "troubleshooting", "fix", "functionality"]
+        },
+        {
+          "text": "Addressed and resolved issues preventing the internet browser from operating correctly.",
+          "tags": ["browser", "resolved", "operation", "issues"]
+        },
+        {
+          "text": "Provided support to restore normal functionality of the internet browser.",
+          "tags": ["browser", "support", "restore", "functionality"]
+        },
+        {
+          "text": "Identified and resolved errors impacting the performance of the internet browser.",
+          "tags": ["browser", "errors", "performance", "resolved", "identification"]
+        }
+      ]
+    },
+    {
+      "category": "Printer Issue",
+      "summaries": [
+        {
+          "text": "Resolved the issue related to printer connectivity.",
+          "tags": ["printer", "connectivity", "resolved", "issue"]
+        },
+        {
+          "text": "Identified and resolved the connectivity issue with the printer.",
+          "tags": ["printer", "connectivity", "identification", "resolved"]
+        },
+        {
+          "text": "Restored printer functionality by resolving connectivity issues.",
+          "tags": ["printer", "functionality", "restore", "connectivity"]
+        },
+        {
+          "text": "Troubleshot and fixed the printer connection issue.",
+          "tags": ["printer", "troubleshooting", "fix", "connection"]
+        },
+        {
+          "text": "Resolved printer connectivity problems and ensured proper operation.",
+          "tags": ["printer", "connectivity", "problems", "resolved", "operation"]
+        }
+      ]
+    },
+    {
+      "category": "Outlook Issue",
+      "summaries": [
+        {
+          "text": "Resolved an issue preventing emails from being delivered to the correct inbox in Microsoft Outlook.",
+          "tags": ["outlook", "email", "delivery", "inbox", "resolved"]
+        },
+        {
+          "text": "Identified and resolved an issue that was causing emails to be misrouted in Microsoft Outlook.",
+          "tags": ["outlook", "email", "misrouted", "resolved", "identification"]
+        },
+        {
+          "text": "Addressed and fixed the problem affecting email delivery to the intended inbox in Outlook.",
+          "tags": ["outlook", "email", "delivery", "fix", "inbox"]
+        },
+        {
+          "text": "Resolved a mail routing issue in Microsoft Outlook that was preventing proper inbox delivery.",
+          "tags": ["outlook", "mail", "routing", "inbox", "delivery", "resolved"]
+        },
+        {
+          "text": "Troubleshot and corrected the issue causing emails to bypass the correct inbox in Outlook.",
+          "tags": ["outlook", "email", "bypass", "inbox", "troubleshooting", "correction"]
+        }
+      ]
+    },
+    {
+      "category": "Scam/Junk Mail",
+      "summaries": [
+        {
+          "text": "Identified and blocked scam/phishing emails to ensure user safety.",
+          "tags": ["security", "scam", "junk mail", "phishing", "block", "safety"]
+        },
+        {
+          "text": "Reviewed email activity and implemented blocks for scam messages.",
+          "tags": ["security", "email", "activity", "scam", "block"]
+        },
+        {
+          "text": "Checked and filtered out malicious or scam emails from the inbox.",
+          "tags": ["security", "email", "malicious", "scam", "filter", "inbox"]
+        },
+        {
+          "text": "Took necessary actions to detect and block potential scam emails.",
+          "tags": ["security", "scam", "email", "detect", "block", "actions"]
+        },
+        {
+          "text": "Monitored and secured the mailbox by identifying and blocking scam emails.",
+          "tags": ["security", "mailbox", "monitor", "secure", "scam", "block"]
+        }
+      ]
+    },
+    {
+      "category": "Other Issues",
+      "summaries": [
+        {
+          "text": "Resolved issues related to printing documents contained within a ZIP folder received via email.",
+          "tags": ["printing", "documents", "zip", "email", "resolved"]
+        },
+        {
+          "text": "Assisted in extracting and printing documents from a ZIP file attached to an email.",
+          "tags": ["printing", "extracting", "zip", "email", "assistance"]
+        },
+        {
+          "text": "Troubleshot and resolved issues preventing documents in a ZIP email attachment from being printed.",
+          "tags": ["printing", "troubleshooting", "zip", "email", "resolved"]
+        },
+        {
+          "text": "Facilitated the extraction and successful printing of documents from a ZIP folder received through email.",
+          "tags": ["printing", "extraction", "zip", "email", "facilitation"]
+        },
+        {
+          "text": "Addressed and resolved difficulties with accessing and printing files from a compressed email attachment.",
+          "tags": ["printing", "accessing", "files", "compressed", "email", "resolved"]
+        },
+        {
+          "text": "Resolved the printer connectivity issue and successfully printed the email.",
+          "tags": ["printer", "connectivity", "printing", "email", "resolved"]
+        },
+        {
+          "text": "Restored printer connectivity and assisted with printing the email.",
+          "tags": ["printer", "connectivity", "restore", "printing", "email"]
+        },
+        {
+          "text": "Troubleshot and resolved the printer connection issue, followed by printing the required email.",
+          "tags": ["printer", "troubleshooting", "connection", "printing", "email"]
+        },
+        {
+          "text": "Fixed the printer connectivity problem and ensured the email was printed successfully.",
+          "tags": ["printer", "connectivity", "fix", "printing", "email"]
+        },
+        {
+          "text": "Addressed printer connection issues and completed the task of printing the email.",
+          "tags": ["printer", "connection", "printing", "email", "task completion"]
+        },
+        {
+          "text": "Assisted in locating missing documents, files, or folders.",
+          "tags": ["files", "documents", "folders", "missing", "locating", "assistance"]
+        },
+        {
+          "text": "Performed a search and recovery of lost or misplaced files and folders.",
+          "tags": ["files", "folders", "search", "recovery", "lost", "misplaced"]
+        },
+        {
+          "text": "Resolved issue related to missing or inaccessible documents.",
+          "tags": ["documents", "missing", "inaccessible", "resolved", "issue"]
+        },
+        {
+          "text": "Helped recover missing files/folders from the system.",
+          "tags": ["files", "folders", "recover", "missing", "system"]
+        },
+        {
+          "text": "Troubleshot and restored lost files access to previously missing documents or folders.",
+          "tags": ["files", "folders", "troubleshooting", "restore", "access", "lost"]
+        },
+        {
+          "text": "Identified and retrieved lost files from local or cloud storage.",
+          "tags": ["files", "retrieved", "lost", "local storage", "cloud storage"]
+        },
+        {
+          "text": "Supported the user in locating and organizing misplaced files and folders.",
+          "tags": ["files", "folders", "support", "locating", "organizing", "misplaced"]
+        }
+      ]
+    }
+  ]
