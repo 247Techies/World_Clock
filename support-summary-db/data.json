@@ -1,0 +1,30 @@
+[
+    {
+      "sentence": "Provided assistance in establishing a stable and reliable internet connection.",
+      "tag": "Internet Issue"
+    },
+    {
+      "sentence": "Investigated and resolved computer performance-related issues.",
+      "tag": "Performance Issue"
+    },
+    {
+      "sentence": "Provided support to restore normal functionality of the internet browser.",
+      "tag": "Browser Issue"
+    },
+    {
+      "sentence": "Assisted with the setup and configuration of a new local printer.",
+      "tag": "Hardware Support"
+    },
+    {
+      "sentence": "Troubleshooted and resolved email client synchronization problems.",
+      "tag": "Email Issue"
+    },
+    {
+      "sentence": "Performed a clean installation of the operating system.",
+      "tag": "OS Installation"
+    },
+    {
+      "sentence": "Successfully removed malware and other security threats from the system.",
+      "tag": "Security Issue"
+    }
+  ]

@@ -3,183 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support Summary Search</title>
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f9;
-            color: #333;
-        }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        h1 {
-            text-align: center;
-            color: #444;
-        }
-        #search-input {
-            width: 100%;
-            padding: 12px 20px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        .result-item {
-            border-bottom: 1px solid #eee;
-            padding: 15px 5px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .result-item:last-child {
-            border-bottom: none;
-        }
-        .result-text {
-            flex-grow: 1;
-            padding-right: 15px;
-        }
-        .tags {
-            font-size: 0.8em;
-            color: #666;
-            margin-top: 5px;
-        }
-        .tag {
-            display: inline-block;
-            background: #e7e7e7;
-            border-radius: 3px;
-            padding: 2px 6px;
-            margin-right: 5px;
-        }
-        .copy-btn {
-            padding: 8px 12px;
-            border: none;
-            background-color: #007bff;
-            color: white;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .copy-btn:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <title>Sentence Search</title>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="container">
-        <h1>Support Summary Search</h1>
-        <input type="text" id="search-input" onkeyup="searchSummaries()" placeholder="Search for summaries...">
-        <div id="results-container"></div>
+    <div class="search-container">
+        <h1>Search for a Sentence</h1>
+        <select class="search-select" id="search-box"></select>
     </div>
 
-    <script>
-        let summariesData = [];
+    <div id="results-container"></div>
 
-        // Fetch data from the JSON file using a relative path
-        fetch('summaries.json')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                summariesData = data;
-                displayResults(getAllSummaries(summariesData)); // Initially display all summaries
-            })
-            .catch(error => {
-                console.error('Error loading summaries:', error);
-                const resultsContainer = document.getElementById('results-container');
-                resultsContainer.innerHTML = `<p style="color: red; font-weight: bold;">Failed to load summaries.json. Please ensure the file exists in the same directory as index.html and is a valid JSON.</p>`;
-            });
-
-        function getAllSummaries(data) {
-            let all = [];
-            if (!Array.isArray(data)) return all;
-            data.forEach(category => {
-                if (category.summaries && Array.isArray(category.summaries)) {
-                    all = all.concat(category.summaries);
-                }
-            });
-            return all;
-        }
-        
-        function searchSummaries() {
-            const query = document.getElementById('search-input').value.toLowerCase();
-            if (query.length === 0) {
-                displayResults(getAllSummaries(summariesData));
-                return;
-            }
-
-            const results = [];
-            getAllSummaries(summariesData).forEach(summary => {
-                const textMatch = summary.text.toLowerCase().includes(query);
-                const tagMatch = summary.tags.some(tag => tag.toLowerCase().includes(query));
-                if (textMatch || tagMatch) {
-                    results.push(summary);
-                }
-            });
-            displayResults(results);
-        }
-
-        function displayResults(results) {
-            const container = document.getElementById('results-container');
-            container.innerHTML = '';
-
-            if (results.length === 0) {
-                container.innerHTML = '<p>No results found.</p>';
-                return;
-            }
-
-            results.forEach(summary => {
-                const item = document.createElement('div');
-                item.className = 'result-item';
-
-                const textDiv = document.createElement('div');
-                textDiv.className = 'result-text';
-                textDiv.textContent = summary.text;
-
-                const tagsDiv = document.createElement('div');
-                tagsDiv.className = 'tags';
-                summary.tags.forEach(tag => {
-                    const tagSpan = document.createElement('span');
-                    tagSpan.className = 'tag';
-                    tagSpan.textContent = tag;
-                    tagsDiv.appendChild(tagSpan);
-                });
-                
-                textDiv.appendChild(tagsDiv);
-
-                const copyBtn = document.createElement('button');
-                copyBtn.className = 'copy-btn';
-                copyBtn.textContent = 'Copy';
-                copyBtn.onclick = function() {
-                    copyToClipboard(summary.text);
-                };
-
-                item.appendChild(textDiv);
-                item.appendChild(copyBtn);
-                container.appendChild(item);
-            });
-        }
-
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                alert('Copied to clipboard!');
-            }).catch(err => {
-                console.error('Failed to copy: ', err);
-            });
-        }
-    </script>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="script.js"></script>
 </body>
 </html>
