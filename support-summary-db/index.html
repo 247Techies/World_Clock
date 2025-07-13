@@ -3,20 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sentence Search</title>
+    <title>Professional Sentence Finder</title>
+    
+    <!-- Google Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- Or your own kit -->
+
+    <!-- Libraries -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    
+    <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="search-container">
-        <h1>Search for a Sentence</h1>
-        <select class="search-select" id="search-box"></select>
+    <div class="main-container">
+        <header>
+            <h1>Sentence Finder</h1>
+            <p class="subtitle">Quickly find and copy standardized sentences for your reports.</p>
+        </header>
+
+        <div class="search-wrapper">
+            <select class="search-select" id="search-box"></select>
+        </div>
+
+        <div id="initial-prompt">
+            <i class="fas fa-search"></i>
+            <p>Start typing above to find a sentence.</p>
+        </div>
+
+        <div id="results-container"></div>
     </div>
 
-    <div id="results-container"></div>
-
+    <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

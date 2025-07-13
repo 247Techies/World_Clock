@@ -1,101 +1,134 @@
 $(document).ready(function() {
     let sentencesData = [];
+    const $initialPrompt = $('#initial-prompt');
+    const $resultsContainer = $('#results-container');
 
-    // Fetch data from the JSON file
+    // Fetch data and initialize
     $.getJSON('data.json', function(data) {
         sentencesData = data;
         initializeSelect2(sentencesData);
-        displayResults(sentencesData);
     });
 
+    // Initialize Select2 with live search
     function initializeSelect2(data) {
-        $('#search-box').select2({
-            placeholder: "Type to search...",
+        const $searchBox = $('#search-box');
+
+        $searchBox.select2({
+            placeholder: "Search by keyword or tag...",
             allowClear: true,
             data: data.map(item => ({ id: item.sentence, text: item.sentence })),
             minimumInputLength: 1,
             // Custom matcher to search in both sentence and tag
-            matcher: function(params, data) {
-                if ($.trim(params.term) === '') {
-                    return data;
-                }
-
-                if (typeof data.text === 'undefined') {
-                    return null;
-                }
-
-                const term = params.term.toLowerCase();
-                const originalData = sentencesData.find(item => item.sentence === data.text);
-
-                if (originalData) {
-                    const sentence = originalData.sentence.toLowerCase();
-                    const tag = originalData.tag.toLowerCase();
-
-                    if (sentence.includes(term) || tag.includes(term)) {
-                        return data;
-                    }
-                }
-
-                return null;
-            }
+            matcher: customMatcher
         }).on('select2:select', function (e) {
+            // A specific item was chosen from the dropdown
             const selectedSentence = e.params.data.id;
             const filteredData = sentencesData.filter(item => item.sentence === selectedSentence);
             displayResults(filteredData);
         }).on('select2:unselect', function () {
-            displayResults(sentencesData);
+            // The selection was cleared
+            showInitialState();
         });
     }
 
+    // Custom matching function for Select2
+    function customMatcher(params, data) {
+        if ($.trim(params.term) === '') {
+            return data;
+        }
+        if (typeof data.text === 'undefined') {
+            return null;
+        }
+        const term = params.term.toLowerCase();
+        const originalData = sentencesData.find(item => item.sentence === data.text);
+
+        if (originalData) {
+            const sentence = originalData.sentence.toLowerCase();
+            const tag = originalData.tag.toLowerCase();
+            if (sentence.includes(term) || tag.includes(term)) {
+                return data;
+            }
+        }
+        return null;
+    }
+    
+    // Live search by directly listening to the input field created by Select2
+    // This provides a more responsive "live search" feel
+    $(document).on('input', '.select2-search__field', function () {
+        const searchTerm = $(this).val().toLowerCase();
+        if (searchTerm.length > 0) {
+            const filteredData = sentencesData.filter(item =>
+                item.sentence.toLowerCase().includes(searchTerm) ||
+                item.tag.toLowerCase().includes(searchTerm)
+            );
+            displayResults(filteredData);
+        } else {
+            showInitialState();
+        }
+    });
+
+
     // Function to display results
     function displayResults(data) {
-        const resultsContainer = $('#results-container');
-        resultsContainer.empty();
+        $initialPrompt.hide();
+        $resultsContainer.empty().show();
+
+        if (data.length === 0) {
+             $resultsContainer.html('<p style="text-align:center; color: #718096;">No matches found.</p>');
+             return;
+        }
 
         data.forEach(item => {
             const resultItem = `
                 <div class="result-item">
                     <p class="sentence">${item.sentence}</p>
-                    <p class="tag">${item.tag}</p>
-                    <button class="copy-btn" title="Copy sentence">📋</button>
+                    <span class="tag">${item.tag}</span>
+                    <button class="copy-btn" title="Copy sentence">
+                        <i class="far fa-copy"></i>
+                    </button>
                 </div>
             `;
-            resultsContainer.append(resultItem);
+            $resultsContainer.append(resultItem);
         });
     }
-
-    // Live search functionality
-    $('#search-box').on('select2:open', function () {
-        $('.select2-search__field').on('input', function() {
-            const searchTerm = $(this).val();
-            const filteredData = sentencesData.filter(item =>
-                item.sentence.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                item.tag.toLowerCase().includes(searchTerm.toLowerCase())
-            );
-            displayResults(filteredData);
-        });
-    });
+    
+    // Function to revert to the initial view
+    function showInitialState() {
+        $resultsContainer.hide().empty();
+        $initialPrompt.show();
+    }
 
     // Event delegation for the copy button
-    $('#results-container').on('click', '.copy-btn', function() {
-        const sentence = $(this).siblings('.sentence').text();
-        const tag = $(this).siblings('.tag').text();
+    $resultsContainer.on('click', '.copy-btn', function() {
+        const $resultItem = $(this).closest('.result-item');
+        const sentence = $resultItem.find('.sentence').text();
+        const tag = $resultItem.find('.tag').text();
 
         navigator.clipboard.writeText(sentence).then(() => {
             Swal.fire({
-                title: 'Copied!',
-                html: `<p><strong>Sentence:</strong> ${sentence}</p><p><strong>Tag:</strong> ${tag}</p>`,
                 icon: 'success',
-                confirmButtonText: 'Cool'
+                title: 'Copied to Clipboard!',
+                html: `
+                    <div class="swal-copy-info">
+                        <strong>Sentence:</strong> <p>${sentence}</p>
+                    </div>
+                    <div class="swal-copy-info">
+                        <strong>Tag:</strong> <p>${tag}</p>
+                    </div>
+                `,
+                confirmButtonText: 'Great!',
+                confirmButtonColor: 'var(--accent-color)'
             });
         }).catch(err => {
             console.error('Failed to copy: ', err);
             Swal.fire({
-                title: 'Error!',
-                text: 'Failed to copy the sentence.',
                 icon: 'error',
-                confirmButtonText: 'OK'
+                title: 'Oops...',
+                text: 'Something went wrong, and we could not copy the text.'
             });
         });
     });
+    
+    // Initial state on page load
+    showInitialState();
 });
