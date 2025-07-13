@@ -9,10 +9,9 @@ $(document).ready(function() {
         sentencesData = data;
     });
     
-    // Live search functionality on our new input box
+    // Live search functionality
     $searchBox.on('input', function() {
         const searchTerm = $(this).val().toLowerCase();
-
         if (searchTerm.length > 0) {
             const filteredData = sentencesData.filter(item =>
                 item.sentence.toLowerCase().includes(searchTerm) ||
@@ -20,7 +19,6 @@ $(document).ready(function() {
             );
             displayResults(filteredData);
         } else {
-            // If the search box is cleared, go back to the initial state
             showInitialState();
         }
     });
@@ -36,7 +34,6 @@ $(document).ready(function() {
         }
 
         data.forEach(item => {
-            // UPDATED to use the solid Font Awesome icon class 'fas'
             const resultItem = `
                 <div class="result-item">
                     <p class="sentence">${item.sentence}</p>
@@ -66,12 +63,15 @@ $(document).ready(function() {
             Swal.fire({
                 icon: 'success',
                 title: 'Copied to Clipboard!',
+                // UPDATED HTML to use our new flexbox classes
                 html: `
-                    <div class="swal-copy-info">
-                        <strong>Sentence:</strong> <p>${sentence}</p>
+                    <div class="swal-flex-container">
+                        <div class="swal-label">Sentence:</div>
+                        <div class="swal-value">${sentence}</div>
                     </div>
-                    <div class="swal-copy-info">
-                        <strong>Tag:</strong> <p>${tag}</p>
+                    <div class="swal-flex-container">
+                        <div class="swal-label">Tag:</div>
+                        <div class="swal-value">${tag}</div>
                     </div>
                 `,
                 confirmButtonText: 'Great!',
