@@ -14,46 +14,38 @@ $(document).ready(function() {
         const $searchBox = $('#search-box');
 
         $searchBox.select2({
+            // THIS IS THE FIX: It tells Select2 to adopt the width of its container.
+            width: 'resolve', 
+            
             placeholder: "Search by keyword or tag...",
             allowClear: true,
             data: data.map(item => ({ id: item.sentence, text: item.sentence })),
             minimumInputLength: 1,
-            // Custom matcher to search in both sentence and tag
             matcher: customMatcher
         }).on('select2:select', function (e) {
-            // A specific item was chosen from the dropdown
             const selectedSentence = e.params.data.id;
             const filteredData = sentencesData.filter(item => item.sentence === selectedSentence);
             displayResults(filteredData);
         }).on('select2:unselect', function () {
-            // The selection was cleared
             showInitialState();
         });
     }
 
     // Custom matching function for Select2
     function customMatcher(params, data) {
-        if ($.trim(params.term) === '') {
-            return data;
-        }
-        if (typeof data.text === 'undefined') {
-            return null;
-        }
+        if ($.trim(params.term) === '') return data;
+        if (typeof data.text === 'undefined') return null;
+        
         const term = params.term.toLowerCase();
         const originalData = sentencesData.find(item => item.sentence === data.text);
 
-        if (originalData) {
-            const sentence = originalData.sentence.toLowerCase();
-            const tag = originalData.tag.toLowerCase();
-            if (sentence.includes(term) || tag.includes(term)) {
-                return data;
-            }
+        if (originalData && (originalData.sentence.toLowerCase().includes(term) || originalData.tag.toLowerCase().includes(term))) {
+            return data;
         }
         return null;
     }
     
     // Live search by directly listening to the input field created by Select2
-    // This provides a more responsive "live search" feel
     $(document).on('input', '.select2-search__field', function () {
         const searchTerm = $(this).val().toLowerCase();
         if (searchTerm.length > 0) {
@@ -66,7 +58,6 @@ $(document).ready(function() {
             showInitialState();
         }
     });
-
 
     // Function to display results
     function displayResults(data) {
@@ -118,13 +109,6 @@ $(document).ready(function() {
                 `,
                 confirmButtonText: 'Great!',
                 confirmButtonColor: 'var(--accent-color)'
-            });
-        }).catch(err => {
-            console.error('Failed to copy: ', err);
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Something went wrong, and we could not copy the text.'
             });
         });
     });
