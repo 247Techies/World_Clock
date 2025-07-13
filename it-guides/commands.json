@@ -672,9 +672,9 @@
     {
       "id": "clear_prefetch_files",
       "title": "Clear Prefetch Files",
-      "description": "Deletes prefetch files that store data about frequently used programs to troubleshoot performance or startup issues.",
-      "keywords": ["prefetch", "clear prefetch", "performance", "startup", "delete cache"],
-      "ticket_template": "Cleared Windows prefetch files to help troubleshoot slow boot or application performance issues.",
+      "description": "Deletes prefetch files that store data about frequently used programs to help troubleshoot performance or startup issues.",
+      "keywords": ["prefetch", "clear cache", "performance", "startup", "windows cache"],
+      "ticket_template": "Cleared Windows prefetch files to troubleshoot slow boot or application performance issues.",
       "platform": "windows",
       "requires_admin": true,
       "execution": [
@@ -687,13 +687,18 @@
           "command": "del /s /q C:\\Windows\\Prefetch\\*.*"
         },
         {
-          "step": "Alternatively, open Run (`Win + R`) and type:",
+          "step": "Alternatively, open Run (Win + R) and type:",
           "command": "prefetch"
         },
         {
-          "step": "Manually select and delete all files. Skip any in use."
+          "step": "Manually select and delete all files. Skip any currently in use.",
+          "command": null
         }
-      ]
+      ],
+      "notice": {
+        "type": "warning",
+        "content": "While clearing prefetch files can help in rare troubleshooting cases, it may cause a temporary slowdown in app launches until the cache rebuilds. Not recommended as routine maintenance."
+      }
     },
     {
       "id": "disk_cleanup_tool",
