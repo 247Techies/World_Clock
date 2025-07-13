@@ -2,52 +2,17 @@ $(document).ready(function() {
     let sentencesData = [];
     const $initialPrompt = $('#initial-prompt');
     const $resultsContainer = $('#results-container');
+    const $searchBox = $('#search-box');
 
-    // Fetch data and initialize
+    // Fetch data from the JSON file
     $.getJSON('data.json', function(data) {
         sentencesData = data;
-        initializeSelect2(sentencesData);
     });
-
-    // Initialize Select2 with live search
-    function initializeSelect2(data) {
-        const $searchBox = $('#search-box');
-
-        $searchBox.select2({
-            // THIS IS THE FIX: It tells Select2 to adopt the width of its container.
-            width: 'resolve', 
-            
-            placeholder: "Search by keyword or tag...",
-            allowClear: true,
-            data: data.map(item => ({ id: item.sentence, text: item.sentence })),
-            minimumInputLength: 1,
-            matcher: customMatcher
-        }).on('select2:select', function (e) {
-            const selectedSentence = e.params.data.id;
-            const filteredData = sentencesData.filter(item => item.sentence === selectedSentence);
-            displayResults(filteredData);
-        }).on('select2:unselect', function () {
-            showInitialState();
-        });
-    }
-
-    // Custom matching function for Select2
-    function customMatcher(params, data) {
-        if ($.trim(params.term) === '') return data;
-        if (typeof data.text === 'undefined') return null;
-        
-        const term = params.term.toLowerCase();
-        const originalData = sentencesData.find(item => item.sentence === data.text);
-
-        if (originalData && (originalData.sentence.toLowerCase().includes(term) || originalData.tag.toLowerCase().includes(term))) {
-            return data;
-        }
-        return null;
-    }
     
-    // Live search by directly listening to the input field created by Select2
-    $(document).on('input', '.select2-search__field', function () {
+    // Live search functionality on our new input box
+    $searchBox.on('input', function() {
         const searchTerm = $(this).val().toLowerCase();
+
         if (searchTerm.length > 0) {
             const filteredData = sentencesData.filter(item =>
                 item.sentence.toLowerCase().includes(searchTerm) ||
@@ -55,6 +20,7 @@ $(document).ready(function() {
             );
             displayResults(filteredData);
         } else {
+            // If the search box is cleared, go back to the initial state
             showInitialState();
         }
     });
@@ -70,12 +36,13 @@ $(document).ready(function() {
         }
 
         data.forEach(item => {
+            // UPDATED to use the solid Font Awesome icon class 'fas'
             const resultItem = `
                 <div class="result-item">
                     <p class="sentence">${item.sentence}</p>
                     <span class="tag">${item.tag}</span>
                     <button class="copy-btn" title="Copy sentence">
-                        <i class="far fa-copy"></i>
+                        <i class="fas fa-copy"></i>
                     </button>
                 </div>
             `;
@@ -109,6 +76,13 @@ $(document).ready(function() {
                 `,
                 confirmButtonText: 'Great!',
                 confirmButtonColor: 'var(--accent-color)'
+            });
+        }).catch(err => {
+            console.error('Failed to copy: ', err);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong, and we could not copy the text.'
             });
         });
     });

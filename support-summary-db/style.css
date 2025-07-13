@@ -41,44 +41,34 @@ h1 {
     margin-top: 5px;
 }
 
-/* --- Select2 Customization --- */
 .search-wrapper {
     margin-bottom: 40px;
-    /* ADDED FOR ROBUSTNESS: Ensures the container has a defined width */
-    width: 100%; 
 }
 
-.select2-container--default .select2-selection--single {
-    height: 50px;
+/* --- NEW STYLES for the <input> --- */
+.search-input {
+    width: 100%;
+    height: 55px;
+    padding: 0 20px;
+    font-size: 1.1rem;
+    font-family: 'Poppins', sans-serif;
+    color: var(--primary-text-color);
+    background-color: var(--card-bg-color);
     border: 1px solid var(--border-color);
     border-radius: 8px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    transition: all 0.2s ease-in-out;
+    box-sizing: border-box; /* Important for correct width calculation */
 }
-.select2-container--default.select2-container--focus .select2-selection--single {
+.search-input::placeholder {
+    color: #a0aec0;
+}
+.search-input:focus {
+    outline: none;
     border-color: var(--accent-color);
     box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
 }
-.select2-container--default .select2-selection--single .select2-selection__rendered {
-    line-height: 50px;
-    font-size: 1.1rem;
-    color: var(--primary-text-color);
-    padding-left: 20px !important;
-}
-.select2-container--default .select2-selection--single .select2-selection__placeholder {
-    color: #a0aec0;
-}
-.select2-container--default .select2-selection--single .select2-selection__arrow {
-    height: 50px;
-    right: 10px;
-}
-.select2-dropdown {
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-}
-.select2-results__option {
-    padding: 12px 20px;
-}
+
 
 /* --- Initial Prompt --- */
 #initial-prompt {
