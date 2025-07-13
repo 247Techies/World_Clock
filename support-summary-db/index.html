@@ -85,7 +85,7 @@
         let summariesData = [];
 
         // Fetch data from the JSON file using a relative path
-        fetch('./summaries.json')
+        fetch('summaries.json')
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
