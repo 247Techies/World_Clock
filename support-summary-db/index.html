@@ -84,39 +84,49 @@
     <script>
         let summariesData = [];
 
-        // Fetch data from the JSON file
-        fetch('summaries.json')
-            .then(response => response.json())
+        // Fetch data from the JSON file using a relative path
+        fetch('./summaries.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
             .then(data => {
                 summariesData = data;
                 displayResults(getAllSummaries(summariesData)); // Initially display all summaries
             })
-            .catch(error => console.error('Error loading summaries:', error));
+            .catch(error => {
+                console.error('Error loading summaries:', error);
+                const resultsContainer = document.getElementById('results-container');
+                resultsContainer.innerHTML = `<p style="color: red; font-weight: bold;">Failed to load summaries.json. Please ensure the file exists in the same directory as index.html and is a valid JSON.</p>`;
+            });
 
         function getAllSummaries(data) {
             let all = [];
+            if (!Array.isArray(data)) return all;
             data.forEach(category => {
-                all = all.concat(category.summaries);
+                if (category.summaries && Array.isArray(category.summaries)) {
+                    all = all.concat(category.summaries);
+                }
             });
             return all;
         }
         
         function searchSummaries() {
             const query = document.getElementById('search-input').value.toLowerCase();
-            if (query.length < 2) {
-                displayResults(getAllSummaries(summariesData)); // Show all if search is short
+            if (query.length === 0) {
+                displayResults(getAllSummaries(summariesData));
                 return;
             }
 
             const results = [];
-            summariesData.forEach(category => {
-                category.summaries.forEach(summary => {
-                    const textMatch = summary.text.toLowerCase().includes(query);
-                    const tagMatch = summary.tags.some(tag => tag.toLowerCase().includes(query));
-                    if (textMatch || tagMatch) {
-                        results.push(summary);
-                    }
-                });
+            getAllSummaries(summariesData).forEach(summary => {
+                const textMatch = summary.text.toLowerCase().includes(query);
+                const tagMatch = summary.tags.some(tag => tag.toLowerCase().includes(query));
+                if (textMatch || tagMatch) {
+                    results.push(summary);
+                }
             });
             displayResults(results);
         }
