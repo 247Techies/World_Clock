@@ -634,7 +634,93 @@
           "command": null
         }
       ]
+    },
+    {
+      "id": "clear_temp_files",
+      "title": "Clear Temporary Files",
+      "description": "Removes temporary files from Windows temp folders to free up space and improve system performance.",
+      "keywords": ["temp files", "delete temp", "clear cache", "cleanup", "storage"],
+      "ticket_template": "Cleared temporary files from system and user temp folders to free up disk space and improve performance.",
+      "platform": "windows",
+      "requires_admin": true,
+      "execution": [
+        {
+          "step": "Open Command Prompt as Administrator.",
+          "command": null
+        },
+        {
+          "step": "Delete user-level temp files.",
+          "command": "del /s /q %temp%\\*.*"
+        },
+        {
+          "step": "Delete system-level temp files.",
+          "command": "del /s /q C:\\Windows\\Temp\\*.*"
+        },
+        {
+          "step": "You can also manually open the temp folders via Run (`Win + R`) and entering:",
+          "command": "%temp%"
+        },
+        {
+          "step": "Confirm deletions and skip any files currently in use."
+        }
+      ]
+    },
+    {
+      "id": "clear_prefetch_files",
+      "title": "Clear Prefetch Files",
+      "description": "Deletes prefetch files that store data about frequently used programs to troubleshoot performance or startup issues.",
+      "keywords": ["prefetch", "clear prefetch", "performance", "startup", "delete cache"],
+      "ticket_template": "Cleared Windows prefetch files to help troubleshoot slow boot or application performance issues.",
+      "platform": "windows",
+      "requires_admin": true,
+      "execution": [
+        {
+          "step": "Open Command Prompt as Administrator.",
+          "command": null
+        },
+        {
+          "step": "Run the following command to delete all prefetch files.",
+          "command": "del /s /q C:\\Windows\\Prefetch\\*.*"
+        },
+        {
+          "step": "Alternatively, open Run (`Win + R`) and type:",
+          "command": "prefetch"
+        },
+        {
+          "step": "Manually select and delete all files. Skip any in use."
+        }
+      ]
+    },
+    {
+      "id": "disk_cleanup_tool",
+      "title": "Run Disk Cleanup Tool",
+      "description": "Launches the built-in Disk Cleanup utility to remove temporary files, system files, and other unnecessary data.",
+      "keywords": ["disk cleanup", "cleanmgr", "free space", "temporary files", "system cleanup"],
+      "ticket_template": "Launched Disk Cleanup to remove temporary files and system clutter, freeing up disk space.",
+      "platform": "windows",
+      "requires_admin": false,
+      "execution": [
+        {
+          "step": "Press `Win + R` to open the Run dialog.",
+          "command": "cleanmgr"
+        },
+        {
+          "step": "Choose the drive you want to clean (usually C:) and click OK."
+        },
+        {
+          "step": "Select the file types to delete (e.g., Temporary files, Recycle Bin, Thumbnails)."
+        },
+        {
+          "step": "Click 'OK' and then 'Delete Files' to start cleanup."
+        },
+        {
+          "step": "To clean up system files (like old Windows updates), click 'Clean up system files' and repeat the selection process."
+        }
+      ]
     }
+
+
+
 
 
 
