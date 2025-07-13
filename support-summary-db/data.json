@@ -1,30 +1,37 @@
 [
     {
       "sentence": "Provided assistance in establishing a stable and reliable internet connection.",
-      "tag": "Internet Issue"
+      "tag": "Internet Issue",
+      "keywords": "wifi, network, connection, slow internet, router, modem"
     },
     {
       "sentence": "Investigated and resolved computer performance-related issues.",
-      "tag": "Performance Issue"
+      "tag": "Performance Issue",
+      "keywords": "slow, lag, freezing, unresponsive, sluggish"
     },
     {
       "sentence": "Provided support to restore normal functionality of the internet browser.",
-      "tag": "Browser Issue"
+      "tag": "Browser Issue",
+      "keywords": "chrome, firefox, edge, safari, cache, cookies, pop-ups"
     },
     {
       "sentence": "Assisted with the setup and configuration of a new local printer.",
-      "tag": "Hardware Support"
+      "tag": "Hardware Support",
+      "keywords": "printer setup, drivers, printing, xerox, hp, canon"
     },
     {
       "sentence": "Troubleshooted and resolved email client synchronization problems.",
-      "tag": "Email Issue"
+      "tag": "Email Issue",
+      "keywords": "outlook, new outlook, mail client, sync, not receiving email"
     },
     {
       "sentence": "Performed a clean installation of the operating system.",
-      "tag": "OS Installation"
+      "tag": "OS Installation",
+      "keywords": "windows install, macos install, format, reimage, fresh start"
     },
     {
       "sentence": "Successfully removed malware and other security threats from the system.",
-      "tag": "Security Issue"
+      "tag": "Security Issue",
+      "keywords": "virus, trojan, spyware, antivirus, protection"
     }
   ]

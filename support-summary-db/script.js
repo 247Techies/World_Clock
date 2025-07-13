@@ -12,13 +12,17 @@ $(document).ready(function() {
     // Live search functionality
     $searchBox.on('input', function() {
         const searchTerm = $(this).val().toLowerCase();
+
         if (searchTerm.length > 0) {
             const filteredData = sentencesData.filter(item =>
+                // THIS IS THE ONLY LINE THAT NEEDS TO CHANGE
                 item.sentence.toLowerCase().includes(searchTerm) ||
-                item.tag.toLowerCase().includes(searchTerm)
+                item.tag.toLowerCase().includes(searchTerm) ||
+                (item.keywords && item.keywords.toLowerCase().includes(searchTerm)) // Check if keywords exist and include the term
             );
             displayResults(filteredData);
         } else {
+            // If the search box is cleared, go back to the initial state
             showInitialState();
         }
     });
@@ -63,7 +67,6 @@ $(document).ready(function() {
             Swal.fire({
                 icon: 'success',
                 title: 'Copied to Clipboard!',
-                // UPDATED HTML to use the new CSS Grid structure
                 html: `
                     <div class="swal-grid-container">
                         <div class="swal-label">Sentence:</div>
