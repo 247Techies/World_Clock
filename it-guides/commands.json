@@ -689,8 +689,7 @@
         {
           "step": "Manually select and delete all files. Skip any in use."
         }
-      ],
-      "note": "⚠️ **Advisory:** Clearing prefetch files may temporarily slow down the launch of applications until Windows rebuilds the cache. This action should only be used for troubleshooting and is **not recommended** as routine maintenance."
+      ]
     },
     {
       "id": "disk_cleanup_tool",
