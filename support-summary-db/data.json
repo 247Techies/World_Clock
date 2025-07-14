@@ -403,5 +403,30 @@
     "sentence": "Provided support to activate Microsoft 365 Personal successfully.",
     "tag": "Office Activation",
     "keywords": "Microsoft 365 Personal, activate, support, success"
+  },
+  {
+    "sentence": "Resolved issues preventing the microphone from functioning properly.",
+    "tag": "Microphone Issue",
+    "keywords": "microphone, not functioning, resolve, audio input"
+  },
+  {
+    "sentence": "Identified and fixed problems related to microphone setup and usage.",
+    "tag": "Microphone Issue",
+    "keywords": "microphone setup, usage, identify, fix"
+  },
+  {
+    "sentence": "Troubleshot and restored microphone functionality.",
+    "tag": "Microphone Issue",
+    "keywords": "microphone, troubleshoot, restore, functionality"
+  },
+  {
+    "sentence": "Addressed and resolved issues affecting microphone performance.",
+    "tag": "Microphone Issue",
+    "keywords": "microphone, performance issue, address, resolve"
+  },
+  {
+    "sentence": "Assisted in configuring and enabling the microphone to work correctly.",
+    "tag": "Microphone Issue",
+    "keywords": "microphone, configure, enable, work properly"
   }
 ]
