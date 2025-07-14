@@ -23,17 +23,26 @@
 
     <div class="main-container">
         <header>
-            <h1>Sentence Finder</h1>
-            <p class="subtitle">Quickly find and copy standardized sentences for your reports.</p>
+            <div class="header-content">
+                <a href="https://247techies.github.io/World_Clock/" target="_blank" rel="noopener noreferrer">
+                    <img src="247-logo.png" alt="247 Logo" class="header-logo">
+                </a>
+                <h1>Support Summary Report Guide</h1>
+            </div>
+            <p class="subtitle">Quickly find and copy standardized sentences for your support summary reports.</p>
         </header>
 
         <div class="search-wrapper">
-            <!-- REPLACED <select> WITH <input> FOR DIRECT TYPING -->
             <input type="text" id="search-box" class="search-input" placeholder="Search by keyword or tag...">
+            <!-- "X" button to clear the search -->
+            <button id="clear-search-btn" class="clear-search-btn" title="Clear search">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
         </div>
 
         <div id="initial-prompt">
-            <i class="fas fa-search"></i>
+            <!-- Updated Icon -->
+            <i class="fa-solid fa-file-invoice"></i>
             <p>Start typing above to find a sentence.</p>
         </div>
 

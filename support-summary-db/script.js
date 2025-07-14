@@ -3,6 +3,7 @@ $(document).ready(function() {
     const $initialPrompt = $('#initial-prompt');
     const $resultsContainer = $('#results-container');
     const $searchBox = $('#search-box');
+    const $clearBtn = $('#clear-search-btn');
 
     // Fetch data from the JSON file
     $.getJSON('data.json', function(data) {
@@ -14,17 +15,22 @@ $(document).ready(function() {
         const searchTerm = $(this).val().toLowerCase();
 
         if (searchTerm.length > 0) {
+            $clearBtn.show();
             const filteredData = sentencesData.filter(item =>
-                // THIS IS THE ONLY LINE THAT NEEDS TO CHANGE
                 item.sentence.toLowerCase().includes(searchTerm) ||
                 item.tag.toLowerCase().includes(searchTerm) ||
-                (item.keywords && item.keywords.toLowerCase().includes(searchTerm)) // Check if keywords exist and include the term
+                (item.keywords && item.keywords.toLowerCase().includes(searchTerm))
             );
             displayResults(filteredData);
         } else {
-            // If the search box is cleared, go back to the initial state
             showInitialState();
         }
+    });
+
+    // Event handler for the clear button
+    $clearBtn.on('click', function() {
+        $searchBox.val('').focus();
+        showInitialState();
     });
 
     // Function to display results
@@ -54,6 +60,7 @@ $(document).ready(function() {
     // Function to revert to the initial view
     function showInitialState() {
         $resultsContainer.hide().empty();
+        $clearBtn.hide();
         $initialPrompt.show();
     }
 
