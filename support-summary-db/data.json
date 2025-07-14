@@ -318,5 +318,90 @@
     "sentence": "Provided support to get the scanner operational.",
     "tag": "Scanner Issue",
     "keywords": "scanner, support, operational, functionality"
+  },
+  {
+    "sentence": "Resolved an issue that was preventing proper access and usage of Microsoft Outlook.",
+    "tag": "Microsoft Outlook",
+    "keywords": "Outlook, access issue, usage, resolve"
+  },
+  {
+    "sentence": "Identified and fixed problems affecting the functionality and accessibility of Microsoft Outlook.",
+    "tag": "Microsoft Outlook",
+    "keywords": "Outlook, functionality, accessibility, identify, fix"
+  },
+  {
+    "sentence": "Troubleshot and resolved issues hindering the use of Microsoft Outlook.",
+    "tag": "Microsoft Outlook",
+    "keywords": "Outlook, troubleshoot, usage issue, resolve"
+  },
+  {
+    "sentence": "Restored full access and normal operation of Microsoft Outlook by resolving underlying issues.",
+    "tag": "Microsoft Outlook",
+    "keywords": "Outlook, restore access, normal operation, issue resolution"
+  },
+  {
+    "sentence": "Addressed and fixed errors preventing effective use of Microsoft Outlook.",
+    "tag": "Microsoft Outlook",
+    "keywords": "Outlook, errors, fix, effective use"
+  },
+  {
+    "sentence": "Resolved issue preventing proper access or usage of Microsoft Outlook.",
+    "tag": "Microsoft Outlook",
+    "keywords": "Outlook, access, usage, issue resolved"
+  },
+  {
+    "sentence": "Resolved computer security issues, performed system optimization, and removed detected viruses after a full scan.",
+    "tag": "Security and Optimization",
+    "keywords": "computer security, system optimization, virus removal, full scan"
+  },
+  {
+    "sentence": "Addressed security vulnerabilities, optimized system performance, and scanned for and eliminated malware.",
+    "tag": "Security and Optimization",
+    "keywords": "security vulnerabilities, system performance, malware removal, scan"
+  },
+  {
+    "sentence": "Enhanced computer security, improved performance through optimization, and successfully removed viruses.",
+    "tag": "Security and Optimization",
+    "keywords": "enhance security, performance optimization, virus removal"
+  },
+  {
+    "sentence": "Troubleshot and resolved security concerns, optimized the system, and completed a virus scan and removal.",
+    "tag": "Security and Optimization",
+    "keywords": "security concerns, troubleshoot, optimize system, virus scan"
+  },
+  {
+    "sentence": "Ensured computer security by resolving threats, optimizing performance, and removing malicious software.",
+    "tag": "Security and Optimization",
+    "keywords": "computer security, threat resolution, performance optimization, malware"
+  },
+  {
+    "sentence": "Resolved the issue with regards to computer security, optimized the computer, scanned and removed viruses.",
+    "tag": "Security and Optimization",
+    "keywords": "computer security, optimize, scan, remove viruses"
+  },
+  {
+    "sentence": "Resolved issues related to the activation of Microsoft 365 Personal.",
+    "tag": "Office Activation",
+    "keywords": "Microsoft 365 Personal, activation, resolve, issue"
+  },
+  {
+    "sentence": "Assisted with and successfully completed the activation of Microsoft 365 Personal.",
+    "tag": "Office Activation",
+    "keywords": "Microsoft 365 Personal, activation, assist, complete"
+  },
+  {
+    "sentence": "Addressed and resolved problems preventing Microsoft 365 Personal from activating.",
+    "tag": "Office Activation",
+    "keywords": "Microsoft 365 Personal, activation problems, resolve, address"
+  },
+  {
+    "sentence": "Troubleshot and resolved activation issues for Microsoft 365 Personal.",
+    "tag": "Office Activation",
+    "keywords": "activation issues, Microsoft 365 Personal, troubleshoot, resolve"
+  },
+  {
+    "sentence": "Provided support to activate Microsoft 365 Personal successfully.",
+    "tag": "Office Activation",
+    "keywords": "Microsoft 365 Personal, activate, support, success"
   }
 ]

@@ -800,6 +800,42 @@
         "type": "info",
         "content": "Virtual memory helps prevent crashes on systems with low RAM. It's slower than physical RAM, so use it as a performance fallback, not a replacement."
       }
+    },
+    {
+      "id": "enable_camera_via_app",
+      "title": "Enable Camera Using Camera App",
+      "description": "Enables a previously disabled camera by launching the Camera app or checking device settings to re-activate the device.",
+      "keywords": ["camera", "enable camera", "camera app", "privacy settings", "device manager"],
+      "ticket_template": "Launched the Camera app and re-enabled the previously disabled camera via app prompt or device settings.",
+      "platform": "windows",
+      "requires_admin": false,
+      "execution": [
+        {
+          "step": "Open the Start menu and search for 'Camera', then launch the Camera app.",
+          "command": null
+        },
+        {
+          "step": "If the camera is disabled, the app will prompt you to enable it. Follow the on-screen instructions.",
+          "command": null
+        },
+        {
+          "step": "If the camera doesn't respond, go to `Settings > Privacy & security > Camera` and make sure camera access is enabled.",
+          "command": null
+        },
+        {
+          "step": "If still disabled, open Device Manager, expand 'Imaging Devices' or 'Cameras'.",
+          "command": "devmgmt.msc"
+        },
+        {
+          "step": "Right-click the disabled camera device and choose 'Enable device'.",
+          "command": null
+        }
+      ],
+      "notice": {
+        "type": "info",
+        "content": "Sometimes antivirus or privacy settings may block camera access. Make sure the Camera app and device drivers are allowed in system settings."
+      }
     }
+
 
   ]
