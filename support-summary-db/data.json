@@ -1,37 +1,272 @@
 [
-    {
-      "sentence": "Provided assistance in establishing a stable and reliable internet connection.",
-      "tag": "Internet Issue",
-      "keywords": "wifi, network, connection, slow internet, router, modem"
-    },
-    {
-      "sentence": "Investigated and resolved computer performance-related issues.",
-      "tag": "Performance Issue",
-      "keywords": "slow, lag, freezing, unresponsive, sluggish"
-    },
-    {
-      "sentence": "Provided support to restore normal functionality of the internet browser.",
-      "tag": "Browser Issue",
-      "keywords": "chrome, firefox, edge, safari, cache, cookies, pop-ups"
-    },
-    {
-      "sentence": "Assisted with the setup and configuration of a new local printer.",
-      "tag": "Hardware Support",
-      "keywords": "printer setup, drivers, printing, xerox, hp, canon"
-    },
-    {
-      "sentence": "Troubleshooted and resolved email client synchronization problems.",
-      "tag": "Email Issue",
-      "keywords": "outlook, new outlook, mail client, sync, not receiving email"
-    },
-    {
-      "sentence": "Performed a clean installation of the operating system.",
-      "tag": "OS Installation",
-      "keywords": "windows install, macos install, format, reimage, fresh start"
-    },
-    {
-      "sentence": "Successfully removed malware and other security threats from the system.",
-      "tag": "Security Issue",
-      "keywords": "virus, trojan, spyware, antivirus, protection"
-    }
-  ]
+  {
+    "sentence": "Provided assistance in establishing a stable and reliable internet connection.",
+    "tag": "Internet Issue",
+    "keywords": "wifi, network, connection, slow internet, router, modem"
+  },
+  {
+    "sentence": "Investigated and resolved computer performance-related issues.",
+    "tag": "Performance Issue",
+    "keywords": "slow, lag, freezing, unresponsive, sluggish"
+  },
+  {
+    "sentence": "Provided support to restore normal functionality of the internet browser.",
+    "tag": "Browser Issue",
+    "keywords": "chrome, firefox, edge, safari, cache, cookies, pop-ups"
+  },
+  {
+    "sentence": "Assisted with the setup and configuration of a new local printer.",
+    "tag": "Hardware Support",
+    "keywords": "printer setup, drivers, printing, xerox, hp, canon"
+  },
+  {
+    "sentence": "Troubleshooted and resolved email client synchronization problems.",
+    "tag": "Email Issue",
+    "keywords": "outlook, new outlook, mail client, sync, not receiving email"
+  },
+  {
+    "sentence": "Performed a clean installation of the operating system.",
+    "tag": "OS Installation",
+    "keywords": "windows install, macos install, format, reimage, fresh start"
+  },
+  {
+    "sentence": "Successfully removed malware and other security threats from the system.",
+    "tag": "Security Issue",
+    "keywords": "virus, trojan, spyware, antivirus, protection"
+  },
+  {
+    "sentence": "Provided assistance in establishing a stable and reliable internet connection.",
+    "tag": "Internet Issue",
+    "keywords": "internet, stable connection, reliable, setup"
+  },
+  {
+    "sentence": "Assisted the client in resolving issues related to internet connectivity.",
+    "tag": "Internet Issue",
+    "keywords": "internet, connectivity issues, troubleshoot, resolve"
+  },
+  {
+    "sentence": "Offered support to ensure proper and consistent internet access.",
+    "tag": "Internet Issue",
+    "keywords": "internet access, consistent connection, support"
+  },
+  {
+    "sentence": "Facilitated troubleshooting to ensure optimal internet connectivity.",
+    "tag": "Internet Issue",
+    "keywords": "troubleshooting, internet, optimal connectivity"
+  },
+  {
+    "sentence": "Resolved issues pertaining to internet connection and ensured proper configuration.",
+    "tag": "Internet Issue",
+    "keywords": "internet connection, resolved, configuration"
+  },
+  {
+    "sentence": "Investigated and resolved computer performance-related issues.",
+    "tag": "Computer Performance Issue",
+    "keywords": "computer, performance, investigate, resolve, lag"
+  },
+  {
+    "sentence": "Addressed system slowness and improved overall computer performance.",
+    "tag": "Computer Performance Issue",
+    "keywords": "system slowness, performance, speed, optimize"
+  },
+  {
+    "sentence": "Troubleshot and optimized the device to resolve performance degradation.",
+    "tag": "Computer Performance Issue",
+    "keywords": "troubleshoot, optimize, performance degradation, device"
+  },
+  {
+    "sentence": "Diagnosed and fixed issues affecting the speed and responsiveness of the computer.",
+    "tag": "Computer Performance Issue",
+    "keywords": "diagnose, speed, responsiveness, fix, computer"
+  },
+  {
+    "sentence": "Performed system optimization to enhance computer performance.",
+    "tag": "Computer Performance Issue",
+    "keywords": "system optimization, enhance, performance, computer"
+  },
+  {
+    "sentence": "Resolved issues related to the internet browser not functioning properly.",
+    "tag": "Browser Issue",
+    "keywords": "browser, not working, internet, issue resolution"
+  },
+  {
+    "sentence": "Troubleshot and fixed problems affecting internet browser functionality.",
+    "tag": "Browser Issue",
+    "keywords": "browser, troubleshoot, fix, functionality issues"
+  },
+  {
+    "sentence": "Addressed and resolved issues preventing the internet browser from operating correctly.",
+    "tag": "Browser Issue",
+    "keywords": "browser issues, prevent loading, fix, internet"
+  },
+  {
+    "sentence": "Provided support to restore normal functionality of the internet browser.",
+    "tag": "Browser Issue",
+    "keywords": "browser, restore, functionality, support"
+  },
+  {
+    "sentence": "Identified and resolved errors impacting the performance of the internet browser.",
+    "tag": "Browser Issue",
+    "keywords": "browser performance, errors, resolve, identify"
+  },
+  {
+    "sentence": "Resolved the issue related to printer connectivity.",
+    "tag": "Printer Issue",
+    "keywords": "printer, connectivity, issue resolved"
+  },
+  {
+    "sentence": "Identified and resolved the connectivity issue with the printer.",
+    "tag": "Printer Issue",
+    "keywords": "printer, connectivity issue, identify, resolve"
+  },
+  {
+    "sentence": "Restored printer functionality by resolving connectivity issues.",
+    "tag": "Printer Issue",
+    "keywords": "printer, functionality, connectivity, restore"
+  },
+  {
+    "sentence": "Troubleshot and fixed the printer connection issue.",
+    "tag": "Printer Issue",
+    "keywords": "printer, troubleshoot, connection issue, fix"
+  },
+  {
+    "sentence": "Resolved printer connectivity problems and ensured proper operation.",
+    "tag": "Printer Issue",
+    "keywords": "printer, connectivity problems, resolved, proper operation"
+  },
+  {
+    "sentence": "Resolved an issue preventing emails from being delivered to the correct inbox in Microsoft Outlook.",
+    "tag": "Outlook Issue",
+    "keywords": "Outlook, email delivery, inbox issue, resolve"
+  },
+  {
+    "sentence": "Identified and resolved an issue that was causing emails to be misrouted in Microsoft Outlook.",
+    "tag": "Outlook Issue",
+    "keywords": "Outlook, misrouted emails, identify, resolve"
+  },
+  {
+    "sentence": "Addressed and fixed the problem affecting email delivery to the intended inbox in Outlook.",
+    "tag": "Outlook Issue",
+    "keywords": "Outlook, email delivery, inbox, fix"
+  },
+  {
+    "sentence": "Resolved a mail routing issue in Microsoft Outlook that was preventing proper inbox delivery.",
+    "tag": "Outlook Issue",
+    "keywords": "Outlook, mail routing, inbox delivery, issue resolved"
+  },
+  {
+    "sentence": "Troubleshot and corrected the issue causing emails to bypass the correct inbox in Outlook.",
+    "tag": "Outlook Issue",
+    "keywords": "Outlook, troubleshoot, inbox bypass, correct delivery"
+  },
+  {
+    "sentence": "Identified and blocked scam/phishing emails to ensure user safety.",
+    "tag": "Scam/Junk Mail",
+    "keywords": "scam emails, phishing, block, user safety"
+  },
+  {
+    "sentence": "Reviewed email activity and implemented blocks for scam messages.",
+    "tag": "Scam/Junk Mail",
+    "keywords": "email activity, scam messages, review, block"
+  },
+  {
+    "sentence": "Checked and filtered out malicious or scam emails from the inbox.",
+    "tag": "Scam/Junk Mail",
+    "keywords": "filter, scam emails, malicious, inbox check"
+  },
+  {
+    "sentence": "Took necessary actions to detect and block potential scam emails.",
+    "tag": "Scam/Junk Mail",
+    "keywords": "detect, block, scam emails, action"
+  },
+  {
+    "sentence": "Monitored and secured the mailbox by identifying and blocking scam emails.",
+    "tag": "Scam/Junk Mail",
+    "keywords": "monitor, mailbox, scam emails, security"
+  },
+  {
+    "sentence": "Resolved issues related to printing documents contained within a ZIP folder received via email.",
+    "tag": "Other Issues",
+    "keywords": "ZIP folder, email attachment, printing issue, documents"
+  },
+  {
+    "sentence": "Assisted in extracting and printing documents from a ZIP file attached to an email.",
+    "tag": "Other Issues",
+    "keywords": "ZIP file, email, extract, print documents"
+  },
+  {
+    "sentence": "Troubleshot and resolved issues preventing documents in a ZIP email attachment from being printed.",
+    "tag": "Other Issues",
+    "keywords": "ZIP attachment, print issue, troubleshoot, email"
+  },
+  {
+    "sentence": "Facilitated the extraction and successful printing of documents from a ZIP folder received through email.",
+    "tag": "Other Issues",
+    "keywords": "ZIP folder, email, extract, print success"
+  },
+  {
+    "sentence": "Addressed and resolved difficulties with accessing and printing files from a compressed email attachment.",
+    "tag": "Other Issues",
+    "keywords": "compressed attachment, email, access files, print"
+  },
+  {
+    "sentence": "Resolved the printer connectivity issue and successfully printed the email.",
+    "tag": "Other Issues",
+    "keywords": "printer connectivity, email, print, resolved"
+  },
+  {
+    "sentence": "Restored printer connectivity and assisted with printing the email.",
+    "tag": "Other Issues",
+    "keywords": "printer, restore connectivity, print email"
+  },
+  {
+    "sentence": "Troubleshot and resolved the printer connection issue, followed by printing the required email.",
+    "tag": "Other Issues",
+    "keywords": "printer connection, troubleshoot, print email"
+  },
+  {
+    "sentence": "Fixed the printer connectivity problem and ensured the email was printed successfully.",
+    "tag": "Other Issues",
+    "keywords": "printer issue, connectivity, email print, fixed"
+  },
+  {
+    "sentence": "Addressed printer connection issues and completed the task of printing the email.",
+    "tag": "Other Issues",
+    "keywords": "printer connection, email printing, resolve"
+  },
+  {
+    "sentence": "Assisted in locating missing documents, files, or folders.",
+    "tag": "Other Issues",
+    "keywords": "missing documents, locate files, folders, assistance"
+  },
+  {
+    "sentence": "Performed a search and recovery of lost or misplaced files and folders.",
+    "tag": "Other Issues",
+    "keywords": "file recovery, search, lost files, folders"
+  },
+  {
+    "sentence": "Resolved issue related to missing or inaccessible documents.",
+    "tag": "Other Issues",
+    "keywords": "missing documents, inaccessible, resolve, files"
+  },
+  {
+    "sentence": "Helped recover missing files/folders from the system.",
+    "tag": "Other Issues",
+    "keywords": "recover, missing files, folders, system"
+  },
+  {
+    "sentence": "Troubleshot and restored user access to previously missing documents or folders.",
+    "tag": "Other Issues",
+    "keywords": "troubleshoot, restore access, missing files, folders"
+  },
+  {
+    "sentence": "Identified and retrieved lost files from local or cloud storage.",
+    "tag": "Other Issues",
+    "keywords": "lost files, retrieve, local storage, cloud"
+  },
+  {
+    "sentence": "Supported the user in locating and organizing misplaced files and folders.",
+    "tag": "Other Issues",
+    "keywords": "locate files, organize, misplaced, folders"
+  }
+]
