@@ -268,5 +268,55 @@
     "sentence": "Supported the user in locating and organizing misplaced files and folders.",
     "tag": "Other Issues",
     "keywords": "locate files, organize, misplaced, folders"
+  },
+  {
+    "sentence": "Resolved issues related to the non-functional web camera.",
+    "tag": "Camera Issue",
+    "keywords": "web camera, non-functional, resolve, issue"
+  },
+  {
+    "sentence": "Identified and fixed problems preventing the web camera from working.",
+    "tag": "Camera Issue",
+    "keywords": "web camera, not working, identify, fix"
+  },
+  {
+    "sentence": "Troubleshot and restored functionality of the web camera.",
+    "tag": "Camera Issue",
+    "keywords": "web camera, troubleshoot, restore, functionality"
+  },
+  {
+    "sentence": "Addressed and resolved the issue with the web camera not operating correctly.",
+    "tag": "Camera Issue",
+    "keywords": "web camera, not operating, resolve, issue"
+  },
+  {
+    "sentence": "Provided support to fix the web camera connectivity and functionality issue.",
+    "tag": "Camera Issue",
+    "keywords": "web camera, support, connectivity, functionality"
+  },
+  {
+    "sentence": "Resolved issues related to the scanner not functioning properly.",
+    "tag": "Scanner Issue",
+    "keywords": "scanner, not functioning, resolve, issue"
+  },
+  {
+    "sentence": "Identified and fixed problems preventing the scanner from working.",
+    "tag": "Scanner Issue",
+    "keywords": "scanner, not working, identify, fix"
+  },
+  {
+    "sentence": "Troubleshot and restored scanner functionality.",
+    "tag": "Scanner Issue",
+    "keywords": "scanner, troubleshoot, restore, functionality"
+  },
+  {
+    "sentence": "Addressed and resolved the issue with the non-working scanner.",
+    "tag": "Scanner Issue",
+    "keywords": "scanner, non-working, address, resolve"
+  },
+  {
+    "sentence": "Provided support to get the scanner operational.",
+    "tag": "Scanner Issue",
+    "keywords": "scanner, support, operational, functionality"
   }
 ]
