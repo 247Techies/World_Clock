@@ -833,5 +833,130 @@
     "sentence": "Assisted with diagnosing and resolving issues on mobile phones and tablets.",
     "tag": "Android Phone / Tab",
     "keywords": "diagnose, resolve, mobile phone, tablet"
+  },
+  {
+    "sentence": "Performed disk cleanup to free up storage space and improve system performance.",
+    "tag": "Disk Cleanup",
+    "keywords": "disk cleanup, storage space, performance, system optimization"
+  },
+  {
+    "sentence": "Removed temporary files and unnecessary data through disk cleanup.",
+    "tag": "Disk Cleanup",
+    "keywords": "temporary files, disk cleanup, remove data, optimize"
+  },
+  {
+    "sentence": "Conducted a system cleanup to optimize disk usage.",
+    "tag": "Disk Cleanup",
+    "keywords": "system cleanup, disk usage, optimization"
+  },
+  {
+    "sentence": "Cleared cache, temp files, and other redundant data via disk cleanup.",
+    "tag": "Disk Cleanup",
+    "keywords": "cache, temp files, redundant data, disk cleanup"
+  },
+  {
+    "sentence": "Used disk cleanup tools to reclaim storage and enhance system efficiency.",
+    "tag": "Disk Cleanup",
+    "keywords": "disk cleanup tools, reclaim storage, system efficiency"
+  },
+  {
+    "sentence": "Optimized system performance by managing background applications.",
+    "tag": "Background Applications",
+    "keywords": "background applications, performance, optimize, manage"
+  },
+  {
+    "sentence": "Disabled unnecessary background processes to enhance speed and efficiency.",
+    "tag": "Background Applications",
+    "keywords": "disable background processes, system speed, efficiency"
+  },
+  {
+    "sentence": "Reviewed and adjusted background application settings to reduce resource usage.",
+    "tag": "Background Applications",
+    "keywords": "background application settings, resource usage, adjust, review"
+  },
+  {
+    "sentence": "Limited background applications to improve system responsiveness.",
+    "tag": "Background Applications",
+    "keywords": "limit background apps, system responsiveness, performance"
+  },
+  {
+    "sentence": "Configured system settings to minimize resource consumption by background apps.",
+    "tag": "Background Applications",
+    "keywords": "system settings, minimize resource usage, background apps"
+  },
+  {
+    "sentence": "Identified and resolved performance issues caused by background applications.",
+    "tag": "Background Applications",
+    "keywords": "performance issues, background apps, identify, resolve"
+  },
+  {
+    "sentence": "Monitored and managed background activity to address system lag.",
+    "tag": "Background Applications",
+    "keywords": "monitor background, system lag, manage applications"
+  },
+  {
+    "sentence": "Optimized system performance by managing startup applications.",
+    "tag": "Startup Applications",
+    "keywords": "startup applications, system performance, optimize"
+  },
+  {
+    "sentence": "Disabled unnecessary startup programs to improve boot time.",
+    "tag": "Startup Applications",
+    "keywords": "disable startup programs, boot time, performance"
+  },
+  {
+    "sentence": "Reviewed and adjusted startup application settings for better performance.",
+    "tag": "Startup Applications",
+    "keywords": "startup settings, adjust, review, performance"
+  },
+  {
+    "sentence": "Configured startup items to streamline system launch.",
+    "tag": "Startup Applications",
+    "keywords": "startup items, streamline, system launch"
+  },
+  {
+    "sentence": "Assisted in managing applications that run at startup.",
+    "tag": "Startup Applications",
+    "keywords": "startup programs, manage, assist"
+  },
+  {
+    "sentence": "Added required applications to launch at system startup.",
+    "tag": "Startup Applications",
+    "keywords": "required applications, startup, launch"
+  },
+  {
+    "sentence": "Configured specified programs to start automatically with the system.",
+    "tag": "Startup Applications",
+    "keywords": "auto start, configure programs, system startup"
+  },
+  {
+    "sentence": "Enabled essential applications in the startup list.",
+    "tag": "Startup Applications",
+    "keywords": "startup list, enable applications, essential"
+  },
+  {
+    "sentence": "Resolved issues preventing desktop icons from functioning properly.",
+    "tag": "Desktop Icon",
+    "keywords": "desktop icons, functionality, resolved, not working"
+  },
+  {
+    "sentence": "Identified and fixed problems with unresponsive desktop icons.",
+    "tag": "Desktop Icon",
+    "keywords": "desktop icons, unresponsive, fix, identify"
+  },
+  {
+    "sentence": "Troubleshot and restored functionality of desktop icons.",
+    "tag": "Desktop Icon",
+    "keywords": "desktop icons, troubleshoot, restore functionality"
+  },
+  {
+    "sentence": "Addressed system behavior causing desktop icons to not open or respond.",
+    "tag": "Desktop Icon",
+    "keywords": "desktop icon issue, system behavior, not responding"
+  },
+  {
+    "sentence": "Resolved user interface issues affecting desktop icon accessibility.",
+    "tag": "Desktop Icon",
+    "keywords": "user interface, desktop icon, accessibility, resolved"
   }
 ]
