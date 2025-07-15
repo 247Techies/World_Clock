@@ -578,5 +578,260 @@
     "sentence": "Assisted in resolving browser or network issues that were blocking website access.",
     "tag": "Blocked Website",
     "keywords": "browser issue, network issue, website access, resolve"
+  },
+  {
+    "sentence": "Resolved an issue involving a scammer's connection to the device and secured the system.",
+    "tag": "Scammer",
+    "keywords": "scammer, unauthorized access, device security, resolved"
+  },
+  {
+    "sentence": "Uninstalled unnecessary or unwanted applications from the system.",
+    "tag": "Uninstall Application",
+    "keywords": "uninstall, unwanted applications, system cleanup, remove programs"
+  },
+  {
+    "sentence": "Removed selected software programs to optimize system performance.",
+    "tag": "Uninstall Application",
+    "keywords": "software removal, optimize performance, uninstall, selected programs"
+  },
+  {
+    "sentence": "Performed application uninstallation as requested.",
+    "tag": "Uninstall Application",
+    "keywords": "application uninstallation, user request, remove apps"
+  },
+  {
+    "sentence": "Assisted in uninstalling specific programs from the computer.",
+    "tag": "Uninstall Application",
+    "keywords": "uninstall, specific programs, assistance, remove software"
+  },
+  {
+    "sentence": "Cleared unused applications to free up system resources.",
+    "tag": "Uninstall Application",
+    "keywords": "clear applications, free resources, unused software"
+  },
+  {
+    "sentence": "Assisted with editing documents using Microsoft Office applications.",
+    "tag": "Office Application",
+    "keywords": "Office, document editing, Microsoft Word, Excel, support"
+  },
+  {
+    "sentence": "Provided support in modifying files within Word, Excel, or other Office programs.",
+    "tag": "Office Application",
+    "keywords": "modify files, Office programs, Word, Excel, support"
+  },
+  {
+    "sentence": "Enabled and guided the user in editing Office documents.",
+    "tag": "Office Application",
+    "keywords": "edit documents, Office, guide user, support"
+  },
+  {
+    "sentence": "Resolved issues preventing the editing of Microsoft Office files.",
+    "tag": "Office Application",
+    "keywords": "Office files, editing issues, resolve, Microsoft Word"
+  },
+  {
+    "sentence": "Supported file editing tasks in Office applications such as Word, Excel, and PowerPoint.",
+    "tag": "Office Application",
+    "keywords": "file editing, Office, Word, Excel, PowerPoint"
+  },
+  {
+    "sentence": "Utilized online file conversion tools to convert documents as needed.",
+    "tag": "Online Converters",
+    "keywords": "file conversion, online tools, convert documents"
+  },
+  {
+    "sentence": "Assisted with converting files using secure online converter platforms.",
+    "tag": "Online Converters",
+    "keywords": "convert files, online platforms, secure converter"
+  },
+  {
+    "sentence": "Used web-based converters to change file formats efficiently.",
+    "tag": "Online Converters",
+    "keywords": "file format, web converters, efficiency"
+  },
+  {
+    "sentence": "Converted documents to the required format using trusted online tools.",
+    "tag": "Online Converters",
+    "keywords": "convert documents, trusted tools, online file conversion"
+  },
+  {
+    "sentence": "Performed file format conversion through online services to meet user requirements.",
+    "tag": "Online Converters",
+    "keywords": "file conversion, online service, format change"
+  },
+  {
+    "sentence": "Assisted with renewing the user's software/service subscription.",
+    "tag": "Renew Subscription",
+    "keywords": "renewal, software subscription, service access, support"
+  },
+  {
+    "sentence": "Successfully completed the subscription renewal process.",
+    "tag": "Renew Subscription",
+    "keywords": "subscription, renewal process, success"
+  },
+  {
+    "sentence": "Renewed the active subscription to ensure continued service access.",
+    "tag": "Renew Subscription",
+    "keywords": "active subscription, renewal, service continuity"
+  },
+  {
+    "sentence": "Resolved issues and processed the renewal of the subscription.",
+    "tag": "Renew Subscription",
+    "keywords": "subscription renewal, issue resolution, process"
+  },
+  {
+    "sentence": "Supported the user in extending their subscription period.",
+    "tag": "Renew Subscription",
+    "keywords": "subscription extension, user support, renewal"
+  },
+  {
+    "sentence": "Assisted with creating a new user account.",
+    "tag": "Account Creation",
+    "keywords": "create account, new user, setup"
+  },
+  {
+    "sentence": "Successfully set up a new account for the user.",
+    "tag": "Account Creation",
+    "keywords": "account setup, new user, successful creation"
+  },
+  {
+    "sentence": "Created an account to enable access to the required service.",
+    "tag": "Account Creation",
+    "keywords": "account creation, service access, enable"
+  },
+  {
+    "sentence": "Completed account registration and initial setup.",
+    "tag": "Account Creation",
+    "keywords": "account registration, initial setup, complete"
+  },
+  {
+    "sentence": "Provided support in setting up a new account for the platform.",
+    "tag": "Account Creation",
+    "keywords": "new account, platform setup, support"
+  },
+  {
+    "sentence": "Assisted with resetting the user’s account password.",
+    "tag": "Password Reset",
+    "keywords": "password reset, user account, support"
+  },
+  {
+    "sentence": "Performed a password reset to restore account access.",
+    "tag": "Password Reset",
+    "keywords": "reset password, restore access, account"
+  },
+  {
+    "sentence": "Successfully reset and updated the user's password.",
+    "tag": "Password Reset",
+    "keywords": "password update, reset, success"
+  },
+  {
+    "sentence": "Resolved login issues by resetting the password.",
+    "tag": "Password Reset",
+    "keywords": "login issue, reset password, resolve"
+  },
+  {
+    "sentence": "Guided the user through the password reset process.",
+    "tag": "Password Reset",
+    "keywords": "password reset, guidance, user support"
+  },
+  {
+    "sentence": "Assisted with recovering a forgotten password.",
+    "tag": "Password Retrieve",
+    "keywords": "forgotten password, recover, support"
+  },
+  {
+    "sentence": "Supported the user in retrieving access credentials.",
+    "tag": "Password Retrieve",
+    "keywords": "access credentials, retrieve password, user support"
+  },
+  {
+    "sentence": "Guided the user through the password recovery process.",
+    "tag": "Password Retrieve",
+    "keywords": "password recovery, guide user, regain access"
+  },
+  {
+    "sentence": "Helped restore access by recovering the account password.",
+    "tag": "Password Retrieve",
+    "keywords": "restore access, recover password, support"
+  },
+  {
+    "sentence": "Recovered login credentials to regain access to the account.",
+    "tag": "Password Retrieve",
+    "keywords": "login credentials, recover, account access"
+  },
+  {
+    "sentence": "Assisted with setting up two-factor authentication (2FA) for enhanced account security.",
+    "tag": "2FA Authentication",
+    "keywords": "2FA, two-factor authentication, account security, setup"
+  },
+  {
+    "sentence": "Configured 2FA to add an extra layer of protection to the user’s account.",
+    "tag": "2FA Authentication",
+    "keywords": "2FA setup, protection, security layer"
+  },
+  {
+    "sentence": "Enabled two-factor authentication on the specified platform.",
+    "tag": "2FA Authentication",
+    "keywords": "two-factor authentication, enable, platform"
+  },
+  {
+    "sentence": "Successfully set up multi-factor authentication for secure access.",
+    "tag": "2FA Authentication",
+    "keywords": "multi-factor authentication, secure access, setup"
+  },
+  {
+    "sentence": "Implemented 2FA to strengthen account login security.",
+    "tag": "2FA Authentication",
+    "keywords": "2FA, login security, implement"
+  },
+  {
+    "sentence": "Resolved issues affecting functionality on an iPhone or iPad.",
+    "tag": "iPhone / iPad",
+    "keywords": "iPhone, iPad, functionality, resolve issue"
+  },
+  {
+    "sentence": "Troubleshot and fixed problems encountered on Apple mobile devices.",
+    "tag": "iPhone / iPad",
+    "keywords": "Apple devices, troubleshoot, fix, iPhone, iPad"
+  },
+  {
+    "sentence": "Addressed technical issues related to iPhone/iPad performance or settings.",
+    "tag": "iPhone / iPad",
+    "keywords": "iOS, performance, settings, technical issues"
+  },
+  {
+    "sentence": "Provided support for resolving software or connectivity issues on iOS devices.",
+    "tag": "iPhone / iPad",
+    "keywords": "iOS, software issue, connectivity, support"
+  },
+  {
+    "sentence": "Assisted with diagnosing and fixing problems on iPhone or iPad.",
+    "tag": "iPhone / iPad",
+    "keywords": "iPhone, iPad, diagnose, fix"
+  },
+  {
+    "sentence": "Resolved issues affecting functionality on mobile phones and tablets.",
+    "tag": "Android Phone / Tab",
+    "keywords": "mobile phone, tablet, functionality, resolve"
+  },
+  {
+    "sentence": "Troubleshot and fixed problems encountered on mobile and tablet devices.",
+    "tag": "Android Phone / Tab",
+    "keywords": "troubleshoot, fix, mobile, tablet"
+  },
+  {
+    "sentence": "Addressed technical issues related to smartphones and tablets.",
+    "tag": "Android Phone / Tab",
+    "keywords": "technical issue, smartphone, tablet, address"
+  },
+  {
+    "sentence": "Provided support for resolving software or connectivity problems on mobile and tablet devices.",
+    "tag": "Android Phone / Tab",
+    "keywords": "mobile, tablet, connectivity issue, support"
+  },
+  {
+    "sentence": "Assisted with diagnosing and resolving issues on mobile phones and tablets.",
+    "tag": "Android Phone / Tab",
+    "keywords": "diagnose, resolve, mobile phone, tablet"
   }
 ]
