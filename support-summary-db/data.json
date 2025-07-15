@@ -428,5 +428,155 @@
     "sentence": "Assisted in configuring and enabling the microphone to work correctly.",
     "tag": "Microphone Issue",
     "keywords": "microphone, configure, enable, work properly"
+  },
+  {
+    "sentence": "Recovered deleted or missing emails successfully.",
+    "tag": "Mail Recovery",
+    "keywords": "email recovery, deleted emails, restore, missing messages"
+  },
+  {
+    "sentence": "Restored lost or accidentally deleted emails.",
+    "tag": "Mail Recovery",
+    "keywords": "lost emails, deleted, restore, recovery"
+  },
+  {
+    "sentence": "Assisted in retrieving emails from the Deleted Items or Recoverable Items folder.",
+    "tag": "Mail Recovery",
+    "keywords": "retrieve emails, Deleted Items, Recoverable Items, assistance"
+  },
+  {
+    "sentence": "Recovered important emails through mailbox recovery tools.",
+    "tag": "Mail Recovery",
+    "keywords": "important emails, mailbox recovery, restore"
+  },
+  {
+    "sentence": "Performed email recovery and restored access to previously inaccessible messages.",
+    "tag": "Mail Recovery",
+    "keywords": "email recovery, restore access, inaccessible messages"
+  },
+  {
+    "sentence": "Resolved issues related to external storage device detection and usage.",
+    "tag": "External Storage",
+    "keywords": "external storage, detection, usage, issue resolution"
+  },
+  {
+    "sentence": "Identified and fixed problems affecting external storage device functionality.",
+    "tag": "External Storage",
+    "keywords": "external storage, functionality, identify, fix"
+  },
+  {
+    "sentence": "Troubleshot and restored access to external storage devices.",
+    "tag": "External Storage",
+    "keywords": "external storage, troubleshoot, restore access"
+  },
+  {
+    "sentence": "Addressed connectivity and recognition issues with external storage hardware.",
+    "tag": "External Storage",
+    "keywords": "external storage, connectivity, recognition, hardware"
+  },
+  {
+    "sentence": "Provided support to ensure proper operation of external storage devices.",
+    "tag": "External Storage",
+    "keywords": "external storage, support, operation, device"
+  },
+  {
+    "sentence": "Resolved issues related to touchpad functionality.",
+    "tag": "Touch Pad",
+    "keywords": "touchpad, functionality, issue resolved"
+  },
+  {
+    "sentence": "Identified and fixed problems preventing the touchpad from working properly.",
+    "tag": "Touch Pad",
+    "keywords": "touchpad, not working, identify, fix"
+  },
+  {
+    "sentence": "Troubleshot and restored full functionality of the touchpad.",
+    "tag": "Touch Pad",
+    "keywords": "touchpad, troubleshoot, restore, functionality"
+  },
+  {
+    "sentence": "Addressed sensitivity, responsiveness, or configuration issues with the touchpad.",
+    "tag": "Touch Pad",
+    "keywords": "touchpad, sensitivity, responsiveness, configuration"
+  },
+  {
+    "sentence": "Provided support to resolve touchpad-related input issues.",
+    "tag": "Touch Pad",
+    "keywords": "touchpad, support, input issues, resolve"
+  },
+  {
+    "sentence": "Resolved issues related to mouse and keyboard functionality.",
+    "tag": "Mouse and Keyboard",
+    "keywords": "mouse, keyboard, functionality, resolve"
+  },
+  {
+    "sentence": "Identified and fixed problems affecting the operation of the mouse and keyboard.",
+    "tag": "Mouse and Keyboard",
+    "keywords": "mouse, keyboard, operation, fix"
+  },
+  {
+    "sentence": "Troubleshot and restored proper functioning of both mouse and keyboard.",
+    "tag": "Mouse and Keyboard",
+    "keywords": "mouse, keyboard, troubleshoot, restore"
+  },
+  {
+    "sentence": "Addressed connectivity and responsiveness issues with the mouse and keyboard.",
+    "tag": "Mouse and Keyboard",
+    "keywords": "mouse, keyboard, connectivity, responsiveness"
+  },
+  {
+    "sentence": "Provided support to resolve hardware/input issues involving the mouse and keyboard.",
+    "tag": "Mouse and Keyboard",
+    "keywords": "mouse, keyboard, input issues, hardware support"
+  },
+  {
+    "sentence": "Resolved issues related to dual monitor setup and configuration.",
+    "tag": "Dual Monitor",
+    "keywords": "dual monitor, setup, configuration, resolve"
+  },
+  {
+    "sentence": "Identified and fixed problems affecting dual monitor functionality.",
+    "tag": "Dual Monitor",
+    "keywords": "dual monitor, functionality, identify, fix"
+  },
+  {
+    "sentence": "Troubleshot and restored proper display across dual monitors.",
+    "tag": "Dual Monitor",
+    "keywords": "dual monitor, troubleshoot, restore, display"
+  },
+  {
+    "sentence": "Addressed display and connectivity issues with the dual monitor setup.",
+    "tag": "Dual Monitor",
+    "keywords": "dual monitor, display issue, connectivity, setup"
+  },
+  {
+    "sentence": "Assisted in configuring and optimizing dual monitor display settings.",
+    "tag": "Dual Monitor",
+    "keywords": "dual monitor, configure, optimize, display settings"
+  },
+  {
+    "sentence": "Resolved issues preventing access to a specific website.",
+    "tag": "Blocked Website",
+    "keywords": "website access, blocked, resolve, connectivity"
+  },
+  {
+    "sentence": "Identified and fixed problems related to website accessibility.",
+    "tag": "Blocked Website",
+    "keywords": "website accessibility, fix, identify, access issues"
+  },
+  {
+    "sentence": "Troubleshot and restored access to the required website.",
+    "tag": "Blocked Website",
+    "keywords": "website, troubleshoot, restore access, issue resolved"
+  },
+  {
+    "sentence": "Addressed connectivity or configuration issues affecting access to a web page.",
+    "tag": "Blocked Website",
+    "keywords": "web page, connectivity, configuration, access issue"
+  },
+  {
+    "sentence": "Assisted in resolving browser or network issues that were blocking website access.",
+    "tag": "Blocked Website",
+    "keywords": "browser issue, network issue, website access, resolve"
   }
 ]
