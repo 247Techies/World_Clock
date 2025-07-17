@@ -70,7 +70,7 @@
     "keywords": "system slowness, performance, speed, optimize"
   },
   {
-    "sentence": "Troubleshot and optimized the device to resolve performance degradation.",
+    "sentence": "Troubleshoot and optimized the device to resolve performance degradation.",
     "tag": "Computer Performance Issue",
     "keywords": "troubleshoot, optimize, performance degradation, device"
   },
@@ -90,7 +90,7 @@
     "keywords": "browser, not working, internet, issue resolution"
   },
   {
-    "sentence": "Troubleshot and fixed problems affecting internet browser functionality.",
+    "sentence": "Troubleshoot and fixed problems affecting internet browser functionality.",
     "tag": "Browser Issue",
     "keywords": "browser, troubleshoot, fix, functionality issues"
   },
@@ -125,7 +125,7 @@
     "keywords": "printer, functionality, connectivity, restore"
   },
   {
-    "sentence": "Troubleshot and fixed the printer connection issue.",
+    "sentence": "Troubleshoot and fixed the printer connection issue.",
     "tag": "Printer Issue",
     "keywords": "printer, troubleshoot, connection issue, fix"
   },
@@ -155,7 +155,7 @@
     "keywords": "Outlook, mail routing, inbox delivery, issue resolved"
   },
   {
-    "sentence": "Troubleshot and corrected the issue causing emails to bypass the correct inbox in Outlook.",
+    "sentence": "Troubleshoot and corrected the issue causing emails to bypass the correct inbox in Outlook.",
     "tag": "Outlook Issue",
     "keywords": "Outlook, troubleshoot, inbox bypass, correct delivery"
   },
@@ -195,7 +195,7 @@
     "keywords": "ZIP file, email, extract, print documents"
   },
   {
-    "sentence": "Troubleshot and resolved issues preventing documents in a ZIP email attachment from being printed.",
+    "sentence": "Troubleshoot and resolved issues preventing documents in a ZIP email attachment from being printed.",
     "tag": "Other Issues",
     "keywords": "ZIP attachment, print issue, troubleshoot, email"
   },
@@ -220,7 +220,7 @@
     "keywords": "printer, restore connectivity, print email"
   },
   {
-    "sentence": "Troubleshot and resolved the printer connection issue, followed by printing the required email.",
+    "sentence": "Troubleshoot and resolved the printer connection issue, followed by printing the required email.",
     "tag": "Other Issues",
     "keywords": "printer connection, troubleshoot, print email"
   },
@@ -255,7 +255,7 @@
     "keywords": "recover, missing files, folders, system"
   },
   {
-    "sentence": "Troubleshot and restored user access to previously missing documents or folders.",
+    "sentence": "Troubleshoot and restored user access to previously missing documents or folders.",
     "tag": "Other Issues",
     "keywords": "troubleshoot, restore access, missing files, folders"
   },
@@ -280,7 +280,7 @@
     "keywords": "web camera, not working, identify, fix"
   },
   {
-    "sentence": "Troubleshot and restored functionality of the web camera.",
+    "sentence": "Troubleshoot and restored functionality of the web camera.",
     "tag": "Camera Issue",
     "keywords": "web camera, troubleshoot, restore, functionality"
   },
@@ -305,7 +305,7 @@
     "keywords": "scanner, not working, identify, fix"
   },
   {
-    "sentence": "Troubleshot and restored scanner functionality.",
+    "sentence": "Troubleshoot and restored scanner functionality.",
     "tag": "Scanner Issue",
     "keywords": "scanner, troubleshoot, restore, functionality"
   },
@@ -330,7 +330,7 @@
     "keywords": "Outlook, functionality, accessibility, identify, fix"
   },
   {
-    "sentence": "Troubleshot and resolved issues hindering the use of Microsoft Outlook.",
+    "sentence": "Troubleshoot and resolved issues hindering the use of Microsoft Outlook.",
     "tag": "Microsoft Outlook",
     "keywords": "Outlook, troubleshoot, usage issue, resolve"
   },
@@ -365,7 +365,7 @@
     "keywords": "enhance security, performance optimization, virus removal"
   },
   {
-    "sentence": "Troubleshot and resolved security concerns, optimized the system, and completed a virus scan and removal.",
+    "sentence": "Troubleshoot and resolved security concerns, optimized the system, and completed a virus scan and removal.",
     "tag": "Security and Optimization",
     "keywords": "security concerns, troubleshoot, optimize system, virus scan"
   },
@@ -395,7 +395,7 @@
     "keywords": "Microsoft 365 Personal, activation problems, resolve, address"
   },
   {
-    "sentence": "Troubleshot and resolved activation issues for Microsoft 365 Personal.",
+    "sentence": "Troubleshoot and resolved activation issues for Microsoft 365 Personal.",
     "tag": "Office Activation",
     "keywords": "activation issues, Microsoft 365 Personal, troubleshoot, resolve"
   },
@@ -415,7 +415,7 @@
     "keywords": "microphone setup, usage, identify, fix"
   },
   {
-    "sentence": "Troubleshot and restored microphone functionality.",
+    "sentence": "Troubleshoot and restored microphone functionality.",
     "tag": "Microphone Issue",
     "keywords": "microphone, troubleshoot, restore, functionality"
   },
@@ -465,7 +465,7 @@
     "keywords": "external storage, functionality, identify, fix"
   },
   {
-    "sentence": "Troubleshot and restored access to external storage devices.",
+    "sentence": "Troubleshoot and restored access to external storage devices.",
     "tag": "External Storage",
     "keywords": "external storage, troubleshoot, restore access"
   },
@@ -490,7 +490,7 @@
     "keywords": "touchpad, not working, identify, fix"
   },
   {
-    "sentence": "Troubleshot and restored full functionality of the touchpad.",
+    "sentence": "Troubleshoot and restored full functionality of the touchpad.",
     "tag": "Touch Pad",
     "keywords": "touchpad, troubleshoot, restore, functionality"
   },
@@ -515,7 +515,7 @@
     "keywords": "mouse, keyboard, operation, fix"
   },
   {
-    "sentence": "Troubleshot and restored proper functioning of both mouse and keyboard.",
+    "sentence": "Troubleshoot and restored proper functioning of both mouse and keyboard.",
     "tag": "Mouse and Keyboard",
     "keywords": "mouse, keyboard, troubleshoot, restore"
   },
@@ -540,7 +540,7 @@
     "keywords": "dual monitor, functionality, identify, fix"
   },
   {
-    "sentence": "Troubleshot and restored proper display across dual monitors.",
+    "sentence": "Troubleshoot and restored proper display across dual monitors.",
     "tag": "Dual Monitor",
     "keywords": "dual monitor, troubleshoot, restore, display"
   },
@@ -565,7 +565,7 @@
     "keywords": "website accessibility, fix, identify, access issues"
   },
   {
-    "sentence": "Troubleshot and restored access to the required website.",
+    "sentence": "Troubleshoot and restored access to the required website.",
     "tag": "Blocked Website",
     "keywords": "website, troubleshoot, restore access, issue resolved"
   },
@@ -790,7 +790,7 @@
     "keywords": "iPhone, iPad, functionality, resolve issue"
   },
   {
-    "sentence": "Troubleshot and fixed problems encountered on Apple mobile devices.",
+    "sentence": "Troubleshoot and fixed problems encountered on Apple mobile devices.",
     "tag": "iPhone / iPad",
     "keywords": "Apple devices, troubleshoot, fix, iPhone, iPad"
   },
@@ -815,7 +815,7 @@
     "keywords": "mobile phone, tablet, functionality, resolve"
   },
   {
-    "sentence": "Troubleshot and fixed problems encountered on mobile and tablet devices.",
+    "sentence": "Troubleshoot and fixed problems encountered on mobile and tablet devices.",
     "tag": "Android Phone / Tab",
     "keywords": "troubleshoot, fix, mobile, tablet"
   },
@@ -945,7 +945,7 @@
     "keywords": "desktop icons, unresponsive, fix, identify"
   },
   {
-    "sentence": "Troubleshot and restored functionality of desktop icons.",
+    "sentence": "Troubleshoot and restored functionality of desktop icons.",
     "tag": "Desktop Icon",
     "keywords": "desktop icons, troubleshoot, restore functionality"
   },
@@ -980,9 +980,9 @@
     "keywords": "preview pane, system settings, file explorer, issue"
   },
   {
-    "sentence": "Troubleshot and resolved issues related to the non-functional preview pane in Windows Explorer.",
+    "sentence": "Troubleshoot and resolved issues related to the non-functional preview pane in Windows Explorer.",
     "tag": "File Explorer",
-    "keywords": "preview pane, troubleshot, non-functional, windows explorer"
+    "keywords": "preview pane, Troubleshoot, non-functional, windows explorer"
   },
   {
     "sentence": "Recovered deleted or missing emails successfully and completed the print task.",
