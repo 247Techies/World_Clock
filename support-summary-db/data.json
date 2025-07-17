@@ -1033,5 +1033,80 @@
     "sentence": "Retrieved and printed specific emails based on user requirements.",
     "tag": "Search Email",
     "keywords": "retrieved emails, printed, user requirements, specific"
+  },
+  {
+    "sentence": "Resolved issues related to outdated or malfunctioning device drivers.",
+    "tag": "Device Drivers",
+    "keywords": "outdated drivers, malfunctioning drivers, device drivers, issues"
+  },
+  {
+    "sentence": "Identified and fixed problems caused by incompatible or missing drivers.",
+    "tag": "Device Drivers",
+    "keywords": "incompatible drivers, missing drivers, fixed, device issues"
+  },
+  {
+    "sentence": "Troubleshoot and updated device drivers to restore hardware functionality.",
+    "tag": "Device Drivers",
+    "keywords": "troubleshoot, updated drivers, restore, hardware functionality"
+  },
+  {
+    "sentence": "Addressed driver-related errors and ensured proper device operation.",
+    "tag": "Device Drivers",
+    "keywords": "driver errors, device operation, addressed issues"
+  },
+  {
+    "sentence": "Provided support in reinstalling or updating device drivers for optimal performance.",
+    "tag": "Device Drivers",
+    "keywords": "reinstalling drivers, updating drivers, support, optimal performance"
+  },
+  {
+    "sentence": "Resolved issues related to OneDrive synchronization and accessibility.",
+    "tag": "One Drive",
+    "keywords": "OneDrive sync, accessibility, resolved issues"
+  },
+  {
+    "sentence": "Identified and fixed problems affecting OneDrive functionality.",
+    "tag": "One Drive",
+    "keywords": "OneDrive issues, fixed, functionality"
+  },
+  {
+    "sentence": "Troubleshoot and restored proper operation of OneDrive.",
+    "tag": "One Drive",
+    "keywords": "troubleshoot, OneDrive, restored, operation"
+  },
+  {
+    "sentence": "Addressed OneDrive errors and ensured files were syncing correctly.",
+    "tag": "One Drive",
+    "keywords": "OneDrive errors, syncing, addressed"
+  },
+  {
+    "sentence": "Provided support to resolve issues with OneDrive account or file access.",
+    "tag": "One Drive",
+    "keywords": "OneDrive support, file access, account, resolve"
+  },
+  {
+    "sentence": "Resolved issues affecting the backup and restore process.",
+    "tag": "Backup & Restore",
+    "keywords": "backup issues, restore process, resolved"
+  },
+  {
+    "sentence": "Identified and fixed problems with data backup and restoration.",
+    "tag": "Backup & Restore",
+    "keywords": "data backup, restoration, fixed"
+  },
+  {
+    "sentence": "Troubleshoot and successfully resolved backup and restore failures.",
+    "tag": "Backup & Restore",
+    "keywords": "troubleshoot, backup failures, restore, resolved"
+  },
+  {
+    "sentence": "Addressed errors encountered during the backup and recovery process.",
+    "tag": "Backup & Restore",
+    "keywords": "errors, backup process, recovery, addressed"
+  },
+  {
+    "sentence": "Restored normal functionality of system/data backup and recovery operations.",
+    "tag": "Backup & Restore",
+    "keywords": "system backup, data recovery, restored, functionality"
   }
 ]
