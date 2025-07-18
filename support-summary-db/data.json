@@ -1108,5 +1108,155 @@
     "sentence": "Restored normal functionality of system/data backup and recovery operations.",
     "tag": "Backup & Restore",
     "keywords": "system backup, data recovery, restored, functionality"
+  },
+  {
+    "sentence": "Resolved issues related to unwanted or excessive desktop notifications.",
+    "tag": "notification issue",
+    "keywords": "unwanted notifications, excessive alerts, desktop notifications"
+  },
+  {
+    "sentence": "Identified and disabled sources of unwanted notifications.",
+    "tag": "notification issue",
+    "keywords": "disabled notifications, unwanted alerts, sources"
+  },
+  {
+    "sentence": "Troubleshot and blocked unnecessary or intrusive system alerts.",
+    "tag": "notification issue",
+    "keywords": "troubleshot alerts, intrusive notifications, blocked"
+  },
+  {
+    "sentence": "Configured notification settings to prevent unwanted pop-ups.",
+    "tag": "notification issue",
+    "keywords": "configured settings, prevent pop-ups, notifications"
+  },
+  {
+    "sentence": "Assisted in managing and turning off unwanted application or browser notifications.",
+    "tag": "notification issue",
+    "keywords": "managing notifications, browser alerts, turned off"
+  },
+  {
+    "sentence": "Resolved issues related to desktop notifications not appearing or functioning correctly.",
+    "tag": "notification issue",
+    "keywords": "notifications not appearing, functioning issues, resolved"
+  },
+  {
+    "sentence": "Identified and fixed problems affecting system notification behavior.",
+    "tag": "notification issue",
+    "keywords": "notification behavior, system alerts, fixed"
+  },
+  {
+    "sentence": "Troubleshot and restored proper functionality of desktop notifications.",
+    "tag": "notification issue",
+    "keywords": "restored notifications, desktop alerts, troubleshot"
+  },
+  {
+    "sentence": "Addressed issues with missing or delayed desktop alerts and notifications.",
+    "tag": "notification issue",
+    "keywords": "missing alerts, delayed notifications, desktop"
+  },
+  {
+    "sentence": "Provided support to configure and enable desktop notification settings.",
+    "tag": "notification issue",
+    "keywords": "support, configure notifications, enable"
+  },
+  {
+    "sentence": "Resolved issues related to the functioning of the antivirus guard.",
+    "tag": "Anti Virus Guard Issue",
+    "keywords": "antivirus guard, functioning, resolved"
+  },
+  {
+    "sentence": "Identified and fixed problems affecting antivirus protection.",
+    "tag": "Anti Virus Guard Issue",
+    "keywords": "fixed problems, antivirus protection, identified"
+  },
+  {
+    "sentence": "Troubleshot and restored proper operation of the antivirus guard.",
+    "tag": "Anti Virus Guard Issue",
+    "keywords": "restored operation, antivirus guard, troubleshot"
+  },
+  {
+    "sentence": "Addressed errors or malfunctions in the antivirus software's real-time protection.",
+    "tag": "Anti Virus Guard Issue",
+    "keywords": "errors, malfunctions, real-time protection"
+  },
+  {
+    "sentence": "Provided support to resolve issues with antivirus guard settings and performance.",
+    "tag": "Anti Virus Guard Issue",
+    "keywords": "antivirus settings, performance, support"
+  },
+  {
+    "sentence": "Resolved issues related to VPN connectivity and functionality.",
+    "tag": "VPN Issue",
+    "keywords": "VPN connectivity, functionality, resolved"
+  },
+  {
+    "sentence": "Identified and fixed problems affecting VPN access.",
+    "tag": "VPN Issue",
+    "keywords": "VPN access, fixed problems, identified"
+  },
+  {
+    "sentence": "Troubleshot and restored proper operation of the VPN connection.",
+    "tag": "VPN Issue",
+    "keywords": "VPN connection, restored, troubleshot"
+  },
+  {
+    "sentence": "Addressed configuration or connection issues with the VPN service.",
+    "tag": "VPN Issue",
+    "keywords": "VPN service, configuration, connection issues"
+  },
+  {
+    "sentence": "Provided support to resolve errors encountered while using the VPN.",
+    "tag": "VPN Issue",
+    "keywords": "support, VPN errors, resolved"
+  },
+  {
+    "sentence": "Provided assistance with adding a new email account to the iPhone.",
+    "tag": "Configure Mail to Phone",
+    "keywords": "email account, iPhone, assistance"
+  },
+  {
+    "sentence": "Assisted in configuring a new email address on the user's iPhone.",
+    "tag": "Configure Mail to Phone",
+    "keywords": "configure email, iPhone, assisted"
+  },
+  {
+    "sentence": "Supported the user in setting up a new email account on their iOS device.",
+    "tag": "Configure Mail to Phone",
+    "keywords": "setting up, iOS email, supported"
+  },
+  {
+    "sentence": "Guided the setup process to add a new email account to the iPhone.",
+    "tag": "Configure Mail to Phone",
+    "keywords": "setup process, email, iPhone"
+  },
+  {
+    "sentence": "Successfully configured and added the new email to the iPhone Mail app.",
+    "tag": "Configure Mail to Phone",
+    "keywords": "configured email, iPhone Mail, added"
+  },
+  {
+    "sentence": "Provided assistance with copying music files to a portable MP3 player.",
+    "tag": "Portable Media Player",
+    "keywords": "copy music, MP3 player, assistance"
+  },
+  {
+    "sentence": "Assisted the user in transferring audio files to an MP3 device.",
+    "tag": "Portable Media Player",
+    "keywords": "transferring audio, MP3, assisted"
+  },
+  {
+    "sentence": "Supported the process of moving music files onto a portable music player.",
+    "tag": "Portable Media Player",
+    "keywords": "moving files, portable player, supported"
+  },
+  {
+    "sentence": "Guided the user through copying media files to an external MP3 player.",
+    "tag": "Portable Media Player",
+    "keywords": "copying media, external MP3, guided"
+  },
+  {
+    "sentence": "Helped with transferring songs to a portable MP3 device for playback.",
+    "tag": "Portable Media Player",
+    "keywords": "transferring songs, MP3, playback"
   }
 ]
