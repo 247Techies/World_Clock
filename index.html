@@ -408,6 +408,17 @@
     <!-- Bootstrap 5 JavaScript Bundle (includes Popper.js for tooltips) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
+    <!-- ====================================================== -->
+    <!--      Activate all Bootstrap Tooltips on the Page     -->
+    <!-- ====================================================== -->
+    <script>
+        // Find all elements with the 'data-bs-toggle="tooltip"' attribute
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+        
+        // Create a new tooltip instance for each of them
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+    </script>
+
 <script>
     // --- Global variables and utility functions ---
     let clocksData = [ { id: "usa", label: "USA", tz: "America/New_York", workStart: "10:30", workEnd: "24:30", flag: "https://flagcdn.com/us.svg", additionalTimezones: [ { name: "Eastern", iana: "America/New_York" }, { name: "Central", iana: "America/Chicago" }, { name: "Mountain", iana: "America/Denver" }, { name: "Pacific", iana: "America/Los_Angeles" } ] }, { id: "canada", label: "Canada", tz: "America/Toronto", workStart: "10:30", workEnd: "24:30", flag: "https://flagcdn.com/ca.svg", additionalTimezones: [ { name: "Atlantic", iana: "America/Halifax" }, { name: "Eastern", iana: "America/Toronto" }, { name: "Central", iana: "America/Winnipeg" }, { name: "Mountain", iana: "America/Edmonton" }, { name: "Pacific", iana: "America/Vancouver" } ] }, { id: "uk", label: "UK", tz: "Europe/London", workStart: "11:30", workEnd: "19:30", flag: "https://flagcdn.com/gb.svg" }, { id: "aus", label: "Australia", tz: "Australia/Sydney", workStart: "09:30", workEnd: "19:30", flag: "https://flagcdn.com/au.svg", additionalTimezones: [ { name: "Sydney (AEST/AEDT)", iana: "Australia/Sydney" }, { name: "Adelaide (ACST/ACDT)", iana: "Australia/Adelaide" },  { name: "Perth (AWST)", iana: "Australia/Perth" } ] }, ];
