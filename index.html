@@ -250,47 +250,42 @@
     }
 
     /* This is the main container that holds and positions the stack of icons */
-    .fixed-icon-stack {
-        position: fixed;
-        bottom: 25px;
-        right: 25px;
-        z-index: 9999;
-        
-        /* ---- New styles for stacking ---- */
-        display: flex;
-        flex-direction: column; /* Arrange icons vertically */
-        gap: 15px;              /* This creates a 15px space BETWEEN the icons */
-    }
+        .fixed-icon-stack {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column; /* Arrange icons vertically */
+            gap: 15px;              /* This creates a 15px space BETWEEN the icons */
+        }
 
-    /* This style is REUSED for BOTH circular icon buttons */
-    .fixed-icon-circle {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        background-color: #ffffff;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-        
-        /* Smooth transition for the hover effect */
-        transition: all 0.2s ease-in-out;
-    }
+        /* This style is REUSED for ALL circular icon buttons */
+        .fixed-icon-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            transition: all 0.2s ease-in-out;
+        }
 
-    /* The animated GIF image inside each button */
-    .icon-image {
-        width: 80%;  /* Was 100% */
-        height: 80%; /* Was 100% */
-        object-fit: cover;
-    }
+        /* The animated GIF image inside each button */
+        .icon-image {
+            width: 60%;
+            height: 60%;
+            object-fit: cover;
+        }
 
-    /* The hover effect is applied to BOTH icons */
-    .fixed-icon-circle:hover {
-        transform: scale(1.1);
-        box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-    }
+        /* The hover effect is applied to ALL icons */
+        .fixed-icon-circle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
 
     /* SweetAlert2 Mobile Centering */
     @media (max-width: 767px) {
