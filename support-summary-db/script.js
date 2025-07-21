@@ -4,10 +4,20 @@ $(document).ready(function() {
     const $resultsContainer = $('#results-container');
     const $searchBox = $('#search-box');
     const $clearBtn = $('#clear-search-btn');
+    const $stickySection = $('.sticky-top-section');
 
     // Fetch data from the JSON file
     $.getJSON('data.json', function(data) {
         sentencesData = data;
+    });
+
+    // Add shadow to sticky header on scroll
+    $(window).on('scroll', function() {
+        if ($(window).scrollTop() > 10) {
+            $stickySection.addClass('is-scrolled');
+        } else {
+            $stickySection.removeClass('is-scrolled');
+        }
     });
     
     // Live search functionality

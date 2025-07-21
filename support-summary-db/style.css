@@ -3,7 +3,7 @@
     --card-bg-color: #ffffff;
     --primary-text-color: #2d3748;
     --secondary-text-color: #718096;
-    --accent-color: #ff6f00;
+    --accent-color: #ff6f00; /* Updated accent color */
     --border-color: #e2e8f0;
 }
 
@@ -14,7 +14,6 @@ body {
     margin: 0;
     display: flex;
     justify-content: center;
-    padding-top: 5vh;
     min-height: 100vh;
 }
 
@@ -25,6 +24,22 @@ body {
     text-align: center;
 }
 
+/* --- Sticky Header Section --- */
+.sticky-top-section {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: var(--bg-color);
+    padding-top: 5vh;
+    padding-bottom: 20px;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.sticky-top-section.is-scrolled {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* --- Header Content --- */
 header {
     margin-bottom: 40px;
 }
@@ -42,7 +57,7 @@ header {
 }
 
 h1 {
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     font-weight: 600;
     margin: 0;
 }
@@ -53,6 +68,7 @@ h1 {
     margin-top: 5px;
 }
 
+/* --- Search Bar --- */
 .search-wrapper {
     margin-bottom: 40px;
     position: relative;
@@ -78,7 +94,7 @@ h1 {
 .search-input:focus {
     outline: none;
     border-color: var(--accent-color);
-    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+    box-shadow: 0 0 0 3px rgba(255, 111, 0, 0.2); /* Adjusted focus color */
 }
 
 .clear-search-btn {
@@ -97,6 +113,7 @@ h1 {
     color: var(--primary-text-color);
 }
 
+/* --- Initial Prompt --- */
 #initial-prompt {
     color: var(--secondary-text-color);
     padding: 50px 0;
@@ -107,6 +124,7 @@ h1 {
     margin-bottom: 15px;
 }
 
+/* --- Result Cards --- */
 #results-container {
     text-align: left;
 }
@@ -140,8 +158,8 @@ h1 {
     display: inline-block;
     font-size: 0.85rem;
     font-weight: 600;
-    color: var(--card-bg-color);
-    background-color: #ff6f00;
+    color: var(--accent-color);
+    background-color: #fff3e0; /* Background color matching the new accent */
     padding: 5px 12px;
     border-radius: 20px;
     margin: 0;
@@ -169,6 +187,7 @@ h1 {
     color: var(--accent-color);
 }
 
+/* --- SweetAlert Customization --- */
 .swal2-title {
     font-weight: 600 !important;
 }

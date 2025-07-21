@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Sentence Finder</title>
+    <title>Support Summary Report Guide</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome (More Reliable CDN) -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Libraries -->
@@ -22,26 +22,29 @@
 <body>
 
     <div class="main-container">
-        <header>
-            <div class="header-content">
-                <a href="https://247techies.github.io/World_Clock/" rel="noopener noreferrer">
-                    <img src="247-logo.png" alt="247 Logo" class="header-logo">
-                </a>
-                <h1>Support Summary Report Guide</h1>
+
+        <!-- This wrapper makes the header and search bar sticky -->
+        <div class="sticky-top-section">
+            <header>
+                <div class="header-content">
+                    <a href="https://247techies.github.io/World_Clock/" target="_blank" rel="noopener noreferrer">
+                        <img src="247-logo.png" alt="247 Logo" class="header-logo">
+                    </a>
+                    <h1>Support Summary Report Guide</h1>
+                </div>
+                <p class="subtitle">Quickly find and copy standardized sentences for your support summary reports.</p>
+            </header>
+
+            <div class="search-wrapper">
+                <input type="text" id="search-box" class="search-input" placeholder="Search by keyword or tag...">
+                <button id="clear-search-btn" class="clear-search-btn" title="Clear search">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
             </div>
-            <p class="subtitle">Quickly find and copy standardized sentences for your support summary reports.</p>
-        </header>
+        </div> <!-- End of sticky wrapper -->
 
-        <div class="search-wrapper">
-            <input type="text" id="search-box" class="search-input" placeholder="Search by keyword or tag...">
-            <!-- "X" button to clear the search -->
-            <button id="clear-search-btn" class="clear-search-btn" title="Clear search">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-        </div>
-
+        <!-- The initial prompt and results appear below the sticky section -->
         <div id="initial-prompt">
-            <!-- Updated Icon -->
             <i class="fa-solid fa-file-invoice"></i>
             <p>Start typing above to find a sentence.</p>
         </div>
