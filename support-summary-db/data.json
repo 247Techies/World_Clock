@@ -1258,5 +1258,80 @@
     "sentence": "Helped with transferring songs to a portable MP3 device for playback.",
     "tag": "Portable Media Player",
     "keywords": "transferring songs, MP3, playback"
+  },
+  {
+    "sentence": "Set the preferred web browser as the system default.",
+    "tag": "Default Browser",
+    "keywords": "preferred browser, system default, set"
+  },
+  {
+    "sentence": "Configured the default browser to ensure consistent web access.",
+    "tag": "Default Browser",
+    "keywords": "configured browser, default, web access"
+  },
+  {
+    "sentence": "Assisted in setting [browser name] as the default internet browser.",
+    "tag": "Default Browser",
+    "keywords": "setting browser, default internet, assisted"
+  },
+  {
+    "sentence": "Updated system settings to change the default web browser.",
+    "tag": "Default Browser",
+    "keywords": "updated settings, change browser, default"
+  },
+  {
+    "sentence": "Successfully set the default browser according to user preference.",
+    "tag": "Default Browser",
+    "keywords": "default browser, user preference, successfully"
+  },
+  {
+    "sentence": "Resolved issues related to setting or changing the default web browser.",
+    "tag": "Default Browser",
+    "keywords": "resolved issues, default browser, setting"
+  },
+  {
+    "sentence": "Identified and fixed problems affecting the system’s default browser configuration.",
+    "tag": "Default Browser",
+    "keywords": "browser configuration, fixed problems, identified"
+  },
+  {
+    "sentence": "Troubleshot and restored proper functionality of the default browser setting.",
+    "tag": "Default Browser",
+    "keywords": "troubleshot, default browser, restored"
+  },
+  {
+    "sentence": "Addressed issues preventing the preferred browser from being set as default.",
+    "tag": "Default Browser",
+    "keywords": "preventing default, preferred browser, issues"
+  },
+  {
+    "sentence": "Provided support to, resolve conflicts with default browser selection.",
+    "tag": "Default Browser",
+    "keywords": "support, browser conflicts, resolve"
+  },
+  {
+    "sentence": "Resolved issues related to setting or maintaining the default printer.",
+    "tag": "Default Printer",
+    "keywords": "default printer, setting issues, maintenance"
+  },
+  {
+    "sentence": "Identified and fixed problems affecting the default printer configuration.",
+    "tag": "Default Printer",
+    "keywords": "printer configuration, fixed problems, identified"
+  },
+  {
+    "sentence": "Troubleshot and restored proper default printer settings.",
+    "tag": "Default Printer",
+    "keywords": "troubleshot, default printer, restored settings"
+  },
+  {
+    "sentence": "Addressed system errors preventing the selection of a default printer.",
+    "tag": "Default Printer",
+    "keywords": "system errors, default printer, selection issues"
+  },
+  {
+    "sentence": "Provided support in configuring and managing the default printer setting.",
+    "tag": "Default Printer",
+    "keywords": "support, configure printer, manage default"
   }
 ]
