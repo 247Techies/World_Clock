@@ -1,150 +1,132 @@
-/* General Styling */
+/* General Body Styling */
 body {
     background-color: #f0f2f5;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.main-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 3rem 1.5rem;
-    margin-bottom: 2rem;
-    border-radius: .5rem;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+.lookup-header {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-top: 3rem;
 }
 
-#results-container {
-    display: none;
-}
-
-/* 3D Flip Card Styles */
-.flip-card {
+/* Card Flip Container - This creates the 3D space */
+.flip-card-container {
     background-color: transparent;
     width: 100%;
-    min-height: 420px; /* Use min-height to allow growth */
-    perspective: 1500px;
-    flex-grow: 1;
+    height: 380px; /* Fixed height for all cards */
+    perspective: 1000px; /* This gives the 3D depth */
+    margin-bottom: 1rem;
 }
 
+/* The inner element that actually flips */
 .flip-card-inner {
     position: relative;
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    transition: transform 0.8s;
     transform-style: preserve-3d;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
 }
 
-.flip-card.flipped .flip-card-inner {
+/* Flip the inner element when the container has the .flipped class */
+.flip-card-container.flipped .flip-card-inner {
     transform: rotateY(180deg);
 }
 
+/* Card faces - front and back */
 .flip-card-front,
 .flip-card-back {
     position: absolute;
     width: 100%;
     height: 100%;
-    -webkit-backface-visibility: hidden; /* This hides the back of a flipped element */
+    -webkit-backface-visibility: hidden; /* For Safari */
     backface-visibility: hidden;
     display: flex;
     flex-direction: column;
-    border-radius: .75rem !important;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    transform-style: preserve-3d; /* Allows children to have 3D transforms */
-}
-
-/* Card Content Wrapper for 3D depth */
-.card-content-wrapper {
-    transform: translateZ(40px);
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-}
-
-.flip-card-front .card-content-wrapper {
-    justify-content: space-between; /* Pushes button to bottom */
-}
-
-.flip-card-back .card-content-wrapper {
     justify-content: center;
     align-items: center;
+    padding: 20px;
+    border-radius: 0.5rem;
 }
 
-/* Front Face Styling */
+/* Styling for the front face */
 .flip-card-front {
     background-color: #ffffff;
     color: black;
-    z-index: 2; /* Ensures front is on top initially */
 }
 
-.flip-card-front .card-body {
-    display: flex;
-    flex-direction: column;
-    padding: 1.25rem;
-    flex-grow: 1; /* Makes body expand to push button down */
+.card-logo {
+    max-width: 60px;
+    margin-bottom: 1rem;
 }
 
-.card-provider-icon {
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
-    margin-left: auto;
-    margin-right: auto;
-    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.2));
-}
-
-.card-details {
-    list-style-type: none;
-    padding-left: 0;
-    font-size: 0.9rem;
+.settings-list {
+    list-style: none;
+    padding: 0;
     text-align: left;
-    margin-top: 1rem;
+    font-size: 0.9rem;
+    width: 100%;
 }
 
-.card-details li {
-    padding: 8px 0;
-    border-bottom: 1px solid #eee;
+.settings-list li {
+    padding: 0.4rem 0;
+    border-bottom: 1px solid #e9ecef;
 }
 
-.card-details li:last-child {
+.settings-list li:last-child {
     border-bottom: none;
 }
 
-.card-details li strong {
-    color: #555;
+.settings-list strong {
+    color: #343a40;
+    display: inline-block;
+    width: 90px; /* Align keys */
 }
 
-/* Back Face Styling */
+/* Styling for the back face */
 .flip-card-back {
-    background: linear-gradient(135deg, #434343 0%, #000000 100%);
+    background-color: #007bff;
     color: white;
     transform: rotateY(180deg);
-    cursor: pointer; /* Indicates the back is clickable */
+    cursor: pointer;
 }
 
-.webmail-link i {
-    font-size: 5rem;
-    color: #ffffff;
+.webmail-icon {
+    font-size: 6rem; /* Bigger icon */
     transition: transform 0.3s ease;
-    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.4));
-    text-shadow: 0 0 20px rgba(128, 0, 255, 0.5);
 }
 
-.webmail-link:hover i {
-    transform: scale(1.1) rotate(-5deg);
-    color: #9d78ec;
+.flip-card-back:hover .webmail-icon {
+    transform: scale(1.1);
 }
 
-/* Flip Button Styling */
-.flip-button {
-    width: calc(100% - 2.5rem);
-    margin: 0 1.25rem 1.25rem 1.25rem !important;
-    transition: transform 0.2s ease;
-    flex-shrink: 0;
+.webmail-text {
+    margin-top: 1rem;
+    font-weight: bold;
+    font-size: 1.2rem;
 }
 
-.flip-button:hover {
-    transform: translateY(-3px);
+/* Button below the card */
+.flip-btn {
+    width: 100%;
+}
+
+/* To hide the results initially */
+#results-container.d-none {
+    display: none !important;
+}
+
+/* Class to handle disabled/unavailable protocols */
+.protocol-disabled .flip-card-front {
+    background-color: #f8f9fa;
+    opacity: 0.7;
+}
+
+.protocol-disabled .flip-card-front .settings-list {
+    display: none;
 }
