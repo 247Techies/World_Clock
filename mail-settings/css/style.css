@@ -13,54 +13,60 @@ body {
 }
 
 
-/* --- THE DEFINITIVE FIX FOR EQUAL HEIGHTS --- */
+/* --- THE DEFINITIVE FIX USING CSS GRID --- */
 
-/* The main container that holds the 3D space */
+/* The card's direct wrapper. This is a flex container that will stretch */
+.card-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Fill the height of the stretched Bootstrap column */
+}
+
+/* The container that holds the 3D space and the two faces */
 .flip-card-container {
+    /* 
+      THE KEY FIX: Use CSS Grid.
+      Grid containers are sized by their content, even when children overlap.
+      This completely solves the height-collapse issue caused by position:absolute.
+    */
+    display: grid;
     perspective: 1000px;
     transform-style: preserve-3d;
-    position: relative;
-    width: 100%;
-    /* 
-      THIS IS THE MOST IMPORTANT FIX: 
-      As a flex item inside .card-wrapper, this tells the container 
-      to grow and take up all available vertical space. This gives it a height.
-    */
-    flex-grow: 1;
+    /* Let this container grow to fill the space in the card-wrapper */
+    flex-grow: 1; 
 }
 
 /* The card faces (front and back) */
 .flip-card-front,
 .flip-card-back {
-    /* 
-      We MUST have height: 100% here. 
-      This makes the faces fill the now non-zero height of .flip-card-container.
+    /*
+      Place both the front and back face into the same grid cell (the first one).
+      This replaces the need for position:absolute to stack them.
     */
+    grid-area: 1 / 1 / 1 / 1;
+    
+    /* These properties are for the 3D flip effect itself */
     width: 100%;
     height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
     backface-visibility: hidden;
     transform-style: preserve-3d;
     transition: transform 0.7s cubic-bezier(.4, .2, .2, 1);
+    
+    /* General card styling */
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     border-radius: 0.5rem;
-    /* The face itself is a flex container */
-    display: flex; 
+    display: flex; /* Make the face a flex container for its content */
 }
 
 .flip-card-front {
     background-color: #ffffff;
     transform: rotateY(0deg);
-    z-index: 2;
 }
 
 .flip-card-back {
     background-color: #007bff;
     transform: rotateY(180deg);
-    z-index: 1;
-    justify-content: center; /* Center the back content */
+    justify-content: center;
     align-items: center;
 }
 
@@ -71,7 +77,6 @@ body {
 
 .flip-card-container.flipped .flip-card-back {
     transform: rotateY(0deg);
-    z-index: 2;
 }
 
 /* Content wrappers for the fly-out effect */
@@ -86,9 +91,7 @@ body {
 }
 
 .card-content-front {
-    /* This setup makes the content wrapper fill the card face... */
     flex-grow: 1;
-    /* ...and this pushes the top and bottom content apart. */
     justify-content: space-between;
 }
 
