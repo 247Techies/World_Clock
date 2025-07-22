@@ -1,7 +1,7 @@
 {
     "gmail.com": {
       "providerName": "Google Mail",
-      "iconUrl": "img/gmail.png",
+      "iconUrl": "img/gmail.svg",
       "webmailUrl": "https://mail.google.com/",
       "imap": {
         "Server": "imap.gmail.com",
@@ -28,7 +28,7 @@
     },
     "yahoo.com": {
       "providerName": "Yahoo Mail",
-      "iconUrl": "img/yahoo.png",
+      "iconUrl": "img/yahoo.svg",
       "webmailUrl": "https://mail.yahoo.com/",
       "imap": {
         "Server": "imap.mail.yahoo.com",
@@ -53,7 +53,7 @@
     },
     "outlook.com": {
       "providerName": "Microsoft Outlook",
-      "iconUrl": "img/outlook.png",
+      "iconUrl": "img/outlook.svg",
       "webmailUrl": "https://outlook.live.com/",
       "imap": {
         "Server": "outlook.office365.com",
