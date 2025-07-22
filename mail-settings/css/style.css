@@ -14,15 +14,15 @@ body {
 }
 
 #results-container {
-    display: none; /* Initially hidden */
+    display: none;
 }
 
 /* 3D Flip Card Styles */
 .flip-card {
     background-color: transparent;
     width: 100%;
-    height: 380px;
-    perspective: 1500px; /* Increased perspective for a more dramatic 3D effect */
+    height: 420px; /* Increased height to accommodate larger icon and spacing */
+    perspective: 1500px;
 }
 
 .flip-card-inner {
@@ -30,7 +30,7 @@ body {
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Added a spring-like easing function */
+    transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
     transform-style: preserve-3d;
 }
 
@@ -49,17 +49,15 @@ body {
     flex-direction: column;
     justify-content: center;
     border-radius: .75rem !important;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* Add a base shadow */
-
-    /*  CRUCIAL CHANGE: This allows children to exist in the 3D space of the card face */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     transform-style: preserve-3d;
 }
 
-/* NEW: This wrapper will hold the content and be pushed forward */
 .card-content-wrapper {
     padding: 1rem;
-    /* This is the magic that creates the depth */
     transform: translateZ(40px);
+    width: 100%;
+    height: 100%; /* Ensure wrapper fills the space */
 }
 
 .flip-card-front {
@@ -67,28 +65,37 @@ body {
     color: black;
 }
 
-.flip-card-back {
-    background: linear-gradient(135deg, #434343 0%, #000000 100%);
-    color: white;
-    transform: rotateY(180deg);
-    align-items: center;
-    justify-content: center;
+/* === NEW: ALIGNMENT & SIZING FIXES START HERE === */
+
+/* Make the card-body a flex container */
+.flip-card-front .card-body {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    height: 100%;            /* Ensure it fills the wrapper */
+    padding: 1.25rem;
 }
 
-/* Card Content Styling */
+/* Make the icon bigger */
 .card-provider-icon {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     object-fit: contain;
-    margin: 0 auto;
-    /* Add a drop shadow to the icon to enhance the floating effect */
+    margin-left: auto;   /* Center horizontally in flex container */
+    margin-right: auto;  /* Center horizontally in flex container */
     filter: drop-shadow(0 5px 10px rgba(0,0,0,0.2));
 }
+
+/* Make the list of details grow to fill available space */
+.card-details {
+    flex-grow: 1; /* This is the magic! The list will expand. */
+    text-align: left;
+}
+
+/* === ALIGNMENT & SIZING FIXES END HERE === */
 
 .card-body ul {
     list-style-type: none;
     padding-left: 0;
-    text-align: left;
     font-size: 0.9rem;
 }
 
@@ -105,18 +112,24 @@ body {
     color: #555;
 }
 
-/* Back of Card Icon */
+.flip-card-back {
+    background: linear-gradient(135deg, #434343 0%, #000000 100%);
+    color: white;
+    transform: rotateY(180deg);
+    align-items: center;
+    justify-content: center;
+}
+
 .webmail-link i {
     font-size: 5rem;
     color: #ffffff;
     transition: transform 0.3s ease;
-    /* Add a more pronounced shadow for the back icon */
     filter: drop-shadow(0 5px 15px rgba(0,0,0,0.4));
     text-shadow: 0 0 20px rgba(128, 0, 255, 0.5);
 }
 
 .webmail-link:hover i {
-    transform: scale(1.1) rotate(-5deg); /* Add a little rotation on hover */
+    transform: scale(1.1) rotate(-5deg);
     color: #9d78ec;
 }
 
@@ -128,5 +141,5 @@ body {
 }
 
 .flip-button:hover {
-    transform: translateY(-3px); /* Make button lift on hover */
+    transform: translateY(-3px);
 }
