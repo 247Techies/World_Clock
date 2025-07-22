@@ -12,174 +12,115 @@ body {
     margin-top: 3rem;
 }
 
+/* --- THE DEFINITIVE FIX USING CSS GRID & DECOUPLED CONTENT --- */
 
-/* --- THE DEFINITIVE FIX USING CSS GRID --- */
-
-/* The card's direct wrapper. This is a flex container that will stretch */
 .card-wrapper {
     display: flex;
     flex-direction: column;
-    height: 100%; /* Fill the height of the stretched Bootstrap column */
+    height: 100%;
 }
 
-/* The container that holds the 3D space and the two faces */
 .flip-card-container {
-    /* 
-      THE KEY FIX: Use CSS Grid.
-      Grid containers are sized by their content, even when children overlap.
-      This completely solves the height-collapse issue caused by position:absolute.
-    */
     display: grid;
     perspective: 1000px;
     transform-style: preserve-3d;
-    /* Let this container grow to fill the space in the card-wrapper */
     flex-grow: 1; 
 }
 
-/* The card faces (front and back) */
-.flip-card-front,
-.flip-card-back {
-    /*
-      Place both the front and back face into the same grid cell (the first one).
-      This replaces the need for position:absolute to stack them.
-    */
+/* Place ALL children (backgrounds and content) into the same grid cell */
+.flip-card-container > * {
     grid-area: 1 / 1 / 1 / 1;
-    
-    /* These properties are for the 3D flip effect itself */
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
     transform-style: preserve-3d;
     transition: transform 0.7s cubic-bezier(.4, .2, .2, 1);
-    
-    /* General card styling */
+}
+
+/* The card faces are now JUST backgrounds */
+.flip-card-front,
+.flip-card-back {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     border-radius: 0.5rem;
-    display: flex; /* Make the face a flex container for its content */
 }
 
 .flip-card-front {
     background-color: #ffffff;
     transform: rotateY(0deg);
+    z-index: 2; /* Front background is on top */
 }
 
 .flip-card-back {
     background-color: #007bff;
     transform: rotateY(180deg);
-    justify-content: center;
-    align-items: center;
-}
-
-/* Flipping the cards */
-.flip-card-container.flipped .flip-card-front {
-    transform: rotateY(-180deg);
-}
-
-.flip-card-container.flipped .flip-card-back {
-    transform: rotateY(0deg);
+    z-index: 0; /* Back background is behind */
 }
 
 /* Content wrappers for the fly-out effect */
 .card-content-front,
 .card-content-back {
-    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    transition: transform 0.7s cubic-bezier(.4, .2, .2, 1);
+    /* Prevent clicks on content when it's hidden/off-screen */
+    pointer-events: none;
 }
 
 .card-content-front {
+    color: #343a40;
     flex-grow: 1;
     justify-content: space-between;
+    transform: translateX(0);
+    z-index: 3; /* Front content is on top of everything */
+    pointer-events: auto; /* Allow clicks */
+}
+
+/* THIS IS THE FIX: The content is no longer in a rotated parent */
+.card-content-back {
+    color: white;
+    justify-content: center;
+    transform: translateX(150%) scale(0.6); /* Starts off-screen to the RIGHT */
+    z-index: 1; /* Behind front content, but in front of back background */
+}
+
+/* --- FLIP ANIMATION LOGIC --- */
+
+.flip-card-container.flipped .flip-card-front {
+    transform: rotateY(-180deg);
+    z-index: 0;
 }
 
 .flip-card-container.flipped .card-content-front {
     transform: translateX(-150%) scale(0.6);
+    pointer-events: none;
+    z-index: 1;
 }
 
-.card-content-back {
-    transform: translateX(150%) scale(0.6);
+.flip-card-container.flipped .flip-card-back {
+    transform: rotateY(0deg);
+    z-index: 2;
 }
 
 .flip-card-container.flipped .card-content-back {
     transform: translateX(0) scale(1);
+    pointer-events: auto; /* Allow clicks on the webmail link */
+    z-index: 3;
 }
 
-/* --- STYLING FOR CONTENT INSIDE THE CARDS --- */
-.card-top {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-}
-
-.card-logo {
-    max-width: 60px;
-    margin-top: 1rem;
-}
-
-.settings-list {
-    list-style: none;
-    padding: 0;
-    margin-top: 1.5rem;
-    text-align: left;
-    font-size: 0.9rem;
-    width: 100%;
-    word-break: break-word;
-}
-
-.settings-list li {
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #e9ecef;
-    display: flex;
-}
-
-.settings-list li:last-child {
-    border-bottom: none;
-}
-
-.settings-list strong {
-    color: #343a40;
-    flex-shrink: 0;
-    width: 100px;
-}
-
-.webmail-icon {
-    font-size: 6rem;
-}
-
-.webmail-text {
-    margin-top: 1rem;
-    font-weight: bold;
-    font-size: 1.2rem;
-}
-
-/* --- UTILITY & LAYOUT CLASSES --- */
-.flip-btn {
-    width: 100%;
-    margin-top: 1rem;
-}
-
-#results-container.d-none {
-    display: none !important;
-}
+/* --- GENERAL STYLING (UNCHANGED) --- */
+.card-top { display: flex; flex-direction: column; align-items: center; width: 100%; }
+.card-logo { max-width: 60px; margin-top: 1rem; }
+.settings-list { list-style: none; padding: 0; margin-top: 1.5rem; text-align: left; font-size: 0.9rem; width: 100%; word-break: break-word; }
+.settings-list li { padding: 0.5rem 0; border-bottom: 1px solid #e9ecef; display: flex; }
+.settings-list li:last-child { border-bottom: none; }
+.settings-list strong { color: #343a40; flex-shrink: 0; width: 100px; }
+.webmail-icon { font-size: 6rem; }
+.webmail-text { margin-top: 1rem; font-weight: bold; font-size: 1.2rem; }
+.flip-btn { width: 100%; margin-top: 1rem; }
+#results-container.d-none { display: none !important; }
 
 /* Protocol Disabled Logic */
-.card-wrapper.protocol-disabled .flip-card-front {
-    background-color: #f8f9fa;
-    opacity: 0.7;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.1rem;
-    color: #6c757d;
-    font-weight: bold;
-}
-.card-wrapper.protocol-disabled .flip-card-front::after {
-    content: "Protocol Not Available";
-}
-.card-wrapper.protocol-disabled .card-content-front {
-    display: none;
-}
+.card-wrapper.protocol-disabled .flip-card-front { background-color: #f8f9fa; opacity: 0.7; display: flex; justify-content: center; align-items: center; font-size: 1.1rem; color: #6c757d; font-weight: bold; }
+.card-wrapper.protocol-disabled .flip-card-front::after { content: "Protocol Not Available"; }
+.card-wrapper.protocol-disabled .card-content-front { display: none; }
