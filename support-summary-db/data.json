@@ -1358,5 +1358,55 @@
     "sentence": "Provided support to resolve errors encountered in the webmail interface.",
     "tag": "Web Mail Issue",
     "keywords": "webmail interface, errors, support"
+  },
+  {
+    "sentence": "Resolved issues related to speaker functionality and sound output.",
+    "tag": "Speaker Issue",
+    "keywords": "speaker functionality, sound output, audio issues"
+  },
+  {
+    "sentence": "Identified and fixed problems affecting audio playback through the speakers.",
+    "tag": "Speaker Issue",
+    "keywords": "audio playback, speakers, fixed problems"
+  },
+  {
+    "sentence": "Troubleshot and restored proper operation of the system speakers.",
+    "tag": "Speaker Issue",
+    "keywords": "system speakers, troubleshoot, restored"
+  },
+  {
+    "sentence": "Addressed connectivity or configuration issues with the speaker device.",
+    "tag": "Speaker Issue",
+    "keywords": "speaker device, connectivity, configuration"
+  },
+  {
+    "sentence": "Provided support to resolve sound issues caused by faulty or misconfigured speakers.",
+    "tag": "Speaker Issue",
+    "keywords": "misconfigured speakers, sound issues, support"
+  },
+  {
+    "sentence": "Resolved issues related to missing or distorted audio during video playback.",
+    "tag": "Video Sound Issue",
+    "keywords": "distorted audio, missing sound, video playback"
+  },
+  {
+    "sentence": "Identified and fixed problems affecting video sound output.",
+    "tag": "Video Sound Issue",
+    "keywords": "video sound, audio output, fixed problems"
+  },
+  {
+    "sentence": "Troubleshot and restored proper audio functionality for video files.",
+    "tag": "Video Sound Issue",
+    "keywords": "video files, audio functionality, troubleshoot"
+  },
+  {
+    "sentence": "Addressed sound issues encountered while playing videos.",
+    "tag": "Video Sound Issue",
+    "keywords": "sound issues, playing videos, audio fix"
+  },
+  {
+    "sentence": "Provided support to resolve audio playback problems in video content.",
+    "tag": "Video Sound Issue",
+    "keywords": "audio playback, video content, support"
   }
 ]
