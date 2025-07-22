@@ -35,18 +35,21 @@
         <div id="results-container">
             <div class="row">
                 <!-- Card 1: IMAP -->
-                <div class="col-lg-4 col-md-6 mb-4">
+                <div class="col-lg-4 col-md-6 d-flex"> <!-- Added d-flex for full height columns -->
                     <div class="flip-card" id="imap-card">
                         <div class="flip-card-inner">
                             <div class="card flip-card-front">
                                 <div class="card-content-wrapper">
                                     <div class="card-body">
-                                        <!-- Changed my-3 to my-4 for more vertical spacing -->
                                         <img src="img/default.png" alt="Provider Icon" class="card-provider-icon my-4">
                                         <h5 class="card-title fw-bold">Incoming Mail (IMAP)</h5>
                                         <p class="text-muted provider-name">Provider Name</p>
                                         <ul class="mt-3 card-details"></ul>
                                     </div>
+                                    <!-- BUTTON MOVED INSIDE -->
+                                    <button class="btn btn-outline-primary m-4 flip-button" data-tippy-content="Click to see webmail link">
+                                        <i class="bi bi-arrow-repeat"></i> Flip Card
+                                    </button>
                                 </div>
                             </div>
                             <div class="card flip-card-back">
@@ -58,24 +61,24 @@
                             </div>
                         </div>
                     </div>
-                    <button class="btn btn-outline-primary mt-3 flip-button" data-tippy-content="Click to see webmail link">
-                        <i class="bi bi-arrow-repeat"></i> Flip Card
-                    </button>
                 </div>
 
                 <!-- Card 2: POP3 -->
-                <div class="col-lg-4 col-md-6 mb-4">
+                <div class="col-lg-4 col-md-6 d-flex"> <!-- Added d-flex -->
                     <div class="flip-card" id="pop3-card">
                         <div class="flip-card-inner">
                             <div class="card flip-card-front">
                                 <div class="card-content-wrapper">
                                     <div class="card-body">
-                                        <!-- Changed my-3 to my-4 -->
                                         <img src="img/default.png" alt="Provider Icon" class="card-provider-icon my-4">
                                         <h5 class="card-title fw-bold">Incoming Mail (POP3)</h5>
                                         <p class="text-muted provider-name">Provider Name</p>
                                         <ul class="mt-3 card-details"></ul>
                                     </div>
+                                    <!-- BUTTON MOVED INSIDE -->
+                                    <button class="btn btn-outline-primary m-4 flip-button" data-tippy-content="Click to see webmail link">
+                                        <i class="bi bi-arrow-repeat"></i> Flip Card
+                                    </button>
                                 </div>
                             </div>
                             <div class="card flip-card-back">
@@ -87,24 +90,24 @@
                             </div>
                         </div>
                     </div>
-                    <button class="btn btn-outline-primary mt-3 flip-button" data-tippy-content="Click to see webmail link">
-                        <i class="bi bi-arrow-repeat"></i> Flip Card
-                    </button>
                 </div>
 
                 <!-- Card 3: SMTP -->
-                <div class="col-lg-4 col-md-12 mb-4">
+                <div class="col-lg-4 col-md-12 d-flex"> <!-- Added d-flex -->
                     <div class="flip-card" id="smtp-card">
                         <div class="flip-card-inner">
                             <div class="card flip-card-front">
                                 <div class="card-content-wrapper">
                                     <div class="card-body">
-                                        <!-- Changed my-3 to my-4 -->
                                         <img src="img/default.png" alt="Provider Icon" class="card-provider-icon my-4">
                                         <h5 class="card-title fw-bold">Outgoing Mail (SMTP)</h5>
                                         <p class="text-muted provider-name">Provider Name</p>
                                         <ul class="mt-3 card-details"></ul>
                                     </div>
+                                    <!-- BUTTON MOVED INSIDE -->
+                                    <button class="btn btn-outline-primary m-4 flip-button" data-tippy-content="Click to see webmail link">
+                                        <i class="bi bi-arrow-repeat"></i> Flip Card
+                                    </button>
                                 </div>
                             </div>
                             <div class="card flip-card-back">
@@ -116,9 +119,6 @@
                             </div>
                         </div>
                     </div>
-                    <button class="btn btn-outline-primary mt-3 flip-button" data-tippy-content="Click to see webmail link">
-                        <i class="bi bi-arrow-repeat"></i> Flip Card
-                    </button>
                 </div>
             </div>
         </div>

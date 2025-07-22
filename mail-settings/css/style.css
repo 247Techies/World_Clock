@@ -14,15 +14,15 @@ body {
 }
 
 #results-container {
-    display: none;
+    display: none; /* Initially hidden */
 }
 
 /* 3D Flip Card Styles */
 .flip-card {
     background-color: transparent;
     width: 100%;
-    height: 420px; /* Increased height to accommodate larger icon and spacing */
     perspective: 1500px;
+    flex-grow: 1; /* CRITICAL: Allows card to grow to fill the parent .d-flex column */
 }
 
 .flip-card-inner {
@@ -53,11 +53,15 @@ body {
     transform-style: preserve-3d;
 }
 
+/* Card Content Wrapper: Key for 3D depth and new layout */
 .card-content-wrapper {
-    padding: 1rem;
     transform: translateZ(40px);
     width: 100%;
-    height: 100%; /* Ensure wrapper fills the space */
+    height: 100%;
+    padding: 0; /* Padding is now handled by children */
+    display: flex; /* CRITICAL: Manages the card-body and button */
+    flex-direction: column;
+    justify-content: space-between; /* Pushes button to the bottom */
 }
 
 .flip-card-front {
@@ -65,38 +69,33 @@ body {
     color: black;
 }
 
-/* === NEW: ALIGNMENT & SIZING FIXES START HERE === */
-
-/* Make the card-body a flex container */
+/* Card Body (inside the front face) */
 .flip-card-front .card-body {
     display: flex;
-    flex-direction: column; /* Stack items vertically */
-    height: 100%;            /* Ensure it fills the wrapper */
+    flex-direction: column; /* Stack content vertically */
+    height: auto; /* Let content determine its own height */
     padding: 1.25rem;
+    flex-grow: 1; /* CRITICAL: Makes body expand, pushing button down */
 }
 
-/* Make the icon bigger */
 .card-provider-icon {
     width: 80px;
     height: 80px;
     object-fit: contain;
-    margin-left: auto;   /* Center horizontally in flex container */
-    margin-right: auto;  /* Center horizontally in flex container */
+    margin-left: auto;
+    margin-right: auto;
     filter: drop-shadow(0 5px 10px rgba(0,0,0,0.2));
 }
 
-/* Make the list of details grow to fill available space */
 .card-details {
-    flex-grow: 1; /* This is the magic! The list will expand. */
     text-align: left;
 }
-
-/* === ALIGNMENT & SIZING FIXES END HERE === */
 
 .card-body ul {
     list-style-type: none;
     padding-left: 0;
     font-size: 0.9rem;
+    margin-top: 1rem; /* Spacing between title and list */
 }
 
 .card-body ul li {
@@ -112,6 +111,7 @@ body {
     color: #555;
 }
 
+/* Card Back Face */
 .flip-card-back {
     background: linear-gradient(135deg, #434343 0%, #000000 100%);
     color: white;
@@ -133,11 +133,12 @@ body {
     color: #9d78ec;
 }
 
+/* Flip Button (now inside the card) */
 .flip-button {
-    width: 80%;
-    margin: 0 auto;
-    display: block;
+    width: calc(100% - 2.5rem); /* Full width minus side margins */
+    margin: 0 1.25rem 1.25rem 1.25rem !important; /* Bottom and side margins */
     transition: transform 0.2s ease;
+    flex-shrink: 0; /* Prevents button from shrinking */
 }
 
 .flip-button:hover {
