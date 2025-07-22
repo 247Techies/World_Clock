@@ -11,8 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(response => response.json())
         .then(data => {
             mailSettings = data;
-            // Add click listeners AFTER data is loaded to ensure they are set up
-            initializeFlipButtons();
+            initializeFlipLogic(); // Set up flip listeners once
         })
         .catch(error => {
             console.error('Error fetching mail settings:', error);
@@ -42,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 Swal.fire({
                     icon: 'info',
                     title: 'Provider Not Found',
-                    text: `Settings for "${domain}" are not in our database. Showing generic info.`,
+                    text: `Settings for "${domain}" are not in our database.`,
                     toast: true,
                     position: 'top-end',
                     showConfirmButton: false,
@@ -69,10 +68,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const cardElement = document.getElementById(`${type}-card`);
         if (!cardElement) return;
 
-        // Un-flip card on content change
+        // Always un-flip card when content changes
         cardElement.classList.remove('flipped');
 
-        // Update front of the card
         cardElement.querySelector('.card-provider-icon').src = data.iconUrl;
         cardElement.querySelector('.provider-name').textContent = data.providerName;
         const detailsList = cardElement.querySelector('.card-details');
@@ -85,27 +83,40 @@ document.addEventListener('DOMContentLoaded', () => {
             detailsList.appendChild(li);
         }
         
-        // Update back of the card
         const webmailLink = cardElement.querySelector('.webmail-link');
         webmailLink.href = data.webmailUrl;
     }
 
-    // CRITICAL FIX: This function correctly finds and adds listeners to the buttons.
-    function initializeFlipButtons() {
+    // CORRECTED: Set up two-way flip logic
+    function initializeFlipLogic() {
+        // 1. Handle flipping TO the back
         const flipButtons = document.querySelectorAll('.flip-button');
         flipButtons.forEach(button => {
             button.addEventListener('click', (event) => {
-                // Use .closest() to find the parent .flip-card element.
-                // This is robust and works even with the new nested structure.
+                event.stopPropagation(); // Prevent event from bubbling up
                 const flipCard = event.currentTarget.closest('.flip-card');
                 if (flipCard) {
-                    flipCard.classList.toggle('flipped');
+                    flipCard.classList.add('flipped');
+                }
+            });
+        });
+
+        // 2. Handle flipping FROM the back
+        const cardBacks = document.querySelectorAll('.flip-card-back');
+        cardBacks.forEach(cardBack => {
+            cardBack.addEventListener('click', (event) => {
+                // Clicking anywhere on the back (except the link itself) flips it
+                if (event.target.closest('.webmail-link')) {
+                    return; // Don't flip if they click the actual link icon
+                }
+                const flipCard = event.currentTarget.closest('.flip-card');
+                if (flipCard) {
+                    flipCard.classList.remove('flipped');
                 }
             });
         });
     }
 
-    // Initialize Tippy.js tooltips
+    // Initialize Tippy.js tooltips for any new content
     tippy('[data-tippy-content]');
-
 });

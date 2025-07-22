@@ -21,8 +21,9 @@ body {
 .flip-card {
     background-color: transparent;
     width: 100%;
+    min-height: 420px; /* Use min-height to allow growth */
     perspective: 1500px;
-    flex-grow: 1; /* Allows card to fill the height of the .d-flex column */
+    flex-grow: 1;
 }
 
 .flip-card-inner {
@@ -43,17 +44,16 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    -webkit-backface-visibility: hidden; /* Fixes "see-through" issue */
-    backface-visibility: hidden;         /* Fixes "see-through" issue */
+    -webkit-backface-visibility: hidden; /* This hides the back of a flipped element */
+    backface-visibility: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     border-radius: .75rem !important;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    transform-style: preserve-3d;
+    transform-style: preserve-3d; /* Allows children to have 3D transforms */
 }
 
-/* Card Content Wrapper: Manages depth and layout */
+/* Card Content Wrapper for 3D depth */
 .card-content-wrapper {
     transform: translateZ(40px);
     width: 100%;
@@ -68,21 +68,22 @@ body {
 }
 
 .flip-card-back .card-content-wrapper {
-    justify-content: center; /* Centers webmail icon vertically */
-    align-items: center;     /* Centers webmail icon horizontally */
+    justify-content: center;
+    align-items: center;
 }
 
+/* Front Face Styling */
 .flip-card-front {
     background-color: #ffffff;
     color: black;
+    z-index: 2; /* Ensures front is on top initially */
 }
 
-/* Card Body (inside the front face) */
 .flip-card-front .card-body {
     display: flex;
     flex-direction: column;
     padding: 1.25rem;
-    flex-grow: 1; /* Makes body expand, pushing button down */
+    flex-grow: 1; /* Makes body expand to push button down */
 }
 
 .card-provider-icon {
@@ -103,7 +104,7 @@ body {
 }
 
 .card-details li {
-    padding: 6px 0;
+    padding: 8px 0;
     border-bottom: 1px solid #eee;
 }
 
@@ -115,11 +116,12 @@ body {
     color: #555;
 }
 
-/* Card Back Face */
+/* Back Face Styling */
 .flip-card-back {
     background: linear-gradient(135deg, #434343 0%, #000000 100%);
     color: white;
     transform: rotateY(180deg);
+    cursor: pointer; /* Indicates the back is clickable */
 }
 
 .webmail-link i {
@@ -135,12 +137,12 @@ body {
     color: #9d78ec;
 }
 
-/* Flip Button (now inside the card) */
+/* Flip Button Styling */
 .flip-button {
     width: calc(100% - 2.5rem);
     margin: 0 1.25rem 1.25rem 1.25rem !important;
     transition: transform 0.2s ease;
-    flex-shrink: 0; /* Prevents button from being squished */
+    flex-shrink: 0;
 }
 
 .flip-button:hover {
