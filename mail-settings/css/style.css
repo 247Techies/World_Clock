@@ -12,20 +12,14 @@ body {
     margin-top: 3rem;
 }
 
-/* --- THE FINAL FIX: A MASKING WRAPPER --- */
+/* --- THE DEFINITIVE FIX FOR THE "COVERING BOX" BUG --- */
 
 .card-wrapper {
     display: flex;
     flex-direction: column;
     height: 100%;
-    /* 
-      THIS IS THE FIX: This wrapper acts as a "mask".
-      Anything from its children (the flying content) that goes 
-      outside its boundaries will be hidden.
-    */
     position: relative;
     overflow: hidden;
-    /* Match the border-radius of the cards for a clean clip */
     border-radius: 0.5rem;
 }
 
@@ -46,40 +40,28 @@ body {
     transition: transform 0.7s cubic-bezier(.4, .2, .2, 1);
 }
 
-/* The card faces are now JUST backgrounds */
-.flip-card-front,
-.flip-card-back {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
+/* --- PERMANENT STACKING ORDER (THE KEY FIX) --- */
+/* We set the z-index once and never change it. The 3D transform handles the rest. */
 
 .flip-card-front {
     background-color: #ffffff;
     transform: rotateY(0deg);
-    z-index: 2;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    z-index: 2; /* The front background plane */
 }
 
 .flip-card-back {
     background-color: #007bff;
     transform: rotateY(180deg);
-    z-index: 0;
-}
-
-/* Content wrappers for the fly-out effect */
-.card-content-front,
-.card-content-back {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    pointer-events: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    z-index: 0; /* The back background plane (lowest) */
 }
 
 .card-content-front {
     color: #343a40;
-    flex-grow: 1;
     justify-content: space-between;
     transform: translateX(0);
-    z-index: 3;
+    z-index: 3; /* Front content is ALWAYS on top of the front background */
     pointer-events: auto;
 }
 
@@ -87,34 +69,37 @@ body {
     color: white;
     justify-content: center;
     transform: translateX(150%) scale(0.6);
-    z-index: 1;
+    z-index: 1; /* Back content is on top of its background, but below the front plane */
 }
 
-/* --- FLIP ANIMATION LOGIC --- */
+/* --- FLIP ANIMATION LOGIC (No z-index changes here) --- */
 
-.flip-card-container.flipped .flip-card-front {
-    transform: rotateY(-180deg);
-    z-index: 0;
-}
-
+.flip-card-container.flipped .flip-card-front,
 .flip-card-container.flipped .card-content-front {
-    transform: translateX(-150%) scale(0.6);
-    pointer-events: none;
-    z-index: 1;
+    /* Rotating the front plane away makes it disappear due to backface-visibility */
+    transform: rotateY(-180deg);
 }
 
-.flip-card-container.flipped .flip-card-back {
-    transform: rotateY(0deg);
-    z-index: 2;
-}
-
+.flip-card-container.flipped .flip-card-back,
 .flip-card-container.flipped .card-content-back {
-    transform: translateX(0) scale(1);
-    pointer-events: auto;
-    z-index: 3;
+    /* Rotating the back plane into view makes it appear */
+    transform: rotateY(0deg);
 }
+
+/* Animate the content's flight path separately */
+.flip-card-container.flipped .card-content-front {
+    transform: rotateY(-180deg) translateX(-150%) scale(0.6);
+    pointer-events: none;
+}
+.flip-card-container.flipped .card-content-back {
+    transform: rotateY(0deg) translateX(0) scale(1);
+    pointer-events: auto;
+}
+
 
 /* --- GENERAL STYLING --- */
+.card-content-front, .card-content-back { display: flex; flex-direction: column; align-items: center; padding: 20px; }
+.card-content-front { flex-grow: 1; }
 .card-top { display: flex; flex-direction: column; align-items: center; width: 100%; }
 .card-logo { max-width: 60px; margin-top: 1rem; }
 .settings-list { list-style: none; padding: 0; margin-top: 1.5rem; text-align: left; font-size: 0.9rem; width: 100%; word-break: break-word; }
