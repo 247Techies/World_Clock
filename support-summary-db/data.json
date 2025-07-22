@@ -1408,5 +1408,80 @@
     "sentence": "Provided support to resolve audio playback problems in video content.",
     "tag": "Video Sound Issue",
     "keywords": "audio playback, video content, support"
+  },
+  {
+    "sentence": "Provided assistance with printing a PDF document.",
+    "tag": "Print PDF Document",
+    "keywords": "printing, PDF document, assistance"
+  },
+  {
+    "sentence": "Helped in setting up and printing the PDF file.",
+    "tag": "Print PDF Document",
+    "keywords": "setup, PDF file, printing"
+  },
+  {
+    "sentence": "Assisted with configuring print settings and printing the PDF.",
+    "tag": "Print PDF Document",
+    "keywords": "print settings, configure, PDF"
+  },
+  {
+    "sentence": "Guided through the process of printing the PDF document.",
+    "tag": "Print PDF Document",
+    "keywords": "guidance, PDF, printing process"
+  },
+  {
+    "sentence": "Successfully provided support for printing a PDF file.",
+    "tag": "Print PDF Document",
+    "keywords": "support, PDF file, print"
+  },
+  {
+    "sentence": "Provided assistance with printing an Excel sheet.",
+    "tag": "Print Excel Spreadsheet",
+    "keywords": "printing, Excel sheet, assistance"
+  },
+  {
+    "sentence": "Helped in setting up and printing the Excel sheet.",
+    "tag": "Print Excel Spreadsheet",
+    "keywords": "setup, Excel, printing"
+  },
+  {
+    "sentence": "Assisted with configuring print options and printing the Excel file.",
+    "tag": "Print Excel Spreadsheet",
+    "keywords": "print options, Excel file, assist"
+  },
+  {
+    "sentence": "Guided through the process of printing the Excel document.",
+    "tag": "Print Excel Spreadsheet",
+    "keywords": "printing process, Excel document, guidance"
+  },
+  {
+    "sentence": "Successfully provided support for printing an Excel spreadsheet.",
+    "tag": "Print Excel Spreadsheet",
+    "keywords": "Excel spreadsheet, support, printing"
+  },
+  {
+    "sentence": "Provided assistance with printing a Word document.",
+    "tag": "Print Word Document",
+    "keywords": "Word document, printing, assistance"
+  },
+  {
+    "sentence": "Helped in setting up and printing the Word document.",
+    "tag": "Print Word Document",
+    "keywords": "setup, Word document, printing"
+  },
+  {
+    "sentence": "Assisted in configuring print settings and printing the Word file.",
+    "tag": "Print Word Document",
+    "keywords": "print settings, Word file, configure"
+  },
+  {
+    "sentence": "Guided through the process of printing a document in Microsoft Word.",
+    "tag": "Print Word Document",
+    "keywords": "printing process, Microsoft Word, document"
+  },
+  {
+    "sentence": "Successfully assisted with the printing of a Word document.",
+    "tag": "Print Word Document",
+    "keywords": "Word document, printing, support"
   }
 ]
