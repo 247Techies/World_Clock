@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(response => response.json())
         .then(data => {
             mailSettings = data;
+            // Add click listeners AFTER data is loaded to ensure they are set up
+            initializeFlipButtons();
         })
         .catch(error => {
             console.error('Error fetching mail settings:', error);
@@ -31,12 +33,10 @@ document.addEventListener('DOMContentLoaded', () => {
             resultsContainer.style.display = 'block';
             placeholderMessage.style.display = 'none';
         } else if (domain) {
-            // If domain exists but not in our list, show default and a notification
             updateCards(mailSettings['default']);
             resultsContainer.style.display = 'block';
             placeholderMessage.style.display = 'none';
 
-            // Use a timeout to avoid alerting on every keystroke
             clearTimeout(emailInput.debounce);
             emailInput.debounce = setTimeout(() => {
                 Swal.fire({
@@ -52,7 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 500);
 
         } else {
-            // Hide results if input is cleared or invalid
             resultsContainer.style.display = 'none';
             placeholderMessage.style.display = 'block';
         }
@@ -70,11 +69,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const cardElement = document.getElementById(`${type}-card`);
         if (!cardElement) return;
 
+        // Un-flip card on content change
+        cardElement.classList.remove('flipped');
+
         // Update front of the card
         cardElement.querySelector('.card-provider-icon').src = data.iconUrl;
         cardElement.querySelector('.provider-name').textContent = data.providerName;
         const detailsList = cardElement.querySelector('.card-details');
-        detailsList.innerHTML = ''; // Clear previous details
+        detailsList.innerHTML = '';
 
         const settings = data[type];
         for (const key in settings) {
@@ -88,14 +90,20 @@ document.addEventListener('DOMContentLoaded', () => {
         webmailLink.href = data.webmailUrl;
     }
 
-    // Add click listeners to all flip buttons
-    const flipButtons = document.querySelectorAll('.flip-button');
-    flipButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const flipCard = button.previousElementSibling; // The .flip-card element
-            flipCard.classList.toggle('flipped');
+    // CRITICAL FIX: This function correctly finds and adds listeners to the buttons.
+    function initializeFlipButtons() {
+        const flipButtons = document.querySelectorAll('.flip-button');
+        flipButtons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                // Use .closest() to find the parent .flip-card element.
+                // This is robust and works even with the new nested structure.
+                const flipCard = event.currentTarget.closest('.flip-card');
+                if (flipCard) {
+                    flipCard.classList.toggle('flipped');
+                }
+            });
         });
-    });
+    }
 
     // Initialize Tippy.js tooltips
     tippy('[data-tippy-content]');

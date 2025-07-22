@@ -14,7 +14,7 @@ body {
 }
 
 #results-container {
-    display: none; /* Initially hidden */
+    display: none;
 }
 
 /* 3D Flip Card Styles */
@@ -22,7 +22,7 @@ body {
     background-color: transparent;
     width: 100%;
     perspective: 1500px;
-    flex-grow: 1; /* CRITICAL: Allows card to grow to fill the parent .d-flex column */
+    flex-grow: 1; /* Allows card to fill the height of the .d-flex column */
 }
 
 .flip-card-inner {
@@ -43,8 +43,8 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden; /* Fixes "see-through" issue */
+    backface-visibility: hidden;         /* Fixes "see-through" issue */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -53,15 +53,23 @@ body {
     transform-style: preserve-3d;
 }
 
-/* Card Content Wrapper: Key for 3D depth and new layout */
+/* Card Content Wrapper: Manages depth and layout */
 .card-content-wrapper {
     transform: translateZ(40px);
     width: 100%;
     height: 100%;
-    padding: 0; /* Padding is now handled by children */
-    display: flex; /* CRITICAL: Manages the card-body and button */
+    padding: 0;
+    display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Pushes button to the bottom */
+}
+
+.flip-card-front .card-content-wrapper {
+    justify-content: space-between; /* Pushes button to bottom */
+}
+
+.flip-card-back .card-content-wrapper {
+    justify-content: center; /* Centers webmail icon vertically */
+    align-items: center;     /* Centers webmail icon horizontally */
 }
 
 .flip-card-front {
@@ -72,10 +80,9 @@ body {
 /* Card Body (inside the front face) */
 .flip-card-front .card-body {
     display: flex;
-    flex-direction: column; /* Stack content vertically */
-    height: auto; /* Let content determine its own height */
+    flex-direction: column;
     padding: 1.25rem;
-    flex-grow: 1; /* CRITICAL: Makes body expand, pushing button down */
+    flex-grow: 1; /* Makes body expand, pushing button down */
 }
 
 .card-provider-icon {
@@ -88,26 +95,23 @@ body {
 }
 
 .card-details {
-    text-align: left;
-}
-
-.card-body ul {
     list-style-type: none;
     padding-left: 0;
     font-size: 0.9rem;
-    margin-top: 1rem; /* Spacing between title and list */
+    text-align: left;
+    margin-top: 1rem;
 }
 
-.card-body ul li {
+.card-details li {
     padding: 6px 0;
     border-bottom: 1px solid #eee;
 }
 
-.card-body ul li:last-child {
+.card-details li:last-child {
     border-bottom: none;
 }
 
-.card-body ul li strong {
+.card-details li strong {
     color: #555;
 }
 
@@ -116,8 +120,6 @@ body {
     background: linear-gradient(135deg, #434343 0%, #000000 100%);
     color: white;
     transform: rotateY(180deg);
-    align-items: center;
-    justify-content: center;
 }
 
 .webmail-link i {
@@ -135,10 +137,10 @@ body {
 
 /* Flip Button (now inside the card) */
 .flip-button {
-    width: calc(100% - 2.5rem); /* Full width minus side margins */
-    margin: 0 1.25rem 1.25rem 1.25rem !important; /* Bottom and side margins */
+    width: calc(100% - 2.5rem);
+    margin: 0 1.25rem 1.25rem 1.25rem !important;
     transition: transform 0.2s ease;
-    flex-shrink: 0; /* Prevents button from shrinking */
+    flex-shrink: 0; /* Prevents button from being squished */
 }
 
 .flip-button:hover {

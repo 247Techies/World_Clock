@@ -35,7 +35,7 @@
         <div id="results-container">
             <div class="row">
                 <!-- Card 1: IMAP -->
-                <div class="col-lg-4 col-md-6 d-flex"> <!-- Added d-flex for full height columns -->
+                <div class="col-lg-4 col-md-6 mb-4 d-flex">
                     <div class="flip-card" id="imap-card">
                         <div class="flip-card-inner">
                             <div class="card flip-card-front">
@@ -44,15 +44,14 @@
                                         <img src="img/default.png" alt="Provider Icon" class="card-provider-icon my-4">
                                         <h5 class="card-title fw-bold">Incoming Mail (IMAP)</h5>
                                         <p class="text-muted provider-name">Provider Name</p>
-                                        <ul class="mt-3 card-details"></ul>
+                                        <ul class="card-details"></ul>
                                     </div>
-                                    <!-- BUTTON MOVED INSIDE -->
-                                    <button class="btn btn-outline-primary m-4 flip-button" data-tippy-content="Click to see webmail link">
+                                    <button class="btn btn-outline-primary flip-button" data-tippy-content="Click to see webmail link">
                                         <i class="bi bi-arrow-repeat"></i> Flip Card
                                     </button>
                                 </div>
                             </div>
-                            <div class="card flip-card-back">
+                            <div class="card flip-card-back shadow-lg">
                                 <div class="card-content-wrapper">
                                     <a href="#" target="_blank" class="webmail-link" data-tippy-content="Go to Webmail">
                                         <i class="bi bi-box-arrow-up-right"></i>
@@ -64,7 +63,7 @@
                 </div>
 
                 <!-- Card 2: POP3 -->
-                <div class="col-lg-4 col-md-6 d-flex"> <!-- Added d-flex -->
+                <div class="col-lg-4 col-md-6 mb-4 d-flex">
                     <div class="flip-card" id="pop3-card">
                         <div class="flip-card-inner">
                             <div class="card flip-card-front">
@@ -73,27 +72,26 @@
                                         <img src="img/default.png" alt="Provider Icon" class="card-provider-icon my-4">
                                         <h5 class="card-title fw-bold">Incoming Mail (POP3)</h5>
                                         <p class="text-muted provider-name">Provider Name</p>
-                                        <ul class="mt-3 card-details"></ul>
+                                        <ul class="card-details"></ul>
                                     </div>
-                                    <!-- BUTTON MOVED INSIDE -->
-                                    <button class="btn btn-outline-primary m-4 flip-button" data-tippy-content="Click to see webmail link">
+                                    <button class="btn btn-outline-primary flip-button" data-tippy-content="Click to see webmail link">
                                         <i class="bi bi-arrow-repeat"></i> Flip Card
                                     </button>
                                 </div>
                             </div>
-                            <div class="card flip-card-back">
-                                <div class="card-content-wrapper">
+                            <div class="card flip-card-back shadow-lg">
+                               <div class="card-content-wrapper">
                                     <a href="#" target="_blank" class="webmail-link" data-tippy-content="Go to Webmail">
                                         <i class="bi bi-box-arrow-up-right"></i>
                                     </a>
-                                </div>
+                               </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Card 3: SMTP -->
-                <div class="col-lg-4 col-md-12 d-flex"> <!-- Added d-flex -->
+                <div class="col-lg-4 col-md-12 mb-4 d-flex">
                     <div class="flip-card" id="smtp-card">
                         <div class="flip-card-inner">
                             <div class="card flip-card-front">
@@ -102,15 +100,14 @@
                                         <img src="img/default.png" alt="Provider Icon" class="card-provider-icon my-4">
                                         <h5 class="card-title fw-bold">Outgoing Mail (SMTP)</h5>
                                         <p class="text-muted provider-name">Provider Name</p>
-                                        <ul class="mt-3 card-details"></ul>
+                                        <ul class="card-details"></ul>
                                     </div>
-                                    <!-- BUTTON MOVED INSIDE -->
-                                    <button class="btn btn-outline-primary m-4 flip-button" data-tippy-content="Click to see webmail link">
+                                    <button class="btn btn-outline-primary flip-button" data-tippy-content="Click to see webmail link">
                                         <i class="bi bi-arrow-repeat"></i> Flip Card
                                     </button>
                                 </div>
                             </div>
-                            <div class="card flip-card-back">
+                            <div class="card flip-card-back shadow-lg">
                                 <div class="card-content-wrapper">
                                     <a href="#" target="_blank" class="webmail-link" data-tippy-content="Go to Webmail">
                                         <i class="bi bi-box-arrow-up-right"></i>
@@ -129,13 +126,9 @@
         </div>
     </div>
 
-
     <!-- JavaScript Libraries -->
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- SweetAlert2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- Tippy.js and Popper.js -->
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://unpkg.com/tippy.js@6"></script>
     <!-- Your Custom JS -->
