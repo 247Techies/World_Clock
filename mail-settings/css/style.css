@@ -1,0 +1,112 @@
+/* General Styling */
+body {
+    background-color: #f0f2f5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.main-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 3rem 1.5rem;
+    margin-bottom: 2rem;
+    border-radius: .5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+#results-container {
+    display: none; /* Initially hidden */
+}
+
+/* 3D Flip Card Styles */
+.flip-card {
+    background-color: transparent;
+    width: 100%;
+    height: 380px;
+    perspective: 1000px; /* This creates the 3D space */
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d; /* This makes children exist in the 3D space */
+}
+
+/* This class is added by JS to trigger the flip */
+.flip-card.flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden; /* Hides the back of the element when it's not facing the user */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: .75rem !important; /* Override Bootstrap */
+}
+
+.flip-card-front {
+    background-color: #ffffff;
+    color: black;
+}
+
+.flip-card-back {
+    background: linear-gradient(135deg, #434343 0%, #000000 100%);
+    color: white;
+    transform: rotateY(180deg); /* Start with the back side flipped away */
+    align-items: center;
+    justify-content: center;
+}
+
+/* Card Content Styling */
+.card-provider-icon {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin: 0 auto;
+}
+
+.card-body ul {
+    list-style-type: none;
+    padding-left: 0;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+.card-body ul li {
+    padding: 6px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.card-body ul li:last-child {
+    border-bottom: none;
+}
+
+.card-body ul li strong {
+    color: #555;
+}
+
+/* Back of Card Icon */
+.webmail-link i {
+    font-size: 5rem;
+    color: #ffffff;
+    transition: transform 0.3s ease;
+}
+
+.webmail-link:hover i {
+    transform: scale(1.1);
+    color: #764ba2;
+}
+
+.flip-button {
+    width: 80%;
+    margin: 0 auto;
+    display: block;
+}
