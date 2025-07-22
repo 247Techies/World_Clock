@@ -12,7 +12,9 @@ body {
     margin-top: 3rem;
 }
 
-/* --- The main container that holds the 3D space --- */
+/* --- THE KEY FIX: Let content drive height --- */
+
+/* The main container that holds the 3D space */
 .flip-card-container {
     perspective: 1000px;
     transform-style: preserve-3d;
@@ -20,8 +22,7 @@ body {
     width: 100%;
     /* This makes the card container grow to fill the available space in the wrapper */
     flex-grow: 1;
-    /* We need a minimum height to prevent collapse if content is empty */
-    min-height: 380px; 
+    /* REMOVED min-height. This was the problem. */
 }
 
 /* The card faces (front and back) */
@@ -32,14 +33,13 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    overflow: hidden;
     backface-visibility: hidden;
     transform-style: preserve-3d;
     transition: transform 0.7s cubic-bezier(.4, .2, .2, 1);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     border-radius: 0.5rem;
-    display: flex; /* Make the face itself a flex container */
-    flex-direction: column; /* To stack content vertically */
+    /* The face itself is a flex container */
+    display: flex; 
 }
 
 .flip-card-front {
@@ -68,7 +68,7 @@ body {
 .card-content-front,
 .card-content-back {
     width: 100%;
-    height: 100%;
+    /* REMOVED height: 100%. This lets the content define its own height. */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -77,25 +77,22 @@ body {
     transition: transform 0.7s cubic-bezier(.4, .2, .2, 1);
 }
 
-/* The content on the front face needs to manage its own space */
 .card-content-front {
-    justify-content: flex-start; /* Align content to the top */
+    justify-content: space-between; /* This creates space between top and bottom */
+    flex-grow: 1; /* Make the content fill the flex container (the card face) */
 }
-
 
 .flip-card-container.flipped .card-content-front {
     transform: translateX(-150%) scale(0.6);
 }
 
 .card-content-back {
-    color: white;
     transform: translateX(150%) scale(0.6);
 }
 
 .flip-card-container.flipped .card-content-back {
     transform: translateX(0) scale(1);
 }
-
 
 /* --- STYLING FOR CONTENT INSIDE THE CARDS --- */
 .card-top {
@@ -113,8 +110,7 @@ body {
 .settings-list {
     list-style: none;
     padding: 0;
-    margin-top: 1rem;
-    margin-bottom: 2rem;
+    margin-top: 1.5rem; /* More space between top and list */
     text-align: left;
     font-size: 0.9rem;
     width: 100%;
@@ -122,7 +118,7 @@ body {
 }
 
 .settings-list li {
-    padding: 0.4rem 0;
+    padding: 0.5rem 0; /* A bit more vertical padding */
     border-bottom: 1px solid #e9ecef;
     display: flex;
 }
