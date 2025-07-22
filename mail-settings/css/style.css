@@ -12,76 +12,98 @@ body {
     margin-top: 3rem;
 }
 
-/* Card Flip Container - This creates the 3D space */
-.flip-card-container {
-    background-color: transparent;
-    width: 100%;
-    height: 400px; /* Increased height slightly for better spacing */
-    perspective: 1000px;
-    margin-bottom: 1rem;
-}
+/* --- NEW ANIMATION LOGIC --- */
 
-/* The inner element that actually flips */
-.flip-card-inner {
+/* The main container that holds the 3D space */
+.flip-card-container {
+    perspective: 1000px;
+    transform-style: preserve-3d;
     position: relative;
     width: 100%;
+    height: 400px;
+}
+
+/* The card faces (front and back) */
+.flip-card-front,
+.flip-card-back {
+    width: 100%;
     height: 100%;
-    text-align: center;
-    transition: transform 0.8s;
-    transform-style: preserve-3d; /* THIS IS THE KEY - ONLY NEEDED HERE */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    transition: transform 0.7s cubic-bezier(.4, .2, .2, 1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     border-radius: 0.5rem;
 }
 
-/* Flip the inner element when the container has the .flipped class */
-.flip-card-container.flipped .flip-card-inner {
-    transform: rotateY(180deg);
+.flip-card-front {
+    background-color: #ffffff;
+    transform: rotateY(0deg);
+    z-index: 2;
 }
 
-/* Card faces - front and back */
-.flip-card-front,
 .flip-card-back {
+    background-color: #007bff;
+    transform: rotateY(180deg);
+    z-index: 1; /* Back face is initially behind */
+}
+
+/* Flipping the cards when .flipped class is added by JS */
+.flip-card-container.flipped .flip-card-front {
+    transform: rotateY(-180deg);
+}
+
+.flip-card-container.flipped .flip-card-back {
+    transform: rotateY(0deg);
+    z-index: 2; /* Bring back face to the front */
+}
+
+/* Content wrappers for the fly-out effect */
+.card-content-front,
+.card-content-back {
     position: absolute;
     width: 100%;
     height: 100%;
-    -webkit-backface-visibility: hidden; /* For Safari */
-    backface-visibility: hidden;
+    top: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-radius: 0.5rem;
-    /* REMOVED transform-style: preserve-3d; FROM HERE */
-}
-
-/* Styling for the front face */
-.flip-card-front {
-    background-color: #ffffff;
-    color: black;
-}
-
-/* Styling for the back face */
-.flip-card-back {
-    background-color: #007bff;
-    color: white;
-    transform: rotateY(180deg);
-    cursor: pointer;
-}
-
-/* The Content Wrapper for the 3D Effect */
-.card-content-wrapper {
     padding: 20px;
-    /* Pushes the content 60px towards the viewer from the card plane */
-    transform: translateZ(80px);
-    /* Adding a subtle shadow to text can enhance the floating illusion */
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.7s cubic-bezier(.4, .2, .2, 1);
 }
+
+/* Initial state of front content */
+.card-content-front {
+    transform: translateX(0) scale(1);
+    z-index: 2;
+}
+
+/* When flipped, the front content flies OUT to the left and shrinks */
+.flip-card-container.flipped .card-content-front {
+    transform: translateX(-150%) scale(0.6);
+}
+
+/* Initial state of back content (starts off-screen to the right) */
+.card-content-back {
+    color: white;
+    transform: translateX(150%) scale(0.6);
+    z-index: 2;
+}
+
+/* When flipped, the back content flies IN from the right */
+.flip-card-container.flipped .card-content-back {
+    transform: translateX(0) scale(1);
+}
+
+/* --- STYLING FOR CONTENT INSIDE THE CARDS --- */
 
 .card-logo {
     max-width: 60px;
-    margin-bottom: 1.5rem; /* More space below logo */
-    /* Using drop-shadow filter is great for transparent PNGs/SVGs */
-    filter: drop-shadow(0px 5px 10px rgba(0, 0, 0, 0.2));
+    margin-bottom: 1rem;
 }
 
 .settings-list {
@@ -93,7 +115,7 @@ body {
 }
 
 .settings-list li {
-    padding: 0.5rem 0; /* A bit more vertical padding */
+    padding: 0.4rem 0;
     border-bottom: 1px solid #e9ecef;
 }
 
@@ -104,18 +126,11 @@ body {
 .settings-list strong {
     color: #343a40;
     display: inline-block;
-    width: 90px; /* Align keys */
+    width: 90px;
 }
-
 
 .webmail-icon {
-    font-size: 6rem; /* Bigger icon */
-    transition: transform 0.3s ease;
-    filter: drop-shadow(0px 5px 15px rgba(0, 0, 0, 0.3));
-}
-
-.flip-card-back:hover .webmail-icon {
-    transform: scale(1.1);
+    font-size: 6rem;
 }
 
 .webmail-text {
@@ -124,31 +139,37 @@ body {
     font-size: 1.2rem;
 }
 
-/* Button below the card */
+/* --- UTILITY & LAYOUT CLASSES --- */
 .flip-btn {
     width: 100%;
-    margin-top: 1rem; /* Add margin to detach button visually */
+    margin-top: 1rem;
 }
 
-/* To hide the results initially */
 #results-container.d-none {
     display: none !important;
 }
 
 /* Class to handle disabled/unavailable protocols */
-.protocol-disabled .flip-card-front {
-    background-color: #f8f9fa;
+.protocol-disabled {
     opacity: 0.7;
 }
 
-.protocol-disabled .flip-card-front .card-content-wrapper {
-    display: none; /* Hide floating content too */
+.protocol-disabled .flip-card-front {
+    background-color: #f8f9fa;
 }
 
-/* Add a placeholder message for disabled cards */
+.protocol-disabled .card-content-front {
+    display: none;
+}
+
 .protocol-disabled .flip-card-front::after {
     content: "Protocol Not Available";
     font-size: 1.1rem;
     color: #6c757d;
     font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
 }

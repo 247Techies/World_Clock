@@ -72,25 +72,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- HELPER FUNCTION TO POPULATE A SINGLE CARD ---
     function updateCardContent(protocol, data, providerSettings) {
-        const cardElement = document.getElementById(`${protocol}-card`);
-        const container = cardElement.closest('.col-md-4');
-        const flipButton = container.querySelector('.flip-btn');
+        const cardContainer = document.getElementById(`${protocol}-card`).closest('.col-md-4');
+        const flipCardContainer = cardContainer.querySelector('.flip-card-container');
+        const flipButton = cardContainer.querySelector('.flip-btn');
 
         // Handle protocols that might not be available (e.g., POP3 for Outlook)
         if (!data) {
-            container.querySelector('.flip-card-container').classList.add('protocol-disabled');
-            cardElement.querySelector('.card-title').textContent = `${protocol.toUpperCase()} (Not Available)`;
-            cardElement.querySelector('.card-logo').src = providerSettings.logo;
-            cardElement.querySelector('.settings-list').innerHTML = '<p class="text-center mt-3">This protocol is not recommended or supported by this provider.</p>';
+            flipCardContainer.classList.add('protocol-disabled');
             flipButton.disabled = true;
             return;
         }
 
         // Re-enable if it was previously disabled
-        container.querySelector('.flip-card-container').classList.remove('protocol-disabled');
+        flipCardContainer.classList.remove('protocol-disabled');
         flipButton.disabled = false;
 
         // Update front of the card
+        const cardElement = document.getElementById(`${protocol}-card`);
         cardElement.querySelector('.card-title').textContent = `Incoming Mail (${protocol.toUpperCase()})`;
         if (protocol === 'smtp') {
             cardElement.querySelector('.card-title').textContent = `Outgoing Mail (SMTP)`;
@@ -108,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
 
         // Update back of the card
-        const backLink = container.querySelector('.flip-card-back');
+        const backLink = cardContainer.querySelector('.flip-card-back');
         backLink.setAttribute('onclick', `window.open('${providerSettings.webmail}', '_blank')`);
     }
 });
