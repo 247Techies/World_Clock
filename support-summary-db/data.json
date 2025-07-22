@@ -1483,5 +1483,80 @@
     "sentence": "Successfully assisted with the printing of a Word document.",
     "tag": "Print Word Document",
     "keywords": "Word document, printing, support"
+  },
+  {
+    "sentence": "Provided assistance with downloading an email attachment.",
+    "tag": "Email Attachment",
+    "keywords": "email, download, attachment"
+  },
+  {
+    "sentence": "Helped in accessing and downloading the attached file from the email.",
+    "tag": "Email Attachment",
+    "keywords": "access, email, attached file"
+  },
+  {
+    "sentence": "Assisted with retrieving and saving the email attachment.",
+    "tag": "Email Attachment",
+    "keywords": "retrieving, saving, email attachment"
+  },
+  {
+    "sentence": "Guided through the process of downloading the attachment from the email.",
+    "tag": "Email Attachment",
+    "keywords": "downloading, email, guidance"
+  },
+  {
+    "sentence": "Successfully provided support for downloading an email attachment.",
+    "tag": "Email Attachment",
+    "keywords": "support, email, attachment"
+  },
+  {
+    "sentence": "Provided assistance with installing an application.",
+    "tag": "Install Application",
+    "keywords": "installing, application, assistance"
+  },
+  {
+    "sentence": "Helped in downloading and installing the application.",
+    "tag": "Install Application",
+    "keywords": "download, install, application"
+  },
+  {
+    "sentence": "Assisted with the installation process of the required application.",
+    "tag": "Install Application",
+    "keywords": "installation process, application, assist"
+  },
+  {
+    "sentence": "Guided through the steps to successfully install the application.",
+    "tag": "Install Application",
+    "keywords": "steps, install, application"
+  },
+  {
+    "sentence": "Successfully provided support for application installation.",
+    "tag": "Install Application",
+    "keywords": "support, install, application"
+  },
+  {
+    "sentence": "Provided assistance with uninstalling an application.",
+    "tag": "Uninstall Application",
+    "keywords": "uninstall, application, assistance"
+  },
+  {
+    "sentence": "Helped in removing the application from the system.",
+    "tag": "Uninstall Application",
+    "keywords": "removing, system, application"
+  },
+  {
+    "sentence": "Assisted with the uninstallation process of the application.",
+    "tag": "Uninstall Application",
+    "keywords": "uninstallation process, application, assist"
+  },
+  {
+    "sentence": "Guided through the steps to successfully uninstall the application.",
+    "tag": "Uninstall Application",
+    "keywords": "steps, uninstall, application"
+  },
+  {
+    "sentence": "Successfully provided support for application removal.",
+    "tag": "Uninstall Application",
+    "keywords": "support, removal, application"
   }
 ]

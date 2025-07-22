@@ -12,12 +12,21 @@ body {
     margin-top: 3rem;
 }
 
-/* --- THE DEFINITIVE FIX USING CSS GRID & DECOUPLED CONTENT --- */
+/* --- THE FINAL FIX: A MASKING WRAPPER --- */
 
 .card-wrapper {
     display: flex;
     flex-direction: column;
     height: 100%;
+    /* 
+      THIS IS THE FIX: This wrapper acts as a "mask".
+      Anything from its children (the flying content) that goes 
+      outside its boundaries will be hidden.
+    */
+    position: relative;
+    overflow: hidden;
+    /* Match the border-radius of the cards for a clean clip */
+    border-radius: 0.5rem;
 }
 
 .flip-card-container {
@@ -27,7 +36,7 @@ body {
     flex-grow: 1; 
 }
 
-/* Place ALL children (backgrounds and content) into the same grid cell */
+/* Place ALL children into the same grid cell */
 .flip-card-container > * {
     grid-area: 1 / 1 / 1 / 1;
     width: 100%;
@@ -41,19 +50,18 @@ body {
 .flip-card-front,
 .flip-card-back {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    border-radius: 0.5rem;
 }
 
 .flip-card-front {
     background-color: #ffffff;
     transform: rotateY(0deg);
-    z-index: 2; /* Front background is on top */
+    z-index: 2;
 }
 
 .flip-card-back {
     background-color: #007bff;
     transform: rotateY(180deg);
-    z-index: 0; /* Back background is behind */
+    z-index: 0;
 }
 
 /* Content wrappers for the fly-out effect */
@@ -63,7 +71,6 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    /* Prevent clicks on content when it's hidden/off-screen */
     pointer-events: none;
 }
 
@@ -72,16 +79,15 @@ body {
     flex-grow: 1;
     justify-content: space-between;
     transform: translateX(0);
-    z-index: 3; /* Front content is on top of everything */
-    pointer-events: auto; /* Allow clicks */
+    z-index: 3;
+    pointer-events: auto;
 }
 
-/* THIS IS THE FIX: The content is no longer in a rotated parent */
 .card-content-back {
     color: white;
     justify-content: center;
-    transform: translateX(150%) scale(0.6); /* Starts off-screen to the RIGHT */
-    z-index: 1; /* Behind front content, but in front of back background */
+    transform: translateX(150%) scale(0.6);
+    z-index: 1;
 }
 
 /* --- FLIP ANIMATION LOGIC --- */
@@ -104,11 +110,11 @@ body {
 
 .flip-card-container.flipped .card-content-back {
     transform: translateX(0) scale(1);
-    pointer-events: auto; /* Allow clicks on the webmail link */
+    pointer-events: auto;
     z-index: 3;
 }
 
-/* --- GENERAL STYLING (UNCHANGED) --- */
+/* --- GENERAL STYLING --- */
 .card-top { display: flex; flex-direction: column; align-items: center; width: 100%; }
 .card-logo { max-width: 60px; margin-top: 1rem; }
 .settings-list { list-style: none; padding: 0; margin-top: 1.5rem; text-align: left; font-size: 0.9rem; width: 100%; word-break: break-word; }
@@ -117,7 +123,7 @@ body {
 .settings-list strong { color: #343a40; flex-shrink: 0; width: 100px; }
 .webmail-icon { font-size: 6rem; }
 .webmail-text { margin-top: 1rem; font-weight: bold; font-size: 1.2rem; }
-.flip-btn { width: 100%; margin-top: 1rem; }
+.flip-btn { width: 100%; margin-top: 1rem; border-radius: 0.5rem;}
 #results-container.d-none { display: none !important; }
 
 /* Protocol Disabled Logic */
