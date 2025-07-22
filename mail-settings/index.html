@@ -32,89 +32,91 @@
         </div>
 
         <!-- Results Container - Initially hidden -->
-        <div id="results-container" class="row mt-5 d-none">
+        <!-- Add align-items-stretch to the row to make columns equal height -->
+        <div id="results-container" class="row mt-5 align-items-stretch d-none">
             <!-- Card 1: IMAP -->
-            <!-- ADDED d-flex flex-column -->
-            <div class="col-md-4 mb-4 d-flex flex-column">
-                <div class="flip-card-container">
-                    <!-- Front Face -->
-                    <div class="flip-card-front" id="imap-card">
-                        <div class="card-content-front">
-                            <!-- ADDED card-top WRAPPER -->
-                            <div class="card-top">
-                                <h5 class="card-title">Incoming Mail (IMAP)</h5>
-                                <img src="img/default.png" alt="Provider Logo" class="card-logo">
+            <div class="col-md-4 mb-4">
+                <!-- THIS WRAPPER IS THE KEY TO THE FIX -->
+                <div class="card-wrapper d-flex flex-column h-100">
+                    <div class="flip-card-container">
+                        <!-- Front Face -->
+                        <div class="flip-card-front" id="imap-card">
+                            <div class="card-content-front">
+                                <div class="card-top">
+                                    <h5 class="card-title">Incoming Mail (IMAP)</h5>
+                                    <img src="img/default.png" alt="Provider Logo" class="card-logo">
+                                </div>
+                                <ul class="settings-list"></ul>
                             </div>
-                            <ul class="settings-list"></ul>
+                        </div>
+                        <!-- Back Face -->
+                        <div class="flip-card-back">
+                            <div class="card-content-back">
+                                <i class="fa-solid fa-globe webmail-icon"></i>
+                                <p class="webmail-text">Go to Webmail</p>
+                            </div>
                         </div>
                     </div>
-                    <!-- Back Face -->
-                    <div class="flip-card-back">
-                        <div class="card-content-back">
-                             <i class="fa-solid fa-globe webmail-icon"></i>
-                             <p class="webmail-text">Go to Webmail</p>
-                        </div>
-                    </div>
+                    <button class="btn btn-outline-secondary flip-btn">
+                        <i class="fa-solid fa-arrows-rotate me-2"></i>Flip Card
+                    </button>
                 </div>
-                <button class="btn btn-outline-secondary flip-btn">
-                    <i class="fa-solid fa-arrows-rotate me-2"></i>Flip Card
-                </button>
             </div>
 
             <!-- Card 2: POP3 -->
-            <!-- ADDED d-flex flex-column -->
-            <div class="col-md-4 mb-4 d-flex flex-column">
-                 <div class="flip-card-container">
-                    <!-- Front Face -->
-                    <div class="flip-card-front" id="pop3-card">
-                        <div class="card-content-front">
-                            <!-- ADDED card-top WRAPPER -->
-                            <div class="card-top">
-                                <h5 class="card-title">Incoming Mail (POP3)</h5>
-                                <img src="img/default.png" alt="Provider Logo" class="card-logo">
+            <div class="col-md-4 mb-4">
+                <div class="card-wrapper d-flex flex-column h-100">
+                    <div class="flip-card-container">
+                        <!-- Front Face -->
+                        <div class="flip-card-front" id="pop3-card">
+                            <div class="card-content-front">
+                                <div class="card-top">
+                                    <h5 class="card-title">Incoming Mail (POP3)</h5>
+                                    <img src="img/default.png" alt="Provider Logo" class="card-logo">
+                                </div>
+                                <ul class="settings-list"></ul>
                             </div>
-                            <ul class="settings-list"></ul>
+                        </div>
+                        <!-- Back Face -->
+                        <div class="flip-card-back">
+                            <div class="card-content-back">
+                                <i class="fa-solid fa-globe webmail-icon"></i>
+                                <p class="webmail-text">Go to Webmail</p>
+                            </div>
                         </div>
                     </div>
-                    <!-- Back Face -->
-                    <div class="flip-card-back">
-                        <div class="card-content-back">
-                             <i class="fa-solid fa-globe webmail-icon"></i>
-                             <p class="webmail-text">Go to Webmail</p>
-                        </div>
-                    </div>
+                    <button class="btn btn-outline-secondary flip-btn">
+                        <i class="fa-solid fa-arrows-rotate me-2"></i>Flip Card
+                    </button>
                 </div>
-                <button class="btn btn-outline-secondary flip-btn">
-                    <i class="fa-solid fa-arrows-rotate me-2"></i>Flip Card
-                </button>
             </div>
 
             <!-- Card 3: SMTP -->
-            <!-- ADDED d-flex flex-column -->
-            <div class="col-md-4 mb-4 d-flex flex-column">
-                <div class="flip-card-container">
-                    <!-- Front Face -->
-                    <div class="flip-card-front" id="smtp-card">
-                        <div class="card-content-front">
-                            <!-- ADDED card-top WRAPPER -->
-                            <div class="card-top">
-                                <h5 class="card-title">Outgoing Mail (SMTP)</h5>
-                                <img src="img/default.png" alt="Provider Logo" class="card-logo">
+            <div class="col-md-4 mb-4">
+                <div class="card-wrapper d-flex flex-column h-100">
+                    <div class="flip-card-container">
+                        <!-- Front Face -->
+                        <div class="flip-card-front" id="smtp-card">
+                            <div class="card-content-front">
+                                <div class="card-top">
+                                    <h5 class="card-title">Outgoing Mail (SMTP)</h5>
+                                    <img src="img/default.png" alt="Provider Logo" class="card-logo">
+                                </div>
+                                <ul class="settings-list"></ul>
                             </div>
-                            <ul class="settings-list"></ul>
+                        </div>
+                        <!-- Back Face -->
+                        <div class="flip-card-back">
+                            <div class="card-content-back">
+                                <i class="fa-solid fa-globe webmail-icon"></i>
+                                <p class="webmail-text">Go to Webmail</p>
+                            </div>
                         </div>
                     </div>
-                    <!-- Back Face -->
-                    <div class="flip-card-back">
-                        <div class="card-content-back">
-                             <i class="fa-solid fa-globe webmail-icon"></i>
-                             <p class="webmail-text">Go to Webmail</p>
-                        </div>
-                    </div>
+                    <button class="btn btn-outline-secondary flip-btn">
+                        <i class="fa-solid fa-arrows-rotate me-2"></i>Flip Card
+                    </button>
                 </div>
-                <button class="btn btn-outline-secondary flip-btn">
-                    <i class="fa-solid fa-arrows-rotate me-2"></i>Flip Card
-                </button>
             </div>
         </div>
     </div>

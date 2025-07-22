@@ -51,44 +51,38 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- CARD FLIP LOGIC ---
     flipButtons.forEach(button => {
         button.addEventListener('click', () => {
-            const cardContainer = button.closest('.col-md-4').querySelector('.flip-card-container');
+            const cardContainer = button.closest('.card-wrapper').querySelector('.flip-card-container');
             cardContainer.classList.toggle('flipped');
         });
     });
 
     // --- FUNCTION TO UPDATE CARDS WITH DATA ---
     function updateCards(settings) {
-        // Un-flip all cards before showing new data
         document.querySelectorAll('.flip-card-container.flipped').forEach(c => c.classList.remove('flipped'));
 
-        // Update each card (IMAP, POP3, SMTP)
         updateCardContent('imap', settings.imap, settings);
         updateCardContent('pop3', settings.pop3, settings);
         updateCardContent('smtp', settings.smtp, settings);
 
-        // Show the results container
         resultsContainer.classList.remove('d-none');
     }
 
     // --- HELPER FUNCTION TO POPULATE A SINGLE CARD ---
     function updateCardContent(protocol, data, providerSettings) {
-        const cardContainer = document.getElementById(`${protocol}-card`).closest('.col-md-4');
-        const flipCardContainer = cardContainer.querySelector('.flip-card-container');
-        const flipButton = cardContainer.querySelector('.flip-btn');
+        const cardElement = document.getElementById(`${protocol}-card`);
+        // ADJUSTED a more resilient selector
+        const cardWrapper = cardElement.closest('.col-md-4').querySelector('.card-wrapper'); 
+        const flipButton = cardWrapper.querySelector('.flip-btn');
 
-        // Handle protocols that might not be available (e.g., POP3 for Outlook)
         if (!data) {
-            flipCardContainer.classList.add('protocol-disabled');
+            cardWrapper.classList.add('protocol-disabled');
             flipButton.disabled = true;
             return;
         }
 
-        // Re-enable if it was previously disabled
-        flipCardContainer.classList.remove('protocol-disabled');
+        cardWrapper.classList.remove('protocol-disabled');
         flipButton.disabled = false;
 
-        // Update front of the card
-        const cardElement = document.getElementById(`${protocol}-card`);
         cardElement.querySelector('.card-title').textContent = `Incoming Mail (${protocol.toUpperCase()})`;
         if (protocol === 'smtp') {
             cardElement.querySelector('.card-title').textContent = `Outgoing Mail (SMTP)`;
@@ -105,8 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <li><strong>Password:</strong> ${data.password || 'N/A'}</li>
         `;
 
-        // Update back of the card
-        const backLink = cardContainer.querySelector('.flip-card-back');
+        const backLink = cardWrapper.querySelector('.flip-card-back');
         backLink.setAttribute('onclick', `window.open('${providerSettings.webmail}', '_blank')`);
     }
 });
