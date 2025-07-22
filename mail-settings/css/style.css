@@ -22,7 +22,7 @@ body {
     background-color: transparent;
     width: 100%;
     height: 380px;
-    perspective: 1000px; /* This creates the 3D space */
+    perspective: 1500px; /* Increased perspective for a more dramatic 3D effect */
 }
 
 .flip-card-inner {
@@ -30,11 +30,10 @@ body {
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: transform 0.8s;
-    transform-style: preserve-3d; /* This makes children exist in the 3D space */
+    transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Added a spring-like easing function */
+    transform-style: preserve-3d;
 }
 
-/* This class is added by JS to trigger the flip */
 .flip-card.flipped .flip-card-inner {
     transform: rotateY(180deg);
 }
@@ -44,12 +43,23 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    -webkit-backface-visibility: hidden; /* Safari */
-    backface-visibility: hidden; /* Hides the back of the element when it's not facing the user */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border-radius: .75rem !important; /* Override Bootstrap */
+    border-radius: .75rem !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* Add a base shadow */
+
+    /*  CRUCIAL CHANGE: This allows children to exist in the 3D space of the card face */
+    transform-style: preserve-3d;
+}
+
+/* NEW: This wrapper will hold the content and be pushed forward */
+.card-content-wrapper {
+    padding: 1rem;
+    /* This is the magic that creates the depth */
+    transform: translateZ(40px);
 }
 
 .flip-card-front {
@@ -60,7 +70,7 @@ body {
 .flip-card-back {
     background: linear-gradient(135deg, #434343 0%, #000000 100%);
     color: white;
-    transform: rotateY(180deg); /* Start with the back side flipped away */
+    transform: rotateY(180deg);
     align-items: center;
     justify-content: center;
 }
@@ -71,6 +81,8 @@ body {
     height: 60px;
     object-fit: contain;
     margin: 0 auto;
+    /* Add a drop shadow to the icon to enhance the floating effect */
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.2));
 }
 
 .card-body ul {
@@ -98,15 +110,23 @@ body {
     font-size: 5rem;
     color: #ffffff;
     transition: transform 0.3s ease;
+    /* Add a more pronounced shadow for the back icon */
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.4));
+    text-shadow: 0 0 20px rgba(128, 0, 255, 0.5);
 }
 
 .webmail-link:hover i {
-    transform: scale(1.1);
-    color: #764ba2;
+    transform: scale(1.1) rotate(-5deg); /* Add a little rotation on hover */
+    color: #9d78ec;
 }
 
 .flip-button {
     width: 80%;
     margin: 0 auto;
     display: block;
+    transition: transform 0.2s ease;
+}
+
+.flip-button:hover {
+    transform: translateY(-3px); /* Make button lift on hover */
 }
