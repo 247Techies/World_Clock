@@ -122,6 +122,7 @@ body {
 }
 
 .setting-value .help-text {
+    font-size: 10px;
     font-style: italic;
     color: #6c757d;
 }
