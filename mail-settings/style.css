@@ -64,11 +64,11 @@ body {
 
 .settings-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.50);
 }
 
 .settings-card .card-header {
-    background-color: #1e3c72;
+    background-color: #ff6f00;
     color: white;
     font-weight: 600;
     font-size: 1.25rem;
