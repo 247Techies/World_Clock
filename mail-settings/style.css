@@ -113,6 +113,11 @@ body {
     flex-direction: column;
 }
 
+.settings-card:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
 .settings-card .card-header {
     background-color: #1e3c72;
     color: white;
