@@ -1558,5 +1558,55 @@
     "sentence": "Successfully provided support for application removal.",
     "tag": "Uninstall Application",
     "keywords": "support, removal, application"
+  },
+  {
+    "sentence": "Resolved issues causing the system to crash with a Blue Screen (BSOD).",
+    "tag": "BSOD Issue",
+    "keywords": "blue screen, BSOD, system crash"
+  },
+  {
+    "sentence": "Identified and fixed the root cause of the Blue Screen error.",
+    "tag": "BSOD Issue",
+    "keywords": "blue screen, BSOD, root cause"
+  },
+  {
+    "sentence": "Troubleshot and resolved system instability resulting in BSOD.",
+    "tag": "BSOD Issue",
+    "keywords": "BSOD, instability, resolved"
+  },
+  {
+    "sentence": "Addressed hardware/software conflicts that triggered a Blue Screen crash.",
+    "tag": "BSOD Issue",
+    "keywords": "hardware conflict, software conflict, blue screen"
+  },
+  {
+    "sentence": "Successfully resolved critical system error leading to BSOD.",
+    "tag": "BSOD Issue",
+    "keywords": "critical error, system crash, BSOD"
+  },
+  {
+    "sentence": "Resolved issues causing the computer to restart or shut down unexpectedly.",
+    "tag": "Shutdown Issue",
+    "keywords": "restart, shut down, unexpected"
+  },
+  {
+    "sentence": "Identified and fixed problems leading to automatic power cycling of the computer.",
+    "tag": "Shutdown Issue",
+    "keywords": "power cycling, automatic restart, shutdown"
+  },
+  {
+    "sentence": "Troubleshot and resolved unexpected shutdown and reboot behavior.",
+    "tag": "Shutdown Issue",
+    "keywords": "shutdown, reboot, unexpected"
+  },
+  {
+    "sentence": "Addressed system instability causing the computer to turn off and on automatically.",
+    "tag": "Shutdown Issue",
+    "keywords": "instability, auto restart, shutdown"
+  },
+  {
+    "sentence": "Successfully resolved issues related to unintentional system restarts.",
+    "tag": "Shutdown Issue",
+    "keywords": "unintentional restart, resolved, shutdown"
   }
 ]
