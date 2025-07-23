@@ -5,25 +5,23 @@
       "server": "imap.gmail.com",
       "port": "993",
       "security": "SSL / TLS",
-      "authentication": "Yes",
       "username": "Your full Gmail address",
-      "password": "Your Gmail password or an App Password"
+      "password": "Your Gmail password or App Password"
     },
     "pop3": {
       "server": "pop.gmail.com",
       "port": "995",
       "security": "SSL / TLS",
-      "authentication": "Yes",
       "username": "Your full Gmail address",
-      "password": "Your Gmail password or an App Password"
+      "password": "Your Gmail password or App Password"
     },
     "smtp": {
       "server": "smtp.gmail.com",
-      "port": "465 (SSL/TLS) or 587 (STARTTLS)",
+      "port": "465 or 587",
       "security": "SSL / TLS or STARTTLS",
       "authentication": "Yes",
       "username": "Your full Gmail address",
-      "password": "Your Gmail password or an App Password"
+      "password": "Your Gmail password or App Password"
     }
   },
   "outlook.com": {
@@ -32,16 +30,14 @@
       "server": "outlook.office365.com",
       "port": "993",
       "security": "SSL / TLS",
-      "authentication": "Yes",
-      "username": "Your full Outlook/Hotmail address",
+      "username": "Your full Outlook address",
       "password": "Your Microsoft account password"
     },
     "pop3": {
       "server": "outlook.office365.com",
       "port": "995",
       "security": "SSL / TLS",
-      "authentication": "Yes",
-      "username": "Your full Outlook/Hotmail address",
+      "username": "Your full Outlook address",
       "password": "Your Microsoft account password"
     },
     "smtp": {
@@ -49,7 +45,7 @@
       "port": "587",
       "security": "STARTTLS",
       "authentication": "Yes",
-      "username": "Your full Outlook/Hotmail address",
+      "username": "Your full Outlook address",
       "password": "Your Microsoft account password"
     }
   },
@@ -59,16 +55,14 @@
       "server": "imap.mail.yahoo.com",
       "port": "993",
       "security": "SSL / TLS",
-      "authentication": "Yes",
-      "username": "Your full Yahoo email address",
+      "username": "Your full Yahoo address",
       "password": "Your Yahoo App Password"
     },
     "pop3": {
       "server": "pop.mail.yahoo.com",
       "port": "995",
       "security": "SSL / TLS",
-      "authentication": "Yes",
-      "username": "Your full Yahoo email address",
+      "username": "Your full Yahoo address",
       "password": "Your Yahoo App Password"
     },
     "smtp": {
@@ -76,35 +70,8 @@
       "port": "465 or 587",
       "security": "SSL / TLS",
       "authentication": "Yes",
-      "username": "Your full Yahoo email address",
+      "username": "Your full Yahoo address",
       "password": "Your Yahoo App Password"
-    }
-  },
-  "aol.com": {
-    "provider": "AOL Mail",
-    "imap": {
-      "server": "imap.aol.com",
-      "port": "993",
-      "security": "SSL / TLS",
-      "authentication": "Yes",
-      "username": "Your full AOL email address",
-      "password": "Your AOL password or App Password"
-    },
-    "pop3": {
-      "server": "pop.aol.com",
-      "port": "995",
-      "security": "SSL / TLS",
-      "authentication": "Yes",
-      "username": "Your full AOL email address",
-      "password": "Your AOL password or App Password"
-    },
-    "smtp": {
-      "server": "smtp.aol.com",
-      "port": "465",
-      "security": "SSL / TLS",
-      "authentication": "Yes",
-      "username": "Your full AOL email address",
-      "password": "Your AOL password or App Password"
     }
   },
   "icloud.com": {
@@ -113,15 +80,13 @@
       "server": "imap.mail.me.com",
       "port": "993",
       "security": "SSL / TLS",
-      "authentication": "Yes",
-      "username": "Your full iCloud email address",
+      "username": "Your full iCloud address",
       "password": "An app-specific password"
     },
     "pop3": {
       "server": "Not Recommended by Apple",
       "port": "N/A",
       "security": "N/A",
-      "authentication": "N/A",
       "username": "N/A",
       "password": "N/A"
     },
@@ -130,8 +95,33 @@
       "port": "587",
       "security": "STARTTLS",
       "authentication": "Yes",
-      "username": "Your full iCloud email address",
+      "username": "Your full iCloud address",
       "password": "An app-specific password"
+    }
+  },
+  "aol.com": {
+    "provider": "AOL Mail",
+    "imap": {
+      "server": "imap.aol.com",
+      "port": "993",
+      "security": "SSL / TLS",
+      "username": "Your full AOL address",
+      "password": "Your AOL password or App Password"
+    },
+    "pop3": {
+      "server": "pop.aol.com",
+      "port": "995",
+      "security": "SSL / TLS",
+      "username": "Your full AOL address",
+      "password": "Your AOL password or App Password"
+    },
+    "smtp": {
+      "server": "smtp.aol.com",
+      "port": "465",
+      "security": "SSL / TLS",
+      "authentication": "Yes",
+      "username": "Your full AOL address",
+      "password": "Your AOL password or App Password"
     }
   }
 }
