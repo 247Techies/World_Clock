@@ -40,6 +40,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // --- FUNCTIONS ---
         function handleSearch(event) {
             event.preventDefault();
+
+            // START: Add this one line
+            document.getElementById('betaNotice').style.display = 'none';
+            
             setLoading(true);
 
             resultsContainer.classList.remove('visible');
