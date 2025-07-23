@@ -1,21 +1,22 @@
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    color: #333;
+    background-color: #f0f4f8; /* Light blue-gray background from image */
+    color: #3d4f6c;
 }
 
 .main-container {
-    max-width: 1140px;
-    margin-top: 4rem;
-    margin-bottom: 4rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
 }
 
+/* Header Box Styling */
 .header-section {
     background-color: white;
-    padding: 2rem 2.5rem;
+    padding: 2.5rem;
     border-radius: 1rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    margin-bottom: 2rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    max-width: 850px;
+    margin: 0 auto;
 }
 
 .header-section h1 {
@@ -23,53 +24,59 @@ body {
     color: #1e3c72;
 }
 
-.header-section p {
-    color: #555;
-    font-size: 1.1rem;
+.header-section .lead {
+    color: #6c757d;
+    font-size: 1.05rem;
+    font-weight: 400;
 }
 
-/* --- UPDATE: Add position relative for the reset button --- */
+/* Search Form Styling */
 .search-form {
     position: relative;
 }
 
-.search-form .btn-primary {
-    background-color: #1e3c72;
-    border-color: #1e3c72;
-    font-weight: 600;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    min-width: 180px;
+.search-form .form-control {
+    border-radius: 0.5rem !important;
+    padding: 0.8rem 1.2rem;
+    border: 1px solid #dee2e6;
+    box-shadow: none;
+}
+.search-form .form-control:focus {
+    border-color: #8ab4f8;
 }
 
-.search-form .btn-primary:hover {
-    background-color: #2a5298;
-    transform: translateY(-2px);
-}
-
-.search-form .btn-primary .spinner-border {
-    margin-right: 0.5rem;
-}
-
-/* --- NEW: Styles for the reset button --- */
 #resetBtn {
     position: absolute;
-    right: 190px; /* Position it to the left of the search button */
+    right: 165px; /* Adjust based on button width */
     top: 50%;
     transform: translateY(-50%);
     z-index: 5;
     border: none;
     background: none;
     font-size: 1.2rem;
-    color: #999;
+    color: #888;
     cursor: pointer;
-    padding: 0 0.75rem;
-    opacity: 0.7;
-    transition: opacity 0.2s ease, color 0.2s ease;
+    transition: color 0.2s ease;
+}
+#resetBtn:hover {
+    color: #333;
 }
 
-#resetBtn:hover {
-    opacity: 1;
+.search-form .btn-primary {
+    background-color: #1e3c72;
+    border-color: #1e3c72;
+    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem !important;
+    min-width: 155px; /* Space for spinner */
+}
+
+/* Results Section Styling */
+#resultsHeader {
+    font-weight: 600;
     color: #333;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 @keyframes fadeIn {
@@ -77,35 +84,38 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-.settings-card {
-    background: white;
-    border: none;
-    border-radius: 1rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+#resultsContainer.visible {
+    display: block;
+    animation: fadeIn 0.5s ease-out forwards;
 }
 
-.settings-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+/* Individual Card Styling */
+.settings-card {
+    background: #ffffff;
+    border: none;
+    border-radius: 1rem; /* Rounded corners on all cards */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .settings-card .card-header {
     background-color: #1e3c72;
     color: white;
     font-weight: 600;
-    font-size: 1.25rem;
-    border-top-left-radius: 1rem;
-    border-top-right-radius: 1rem;
+    font-size: 1.1rem;
+    padding: 0.9rem 1.25rem;
     display: flex;
     align-items: center;
+    border-bottom: none;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
 }
 
 .settings-card .card-header i {
     margin-right: 0.75rem;
+    font-size: 1.1rem;
 }
 
 .list-group {
@@ -113,15 +123,13 @@ body {
 }
 
 .list-group-item {
+    padding: 0.8rem 1.25rem;
+    background-color: transparent;
+    border-bottom: 1px solid #f0f0f0;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Vertically centers content */
-    padding: 0.8rem 1.5rem;
-    border: none;
-    border-bottom: 1px solid #f0f0f0;
-    background-color: transparent;
-    /* --- UPDATE: Set a min-height to prevent card shrinking --- */
-    min-height: 70px; 
+    justify-content: center;
+    min-height: 72px;
 }
 
 .list-group-item:last-child {
@@ -129,53 +137,35 @@ body {
 }
 
 .list-group-item strong {
-    color: #333;
-    margin-bottom: 0.25rem;
+    font-weight: 600;
     font-size: 0.9rem;
-    text-transform: capitalize;
+    color: #333;
 }
 
 .setting-value {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
     color: #555;
     font-weight: 400;
-}
-
-.setting-value .text {
-    word-break: break-all;
-    padding-right: 0.5rem;
-}
-
-/* --- UPDATE: Reduce font size for help text --- */
-.setting-value .help-text {
-    font-style: italic;
-    color: #6c757d;
-    font-size: 0.8rem; /* Smaller font size */
+    font-size: 0.95rem;
+    margin-top: 2px;
 }
 
 .copy-btn {
     background: none;
     border: none;
-    color: #6c757d;
+    color: #adb5bd;
     cursor: pointer;
-    font-size: 0.9rem;
-    opacity: 0.6;
-    transition: color 0.2s ease, opacity 0.2s ease;
+    font-size: 1rem;
+    transition: color 0.2s ease;
+    padding: 0;
+    margin-left: 0.5rem;
 }
-
 .copy-btn:hover {
     color: #1e3c72;
-    opacity: 1;
 }
 
-#resultsContainer, #errorContainer {
+#errorContainer, #resultsContainer {
     display: none;
-}
-
-#resultsContainer.visible {
-    display: block;
-    animation: fadeIn 0.5s ease-out forwards;
 }

@@ -5,30 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Email Server Settings Finder</title>
     
-    <!-- Bootstrap CSS -->
+    <!-- External Libraries -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="container main-container">
-        <!-- Header and Search Form -->
+        <!-- Header and Search Form Box -->
         <div class="header-section text-center">
             <h1><i class="fas fa-server me-2"></i>Email Server Settings Finder</h1>
             <p class="lead">Enter your email address to find the IMAP, POP3, and SMTP settings for your provider.</p>
             
             <form id="emailForm" class="mt-4">
                 <div class="input-group input-group-lg search-form">
-                    <input type="email" id="emailInput" class="form-control" placeholder="e.g., yourname@gmail.com" required>
-                    <!-- NEW: Reset button, hidden by default -->
+                    <input type="email" id="emailInput" class="form-control" placeholder="yourname@example.com" required>
                     <button type="button" id="resetBtn" class="d-none" aria-label="Clear search"><i class="fas fa-times"></i></button>
                     <button class="btn btn-primary" type="submit" id="searchBtn">
-                        <span class="btn-text"><i class="fas fa-search me-2"></i>Find Settings</span>
+                        <span class="btn-text"><i class="fas fa-search me-1"></i>Find Settings</span>
                         <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
                     </button>
                 </div>
@@ -37,32 +35,32 @@
 
         <!-- Results Section -->
         <div id="resultsContainer" class="mt-5">
-            <h2 class="text-center mb-4" id="resultsHeader"></h2>
+            <h2 class="text-center" id="resultsHeader"></h2>
             <div class="row g-4 justify-content-center">
                 <!-- IMAP Card -->
                 <div class="col-lg-4 col-md-6 d-flex">
-                    <div class="card settings-card">
+                    <div class="settings-card">
                         <div class="card-header"><i class="fas fa-inbox"></i>IMAP (Incoming)</div>
                         <ul class="list-group list-group-flush" data-protocol="imap">
-                            <!-- JS will populate this -->
+                            <!-- JS populates this -->
                         </ul>
                     </div>
                 </div>
                 <!-- POP3 Card -->
                 <div class="col-lg-4 col-md-6 d-flex">
-                    <div class="card settings-card">
+                    <div class="settings-card">
                         <div class="card-header"><i class="fas fa-download"></i>POP3 (Incoming)</div>
                         <ul class="list-group list-group-flush" data-protocol="pop3">
-                           <!-- JS will populate this -->
+                           <!-- JS populates this -->
                         </ul>
                     </div>
                 </div>
                 <!-- SMTP Card -->
                 <div class="col-lg-4 col-md-6 d-flex">
-                    <div class="card settings-card">
+                    <div class="settings-card">
                         <div class="card-header"><i class="fas fa-paper-plane"></i>SMTP (Outgoing)</div>
                         <ul class="list-group list-group-flush" data-protocol="smtp">
-                           <!-- JS will populate this -->
+                           <!-- JS populates this -->
                         </ul>
                     </div>
                 </div>
@@ -71,16 +69,14 @@
         
         <!-- Error/Not Found Section -->
         <div id="errorContainer" class="mt-5 text-center">
-            <div class="alert alert-warning" role="alert">
+             <div class="alert alert-warning" role="alert">
                 <h4 class="alert-heading"><i class="fas fa-exclamation-triangle me-2"></i>Not Found!</h4>
                 <p id="errorMessage"></p>
             </div>
         </div>
     </div>
 
-    <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Custom JS -->
     <script src="script.js"></script>
 
 </body>
