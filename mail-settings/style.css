@@ -30,6 +30,7 @@ body {
 
 .search-form .btn-primary {
     background-color: #000000;
+    border: none;
     border-color: #000000;
     font-weight: 600;
     transition: background-color 0.3s ease, transform 0.2s ease;
