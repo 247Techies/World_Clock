@@ -20,7 +20,7 @@ body {
 
 .header-section h1 {
     font-weight: 700;
-    color: #1e3c72;
+    color: #000000;
 }
 
 .header-section p {
@@ -29,15 +29,15 @@ body {
 }
 
 .search-form .btn-primary {
-    background-color: #ff6f00;
-    border-color: #ff6f00;
+    background-color: #000000;
+    border-color: #000000;
     font-weight: 600;
     transition: background-color 0.3s ease, transform 0.2s ease;
     min-width: 180px; /* Give button space for spinner */
 }
 
 .search-form .btn-primary:hover {
-    background-color: #fc903e;
+    background-color: #ff6f00;
 }
 
 .search-form .btn-primary .spinner-border {
