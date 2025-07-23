@@ -29,16 +29,15 @@ body {
 }
 
 .search-form .btn-primary {
-    background-color: #1e3c72;
-    border-color: #1e3c72;
+    background-color: #ff6f00;
+    border-color: #ff6f00;
     font-weight: 600;
     transition: background-color 0.3s ease, transform 0.2s ease;
     min-width: 180px; /* Give button space for spinner */
 }
 
 .search-form .btn-primary:hover {
-    background-color: #2a5298;
-    transform: translateY(-2px);
+    background-color: #fc903e;
 }
 
 .search-form .btn-primary .spinner-border {
@@ -64,7 +63,7 @@ body {
 
 .settings-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.50);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
 }
 
 .settings-card .card-header {
