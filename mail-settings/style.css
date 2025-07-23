@@ -13,9 +13,9 @@ body {
 .header-section {
     background-color: white;
     padding: 2.5rem;
-    border-radius: 1rem;
+    border-radius: 1.25rem; /* More pronounced radius from image */
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-    max-width: 850px;
+    max-width: 1116px; /* Aligns with the width of 3 cards + gutters */
     margin: 0 auto;
 }
 
@@ -26,52 +26,66 @@ body {
 
 .header-section .lead {
     color: #6c757d;
-    font-size: 1.05rem;
+    font-size: 1rem;
     font-weight: 400;
 }
 
-/* Search Form Styling */
-.search-form {
+/* NEW: Search Bar Container */
+.search-input-container {
     position: relative;
+    display: flex;
+    align-items: center;
+    background-color: #f8fafc; /* Very light background for the input area */
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    padding: 0.25rem; /* Small padding to house the button */
+    transition: border-color 0.2s ease;
+}
+.search-input-container:focus-within {
+    border-color: #8ab4f8; /* Blue highlight on focus */
 }
 
-.search-form .form-control {
-    border-radius: 0.5rem !important;
-    padding: 0.8rem 1.2rem;
-    border: 1px solid #dee2e6;
-    box-shadow: none;
-}
-.search-form .form-control:focus {
-    border-color: #8ab4f8;
+/* Input field inside the new container */
+.search-input-container .form-control {
+    border: none;
+    background-color: transparent;
+    box-shadow: none !important;
+    flex-grow: 1;
+    padding: 0.75rem 1rem;
+    padding-right: 200px; /* Make space for the two buttons */
 }
 
+/* Reset button ('X') inside the container */
 #resetBtn {
     position: absolute;
-    right: 165px; /* Adjust based on button width */
+    right: 180px; /* Positioned to the left of the search button */
     top: 50%;
     transform: translateY(-50%);
-    z-index: 5;
     border: none;
     background: none;
     font-size: 1.2rem;
-    color: #888;
+    color: #999;
     cursor: pointer;
-    transition: color 0.2s ease;
-}
-#resetBtn:hover {
-    color: #333;
+    z-index: 3;
 }
 
-.search-form .btn-primary {
+/* Search button inside the container */
+.search-input-container .btn-primary {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: calc(100% - 12px); /* Fits neatly inside with padding */
     background-color: #1e3c72;
     border-color: #1e3c72;
     font-weight: 500;
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.5rem !important;
-    min-width: 155px; /* Space for spinner */
+    border-radius: 0.5rem; /* Slightly smaller radius than container */
+    min-width: 165px;
+    z-index: 2;
 }
 
-/* Results Section Styling */
+
+/* --- The rest of the styles are correct and unchanged --- */
 #resultsHeader {
     font-weight: 600;
     color: #333;
@@ -89,11 +103,10 @@ body {
     animation: fadeIn 0.5s ease-out forwards;
 }
 
-/* Individual Card Styling */
 .settings-card {
     background: #ffffff;
     border: none;
-    border-radius: 1rem; /* Rounded corners on all cards */
+    border-radius: 1rem;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
     width: 100%;
     display: flex;

@@ -22,11 +22,12 @@
             <p class="lead">Enter your email address to find the IMAP, POP3, and SMTP settings for your provider.</p>
             
             <form id="emailForm" class="mt-4">
-                <div class="input-group input-group-lg search-form">
+                <!-- NEW: Custom container for the unified search bar -->
+                <div class="search-input-container">
                     <input type="email" id="emailInput" class="form-control" placeholder="yourname@example.com" required>
                     <button type="button" id="resetBtn" class="d-none" aria-label="Clear search"><i class="fas fa-times"></i></button>
                     <button class="btn btn-primary" type="submit" id="searchBtn">
-                        <span class="btn-text"><i class="fas fa-search me-1"></i>Find Settings</span>
+                        <span class="btn-text"><i class="fas fa-search me-2"></i>Find Settings</span>
                         <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
                     </button>
                 </div>
@@ -36,6 +37,7 @@
         <!-- Results Section -->
         <div id="resultsContainer" class="mt-5">
             <h2 class="text-center" id="resultsHeader"></h2>
+            <!-- The row now dictates the width for the header above -->
             <div class="row g-4 justify-content-center">
                 <!-- IMAP Card -->
                 <div class="col-lg-4 col-md-6 d-flex">
