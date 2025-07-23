@@ -25,6 +25,8 @@
             <form id="emailForm" class="mt-4">
                 <div class="input-group input-group-lg search-form">
                     <input type="email" id="emailInput" class="form-control" placeholder="e.g., yourname@gmail.com" required>
+                    <!-- NEW: Reset button, hidden by default -->
+                    <button type="button" id="resetBtn" class="d-none" aria-label="Clear search"><i class="fas fa-times"></i></button>
                     <button class="btn btn-primary" type="submit" id="searchBtn">
                         <span class="btn-text"><i class="fas fa-search me-2"></i>Find Settings</span>
                         <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>

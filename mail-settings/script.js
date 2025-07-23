@@ -1,8 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    let serverSettingsData = {}; // This will hold our data once fetched
+    let serverSettingsData = {};
 
-    // --- FETCH DATA AND INITIALIZE APP ---
     fetch('settings.json')
         .then(response => {
             if (!response.ok) {
@@ -12,15 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .then(data => {
             serverSettingsData = data;
-            // Add aliases after data is loaded. Aliases can't be in JSON.
             serverSettingsData['hotmail.com'] = serverSettingsData['outlook.com'];
-            
-            // Now that data is loaded, initialize the app's interactive elements
             initializeApp();
         })
         .catch(error => {
             console.error('Error loading server settings:', error);
-            // Inform the user that the application cannot run
             document.getElementById('searchBtn').disabled = true;
             const emailInput = document.getElementById('emailInput');
             emailInput.disabled = true;
@@ -29,16 +24,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
     function initializeApp() {
-        // --- DOM ELEMENTS ---
         const emailForm = document.getElementById('emailForm');
         const searchBtn = document.getElementById('searchBtn');
         const resultsContainer = document.getElementById('resultsContainer');
         const errorContainer = document.getElementById('errorContainer');
         const emailInput = document.getElementById('emailInput');
+        const resetBtn = document.getElementById('resetBtn'); // Get the reset button
 
         // --- EVENT LISTENERS ---
         emailForm.addEventListener('submit', handleSearch);
         document.addEventListener('click', handleCopyClick);
+        resetBtn.addEventListener('click', resetSearch); // Add listener for reset button
+        emailInput.addEventListener('input', toggleResetButton); // Add listener for typing in the input
 
         // --- FUNCTIONS ---
         function handleSearch(event) {
@@ -62,6 +59,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 setLoading(false);
             }, 500);
         }
+
+        // --- NEW: Function to reset the search state ---
+        function resetSearch() {
+            emailInput.value = '';
+            resultsContainer.classList.remove('visible');
+            errorContainer.style.display = 'none';
+            resetBtn.classList.add('d-none');
+            emailInput.focus();
+        }
+
+        // --- NEW: Function to show/hide the reset button ---
+        function toggleResetButton() {
+            if (emailInput.value.length > 0) {
+                resetBtn.classList.remove('d-none');
+            } else {
+                resetBtn.classList.add('d-none');
+            }
+        }
         
         function updateUI(settings) {
             document.getElementById('resultsHeader').textContent = `Settings for ${settings.provider}`;
@@ -76,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     const valueText = details[key];
                     const isHelpText = key === 'username' || key === 'password';
-                    const canCopy = !isHelpText && valueText !== 'N/A';
+                    const canCopy = !isHelpText && valueText !== 'N/A' && valueText;
 
                     li.innerHTML = `
                         <strong>${key.replace('_', ' ')}:</strong>
@@ -106,7 +121,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    // These functions are defined in the outer scope so they can be used by the catch block and the initialized app
     function showError(message) {
         document.getElementById('errorMessage').textContent = message;
         document.getElementById('errorContainer').style.display = 'block';

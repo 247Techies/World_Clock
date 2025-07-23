@@ -20,7 +20,7 @@ body {
 
 .header-section h1 {
     font-weight: 700;
-    color: #000000;
+    color: #1e3c72;
 }
 
 .header-section p {
@@ -28,24 +28,50 @@ body {
     font-size: 1.1rem;
 }
 
+/* --- UPDATE: Add position relative for the reset button --- */
+.search-form {
+    position: relative;
+}
+
 .search-form .btn-primary {
-    background-color: #000000;
-    border: none;
-    border-color: #000000;
+    background-color: #1e3c72;
+    border-color: #1e3c72;
     font-weight: 600;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    min-width: 180px; /* Give button space for spinner */
+    min-width: 180px;
 }
 
 .search-form .btn-primary:hover {
-    background-color: #ff6f00;
+    background-color: #2a5298;
+    transform: translateY(-2px);
 }
 
 .search-form .btn-primary .spinner-border {
     margin-right: 0.5rem;
 }
 
-/* Card and animation styles */
+/* --- NEW: Styles for the reset button --- */
+#resetBtn {
+    position: absolute;
+    right: 190px; /* Position it to the left of the search button */
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+    border: none;
+    background: none;
+    font-size: 1.2rem;
+    color: #999;
+    cursor: pointer;
+    padding: 0 0.75rem;
+    opacity: 0.7;
+    transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+#resetBtn:hover {
+    opacity: 1;
+    color: #333;
+}
+
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -68,7 +94,7 @@ body {
 }
 
 .settings-card .card-header {
-    background-color: #ff6f00;
+    background-color: #1e3c72;
     color: white;
     font-weight: 600;
     font-size: 1.25rem;
@@ -89,11 +115,13 @@ body {
 .list-group-item {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    justify-content: center; /* Vertically centers content */
     padding: 0.8rem 1.5rem;
     border: none;
     border-bottom: 1px solid #f0f0f0;
     background-color: transparent;
+    /* --- UPDATE: Set a min-height to prevent card shrinking --- */
+    min-height: 70px; 
 }
 
 .list-group-item:last-child {
@@ -121,9 +149,11 @@ body {
     padding-right: 0.5rem;
 }
 
+/* --- UPDATE: Reduce font size for help text --- */
 .setting-value .help-text {
     font-style: italic;
     color: #6c757d;
+    font-size: 0.8rem; /* Smaller font size */
 }
 
 .copy-btn {
