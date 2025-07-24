@@ -148,5 +148,30 @@
       "username": "Your full FairPoint address",
       "password": "Your FairPoint password or App Password"
     }
+  },
+    "telstra.com": {
+    "provider": "Telstra Mail",
+    "imap": {
+      "server": "imap.telstra.com",
+      "port": "993",
+      "security": "SSL / TLS",
+      "username": "Your full Telstra address",
+      "password": "Your Telstra password or App Password"
+    },
+    "pop3": {
+      "server": "pop.telstra.com",
+      "port": "995",
+      "security": "SSL / TLS",
+      "username": "Your full Telstra address",
+      "password": "Your Telstra password or App Password"
+    },
+    "smtp": {
+      "server": "smtp.telstra.com",
+      "port": "465 or 587",
+      "security": "SSL / TLS or STARTTLS",
+      "authentication": "Yes",
+      "username": "Your full Telstra address",
+      "password": "Your Telstra password or App Password"
+    }
   }
 }
