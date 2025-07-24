@@ -123,5 +123,30 @@
       "username": "Your full AOL address",
       "password": "Your AOL password or App Password"
     }
+  },
+    "fairpoint.net": {
+    "provider": "FairPoint Communications",
+    "imap": {
+      "server": "mail.fairpoint.net",
+      "port": "993",
+      "security": "SSL / TLS",
+      "username": "Your full FairPoint address",
+      "password": "Your FairPoint password or App Password"
+    },
+    "pop3": {
+      "server": "N/A",
+      "port": "N/A",
+      "security": "N/A",
+      "username": "N/A",
+      "password": "N/A"
+    },
+    "smtp": {
+      "server": "smtp.fairpoint.net",
+      "port": "465",
+      "security": "SSL / TLS",
+      "authentication": "Yes",
+      "username": "Your full FairPoint address",
+      "password": "Your FairPoint password or App Password"
+    }
   }
 }
