@@ -1833,5 +1833,55 @@
     "sentence": "Supported the completion of a document upload via an online submission form.",
     "tag": "Document Upload",
     "keywords": "submission form, upload support, document"
+  },
+  {
+    "sentence": "Assisted with logging into the correct email account via web browser.",
+    "tag": "Email Login",
+    "keywords": "email login, web browser, correct account"
+  },
+  {
+    "sentence": "Guided through the process of accessing the correct email using a web browser.",
+    "tag": "Email Login",
+    "keywords": "access email, browser login, correct account"
+  },
+  {
+    "sentence": "Resolved issues related to logging into the intended email account online.",
+    "tag": "Email Login",
+    "keywords": "email login issue, intended account, online"
+  },
+  {
+    "sentence": "Successfully supported login to the appropriate email through the browser.",
+    "tag": "Email Login",
+    "keywords": "support login, appropriate email, browser"
+  },
+  {
+    "sentence": "Performed tasks to ensure access to the correct email account on the web.",
+    "tag": "Email Login",
+    "keywords": "email access, correct account, web"
+  },
+  {
+    "sentence": "Resolved issues preventing successful email login.",
+    "tag": "Email Login",
+    "keywords": "email login, issue resolved, access"
+  },
+  {
+    "sentence": "Troubleshot and fixed problems related to signing into the email account.",
+    "tag": "Email Login",
+    "keywords": "sign-in issue, email account, troubleshoot"
+  },
+  {
+    "sentence": "Successfully resolved login issues with the email service.",
+    "tag": "Email Login",
+    "keywords": "email login, resolved issue, email service"
+  },
+  {
+    "sentence": "Addressed authentication problems and restored access to the email account.",
+    "tag": "Email Login",
+    "keywords": "authentication issue, email access, login"
+  },
+  {
+    "sentence": "Identified and corrected email login errors.",
+    "tag": "Email Login",
+    "keywords": "email login, error correction, login issue"
   }
 ]
