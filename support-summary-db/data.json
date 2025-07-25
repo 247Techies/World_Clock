@@ -1808,5 +1808,30 @@
     "sentence": "Provided support for transferring data to an external storage device.",
     "tag": "Transferring Files & Folders",
     "keywords": "transfer data, external storage, support"
+  },
+  {
+    "sentence": "Provided assistance with uploading a document to an online form.",
+    "tag": "Document Upload",
+    "keywords": "upload document, online form, assistance"
+  },
+  {
+    "sentence": "Helped in attaching and submitting a document through the online form.",
+    "tag": "Document Upload",
+    "keywords": "attach document, submit online form, file upload"
+  },
+  {
+    "sentence": "Assisted with the document upload process on the online platform.",
+    "tag": "Document Upload",
+    "keywords": "document upload, online platform, support"
+  },
+  {
+    "sentence": "Guided through successfully uploading a document to the required online form.",
+    "tag": "Document Upload",
+    "keywords": "upload guidance, online form, document"
+  },
+  {
+    "sentence": "Supported the completion of a document upload via an online submission form.",
+    "tag": "Document Upload",
+    "keywords": "submission form, upload support, document"
   }
 ]
