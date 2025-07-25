@@ -1708,5 +1708,105 @@
     "sentence": "Resolved issues related to intrusive purchase or subscription prompts.",
     "tag": "Promotional Notifications",
     "keywords": "intrusive prompts, purchase alerts, subscription issues"
+  },
+  {
+    "sentence": "Resolved issues related to unwanted ads and pop-ups on the mobile device.",
+    "tag": "Mobile Ads & Pop-Ups",
+    "keywords": "mobile ads, pop-ups, unwanted advertisements"
+  },
+  {
+    "sentence": "Identified and removed sources causing intrusive advertisements on mobile.",
+    "tag": "Mobile Ads & Pop-Ups",
+    "keywords": "intrusive ads, mobile popups, ad removal"
+  },
+  {
+    "sentence": "Troubleshot and eliminated adware or apps triggering pop-ups on the phone.",
+    "tag": "Mobile Ads & Pop-Ups",
+    "keywords": "adware, popup apps, phone advertisements"
+  },
+  {
+    "sentence": "Provided assistance in blocking and preventing unwanted mobile ads and pop-ups.",
+    "tag": "Mobile Ads & Pop-Ups",
+    "keywords": "block ads, prevent pop-ups, mobile device"
+  },
+  {
+    "sentence": "Successfully resolved mobile advertising and popup disruptions.",
+    "tag": "Mobile Ads & Pop-Ups",
+    "keywords": "mobile advertising, popup issues, disruptions"
+  },
+  {
+    "sentence": "Resolved issues preventing the flash drive or external drive from appearing.",
+    "tag": "External Drive Issue",
+    "keywords": "external drive, flash drive, not appearing"
+  },
+  {
+    "sentence": "Identified and fixed problems causing the external storage device to not be recognized.",
+    "tag": "External Drive Issue",
+    "keywords": "storage device, not recognized, external drive"
+  },
+  {
+    "sentence": "Troubleshot and restored visibility of the flash or external drive.",
+    "tag": "External Drive Issue",
+    "keywords": "flash drive, visibility, troubleshoot"
+  },
+  {
+    "sentence": "Assisted with detecting and accessing the external storage device.",
+    "tag": "External Drive Issue",
+    "keywords": "detect storage, access external drive, USB issue"
+  },
+  {
+    "sentence": "Successfully resolved connection and visibility issues with the flash/external drive.",
+    "tag": "External Drive Issue",
+    "keywords": "connection issue, visibility, external drive"
+  },
+  {
+    "sentence": "Provided assistance with moving files and folders between locations.",
+    "tag": "Move Files & Folders",
+    "keywords": "move files, folders, between locations"
+  },
+  {
+    "sentence": "Helped with organizing and relocating files and folders.",
+    "tag": "Move Files & Folders",
+    "keywords": "organize files, relocate folders, file movement"
+  },
+  {
+    "sentence": "Assisted in transferring files and folders to the desired destination.",
+    "tag": "Move Files & Folders",
+    "keywords": "transfer files, move folders, destination"
+  },
+  {
+    "sentence": "Guided through the process of moving files and folders.",
+    "tag": "Move Files & Folders",
+    "keywords": "guide, move process, files and folders"
+  },
+  {
+    "sentence": "Successfully provided support for managing file and folder movement.",
+    "tag": "Move Files & Folders",
+    "keywords": "support, file management, folder movement"
+  },
+  {
+    "sentence": "Transferred files to an external drive as requested.",
+    "tag": "Transferring Files & Folders",
+    "keywords": "transferred files, external drive, data move"
+  },
+  {
+    "sentence": "Assisted with copying and moving files to an external storage device.",
+    "tag": "Transferring Files & Folders",
+    "keywords": "copy files, external storage, move data"
+  },
+  {
+    "sentence": "Successfully completed file transfer to the external drive.",
+    "tag": "Transferring Files & Folders",
+    "keywords": "file transfer, external drive, complete"
+  },
+  {
+    "sentence": "Performed file migration to the connected external drive.",
+    "tag": "Transferring Files & Folders",
+    "keywords": "file migration, external drive, data move"
+  },
+  {
+    "sentence": "Provided support for transferring data to an external storage device.",
+    "tag": "Transferring Files & Folders",
+    "keywords": "transfer data, external storage, support"
   }
 ]
