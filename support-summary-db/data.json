@@ -1633,5 +1633,80 @@
     "sentence": "Successfully resolved display and layout issues in Outlook view settings.",
     "tag": "Outlook View Settings",
     "keywords": "Outlook, display issue, layout"
+  },
+  {
+    "sentence": "Provided assistance with blocking desktop notifications.",
+    "tag": "Desktop Notifications",
+    "keywords": "desktop notifications, blocking alerts, system popups"
+  },
+  {
+    "sentence": "Helped in disabling unwanted desktop notifications.",
+    "tag": "Desktop Notifications",
+    "keywords": "disable notifications, unwanted alerts, desktop popups"
+  },
+  {
+    "sentence": "Assisted with configuring settings to block desktop alerts.",
+    "tag": "Desktop Notifications",
+    "keywords": "notification settings, block alerts, system settings"
+  },
+  {
+    "sentence": "Guided through the steps to turn off desktop notifications.",
+    "tag": "Desktop Notifications",
+    "keywords": "turn off notifications, system alerts, desktop settings"
+  },
+  {
+    "sentence": "Successfully provided support for managing and blocking desktop notifications.",
+    "tag": "Desktop Notifications",
+    "keywords": "support, block notifications, alert management"
+  },
+  {
+    "sentence": "Provided assistance with resolving application notification issues.",
+    "tag": "Application Notifications",
+    "keywords": "application notifications, resolve issues, alert problems"
+  },
+  {
+    "sentence": "Helped in managing and troubleshooting notification settings for the application.",
+    "tag": "Application Notifications",
+    "keywords": "manage notifications, troubleshoot, app settings"
+  },
+  {
+    "sentence": "Assisted with fixing problems related to application alerts and notifications.",
+    "tag": "Application Notifications",
+    "keywords": "fix notification issues, app alerts, application errors"
+  },
+  {
+    "sentence": "Guided through the steps to adjust or restore application notification settings.",
+    "tag": "Application Notifications",
+    "keywords": "adjust settings, restore notifications, application alerts"
+  },
+  {
+    "sentence": "Successfully provided support for application notification configuration.",
+    "tag": "Application Notifications",
+    "keywords": "notification configuration, application settings, support"
+  },
+  {
+    "sentence": "Provided assistance with disabling promotional or subscription-related notifications.",
+    "tag": "Promotional Notifications",
+    "keywords": "disable promotional alerts, subscription notifications, marketing popups"
+  },
+  {
+    "sentence": "Assisted in turning off pop-up notifications prompting for subscription or product purchases.",
+    "tag": "Promotional Notifications",
+    "keywords": "turn off popups, subscription prompt, product purchase alert"
+  },
+  {
+    "sentence": "Helped with managing notifications encouraging product upgrades or subscriptions.",
+    "tag": "Promotional Notifications",
+    "keywords": "manage upgrade alerts, subscription prompts, marketing notifications"
+  },
+  {
+    "sentence": "Provided support in suppressing marketing or upsell alerts within the application.",
+    "tag": "Promotional Notifications",
+    "keywords": "suppress marketing, upsell alerts, app notification control"
+  },
+  {
+    "sentence": "Resolved issues related to intrusive purchase or subscription prompts.",
+    "tag": "Promotional Notifications",
+    "keywords": "intrusive prompts, purchase alerts, subscription issues"
   }
 ]
