@@ -596,7 +596,7 @@
         },
         {
           "step": "Download SUPERAntiSpyware (Free Edition) for detecting and removing spyware and tracking cookies.",
-          "command": "https://www.superantispyware.com/downloadfile.html?productid=SUPERANTISPYWAREFREE"
+          "command": "https://secure.superantispyware.com/SUPERAntiSpyware.exe"
         },
         {
           "step": "Download Malwarebytes for scanning and removing malware and PUPs (Potentially Unwanted Programs).",
