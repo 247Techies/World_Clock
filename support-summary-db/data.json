@@ -1883,5 +1883,80 @@
     "sentence": "Identified and corrected email login errors.",
     "tag": "Email Login",
     "keywords": "email login, error correction, login issue"
+  },
+  {
+    "sentence": "Resolved issues preventing successful login to a website.",
+    "tag": "Website Login Issue",
+    "keywords": "website login, access issue, login failure"
+  },
+  {
+    "sentence": "Troubleshot and fixed login problems on the specified website.",
+    "tag": "Website Login Issue",
+    "keywords": "website login, troubleshoot, fixed"
+  },
+  {
+    "sentence": "Restored access by resolving website authentication issues.",
+    "tag": "Website Login Issue",
+    "keywords": "website access, authentication, restored"
+  },
+  {
+    "sentence": "Assisted with and resolved difficulties logging into the website.",
+    "tag": "Website Login Issue",
+    "keywords": "website login, assistance, resolved"
+  },
+  {
+    "sentence": "Identified and corrected login errors encountered on a web platform.",
+    "tag": "Website Login Issue",
+    "keywords": "web platform, login errors, corrected"
+  },
+  {
+    "sentence": "Provided assistance with resetting the password for a website account.",
+    "tag": "Website Password Reset",
+    "keywords": "website account, password reset, assistance"
+  },
+  {
+    "sentence": "Helped with the password recovery process for the online account.",
+    "tag": "Website Password Reset",
+    "keywords": "password recovery, online account, help"
+  },
+  {
+    "sentence": "Assisted in initiating and completing a website password reset.",
+    "tag": "Website Password Reset",
+    "keywords": "website password, reset process, assistance"
+  },
+  {
+    "sentence": "Guided through the steps to reset a forgotten website account password.",
+    "tag": "Website Password Reset",
+    "keywords": "reset password, forgotten, website account"
+  },
+  {
+    "sentence": "Successfully supported password reset for the relevant web account.",
+    "tag": "Website Password Reset",
+    "keywords": "web account, password reset, support"
+  },
+  {
+    "sentence": "Provided assistance with deactivating an online account.",
+    "tag": "Website Account Deactivation",
+    "keywords": "online account, deactivation, assistance"
+  },
+  {
+    "sentence": "Assisted in the process of disabling a website account.",
+    "tag": "Website Account Deactivation",
+    "keywords": "disable account, website, assistance"
+  },
+  {
+    "sentence": "Guided through the steps to deactivate the account on the specified website.",
+    "tag": "Website Account Deactivation",
+    "keywords": "deactivate account, website, guide"
+  },
+  {
+    "sentence": "Helped with account deactivation procedures on a web platform.",
+    "tag": "Website Account Deactivation",
+    "keywords": "account deactivation, web platform, help"
+  },
+  {
+    "sentence": "Successfully supported the deactivation of a web-based account.",
+    "tag": "Website Account Deactivation",
+    "keywords": "web account, deactivation, support"
   }
 ]
