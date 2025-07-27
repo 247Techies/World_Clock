@@ -23,11 +23,11 @@
       }
     },
     {
-      "id": "dism_restorehealth",
-      "title": "Run DISM RestoreHealth",
-      "description": "Uses the Deployment Imaging Service and Management Tool to repair Windows image corruption.",
-      "keywords": ["dism", "restorehealth", "windows image", "cleanup-image", "repair"],
-      "ticket_template": "Ran DISM scan to repair Windows image corruption using the RestoreHealth command.",
+      "id": "dism_restore_health",
+      "title": "Run DISM RestoreHealth Scan",
+      "description": "Uses Deployment Imaging Service and Management Tool (DISM) to scan and repair the Windows system image.",
+      "keywords": ["dism", "restorehealth", "windows image repair", "component store", "corruption repair"],
+      "ticket_template": "Ran DISM RestoreHealth to repair corrupted Windows system image files.",
       "platform": "windows",
       "requires_admin": true,
       "execution": [
@@ -36,10 +36,14 @@
           "command": null
         },
         {
-          "step": "Run the DISM RestoreHealth scan. This process may take several minutes.",
+          "step": "Run the DISM command to scan and repair the system image. This process may take 10–30 minutes.",
           "command": "DISM /Online /Cleanup-Image /RestoreHealth"
         }
-      ]
+      ],
+      "notice": {
+        "type": "info",
+        "content": "Use this command when SFC fails to repair corrupted system files. Ensure you're connected to the internet, as DISM may download necessary files from Windows Update."
+      }
     },
     {
       "id": "flush_dns",
@@ -703,29 +707,33 @@
     {
       "id": "disk_cleanup_tool",
       "title": "Run Disk Cleanup Tool",
-      "description": "Launches the built-in Disk Cleanup utility to remove temporary files, system files, and other unnecessary data.",
-      "keywords": ["disk cleanup", "cleanmgr", "free space", "temporary files", "system cleanup"],
-      "ticket_template": "Launched Disk Cleanup to remove temporary files and system clutter, freeing up disk space.",
+      "description": "Frees up disk space by removing temporary files, system cache, and other unnecessary files from your system.",
+      "keywords": ["disk cleanup", "free space", "cleanmgr", "temporary files", "system cleanup"],
+      "ticket_template": "Performed Disk Cleanup to remove unnecessary system files and free up storage space.",
       "platform": "windows",
       "requires_admin": false,
       "execution": [
         {
-          "step": "Press `Win + R` to open the Run dialog.",
+          "step": "Open the Run dialog using `Win + R`.",
           "command": "cleanmgr"
         },
         {
-          "step": "Choose the drive you want to clean (usually C:) and click OK."
+          "step": "Select the drive you want to clean (usually C:) and click OK.",
+          "command": null
         },
         {
-          "step": "Select the file types to delete (e.g., Temporary files, Recycle Bin, Thumbnails)."
+          "step": "Check the boxes for the file types you want to delete (e.g., Temporary files, Recycle Bin).",
+          "command": null
         },
         {
-          "step": "Click 'OK' and then 'Delete Files' to start cleanup."
-        },
-        {
-          "step": "To clean up system files (like old Windows updates), click 'Clean up system files' and repeat the selection process."
+          "step": "Click 'OK' and then 'Delete Files' to confirm.",
+          "command": null
         }
-      ]
+      ],
+      "notice": {
+        "type": "tip",
+        "content": "To clean up even more files, click 'Clean up system files' in the Disk Cleanup window. This option requires administrator privileges."
+      }
     },
     {
       "id": "optimize_startup_apps",
