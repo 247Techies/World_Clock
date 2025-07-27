@@ -2058,5 +2058,80 @@
     "sentence": "Supported completion of a digital payment on an eCommerce or service site.",
     "tag": "Online Payments",
     "keywords": "digital payment, eCommerce, service site"
+  },
+  {
+    "sentence": "Resolved issues preventing OpenOffice applications from launching.",
+    "tag": "Open Office",
+    "keywords": "OpenOffice, launch issue, application"
+  },
+  {
+    "sentence": "Troubleshot and fixed problems with opening OpenOffice programs.",
+    "tag": "Open Office",
+    "keywords": "OpenOffice, troubleshooting, opening issue"
+  },
+  {
+    "sentence": "Restored functionality of the OpenOffice suite.",
+    "tag": "Open Office",
+    "keywords": "OpenOffice, functionality, suite"
+  },
+  {
+    "sentence": "Identified and resolved errors affecting OpenOffice startup.",
+    "tag": "Open Office",
+    "keywords": "OpenOffice, startup errors, resolved"
+  },
+  {
+    "sentence": "Successfully addressed issues with accessing OpenOffice tools like Writer or Calc.",
+    "tag": "Open Office",
+    "keywords": "OpenOffice, Writer, Calc, access issue"
+  },
+  {
+    "sentence": "Resolved issues preventing Microsoft Office applications from opening.",
+    "tag": "Microsoft Office",
+    "keywords": "Microsoft Office, opening issue, resolved"
+  },
+  {
+    "sentence": "Troubleshot and fixed problems launching Office programs.",
+    "tag": "Microsoft Office",
+    "keywords": "Office programs, launch problem, troubleshoot"
+  },
+  {
+    "sentence": "Restored access to Microsoft Office applications.",
+    "tag": "Microsoft Office",
+    "keywords": "Microsoft Office, access, restored"
+  },
+  {
+    "sentence": "Identified and resolved errors affecting Office app startup.",
+    "tag": "Microsoft Office",
+    "keywords": "Office app, startup errors, fixed"
+  },
+  {
+    "sentence": "Successfully addressed issues with opening Office tools such as Word, Excel, or Outlook.",
+    "tag": "Microsoft Office",
+    "keywords": "Office tools, Word, Excel, Outlook"
+  },
+  {
+    "sentence": "Resolved issues preventing the Snipping Tool from functioning properly.",
+    "tag": "Snipping Tool Issue",
+    "keywords": "Snipping Tool, function issue, resolved"
+  },
+  {
+    "sentence": "Troubleshot and fixed problems with the Snipping Tool not opening or capturing.",
+    "tag": "Snipping Tool Issue",
+    "keywords": "Snipping Tool, capture issue, troubleshoot"
+  },
+  {
+    "sentence": "Restored full functionality of the Snipping Tool application.",
+    "tag": "Snipping Tool Issue",
+    "keywords": "Snipping Tool, functionality, restore"
+  },
+  {
+    "sentence": "Identified and corrected errors affecting the Snipping Tool.",
+    "tag": "Snipping Tool Issue",
+    "keywords": "Snipping Tool, errors, corrected"
+  },
+  {
+    "sentence": "Successfully resolved issues with the Snipping Tool not responding or working.",
+    "tag": "Snipping Tool Issue",
+    "keywords": "Snipping Tool, not responding, resolved"
   }
 ]
