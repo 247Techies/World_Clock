@@ -1958,5 +1958,105 @@
     "sentence": "Successfully supported the deactivation of a web-based account.",
     "tag": "Website Account Deactivation",
     "keywords": "web account, deactivation, support"
+  },
+  {
+    "sentence": "Resolved issues preventing the editing of a PDF document.",
+    "tag": "Edit PDF",
+    "keywords": "edit PDF, editing issue, PDF document"
+  },
+  {
+    "sentence": "Assisted with editing and modifying content in a PDF file.",
+    "tag": "Edit PDF",
+    "keywords": "PDF editing, modify content, PDF file"
+  },
+  {
+    "sentence": "Enabled successful editing of the required PDF document.",
+    "tag": "Edit PDF",
+    "keywords": "edit PDF, PDF document, enabled editing"
+  },
+  {
+    "sentence": "Troubleshot and resolved problems related to PDF editing tools.",
+    "tag": "Edit PDF",
+    "keywords": "PDF editing tools, troubleshoot, resolved"
+  },
+  {
+    "sentence": "Provided support for making changes to a PDF file.",
+    "tag": "Edit PDF",
+    "keywords": "PDF file, changes, support"
+  },
+  {
+    "sentence": "Provided assistance with adding a product to an eBay listing.",
+    "tag": "E-Commerce Website",
+    "keywords": "eBay, product listing, add product"
+  },
+  {
+    "sentence": "Helped with creating and publishing a new product listing on eBay.",
+    "tag": "E-Commerce Website",
+    "keywords": "eBay, publish listing, create product"
+  },
+  {
+    "sentence": "Assisted in listing an item for sale on eBay.",
+    "tag": "E-Commerce Website",
+    "keywords": "eBay, list item, sale"
+  },
+  {
+    "sentence": "Guided through the steps to add a product to the eBay marketplace.",
+    "tag": "E-Commerce Website",
+    "keywords": "eBay, marketplace, add product"
+  },
+  {
+    "sentence": "Successfully supported the process of listing a product on eBay.",
+    "tag": "E-Commerce Website",
+    "keywords": "eBay, product listing, support"
+  },
+  {
+    "sentence": "Resolved issues preventing successful product purchase on an eCommerce website.",
+    "tag": "E-Commerce Website",
+    "keywords": "eCommerce, product purchase, issue"
+  },
+  {
+    "sentence": "Assisted with completing an online purchase through an eCommerce platform.",
+    "tag": "E-Commerce Website",
+    "keywords": "online purchase, eCommerce, assistance"
+  },
+  {
+    "sentence": "Troubleshot and fixed problems encountered during an online product order.",
+    "tag": "E-Commerce Website",
+    "keywords": "online order, troubleshoot, product"
+  },
+  {
+    "sentence": "Provided support for resolving checkout or payment issues on an eCommerce site.",
+    "tag": "E-Commerce Website",
+    "keywords": "checkout, payment issue, eCommerce"
+  },
+  {
+    "sentence": "Successfully assisted with placing an order on an online shopping website.",
+    "tag": "E-Commerce Website",
+    "keywords": "online order, shopping site, assistance"
+  },
+  {
+    "sentence": "Provided assistance with completing an online payment.",
+    "tag": "Online Payments",
+    "keywords": "online payment, assistance, complete"
+  },
+  {
+    "sentence": "Helped resolve issues related to making a payment on a website.",
+    "tag": "Online Payments",
+    "keywords": "payment issues, website, resolve"
+  },
+  {
+    "sentence": "Assisted with the online payment process through a secure platform.",
+    "tag": "Online Payments",
+    "keywords": "online payment, secure platform, process"
+  },
+  {
+    "sentence": "Guided through steps to successfully make an online transaction.",
+    "tag": "Online Payments",
+    "keywords": "online transaction, guide, success"
+  },
+  {
+    "sentence": "Supported completion of a digital payment on an eCommerce or service site.",
+    "tag": "Online Payments",
+    "keywords": "digital payment, eCommerce, service site"
   }
 ]
