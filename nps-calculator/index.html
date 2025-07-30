@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional NPS Calculator</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome (for icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .calculator-container {
+            max-width: 800px; /* Increased max-width for the wider layout */
+        }
+        .card-header {
+            background-color: #0d6efd;
+            color: white;
+            font-weight: bold;
+        }
+        .result-badge {
+            font-size: 1.4rem;
+            font-weight: 500;
+        }
+        .icon-green { color: #198754; }
+        .icon-orange { color: #fd7e14; }
+        .icon-red { color: #dc3545; }
+
+        .page-wrapper {
+            transition: filter 0.3s ease-in-out;
+        }
+        .modal-open .page-wrapper {
+            filter: blur(5px);
+        }
+
+        /* --- Flip Card Styles --- */
+        .flip-card {
+            background-color: transparent;
+            width: 100%;
+            min-height: 480px; /* Use min-height for flexibility */
+            perspective: 1500px;
+        }
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .flip-card.is-flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+        .flip-card-back {
+            transform: rotateY(180deg);
+        }
+        .card-image-col {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-wrapper">
+        <div class="container my-5 calculator-container">
+            <div class="text-center mb-4">
+                <h1 class="display-5 fw-bold">NPS Calculator</h1>
+                <p class="lead text-muted">A visual calculator for individual and overall performance metrics.</p>
+            </div>
+
+            <div class="flip-card" id="flip-card">
+                <div class="flip-card-inner">
+                    <!-- Front Side: Individual Calculator -->
+                    <div class="flip-card-front card h-100">
+                        <div class="card-header text-center"><i class="fas fa-user me-2"></i>Individual Calculator</div>
+                        <div class="card-body p-4">
+                            <div class="row h-100 align-items-center">
+                                <!-- Image Column (hidden on small screens) -->
+                                <div class="col-md-5 d-none d-md-flex card-image-col">
+                                    <img src="individual.png" class="img-fluid p-3" alt="Individual User">
+                                </div>
+                                <!-- Form Column -->
+                                <div class="col-12 col-md-7">
+                                    <div class="input-group mb-3"><span class="input-group-text icon-green"><i class="fas fa-smile-beam fa-fw"></i></span><input type="number" class="form-control" placeholder="Promoters" id="indPromoters" min="0" oninput="calculateIndividual()"></div>
+                                    <div class="input-group mb-3"><span class="input-group-text icon-orange"><i class="fas fa-meh fa-fw"></i></span><input type="number" class="form-control" placeholder="Passives" id="indPassives" min="0" oninput="calculateIndividual()"></div>
+                                    <div class="input-group mb-3"><span class="input-group-text icon-red"><i class="fas fa-frown fa-fw"></i></span><input type="number" class="form-control" placeholder="Detractors" id="indDetractors" min="0" oninput="calculateIndividual()"></div>
+                                    <div class="input-group mb-3"><span class="input-group-text"><i class="fas fa-check-double fa-fw"></i></span><input type="number" class="form-control" placeholder="Resolutions" id="indResolutions" min="0" oninput="calculateIndividual()"></div>
+                                    <hr class="my-3">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h5 class="text-primary mb-0">Results</h5>
+                                        <button class="btn btn-outline-danger btn-sm" onclick="resetIndividual()"><i class="fas fa-undo me-1"></i>Reset</button>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mb-2"><h6><i class="fas fa-percentage me-2"></i>NPS %</h6><span class="badge result-badge bg-secondary" id="indNpsResult">0.0%</span></div>
+                                    <div class="d-flex justify-content-between align-items-center"><h6><i class="fas fa-chart-pie me-2"></i>NPS Ratio</h6><span class="badge result-badge bg-info" id="indRatioResult">0.0%</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Back Side: Overall Calculator -->
+                    <div class="flip-card-back card h-100">
+                        <div class="card-header text-center"><i class="fas fa-users me-2"></i>Overall Calculator</div>
+                        <div class="card-body p-4">
+                            <div class="row h-100 align-items-center">
+                                <!-- Image Column (hidden on small screens) -->
+                                <div class="col-md-5 d-none d-md-flex card-image-col">
+                                    <img src="overall.png" class="img-fluid rounded-circle p-3" alt="Overall Team">
+                                </div>
+                                <!-- Form Column -->
+                                <div class="col-12 col-md-7">
+                                    <div class="input-group mb-3"><span class="input-group-text icon-green"><i class="fas fa-smile-beam fa-fw"></i></span><input type="number" class="form-control" placeholder="Total Promoters" id="overallPromoters" min="0" oninput="calculateOverall()"></div>
+                                    <div class="input-group mb-3"><span class="input-group-text icon-orange"><i class="fas fa-meh fa-fw"></i></span><input type="number" class="form-control" placeholder="Total Passives" id="overallPassives" min="0" oninput="calculateOverall()"></div>
+                                    <div class="input-group mb-3"><span class="input-group-text icon-red"><i class="fas fa-frown fa-fw"></i></span><input type="number" class="form-control" placeholder="Total Detractors" id="overallDetractors" min="0" oninput="calculateOverall()"></div>
+                                    <div class="input-group mb-3"><span class="input-group-text"><i class="fas fa-check-double fa-fw"></i></span><input type="number" class="form-control" placeholder="Grand Total Resolutions" id="overallResolutions" min="0" oninput="calculateOverall()"></div>
+                                    <hr class="my-3">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h5 class="text-primary mb-0">Results</h5>
+                                        <button class="btn btn-outline-danger btn-sm" onclick="resetOverall()"><i class="fas fa-undo me-1"></i>Reset</button>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mb-2"><h6><i class="fas fa-percentage me-2"></i>NPS %</h6><span class="badge result-badge bg-secondary" id="overallNpsResult">0.0%</span></div>
+                                    <div class="d-flex justify-content-between align-items-center"><h6><i class="fas fa-chart-pie me-2"></i>NPS Ratio</h6><span class="badge result-badge bg-info" id="overallRatioResult">0.0%</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <button class="btn btn-primary" id="flip-btn"><i class="fas fa-sync-alt me-2"></i>Switch to Overall</button>
+                <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#formulasModal"><i class="fas fa-calculator me-2"></i>View Formulas</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Formulas Modal (no changes) -->
+    <div class="modal fade" id="formulasModal" tabindex="-1" aria-labelledby="formulasModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="formulasModalLabel"><i class="fas fa-calculator text-primary me-2"></i>Calculation Formulas</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div><div class="modal-body"><h5><i class="fas fa-percentage text-primary me-2"></i>NPS % Calculation</h5><p class="text-muted">The standard Net Promoter Score. It measures customer loyalty.</p><pre class="bg-light p-3 rounded"><code>[(Promoters / Total) - (Detractors / Total)] * 100</code></pre><hr><h5><i class="fas fa-chart-pie text-info me-2"></i>NPS Ratio Calculation</h5><p class="text-muted">The percentage of total work items (Resolutions) that received an NPS response.</p><pre class="bg-light p-3 rounded"><code>(Total Responses / Resolutions) * 100</code></pre></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div></div>
+        </div>
+    </div>
+
+    <!-- JS (no changes) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const flipCard=document.getElementById("flip-card"),flipBtn=document.getElementById("flip-btn");flipBtn.addEventListener("click",()=>{flipCard.classList.toggle("is-flipped");const e=flipCard.classList.contains("is-flipped");flipBtn.innerHTML=e?'<i class="fas fa-sync-alt me-2"></i>Switch to Individual':'<i class="fas fa-sync-alt me-2"></i>Switch to Overall'});function updateNpsBadgeColor(e,t){const l=document.getElementById(e);l.classList.remove("bg-success","bg-warning","bg-danger","bg-secondary"),t>=50?l.classList.add("bg-success"):t>=0?l.classList.add("bg-warning"):l.classList.add("bg-danger")}function calculateIndividual(){const e=parseInt(document.getElementById("indPromoters").value)||0,t=parseInt(document.getElementById("indPassives").value)||0,l=parseInt(document.getElementById("indDetractors").value)||0,s=parseInt(document.getElementById("indResolutions").value)||0,n=e+t+l;let a=n>0?(e/n-l/n)*100:0,i=s>0?n/s*100:0;const d=document.getElementById("indNpsResult");d.innerText=a.toFixed(1)+"%",updateNpsBadgeColor("indNpsResult",a),document.getElementById("indRatioResult").innerText=i.toFixed(1)+"%"}function calculateOverall(){const e=parseInt(document.getElementById("overallPromoters").value)||0,t=parseInt(document.getElementById("overallPassives").value)||0,l=parseInt(document.getElementById("overallDetractors").value)||0,s=parseInt(document.getElementById("overallResolutions").value)||0,n=e+t+l;let a=n>0?(e/n-l/n)*100:0,i=s>0?n/s*100:0;const d=document.getElementById("overallNpsResult");d.innerText=a.toFixed(1)+"%",updateNpsBadgeColor("overallNpsResult",a),document.getElementById("overallRatioResult").innerText=i.toFixed(1)+"%"}function resetIndividual(){document.getElementById("indPromoters").value="",document.getElementById("indPassives").value="",document.getElementById("indDetractors").value="",document.getElementById("indResolutions").value="",calculateIndividual()}function resetOverall(){document.getElementById("overallPromoters").value="",document.getElementById("overallPassives").value="",document.getElementById("overallDetractors").value="",document.getElementById("overallResolutions").value="",calculateOverall()}document.addEventListener("DOMContentLoaded",()=>{calculateIndividual(),calculateOverall()});
+    </script>
+</body>
+</html>
