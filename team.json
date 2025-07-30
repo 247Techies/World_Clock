@@ -88,14 +88,6 @@
     "email": "himaruf@eurekasl.com"
   },
   {
-    "name": "Dennis",
-    "ext": "1304",
-    "TeamsName": "Dinath",
-    "position": "Techie",
-    "icon": "fa-solid fa-users-gear",
-    "email": "dinathm@eurekasl.com"
-  },
-  {
     "name": "Aiden",
     "ext": "1303",
     "TeamsName": "Arafath",
@@ -113,6 +105,14 @@
   },
   {
     "name": "Moss",
+    "ext": "1305",
+    "TeamsName": "Ibrahim",
+    "position": "Techie",
+    "icon": "fa-solid fa-users-gear",
+    "email": "ibrahimm@eurekasl.com"
+  },
+  {
+    "name": "Jeff",
     "ext": "1307",
     "TeamsName": "Ibrahim",
     "position": "Techie",
