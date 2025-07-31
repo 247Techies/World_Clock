@@ -2183,5 +2183,30 @@
     "sentence": "Successfully addressed issues with scheduling or viewing appointments in Outlook Calendar.",
     "tag": "Outlook Calendar",
     "keywords": "Outlook Calendar, scheduling, appointments"
+  },
+  {
+    "sentence": "Provided assistance with downloading an email message to the device.",
+    "tag": "Download Email",
+    "keywords": "email message, downloading, device"
+  },
+  {
+    "sentence": "Guided through the process of saving an email locally.",
+    "tag": "Download Email",
+    "keywords": "email, saving, local"
+  },
+  {
+    "sentence": "Assisted in downloading an email for offline access.",
+    "tag": "Download Email",
+    "keywords": "email, offline access, download"
+  },
+  {
+    "sentence": "Helped with exporting or saving an email from the inbox.",
+    "tag": "Download Email",
+    "keywords": "email, export, inbox"
+  },
+  {
+    "sentence": "Successfully supported the download of a specific email.",
+    "tag": "Download Email",
+    "keywords": "email, specific, download"
   }
 ]
