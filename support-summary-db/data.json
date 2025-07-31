@@ -2133,5 +2133,55 @@
     "sentence": "Successfully resolved issues with the Snipping Tool not responding or working.",
     "tag": "Snipping Tool Issue",
     "keywords": "Snipping Tool, not responding, resolved"
+  },
+  {
+    "sentence": "Resolved issues preventing Google Calendar from syncing or loading properly.",
+    "tag": "Google Calendar",
+    "keywords": "Google Calendar, syncing, loading"
+  },
+  {
+    "sentence": "Troubleshot and fixed problems with accessing or updating Google Calendar.",
+    "tag": "Google Calendar",
+    "keywords": "Google Calendar, access, update issue"
+  },
+  {
+    "sentence": "Restored full functionality of Google Calendar.",
+    "tag": "Google Calendar",
+    "keywords": "Google Calendar, functionality, restored"
+  },
+  {
+    "sentence": "Identified and resolved errors affecting calendar events or notifications.",
+    "tag": "Google Calendar",
+    "keywords": "calendar events, notifications, error resolution"
+  },
+  {
+    "sentence": "Successfully addressed issues with Google Calendar display or account integration.",
+    "tag": "Google Calendar",
+    "keywords": "Google Calendar, display, account integration"
+  },
+  {
+    "sentence": "Resolved issues affecting the functionality of Outlook Calendar.",
+    "tag": "Outlook Calendar",
+    "keywords": "Outlook Calendar, functionality, issue"
+  },
+  {
+    "sentence": "Troubleshot and fixed problems with calendar synchronization in Outlook.",
+    "tag": "Outlook Calendar",
+    "keywords": "Outlook Calendar, synchronization, troubleshoot"
+  },
+  {
+    "sentence": "Restored access to calendar events in Microsoft Outlook.",
+    "tag": "Outlook Calendar",
+    "keywords": "Outlook, calendar events, access restored"
+  },
+  {
+    "sentence": "Identified and resolved errors preventing Outlook Calendar from updating or displaying events.",
+    "tag": "Outlook Calendar",
+    "keywords": "Outlook Calendar, update, display error"
+  },
+  {
+    "sentence": "Successfully addressed issues with scheduling or viewing appointments in Outlook Calendar.",
+    "tag": "Outlook Calendar",
+    "keywords": "Outlook Calendar, scheduling, appointments"
   }
 ]
