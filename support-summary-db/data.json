@@ -2233,5 +2233,35 @@
     "sentence": "Successfully addressed difficulties in entering information into an online form.",
     "tag": "Online Form Filling",
     "keywords": "entering information, online form, difficulties"
+  },
+  {
+    "sentence": "Resolved issues with regards to iCloud from syncing data across devices.",
+    "tag": "iCloud Sync",
+    "keywords": "iCloud, syncing, data, devices"
+  },
+  {
+    "sentence": "Resolved issues preventing iCloud from syncing data across devices.",
+    "tag": "iCloud Sync",
+    "keywords": "iCloud, sync issues, devices"
+  },
+  {
+    "sentence": "Troubleshot and fixed problems with iCloud synchronization.",
+    "tag": "iCloud Sync",
+    "keywords": "iCloud, synchronization, problems"
+  },
+  {
+    "sentence": "Restored proper syncing of files, photos, or contacts via iCloud.",
+    "tag": "iCloud Sync",
+    "keywords": "iCloud, syncing, files, photos, contacts"
+  },
+  {
+    "sentence": "Successfully addressed iCloud sync errors or delays.",
+    "tag": "iCloud Sync",
+    "keywords": "iCloud, sync errors, delays"
+  },
+  {
+    "sentence": "Resolved connectivity or configuration issues affecting iCloud synchronization.",
+    "tag": "iCloud Sync",
+    "keywords": "iCloud, connectivity, configuration, synchronization"
   }
 ]
