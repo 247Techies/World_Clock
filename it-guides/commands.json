@@ -843,7 +843,74 @@
         "type": "info",
         "content": "Sometimes antivirus or privacy settings may block camera access. Make sure the Camera app and device drivers are allowed in system settings."
       }
+    },
+    {
+      "id": "get_mac_address",
+      "title": "Get MAC Address",
+      "description": "Retrieves the MAC (Media Access Control) address of the system's network adapters using the getmac command.",
+      "keywords": ["getmac", "mac address", "network", "adapter", "hardware address"],
+      "ticket_template": "Used the getmac command to retrieve the MAC address of the device's network interfaces.",
+      "platform": "windows",
+      "requires_admin": false,
+      "execution": [
+        {
+          "step": "Open Command Prompt or PowerShell.",
+          "command": null
+        },
+        {
+          "step": "Run the following command to list all MAC addresses and their associated transport names.",
+          "command": "getmac"
+        }
+      ],
+      "notice": {
+        "type": "info",
+        "content": "MAC addresses are useful for identifying devices on a network or configuring static IP and security settings in routers."
+      }
+    },
+    {
+      "id": "get_hostname",
+      "title": "Get Computer Hostname",
+      "description": "Displays the name of the current computer as recognized by the operating system on a network.",
+      "keywords": ["hostname", "computer name", "device name", "network identity"],
+      "ticket_template": "Retrieved the system's hostname using the hostname command.",
+      "platform": "windows",
+      "requires_admin": false,
+      "execution": [
+        {
+          "step": "Open Command Prompt or PowerShell.",
+          "command": null
+        },
+        {
+          "step": "Run the following command to display the computer's hostname.",
+          "command": "hostname"
+        }
+      ],
+      "notice": {
+        "type": "info",
+        "content": "The hostname is useful for identifying the device in a network, remote desktop, or during troubleshooting sessions."
+      }
+    },
+    {
+      "id": "export_systeminfo",
+      "title": "Export System Information to File",
+      "description": "Generates a detailed summary of the system's configuration and exports it to a specified text file.",
+      "keywords": ["systeminfo", "export", "system details", "hardware info", "file output"],
+      "ticket_template": "Ran systeminfo and exported the output to a text file for documentation or troubleshooting purposes.",
+      "platform": "windows",
+      "requires_admin": false,
+      "execution": [
+        {
+          "step": "Open Command Prompt or PowerShell.",
+          "command": null
+        },
+        {
+          "step": "Run the command below, replacing the path as needed.",
+          "command": "systeminfo > C:\\Path\\To\\Your\\File.txt"
+        }
+      ],
+      "notice": {
+        "type": "tip",
+        "content": "Make sure the destination path exists and you have write permission. This can be useful for collecting system diagnostics or logs for support."
+      }
     }
-
-
   ]
