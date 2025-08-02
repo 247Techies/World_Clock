@@ -2263,5 +2263,30 @@
     "sentence": "Resolved connectivity or configuration issues affecting iCloud synchronization.",
     "tag": "iCloud Sync",
     "keywords": "iCloud, connectivity, configuration, synchronization"
+  },
+  {
+    "sentence": "Provided assistance with renaming files.",
+    "tag": "Rename Files",
+    "keywords": "rename, files, assistance"
+  },
+  {
+    "sentence": "Guided through the process of renaming one or multiple files.",
+    "tag": "Rename Files",
+    "keywords": "renaming, multiple files, process"
+  },
+  {
+    "sentence": "Assisted in organizing and renaming files for better clarity.",
+    "tag": "Rename Files",
+    "keywords": "organizing, renaming, file clarity"
+  },
+  {
+    "sentence": "Helped with renaming files using manual or batch methods.",
+    "tag": "Rename Files",
+    "keywords": "renaming, manual, batch methods"
+  },
+  {
+    "sentence": "Offered support in modifying file names based on user preference.",
+    "tag": "Rename Files",
+    "keywords": "modifying, file names, user preference"
   }
 ]
