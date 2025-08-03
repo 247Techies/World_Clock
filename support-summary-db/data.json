@@ -2288,5 +2288,30 @@
     "sentence": "Offered support in modifying file names based on user preference.",
     "tag": "Rename Files",
     "keywords": "modifying, file names, user preference"
+  },
+  {
+    "sentence": "Resolved issues related to language settings on the computer.",
+    "tag": "Language Issue",
+    "keywords": "language settings, computer, issue"
+  },
+  {
+    "sentence": "Troubleshot and fixed problems with input language or keyboard layout.",
+    "tag": "Language Issue",
+    "keywords": "input language, keyboard layout, troubleshooting"
+  },
+  {
+    "sentence": "Restored preferred display and input language configuration.",
+    "tag": "Language Issue",
+    "keywords": "display language, input language, configuration"
+  },
+  {
+    "sentence": "Addressed issues with switching between multiple languages on the system.",
+    "tag": "Language Issue",
+    "keywords": "multiple languages, switching, system"
+  },
+  {
+    "sentence": "Successfully resolved language-related settings affecting system usability.",
+    "tag": "Language Issue",
+    "keywords": "language-related settings, system usability, resolved"
   }
 ]
