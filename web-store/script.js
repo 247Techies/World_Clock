@@ -71,6 +71,16 @@ document.addEventListener('DOMContentLoaded', () => {
             icon: 'https://raw.githubusercontent.com/247Techies/World_Clock/302ea533e2f9132d2b65c475bbacd688ce937422/web-store/MyExtentions/Sticky-Notes/images/icon16.png',
             bannerImage: 'https://raw.githubusercontent.com/247Techies/World_Clock/f5d10ff6fc6d552bc8f1e75b6733f344efbe5346/web-store/MyExtentions/Sticky-Notes/images/WebPageStickyNotes.png',
             downloadLink: 'https://download-directory.github.io/?url=https://github.com/247Techies/World_Clock/tree/main/web-store/MyExtentions/Sticky-Notes'
+        },
+        {
+            id: 'text-snippet',
+            name: 'Text Snippet',
+            version: '1.0',
+            tagline: 'Save long text. Insert with short codes.',
+            description: 'Text Snippet lets you store frequently used text and instantly insert it using custom shortcuts. Just type a short code, and your saved snippet appears—perfect for email templates, responses, code blocks, and more. Save time and type smarter across any website.',
+            icon: 'https://raw.githubusercontent.com/247Techies/World_Clock/302ea533e2f9132d2b65c475bbacd688ce937422/web-store/MyExtentions/Sticky-Notes/images/icon16.png',
+            bannerImage: 'https://raw.githubusercontent.com/247Techies/World_Clock/f5d10ff6fc6d552bc8f1e75b6733f344efbe5346/web-store/MyExtentions/Sticky-Notes/images/WebPageStickyNotes.png',
+            downloadLink: 'https://download-directory.github.io/?url=https://github.com/247Techies/World_Clock/tree/main/web-store/MyExtentions/Sticky-Notes'
         }
     ];
 
