@@ -323,7 +323,31 @@
       "username": "Your full Spectrum-provided email address",
       "password": "Your Spectrum-provided email password"
     }
+  },
+"roadrunner.com": {
+  "provider": "Spectrum (RoadRunner)",
+  "imap": {
+    "server": "mail.twc.com",
+    "port": "993",
+    "security": "SSL / TLS",
+    "username": "Your full RoadRunner email address",
+    "password": "Your RoadRunner mail account password"
+  },
+  "pop3": {
+    "server": "mail.twc.com",
+    "port": "995",
+    "security": "SSL / TLS",
+    "username": "Your full RoadRunner email address",
+    "password": "Your RoadRunner mail account password"
+  },
+  "smtp": {
+    "server": "mail.twc.com",
+    "port": "587",
+    "security": "SSL / TLS",
+    "authentication": "Yes",
+    "username": "Your full RoadRunner email address",
+    "password": "Your RoadRunner mail account password"
   }
-
+}
 
 }
