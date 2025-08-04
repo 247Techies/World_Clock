@@ -173,5 +173,31 @@
       "username": "Your full Telstra address",
       "password": "Your Telstra password or App Password"
     }
+  },
+    "btinternet.com": {
+    "provider": "BT Internet",
+    "imap": {
+      "server": "mail.btinternet.com",
+      "port": "993",
+      "security": "SSL / TLS",
+      "username": "Your full BT Internet address",
+      "password": "Your BT Internet password or App Password"
+    },
+    "pop3": {
+      "server": "N/A",
+      "port": "N/A",
+      "security": "N/A",
+      "username": "N/A",
+      "password": "N/A"
+    },
+    "smtp": {
+      "server": "mail.btinternet.com",
+      "port": "465",
+      "security": "SSL / TLS",
+      "authentication": "Yes",
+      "username": "Your full BT Internet address",
+      "password": "Your BT Internet password or App Password"
+    }
   }
+
 }
