@@ -4,153 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Text Expander</title>
-    <style>
-        @import url('https://rsms.me/inter/inter.css');
-        :root {
-            --indigo-50: #eef2ff; --indigo-500: #6366f1; --indigo-600: #4f46e5; --indigo-700: #4338ca; --indigo-800: #3730a3;
-            --slate-50: #f8fafc; --slate-100: #f1f5f9; --slate-200: #e2e8f0; --slate-300: #cbd5e1; --slate-400: #94a3b8; --slate-500: #64748b; --slate-600: #475569; --slate-800: #1e293b;
-            --green-700: #15803d; --red-100: #fee2e2; --red-500: #ef4444; --red-700: #b91c1c;
-        }
-        /* --- CORE FIXES --- */
-        *, *::before, *::after {
-            box-sizing: border-box;
-        }
-        
-        html {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        html::-webkit-scrollbar {
-            display: none;
-        }
-
-        /* In your <style> block */
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--slate-50);
-            color: var(--slate-800);
-            width: 360px;
-            height: 600px; /* <-- INCREASED HEIGHT. Change this value as you see fit. */
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* NEW: Make the main wrapper and <main> element expand */
-        body > .p-4 {
-            flex-grow: 1; /* Allow this div to grow and fill the body */
-            display: flex;
-            flex-direction: column;
-            min-height: 0; /* Important for flex-grow in some browsers */
-        }
-        main {
-            flex-grow: 1; /* Make the main section take up remaining space */
-            overflow-y: auto; /* Allow ONLY this section to scroll */
-            min-height: 0;
-        }
-        
-        /* --- UTILITY CLASSES --- */
-        .p-4 { padding: 1rem; } .p-3 { padding: 0.75rem; } .p-2 { padding: 0.5rem; }
-        .px-2 { padding-left: 0.5rem; padding-right: 0.5rem; }
-        .px-4 { padding-left: 1rem; padding-right: 1rem; }
-        .py-1 { padding-top: 0.25rem; padding-bottom: 0.25rem; }
-        .mb-1 { margin-bottom: 0.25rem; } .mb-3 { margin-bottom: 0.75rem; } .mb-4 { margin-bottom: 1rem; }
-        .mr-2 { margin-right: 0.5rem; }
-        .mt-1 { margin-top: 0.25rem; }
-        .w-full { width: 100%; }
-        .w-5 { width: 1.25rem; } .h-5 { height: 1.25rem; }
-        .w-6 { width: 1.5rem; } .h-6 { height: 1.5rem; }
-        .w-12 { width: 3rem; } .h-12 { height: 3rem; }
-        .flex { display: flex; } .flex-shrink-0 { flex-shrink: 0; }
-        .items-center { align-items: center; }
-        .justify-center { justify-content: center; }
-        .justify-between { justify-content: space-between; }
-        .space-y-3 > :not([hidden]) ~ :not([hidden]) { margin-top: 0.75rem; }
-        .space-y-2 > :not([hidden]) ~ :not([hidden]) { margin-top: 0.5rem; }
-        .rounded-lg { border-radius: 0.5rem; }
-        .rounded-xl { border-radius: 0.75rem; }
-        .rounded-full { border-radius: 9999px; }
-        .border { border-width: 1px; border-style: solid; }
-        .border-slate-200 { border-color: var(--slate-200); }
-        .border-slate-300 { border-color: var(--slate-300); }
-        .bg-white { background-color: #fff; }
-        .bg-slate-100 { background-color: var(--slate-100); }
-        .bg-indigo-50 { background-color: var(--indigo-50); }
-        .bg-indigo-600 { background-color: var(--indigo-600); }
-        .text-indigo-700 { color: var(--indigo-700); }
-        .text-indigo-800 { color: var(--indigo-800); }
-        .text-white { color: #fff; }
-        .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
-        .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
-        .text-xs { font-size: 0.75rem; line-height: 1rem; }
-        .text-2xl { font-size: 1.5rem; line-height: 2rem; }
-        .font-bold { font-weight: 700; }
-        .font-semibold { font-weight: 600; }
-        .font-medium { font-weight: 500; }
-        .font-mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
-        .text-slate-400 { color: var(--slate-400); }
-        .text-slate-500 { color: var(--slate-500); }
-        .text-slate-600 { color: var(--slate-600); }
-        .text-slate-800 { color: var(--slate-800); }
-        .text-red-500 { color: var(--red-500); }
-        .text-center { text-align: center; }
-        .shadow-md { box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); }
-        .shadow-sm { box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); }
-        .shadow-lg { box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); }
-        .block { display: block; } .inline-block { display: inline-block; } .hidden { display: none; }
-        .transition-all { transition-property: all; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
-        .focus\:ring-2:focus { box-shadow: 0 0 0 2px var(--indigo-500); }
-        .focus\:outline-none:focus { outline: none; }
-        .hover\:bg-indigo-700:hover { background-color: var(--indigo-700); }
-        .min-w-0 { min-width: 0; }
-        .truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        .list-none { list-style: none; } .p-0 { padding: 0; }
-        .fixed { position: fixed; } .top-4 { top: 1rem; } .left-1\/2 { left: 50%; }
-        .-translate-x-1\/2 { transform: translateX(-50%); }
-        .fade-in-up { animation: fadeInUp 0.3s ease-out forwards; }
-        .fade-out-down { animation: fadeOutDown 0.3s ease-in forwards; }
-
-        /* --- CUSTOM COMPONENT STYLES --- */
-        textarea {
-            resize: none;
-        }
-        #snippet-form button[type="submit"] {
-            padding-top: 0.75rem;
-            padding-bottom: 0.75rem;
-            border: 1px solid var(--indigo-700);
-            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
-        }
-        #snippet-form button[type="submit"]:active {
-            background-color: var(--indigo-800);
-            transform: translateY(1px);
-            box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, 0.1);
-        }
-        #message-box {
-            min-width: 240px; 
-            max-width: 300px;
-            text-align: center;
-            gap: 0.5rem; 
-        }
-        #no-snippets-message {
-            padding: 2rem 1rem;
-        }
-        
-        @keyframes fadeInUp { from { opacity: 0; transform: translate(-50%, -20px); } to { opacity: 1; transform: translate(-50%, 0); } }
-        @keyframes fadeOutDown { from { opacity: 1; transform: translate(-50%, 0); } to { opacity: 0; transform: translate(-50%, -20px); } }
-    </style>
+    <link rel="stylesheet" href="popup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <div class="p-4">
         <!-- Header -->
-        <header class="flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-indigo-800 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.862 4.487zm0 0L19.5 7.125" />
-            </svg>
-            <h1 class="text-xl font-bold text-indigo-800">Text Expander</h1>
+        <header class="flex items-center justify-between mb-4">
+            <div class="flex items-center">
+                <svg class="w-6 h-6 text-indigo-800 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.862 4.487zm0 0L19.5 7.125" />
+                </svg>
+                <h1 class="text-xl font-bold text-indigo-800">Text Expander</h1>
+            </div>
+            <button id="settings-btn" title="Open Settings" class="text-slate-500 hover:text-indigo-600 transition-colors p-1">
+                <i class="fa-solid fa-gear text-xl"></i>
+            </button>
         </header>
 
-        <!-- Form for adding new snippets -->
+        <!-- Form (same as before) -->
         <div class="bg-white p-4 rounded-xl shadow-md mb-4">
             <h2 class="text-lg font-semibold mb-3 text-slate-800">Create New Snippet</h2>
             <form id="snippet-form" class="space-y-3">
@@ -163,38 +35,32 @@
                     <textarea id="expansion" class="w-full bg-slate-100 border border-slate-200 rounded-lg p-2 text-sm focus:outline-none focus:ring-2" rows="3" placeholder="e.g., Best regards, Jane Doe" required></textarea>
                 </div>
                 <button type="submit" class="w-full flex items-center justify-center bg-indigo-600 text-white font-semibold px-4 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 transition-all">
-                    <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
-                    </svg>
+                    <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" /></svg>
                     <span>Add Snippet</span>
                 </button>
             </form>
         </div>
 
-        <!-- Snippet List -->
+        <!-- Snippet List (same as before) -->
         <main>
             <div class="flex justify-between items-center mb-3">
                 <h2 class="text-lg font-semibold text-slate-800">My Snippets</h2>
                 <span id="snippet-count" class="text-sm font-medium text-slate-500 bg-slate-200 rounded-full px-2 py-1 hidden"></span>
             </div>
-            <ul id="snippet-list" class="list-none p-0 space-y-2">
-                <!-- Snippets will be dynamically added here -->
-            </ul>
-            <!-- CHANGE: Removed non-functional padding classes (py-8, px-4) -->
+            <ul id="snippet-list" class="list-none p-0 space-y-2"></ul>
             <div id="no-snippets-message" class="text-center bg-white rounded-xl shadow-sm hidden">
-                <svg class="w-12 h-12 mx-auto text-slate-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                </svg>
+                <svg class="w-12 h-12 mx-auto text-slate-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
                 <p class="mt-4 text-sm font-semibold text-slate-600">No snippets yet</p>
                 <p class="mt-1 text-xs text-slate-500">Use the form above to create your first one!</p>
             </div>
         </main>
     </div>
 
-    <!-- Message Box -->
+    <!-- Message Box - UPDATED with a spot for the Undo button -->
     <div id="message-box" class="fixed top-4 left-1/2 -translate-x-1/2 bg-white border border-slate-200 p-3 rounded-lg shadow-lg flex items-center justify-center hidden" style="z-index: 9999;">
         <div id="message-icon"></div>
         <span id="message-text" class="text-sm font-medium"></span>
+        <button id="message-action-btn" class="hidden"></button>
     </div>
     
     <script src="popup.js"></script>
