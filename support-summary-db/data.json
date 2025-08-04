@@ -2313,5 +2313,80 @@
     "sentence": "Successfully resolved language-related settings affecting system usability.",
     "tag": "Language Issue",
     "keywords": "language-related settings, system usability, resolved"
+  },
+  {
+    "sentence": "Resolved issues causing the screen to turn off automatically.",
+    "tag": "Screen Settings",
+    "keywords": "screen, turn off, automatic"
+  },
+  {
+    "sentence": "Adjusted power and display settings to prevent the screen from turning off unexpectedly.",
+    "tag": "Screen Settings",
+    "keywords": "power settings, display settings, screen timeout"
+  },
+  {
+    "sentence": "Identified and fixed screen timeout settings affecting display behavior.",
+    "tag": "Screen Settings",
+    "keywords": "screen timeout, display, fix"
+  },
+  {
+    "sentence": "Troubleshot and resolved automatic screen shut-off problems.",
+    "tag": "Screen Settings",
+    "keywords": "screen shut-off, troubleshoot, automatic"
+  },
+  {
+    "sentence": "Restored proper screen behavior by reconfiguring sleep and power settings.",
+    "tag": "Screen Settings",
+    "keywords": "sleep settings, power settings, screen"
+  },
+  {
+    "sentence": "Resolved issues related to the screen saver not activating or functioning correctly.",
+    "tag": "Screen Settings",
+    "keywords": "screen saver, not activating, functioning"
+  },
+  {
+    "sentence": "Adjusted screen saver settings to restore proper operation.",
+    "tag": "Screen Settings",
+    "keywords": "screen saver, settings, restore"
+  },
+  {
+    "sentence": "Troubleshot and fixed problems with screen saver appearance or timing.",
+    "tag": "Screen Settings",
+    "keywords": "screen saver, appearance, timing"
+  },
+  {
+    "sentence": "Restored screen saver functionality through system configuration.",
+    "tag": "Screen Settings",
+    "keywords": "screen saver, system configuration, restore"
+  },
+  {
+    "sentence": "Resolved conflicts or errors preventing the screen saver from working as expected.",
+    "tag": "Screen Settings",
+    "keywords": "screen saver, conflict, error"
+  },
+  {
+    "sentence": "Resolved issues preventing the application from launching.",
+    "tag": "Application Issues",
+    "keywords": "application, launch, issue"
+  },
+  {
+    "sentence": "Troubleshot and fixed problems causing the application not to open.",
+    "tag": "Application Issues",
+    "keywords": "application, not opening, fix"
+  },
+  {
+    "sentence": "Restored proper functionality by addressing errors during application startup.",
+    "tag": "Application Issues",
+    "keywords": "application startup, error, functionality"
+  },
+  {
+    "sentence": "Identified and resolved conflicts preventing the application from running.",
+    "tag": "Application Issues",
+    "keywords": "application, conflict, not running"
+  },
+  {
+    "sentence": "Successfully fixed issues related to application launch failure.",
+    "tag": "Application Issues",
+    "keywords": "application launch, failure, fix"
   }
 ]
