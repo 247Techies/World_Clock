@@ -912,5 +912,32 @@
         "type": "tip",
         "content": "Make sure the destination path exists and you have write permission. This can be useful for collecting system diagnostics or logs for support."
       }
+    },
+    {
+      "id": "chkdsk_scan",
+      "title": "Run CHKDSK Scan",
+      "description": "Checks the file system and file system metadata of a drive for logical and physical errors. Can also fix found issues when run with parameters.",
+      "keywords": ["chkdsk", "disk check", "file system", "scan drive", "repair errors"],
+      "ticket_template": "Ran CHKDSK to scan the drive for file system errors and bad sectors.",
+      "platform": "windows",
+      "requires_admin": true,
+      "execution": [
+        {
+          "step": "Open Command Prompt as Administrator.",
+          "command": null
+        },
+        {
+          "step": "Run the CHKDSK scan on the desired drive (example below is for C:).",
+          "command": "chkdsk C: /f /r"
+        },
+        {
+          "step": "If the drive is in use, you may be prompted to schedule the scan on the next restart. Type 'Y' and press Enter.",
+          "command": null
+        }
+      ],
+      "notice": {
+        "type": "warning",
+        "content": "Running CHKDSK with `/f /r` may take a long time and requires a restart if scanning the system drive. Make sure to save all work before proceeding."
+      }
     }
   ]
