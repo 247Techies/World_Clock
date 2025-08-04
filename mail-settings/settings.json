@@ -198,6 +198,132 @@
       "username": "Your full BT Internet address",
       "password": "Your BT Internet password or App Password"
     }
+  },
+    "bresnan.net": {
+    "provider": "Spectrum (Bresnan/Charter)",
+    "imap": {
+      "server": "mobile.charter.net",
+      "port": "993",
+      "security": "SSL / TLS",
+      "username": "Your full Spectrum-provided email address",
+      "password": "Your Spectrum-provided email password"
+    },
+    "pop3": {
+      "server": "N/A",
+      "port": "N/A",
+      "security": "N/A",
+      "username": "N/A",
+      "password": "N/A"
+    },
+    "smtp": {
+      "server": "mobile.charter.net",
+      "port": "587",
+      "security": "STARTTLS",
+      "authentication": "Yes",
+      "username": "Your full Spectrum-provided email address",
+      "password": "Your Spectrum-provided email password"
+    }
+  },
+  "charter.net": {
+    "provider": "Spectrum (Charter)",
+    "imap": {
+      "server": "mobile.charter.net",
+      "port": "993",
+      "security": "SSL / TLS",
+      "username": "Your full Spectrum-provided email address",
+      "password": "Your Spectrum-provided email password"
+    },
+    "pop3": {
+      "server": "N/A",
+      "port": "N/A",
+      "security": "N/A",
+      "username": "N/A",
+      "password": "N/A"
+    },
+    "smtp": {
+      "server": "mobile.charter.net",
+      "port": "587",
+      "security": "STARTTLS",
+      "authentication": "Yes",
+      "username": "Your full Spectrum-provided email address",
+      "password": "Your Spectrum-provided email password"
+    }
+  },
+  "spectrum.net": {
+    "provider": "Spectrum",
+    "imap": {
+      "server": "mobile.charter.net",
+      "port": "993",
+      "security": "SSL / TLS",
+      "username": "Your full Spectrum-provided email address",
+      "password": "Your Spectrum-provided email password"
+    },
+    "pop3": {
+      "server": "N/A",
+      "port": "N/A",
+      "security": "N/A",
+      "username": "N/A",
+      "password": "N/A"
+    },
+    "smtp": {
+      "server": "mobile.charter.net",
+      "port": "587",
+      "security": "STARTTLS",
+      "authentication": "Yes",
+      "username": "Your full Spectrum-provided email address",
+      "password": "Your Spectrum-provided email password"
+    }
+  },
+  "brighthouse.com": {
+    "provider": "Spectrum (Brighthouse)",
+    "imap": {
+      "server": "mail.brighthouse.com",
+      "port": "993",
+      "security": "SSL / TLS",
+      "username": "Your full Spectrum-provided email address",
+      "password": "Your Spectrum-provided email password"
+    },
+    "pop3": {
+      "server": "N/A",
+      "port": "N/A",
+      "security": "N/A",
+      "username": "N/A",
+      "password": "N/A"
+    },
+    "smtp": {
+      "server": "mail.brighthouse.com",
+      "port": "587",
+      "security": "STARTTLS",
+      "authentication": "Yes",
+      "username": "Your full Spectrum-provided email address",
+      "password": "Your Spectrum-provided email password"
+    }
+  },
+  "twc.com": {
+    "provider": "Spectrum (TWC)",
+    "imap": {
+      "server": "mail.twc.com",
+      "port": "993",
+      "security": "SSL / TLS",
+      "username": "Your full Spectrum-provided email address",
+      "password": "Your Spectrum-provided email password"
+    },
+    "pop3": {
+      "server": "N/A",
+      "port": "N/A",
+      "security": "N/A",
+      "username": "N/A",
+      "password": "N/A"
+    },
+    "smtp": {
+      "server": "mail.twc.com",
+      "port": "587",
+      "security": "STARTTLS",
+      "authentication": "Yes",
+      "username": "Your full Spectrum-provided email address",
+      "password": "Your Spectrum-provided email password"
+    }
   }
+
 
 }
