@@ -2438,5 +2438,35 @@
     "sentence": "Resolved connectivity and visibility issues with shared folders on the network.",
     "tag": "Shared Folder",
     "keywords": "connectivity, visibility, shared folders"
+  },
+  {
+    "sentence": "Resolved computer security issues, optimized system performance, and removed detected viruses.",
+    "tag": "PC Cleanup & Optimization",
+    "keywords": "security issues, system performance, virus removal"
+  },
+  {
+    "sentence": "Performed security remediation, optimized the computer, and completed a full virus scan and removal.",
+    "tag": "PC Cleanup & Optimization",
+    "keywords": "security remediation, optimization, virus scan"
+  },
+  {
+    "sentence": "Addressed system security vulnerabilities, improved performance, and eliminated malware.",
+    "tag": "PC Cleanup & Optimization",
+    "keywords": "security vulnerabilities, performance, malware"
+  },
+  {
+    "sentence": "Resolved security concerns, optimized overall system functionality, and removed infections through virus scanning.",
+    "tag": "PC Cleanup & Optimization",
+    "keywords": "security concerns, system functionality, virus scanning"
+  },
+  {
+    "sentence": "Conducted system optimization, enhanced security measures, and removed identified threats.",
+    "tag": "PC Cleanup & Optimization",
+    "keywords": "system optimization, security measures, threats"
+  },
+  {
+    "sentence": "Resolved the issue with regards to computer security, optimized the computer, scanned and removed viruses.",
+    "tag": "PC Cleanup & Optimization",
+    "keywords": "computer security, optimized, scanned, removed viruses"
   }
 ]
