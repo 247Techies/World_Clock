@@ -42,11 +42,12 @@ body {
 
 /* NEW: Style the Quill editor container */
 #email-body-editor {
-    min-height: 250px;
+    min-height: 350px; /* Increased height for better user experience */
     background-color: #fff;
     border: 1px solid #ced4da;
     border-radius: 8px;
 }
+
 /* Style the Quill toolbar to match */
 .ql-toolbar.ql-snow {
     border-top-left-radius: 8px;

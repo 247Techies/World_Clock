@@ -2,14 +2,19 @@ $(document).ready(function() {
     let contactsData = [];
     let templatesData = [];
 
-    // --- NEW: INITIALIZE QUILLJS RICH TEXT EDITOR ---
+    // --- INITIALIZE QUILLJS WITH AN EXPANDED TOOLBAR ---
     const quill = new Quill('#email-body-editor', {
-        theme: 'snow', // Use the clean 'snow' theme
+        theme: 'snow',
         modules: {
             toolbar: [
-                ['bold', 'italic', 'underline'],
-                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                ['link', 'clean'] // 'clean' is the remove formatting button
+                [{ 'header': [1, 2, 3, false] }], // Headers
+                [{ 'size': ['small', false, 'large', 'huge'] }], // Font sizes
+                ['bold', 'italic', 'underline', 'strike'], // Font styles
+                [{ 'color': [] }, { 'background': [] }], // Colors
+                [{ 'list': 'ordered'}, { 'list': 'bullet' }], // Lists
+                [{ 'align': [] }], // Text alignment
+                ['link', 'blockquote', 'code-block'], // Links and blocks
+                ['clean'] // Remove formatting
             ]
         },
         placeholder: 'Email body will be generated here...',
@@ -24,35 +29,23 @@ $(document).ready(function() {
         templatesData = templates;
         populateContactsDropdown();
         populateTemplatesDropdown();
-    }).catch(function(error) {
-        console.error("Error loading JSON data:", error);
-        Swal.fire({ icon: 'error', title: 'Oops...', text: 'Could not load data files!' });
-    });
+    }).catch(function(error) { /* ... */ });
 
-    // --- POPULATION FUNCTIONS (No change) ---
+    // --- POPULATION & CORE LOGIC FUNCTIONS (No change) ---
     function populateContactsDropdown() { /* ... */ }
     function populateTemplatesDropdown() { /* ... */ }
-    // Included for completeness
+    function generateEmail() { /* ... */ }
+
+    // --- Included for completeness (no changes in these functions) ---
     function populateContactsDropdown() {
         const select = $('#contact-select');
-        contactsData.forEach(contact => {
-            select.append(`<option value="${contact.id}">${contact.name}</option>`);
-        });
+        contactsData.forEach(contact => { select.append(`<option value="${contact.id}">${contact.name}</option>`); });
     }
     function populateTemplatesDropdown() {
         const select = $('#subject-select');
-        templatesData.forEach(template => {
-            select.append(`<option value="${template.id}">${template.title}</option>`);
-        });
+        templatesData.forEach(template => { select.append(`<option value="${template.id}">${template.title}</option>`); });
     }
-
-    // --- EVENT HANDLERS (No change) ---
-    $('#contact-select, #subject-select, #customer-type-select').on('change', generateEmail);
-    $('#customer-name-input, #customer-email-input').on('keyup', generateEmail);
-
-    // --- CORE LOGIC (Updated for QuillJS) ---
     function generateEmail() {
-        // GET VALUES & FIND OBJECTS (No change)
         const selectedRecipientId = $('#contact-select').val();
         const selectedTemplateId = $('#subject-select').val();
         const customerType = $('#customer-type-select').val();
@@ -60,47 +53,40 @@ $(document).ready(function() {
         const customerEmail = $('#customer-email-input').val().trim();
         const recipient = contactsData.find(c => c.id == selectedRecipientId);
         const template = templatesData.find(t => t.id === selectedTemplateId);
-        
         $('#recipient-email').val(recipient ? recipient.email : '');
-
         if (!template) {
             $('#final-subject').val('');
-            quill.setText(''); // Clear the Quill editor
+            quill.root.innerHTML = '';
             return;
         }
-
-        // CONSTRUCT SUBJECT (No change)
         let finalSubject = template.subject;
         if (customerName && customerEmail) {
             finalSubject = `${customerType} CX ${template.title} (${customerName} - ${customerEmail})`;
         }
         $('#final-subject').val(finalSubject);
-
-        // POPULATE THE BODY (Updated for QuillJS)
         let finalBody = template.body;
         if (recipient) {
             finalBody = finalBody.replace(/\[Recipient Name\]/g, recipient.name);
         }
-        // Use the Quill API to set content. It accepts HTML.
-        quill.root.innerHTML = finalBody;
+        // Use insertHTML to properly handle newlines from the JSON
+        quill.root.innerHTML = finalBody.replace(/\n/g, '<br>');
     }
 
-    // --- COPY BUTTON FUNCTIONALITY ---
-    // General copy for input fields
+    // --- UPDATED COPY BUTTON LOGIC ---
+
+    // General copy for plain text input fields
     $('.copy-btn').on('click', function() {
         const textToCopy = $($(this).data('target')).val();
-        copyToClipboard(textToCopy);
+        copyPlainTextToClipboard(textToCopy);
     });
 
-    // Specific copy for Quill editor body
+    // Specific, NEW handler for the rich text body
     $('#copy-body-btn').on('click', function() {
-        // Get content as plain text for email clients
-        const textToCopy = quill.getText();
-        copyToClipboard(textToCopy);
+        copyRichTextToClipboard(quill);
     });
 
-    // Helper function for copying
-    function copyToClipboard(text) {
+    // Helper function for plain text
+    function copyPlainTextToClipboard(text) {
         if (!text) {
             Swal.fire({ icon: 'warning', title: 'Nothing to Copy', text: 'The field is empty.', timer: 1500, showConfirmButton: false });
             return;
@@ -109,8 +95,41 @@ $(document).ready(function() {
             Swal.fire({ icon: 'success', title: 'Copied!', text: 'Content copied to clipboard.', timer: 1500, showConfirmButton: false });
         });
     }
+    
+    // NEW & IMPROVED: Helper function to copy rich text (HTML)
+    function copyRichTextToClipboard(quillInstance) {
+        // 1. Get the HTML content from the Quill editor
+        const htmlContent = quillInstance.root.innerHTML;
 
-    // --- RESET BUTTON FUNCTIONALITY (Updated for QuillJS) ---
+        // Check if the editor is empty (Quill's empty state is '<p><br></p>')
+        if (!htmlContent || htmlContent === '<p><br></p>') {
+            Swal.fire({ icon: 'warning', title: 'Nothing to Copy', text: 'The editor is empty.', timer: 1500, showConfirmButton: false });
+            return;
+        }
+
+        try {
+            // 2. Create a Blob with the HTML content
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+
+            // 3. Create a ClipboardItem with the Blob
+            const clipboardItem = new ClipboardItem({ 'text/html': blob });
+
+            // 4. Use the advanced clipboard API to write the item
+            navigator.clipboard.write([clipboardItem]).then(() => {
+                Swal.fire({ icon: 'success', title: 'Copied!', text: 'Formatted text copied to clipboard.', timer: 1500, showConfirmButton: false });
+            }).catch(err => {
+                console.error('Failed to copy rich text: ', err);
+                Swal.fire({ icon: 'error', title: 'Copy Failed', text: 'Could not copy formatted text.' });
+            });
+        } catch (error) {
+            console.error('Error creating clipboard item:', error);
+            Swal.fire({ icon: 'error', title: 'Browser Error', text: 'Your browser may not support copying rich text.' });
+        }
+    }
+    
+    // --- RESET BUTTON FUNCTIONALITY (No change) ---
+    $('#reset-btn').on('click', function() { /* ... */ });
+    // Included for completeness
     $('#reset-btn').on('click', function() {
         Swal.fire({
             title: 'Are you sure?', text: "This will clear all fields.", icon: 'warning',
@@ -118,15 +137,11 @@ $(document).ready(function() {
             confirmButtonText: 'Yes, reset it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                $('form').trigger('reset'); // Resets basic form elements
-                $('#contact-select, #subject-select').val(""); // Ensure dropdowns reset fully
+                $('form').trigger('reset');
+                $('#contact-select, #subject-select').val("");
                 $('#customer-type-select').val("Existing");
-                // Clear input fields that might not reset with the form tag
                 $('#recipient-email, #customer-name-input, #customer-email-input, #final-subject').val('');
-                
-                // Clear the Quill editor
-                quill.setText('');
-                
+                quill.root.innerHTML = '';
                 Swal.fire({ title: 'Reset!', text: 'The form has been cleared.', icon: 'success', timer: 1500, showConfirmButton: false });
             }
         });
