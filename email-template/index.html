@@ -29,17 +29,17 @@
             </div>
             <div class="card-body p-4 p-md-5">
 
-                <!-- Step 1: Choose a Name -->
+                <!-- Step 1: Choose an Internal Contact -->
                 <div class="mb-4">
-                    <label for="contact-select" class="form-label fw-bold">1. Choose Recipient</label>
+                    <label for="contact-select" class="form-label fw-bold">1. Choose Your Name (Internal)</label>
                     <select class="form-select" id="contact-select">
-                        <option selected disabled>Select a contact...</option>
+                        <option selected disabled>Select your name...</option>
                     </select>
                 </div>
 
                 <!-- Recipient Email Field (Readonly) -->
                 <div class="mb-4">
-                    <label for="recipient-email" class="form-label">Recipient's Email</label>
+                    <label for="recipient-email" class="form-label">Your Email (for reference)</label>
                     <div class="input-group">
                         <input type="text" class="form-control" id="recipient-email" placeholder="Email will appear here..." readonly>
                         <button class="btn btn-outline-secondary copy-btn" type="button" data-target="#recipient-email" title="Copy Email">
@@ -48,9 +48,37 @@
                     </div>
                 </div>
 
-                <!-- Step 2: Choose a Subject -->
+                <!-- ====================================================== -->
+                <!-- NEW SECTION START: Customer Details for Subject Line   -->
+                <!-- ====================================================== -->
+                <div class="p-3 mb-4 bg-light border rounded-3">
+                    <p class="fw-bold mb-2">2. Add Customer Details (Optional)</p>
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <label for="customer-type-select" class="form-label small">Customer Type</label>
+                            <select id="customer-type-select" class="form-select form-select-sm">
+                                <option value="Existing">Existing</option>
+                                <option value="New">New</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="customer-name-input" class="form-label small">Customer Name</label>
+                            <input type="text" id="customer-name-input" class="form-control form-control-sm" placeholder="e.g., Acme Corp">
+                        </div>
+                        <div class="col-md-4">
+                             <label for="customer-email-input" class="form-label small">Customer Email</label>
+                            <input type="email" id="customer-email-input" class="form-control form-control-sm" placeholder="e.g., contact@acme.com">
+                        </div>
+                    </div>
+                </div>
+                <!-- ====================================================== -->
+                <!-- NEW SECTION END                                        -->
+                <!-- ====================================================== -->
+
+
+                <!-- Step 3: Choose a Subject Template -->
                 <div class="mb-4">
-                    <label for="subject-select" class="form-label fw-bold">2. Choose an Email Template</label>
+                    <label for="subject-select" class="form-label fw-bold">3. Choose an Email Template</label>
                     <select class="form-select" id="subject-select">
                         <option selected disabled>Select a template...</option>
                     </select>
@@ -60,17 +88,17 @@
                 <div class="mb-4">
                     <label for="final-subject" class="form-label">Editable Subject</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="final-subject" placeholder="Subject will appear here...">
+                        <input type="text" class="form-control" id="final-subject" placeholder="Subject will be generated here...">
                         <button class="btn btn-outline-secondary copy-btn" type="button" data-target="#final-subject" title="Copy Subject">
                             <i class="fas fa-copy"></i>
                         </button>
                     </div>
                 </div>
 
-                <!-- Step 3: Email Body -->
+                <!-- Step 4: Email Body -->
                 <div class="mb-3">
                     <div class="d-flex justify-content-between align-items-center mb-2">
-                        <label for="email-body" class="form-label fw-bold mb-0">3. Compose and Copy Body</label>
+                        <label for="email-body" class="form-label fw-bold mb-0">4. Compose and Copy Body</label>
                         <button class="btn btn-primary copy-btn" type="button" data-target="#email-body">
                             <i class="fas fa-copy me-2"></i>Copy Body
                         </button>

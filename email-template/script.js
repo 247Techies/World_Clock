@@ -38,38 +38,59 @@ $(document).ready(function() {
     }
 
     // --- EVENT HANDLERS ---
-    $('#contact-select, #subject-select').on('change', updateEmailContent);
+    // Listen for changes on ALL relevant inputs and trigger the update function
+    $('#contact-select, #subject-select, #customer-type-select').on('change', generateEmail);
+    $('#customer-name-input, #customer-email-input').on('keyup', generateEmail);
+
 
     // --- CORE LOGIC ---
-    function updateEmailContent() {
+    function generateEmail() {
+        // 1. GET ALL CURRENT VALUES
         const selectedContactId = $('#contact-select').val();
         const selectedTemplateId = $('#subject-select').val();
+        const customerType = $('#customer-type-select').val(); // "New" or "Existing"
+        const customerName = $('#customer-name-input').val().trim();
+        const customerEmail = $('#customer-email-input').val().trim();
 
-        // Find the selected contact object
+        // 2. FIND THE DATA OBJECTS
         const contact = contactsData.find(c => c.id == selectedContactId);
+        const template = templatesData.find(t => t.id === selectedTemplateId);
         
-        // Update recipient email field
+        // 3. UPDATE YOUR EMAIL FIELD (for reference)
         if (contact) {
             $('#recipient-email').val(contact.email);
         } else {
              $('#recipient-email').val('');
         }
 
-        // Find the selected template object
-        const template = templatesData.find(t => t.id === selectedTemplateId);
-
+        // 4. GENERATE CONTENT (SUBJECT & BODY)
         if (template) {
-            let finalSubject = template.subject;
+            let finalSubject = template.subject; // Start with the default subject from JSON
             let finalBody = template.body;
 
-            // Replace placeholders
-            if (contact) {
-                // Replace [Recipient Name] placeholder with the actual name
-                finalBody = finalBody.replace(/\[Recipient Name\]/g, contact.name);
+            // ---- NEW: DYNAMIC SUBJECT LOGIC ----
+            // If customer details are provided, build the new subject format
+            if (customerName && customerEmail) {
+                // Example: "Existing CX Follow-Up (Acme Corp - contact@acme.com)"
+                finalSubject = `${customerType} CX ${template.title} (${customerName} - ${customerEmail})`;
             }
-            
+
+            // ---- EXISTING: BODY PLACEHOLDER LOGIC ----
+            // Replace [Your Name] placeholder with the selected contact's name
+            // Note: I've updated the placeholder to be [Your Name] in the JSON
+            // and the recipient to be the Customer Name for clarity. Let's assume the body
+            // is addressed to the Customer.
+            if (contact) {
+                finalBody = finalBody.replace(/\[Your Name\]/g, contact.name);
+            }
+             // Let's assume the recipient is now the customer from the input field
+            finalBody = finalBody.replace(/\[Recipient Name\]/g, customerName || 'there');
+
+
+            // 5. UPDATE THE UI
             $('#final-subject').val(finalSubject);
             $('#email-body').val(finalBody);
+
         } else {
             // Clear fields if no template is selected
             if (!selectedTemplateId) {
@@ -79,7 +100,7 @@ $(document).ready(function() {
         }
     }
 
-    // --- COPY BUTTON FUNCTIONALITY ---
+    // --- COPY BUTTON FUNCTIONALITY (No changes needed here) ---
     $('.copy-btn').on('click', function() {
         const targetSelector = $(this).data('target');
         const textToCopy = $(targetSelector).val();
@@ -96,12 +117,11 @@ $(document).ready(function() {
         }
 
         navigator.clipboard.writeText(textToCopy).then(() => {
-            // Success feedback with SweetAlert
             Swal.fire({
                 icon: 'success',
                 title: 'Copied!',
                 text: 'The content has been copied to your clipboard.',
-                timer: 1500, // Auto-close after 1.5 seconds
+                timer: 1500,
                 showConfirmButton: false
             });
         }).catch(err => {
