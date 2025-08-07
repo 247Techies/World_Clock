@@ -7,20 +7,20 @@ $(document).ready(function() {
         theme: 'snow',
         modules: {
             toolbar: [
-                [{ 'header': [1, 2, 3, false] }], // Headers
-                [{ 'size': ['small', false, 'large', 'huge'] }], // Font sizes
-                ['bold', 'italic', 'underline', 'strike'], // Font styles
-                [{ 'color': [] }, { 'background': [] }], // Colors
-                [{ 'list': 'ordered'}, { 'list': 'bullet' }], // Lists
-                [{ 'align': [] }], // Text alignment
-                ['link', 'blockquote', 'code-block'], // Links and blocks
-                ['clean'] // Remove formatting
+                [{ 'header': [1, 2, 3, false] }],
+                [{ 'size': ['small', false, 'large', 'huge'] }],
+                ['bold', 'italic', 'underline', 'strike'],
+                [{ 'color': [] }, { 'background': [] }],
+                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                [{ 'align': [] }],
+                ['link', 'blockquote', 'code-block'],
+                ['clean']
             ]
         },
         placeholder: 'Email body will be generated here...',
     });
 
-    // --- DATA FETCHING (No change) ---
+    // --- DATA FETCHING ---
     Promise.all([
         $.getJSON('contacts.json'),
         $.getJSON('templates.json')
@@ -29,22 +29,31 @@ $(document).ready(function() {
         templatesData = templates;
         populateContactsDropdown();
         populateTemplatesDropdown();
-    }).catch(function(error) { /* ... */ });
+    }).catch(function(error) {
+        console.error("Error loading JSON data:", error);
+        Swal.fire({ icon: 'error', title: 'Oops...', text: 'Could not load data files! Please check file paths and for JSON errors.' });
+    });
 
-    // --- POPULATION & CORE LOGIC FUNCTIONS (No change) ---
-    function populateContactsDropdown() { /* ... */ }
-    function populateTemplatesDropdown() { /* ... */ }
-    function generateEmail() { /* ... */ }
-
-    // --- Included for completeness (no changes in these functions) ---
+    // --- POPULATION FUNCTIONS ---
     function populateContactsDropdown() {
         const select = $('#contact-select');
-        contactsData.forEach(contact => { select.append(`<option value="${contact.id}">${contact.name}</option>`); });
+        contactsData.forEach(contact => {
+            select.append(`<option value="${contact.id}">${contact.name}</option>`);
+        });
     }
+
     function populateTemplatesDropdown() {
         const select = $('#subject-select');
-        templatesData.forEach(template => { select.append(`<option value="${template.id}">${template.title}</option>`); });
+        templatesData.forEach(template => {
+            select.append(`<option value="${template.id}">${template.title}</option>`);
+        });
     }
+
+    // --- EVENT HANDLERS ---
+    $('#contact-select, #subject-select, #customer-type-select').on('change', generateEmail);
+    $('#customer-name-input, #customer-email-input').on('keyup', generateEmail);
+
+    // --- CORE LOGIC ---
     function generateEmail() {
         const selectedRecipientId = $('#contact-select').val();
         const selectedTemplateId = $('#subject-select').val();
@@ -53,39 +62,45 @@ $(document).ready(function() {
         const customerEmail = $('#customer-email-input').val().trim();
         const recipient = contactsData.find(c => c.id == selectedRecipientId);
         const template = templatesData.find(t => t.id === selectedTemplateId);
+        
         $('#recipient-email').val(recipient ? recipient.email : '');
+
         if (!template) {
-            $('#final-subject').val('');
-            quill.root.innerHTML = '';
+            // Only clear subject and body if a template is not selected.
+            // This prevents clearing when only the contact changes.
+            if (!selectedTemplateId) {
+                $('#final-subject').val('');
+                quill.root.innerHTML = '';
+            }
             return;
         }
+
+        // CONSTRUCT SUBJECT
         let finalSubject = template.subject;
         if (customerName && customerEmail) {
             finalSubject = `${customerType} CX ${template.title} (${customerName} - ${customerEmail})`;
         }
         $('#final-subject').val(finalSubject);
+
+        // POPULATE THE BODY
         let finalBody = template.body;
         if (recipient) {
             finalBody = finalBody.replace(/\[Recipient Name\]/g, recipient.name);
         }
-        // Use insertHTML to properly handle newlines from the JSON
+        // Convert newlines to <br> for HTML and set editor content
         quill.root.innerHTML = finalBody.replace(/\n/g, '<br>');
     }
 
-    // --- UPDATED COPY BUTTON LOGIC ---
-
-    // General copy for plain text input fields
+    // --- COPY BUTTON LOGIC ---
     $('.copy-btn').on('click', function() {
         const textToCopy = $($(this).data('target')).val();
         copyPlainTextToClipboard(textToCopy);
     });
 
-    // Specific, NEW handler for the rich text body
     $('#copy-body-btn').on('click', function() {
         copyRichTextToClipboard(quill);
     });
 
-    // Helper function for plain text
     function copyPlainTextToClipboard(text) {
         if (!text) {
             Swal.fire({ icon: 'warning', title: 'Nothing to Copy', text: 'The field is empty.', timer: 1500, showConfirmButton: false });
@@ -96,40 +111,25 @@ $(document).ready(function() {
         });
     }
     
-    // NEW & IMPROVED: Helper function to copy rich text (HTML)
     function copyRichTextToClipboard(quillInstance) {
-        // 1. Get the HTML content from the Quill editor
         const htmlContent = quillInstance.root.innerHTML;
-
-        // Check if the editor is empty (Quill's empty state is '<p><br></p>')
         if (!htmlContent || htmlContent === '<p><br></p>') {
             Swal.fire({ icon: 'warning', title: 'Nothing to Copy', text: 'The editor is empty.', timer: 1500, showConfirmButton: false });
             return;
         }
-
         try {
-            // 2. Create a Blob with the HTML content
             const blob = new Blob([htmlContent], { type: 'text/html' });
-
-            // 3. Create a ClipboardItem with the Blob
             const clipboardItem = new ClipboardItem({ 'text/html': blob });
-
-            // 4. Use the advanced clipboard API to write the item
             navigator.clipboard.write([clipboardItem]).then(() => {
                 Swal.fire({ icon: 'success', title: 'Copied!', text: 'Formatted text copied to clipboard.', timer: 1500, showConfirmButton: false });
-            }).catch(err => {
-                console.error('Failed to copy rich text: ', err);
-                Swal.fire({ icon: 'error', title: 'Copy Failed', text: 'Could not copy formatted text.' });
             });
         } catch (error) {
-            console.error('Error creating clipboard item:', error);
-            Swal.fire({ icon: 'error', title: 'Browser Error', text: 'Your browser may not support copying rich text.' });
+            console.error('Error with rich text copy:', error);
+            Swal.fire({ icon: 'error', title: 'Copy Failed', text: 'Your browser may not support copying rich text.' });
         }
     }
     
-    // --- RESET BUTTON FUNCTIONALITY (No change) ---
-    $('#reset-btn').on('click', function() { /* ... */ });
-    // Included for completeness
+    // --- RESET BUTTON FUNCTIONALITY ---
     $('#reset-btn').on('click', function() {
         Swal.fire({
             title: 'Are you sure?', text: "This will clear all fields.", icon: 'warning',
@@ -137,11 +137,10 @@ $(document).ready(function() {
             confirmButtonText: 'Yes, reset it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                $('form').trigger('reset');
-                $('#contact-select, #subject-select').val("");
-                $('#customer-type-select').val("Existing");
-                $('#recipient-email, #customer-name-input, #customer-email-input, #final-subject').val('');
-                quill.root.innerHTML = '';
+                $('#email-form')[0].reset();
+                $('#contact-select').val("");
+                $('#subject-select').val("");
+                quill.root.innerHTML = ''; // Clear the Quill editor
                 Swal.fire({ title: 'Reset!', text: 'The form has been cleared.', icon: 'success', timer: 1500, showConfirmButton: false });
             }
         });

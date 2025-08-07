@@ -1,19 +1,17 @@
-/* ... (all previous CSS remains the same) ... */
-
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #f0f2f5; 
+    background-color: #f0f2f5;
 }
 
 .card {
-    border-radius: 15px; 
+    border-radius: 15px;
     transition: all 0.3s ease-in-out;
 }
 
 .card-header {
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
-    background: linear-gradient(45deg, #0d6efd, #0dcaf0); 
+    background: linear-gradient(45deg, #0d6efd, #0dcaf0);
 }
 
 .form-label {
@@ -21,7 +19,7 @@ body {
 }
 
 .form-control, .form-select {
-    border-radius: 8px; 
+    border-radius: 8px;
     padding: 0.75rem 1rem;
     transition: border-color 0.2s, box-shadow 0.2s;
 }
@@ -40,14 +38,13 @@ body {
     background-color: #e9ecef;
 }
 
-/* NEW: Style the Quill editor container */
+/* Style the Quill editor container */
 #email-body-editor {
     min-height: 350px; /* Increased height for better user experience */
     background-color: #fff;
     border: 1px solid #ced4da;
     border-radius: 8px;
 }
-
 /* Style the Quill toolbar to match */
 .ql-toolbar.ql-snow {
     border-top-left-radius: 8px;
