@@ -1,3 +1,5 @@
+/* ... (all previous CSS remains the same) ... */
+
 body {
     font-family: 'Poppins', sans-serif;
     background-color: #f0f2f5; 
@@ -29,17 +31,31 @@ body {
     box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
 }
 
-/* The textarea is now controlled by TinyMCE, so direct styling is minimal. */
-textarea#email-body {
-    visibility: hidden; /* Hide the original textarea */
-}
-
-
-.copy-btn {
+.copy-btn, #copy-body-btn {
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
 }
 
 .copy-btn:hover {
     background-color: #e9ecef;
+}
+
+/* NEW: Style the Quill editor container */
+#email-body-editor {
+    min-height: 250px;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+}
+/* Style the Quill toolbar to match */
+.ql-toolbar.ql-snow {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom: 1px solid #ced4da;
+}
+/* Style the Quill content area */
+.ql-container.ql-snow {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border: none; /* The container div provides the outer border */
 }

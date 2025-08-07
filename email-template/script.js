@@ -2,17 +2,20 @@ $(document).ready(function() {
     let contactsData = [];
     let templatesData = [];
 
-    // --- INITIALIZE TINYMCE RICH TEXT EDITOR ---
-    tinymce.init({
-        selector: '#email-body',
-        plugins: 'autolink lists link',
-        toolbar: 'undo redo | bold italic underline | bullist numlist | link removeformat',
-        menubar: false,
-        height: 350,
+    // --- NEW: INITIALIZE QUILLJS RICH TEXT EDITOR ---
+    const quill = new Quill('#email-body-editor', {
+        theme: 'snow', // Use the clean 'snow' theme
+        modules: {
+            toolbar: [
+                ['bold', 'italic', 'underline'],
+                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                ['link', 'clean'] // 'clean' is the remove formatting button
+            ]
+        },
         placeholder: 'Email body will be generated here...',
     });
 
-    // --- DATA FETCHING ---
+    // --- DATA FETCHING (No change) ---
     Promise.all([
         $.getJSON('contacts.json'),
         $.getJSON('templates.json')
@@ -26,11 +29,10 @@ $(document).ready(function() {
         Swal.fire({ icon: 'error', title: 'Oops...', text: 'Could not load data files!' });
     });
 
-    // --- POPULATION FUNCTIONS ---
-    function populateContactsDropdown() { /* No changes */ }
-    function populateTemplatesDropdown() { /* No changes */ }
-
-    // (Functions from previous step - included for completeness)
+    // --- POPULATION FUNCTIONS (No change) ---
+    function populateContactsDropdown() { /* ... */ }
+    function populateTemplatesDropdown() { /* ... */ }
+    // Included for completeness
     function populateContactsDropdown() {
         const select = $('#contact-select');
         contactsData.forEach(contact => {
@@ -44,107 +46,88 @@ $(document).ready(function() {
         });
     }
 
-    // --- EVENT HANDLERS ---
+    // --- EVENT HANDLERS (No change) ---
     $('#contact-select, #subject-select, #customer-type-select').on('change', generateEmail);
     $('#customer-name-input, #customer-email-input').on('keyup', generateEmail);
 
-    // --- CORE LOGIC ---
+    // --- CORE LOGIC (Updated for QuillJS) ---
     function generateEmail() {
-        // GET VALUES (no changes)
+        // GET VALUES & FIND OBJECTS (No change)
         const selectedRecipientId = $('#contact-select').val();
         const selectedTemplateId = $('#subject-select').val();
         const customerType = $('#customer-type-select').val();
         const customerName = $('#customer-name-input').val().trim();
         const customerEmail = $('#customer-email-input').val().trim();
-
-        // FIND DATA OBJECTS (no changes)
         const recipient = contactsData.find(c => c.id == selectedRecipientId);
         const template = templatesData.find(t => t.id === selectedTemplateId);
         
-        // UPDATE RECIPIENT'S EMAIL (no changes)
         $('#recipient-email').val(recipient ? recipient.email : '');
 
         if (!template) {
-            // If no template, clear fields and editor
             $('#final-subject').val('');
-            if (tinymce.get('email-body')) {
-                tinymce.get('email-body').setContent('');
-            }
+            quill.setText(''); // Clear the Quill editor
             return;
         }
 
-        // CONSTRUCT SUBJECT (no changes)
+        // CONSTRUCT SUBJECT (No change)
         let finalSubject = template.subject;
         if (customerName && customerEmail) {
             finalSubject = `${customerType} CX ${template.title} (${customerName} - ${customerEmail})`;
         }
         $('#final-subject').val(finalSubject);
 
-        // POPULATE THE BODY (Updated for TinyMCE)
+        // POPULATE THE BODY (Updated for QuillJS)
         let finalBody = template.body;
         if (recipient) {
             finalBody = finalBody.replace(/\[Recipient Name\]/g, recipient.name);
         }
-        // Use the TinyMCE API to set content
-        if (tinymce.get('email-body')) {
-            tinymce.get('email-body').setContent(finalBody);
-        }
+        // Use the Quill API to set content. It accepts HTML.
+        quill.root.innerHTML = finalBody;
     }
 
-    // --- COPY BUTTON FUNCTIONALITY (Updated for TinyMCE) ---
+    // --- COPY BUTTON FUNCTIONALITY ---
+    // General copy for input fields
     $('.copy-btn').on('click', function() {
-        const targetSelector = $(this).data('target');
-        let textToCopy;
+        const textToCopy = $($(this).data('target')).val();
+        copyToClipboard(textToCopy);
+    });
 
-        // Check if we are copying from the rich text editor
-        if (targetSelector === '#email-body') {
-            // Get content as plain text for maximum compatibility
-            textToCopy = tinymce.get('email-body').getContent({ format: 'text' });
-        } else {
-            // For all other fields, use .val()
-            textToCopy = $(targetSelector).val();
-        }
+    // Specific copy for Quill editor body
+    $('#copy-body-btn').on('click', function() {
+        // Get content as plain text for email clients
+        const textToCopy = quill.getText();
+        copyToClipboard(textToCopy);
+    });
 
-        if (!textToCopy) {
+    // Helper function for copying
+    function copyToClipboard(text) {
+        if (!text) {
             Swal.fire({ icon: 'warning', title: 'Nothing to Copy', text: 'The field is empty.', timer: 1500, showConfirmButton: false });
             return;
         }
-        navigator.clipboard.writeText(textToCopy).then(() => {
+        navigator.clipboard.writeText(text).then(() => {
             Swal.fire({ icon: 'success', title: 'Copied!', text: 'Content copied to clipboard.', timer: 1500, showConfirmButton: false });
         });
-    });
+    }
 
-    // --- NEW: RESET BUTTON FUNCTIONALITY ---
+    // --- RESET BUTTON FUNCTIONALITY (Updated for QuillJS) ---
     $('#reset-btn').on('click', function() {
         Swal.fire({
-            title: 'Are you sure?',
-            text: "This will clear all fields and reset the form.",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#0d6efd',
-            cancelButtonColor: '#6c757d',
+            title: 'Are you sure?', text: "This will clear all fields.", icon: 'warning',
+            showCancelButton: true, confirmButtonColor: '#0d6efd', cancelButtonColor: '#6c757d',
             confirmButtonText: 'Yes, reset it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                // Reset all dropdowns to the first (disabled) option
-                $('#contact-select, #subject-select').prop('selectedIndex', 0);
-                $('#customer-type-select').prop('selectedIndex', 0);
-
-                // Clear all input fields
+                $('form').trigger('reset'); // Resets basic form elements
+                $('#contact-select, #subject-select').val(""); // Ensure dropdowns reset fully
+                $('#customer-type-select').val("Existing");
+                // Clear input fields that might not reset with the form tag
                 $('#recipient-email, #customer-name-input, #customer-email-input, #final-subject').val('');
-
-                // Clear the TinyMCE editor
-                if (tinymce.get('email-body')) {
-                    tinymce.get('email-body').setContent('');
-                }
                 
-                Swal.fire({
-                    title: 'Reset!',
-                    text: 'The form has been cleared.',
-                    icon: 'success',
-                    timer: 1500,
-                    showConfirmButton: false
-                });
+                // Clear the Quill editor
+                quill.setText('');
+                
+                Swal.fire({ title: 'Reset!', text: 'The form has been cleared.', icon: 'success', timer: 1500, showConfirmButton: false });
             }
         });
     });
