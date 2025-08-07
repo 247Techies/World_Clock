@@ -2468,5 +2468,55 @@
     "sentence": "Resolved the issue with regards to computer security, optimized the computer, scanned and removed viruses.",
     "tag": "PC Cleanup & Optimization",
     "keywords": "computer security, optimized, scanned, removed viruses"
+  },
+  {
+    "sentence": "Resolved issues preventing the computer from powering on.",
+    "tag": "Computer Power Issue",
+    "keywords": "computer not powering on, power issue, startup failure"
+  },
+  {
+    "sentence": "Identified and fixed the issue causing the computer not to turn on.",
+    "tag": "Computer Power Issue",
+    "keywords": "computer not turning on, issue fixed, power failure"
+  },
+  {
+    "sentence": "Diagnosed and resolved startup failure preventing the computer from booting.",
+    "tag": "Computer Power Issue",
+    "keywords": "startup failure, booting issue, power issue"
+  },
+  {
+    "sentence": "Restored power and functionality to the computer after addressing hardware/software-related issues.",
+    "tag": "Computer Power Issue",
+    "keywords": "restored power, functionality, hardware software issue"
+  },
+  {
+    "sentence": "Troubleshot and resolved power-on issues with the computer.",
+    "tag": "Computer Power Issue",
+    "keywords": "power-on issue, troubleshooting, resolved"
+  },
+  {
+    "sentence": "Resolved issues preventing the computer from reaching the desktop, including blue or loading screens.",
+    "tag": "Computer Freeze",
+    "keywords": "not reaching desktop, blue screen, loading screen"
+  },
+  {
+    "sentence": "Diagnosed and fixed startup issues that caused the computer to get stuck before reaching the desktop.",
+    "tag": "Computer Freeze",
+    "keywords": "startup issue, stuck before desktop, system freeze"
+  },
+  {
+    "sentence": "Resolved system boot issues where the computer was stuck on blue or similar screens.",
+    "tag": "Computer Freeze",
+    "keywords": "boot issue, stuck screen, blue screen"
+  },
+  {
+    "sentence": "Troubleshot and corrected errors that prevented the system from loading the desktop interface.",
+    "tag": "Computer Freeze",
+    "keywords": "desktop loading error, system freeze, troubleshooting"
+  },
+  {
+    "sentence": "Addressed boot-related issues resulting in the computer being stuck on transitional screens.",
+    "tag": "Computer Freeze",
+    "keywords": "boot-related issue, transitional screen, system stuck"
   }
 ]

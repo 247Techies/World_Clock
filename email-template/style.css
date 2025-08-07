@@ -29,31 +29,19 @@ body {
     box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
 }
 
-.copy-btn, #copy-body-btn {
+/* Style for the simple textarea */
+textarea#email-body {
+    line-height: 1.6;
+    font-size: 0.95rem;
+    min-height: 250px;
+    resize: none; /* Disables the resize handle */
+}
+
+.copy-btn {
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
 }
 
 .copy-btn:hover {
     background-color: #e9ecef;
-}
-
-/* Style the Quill editor container */
-#email-body-editor {
-    min-height: 350px; /* Increased height for better user experience */
-    background-color: #fff;
-    border: 1px solid #ced4da;
-    border-radius: 8px;
-}
-/* Style the Quill toolbar to match */
-.ql-toolbar.ql-snow {
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    border-bottom: 1px solid #ced4da;
-}
-/* Style the Quill content area */
-.ql-container.ql-snow {
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    border: none; /* The container div provides the outer border */
 }

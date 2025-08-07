@@ -2,24 +2,6 @@ $(document).ready(function() {
     let contactsData = [];
     let templatesData = [];
 
-    // --- INITIALIZE QUILLJS WITH AN EXPANDED TOOLBAR ---
-    const quill = new Quill('#email-body-editor', {
-        theme: 'snow',
-        modules: {
-            toolbar: [
-                [{ 'header': [1, 2, 3, false] }],
-                [{ 'size': ['small', false, 'large', 'huge'] }],
-                ['bold', 'italic', 'underline', 'strike'],
-                [{ 'color': [] }, { 'background': [] }],
-                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                [{ 'align': [] }],
-                ['link', 'blockquote', 'code-block'],
-                ['clean']
-            ]
-        },
-        placeholder: 'Email body will be generated here...',
-    });
-
     // --- DATA FETCHING ---
     Promise.all([
         $.getJSON('contacts.json'),
@@ -66,11 +48,9 @@ $(document).ready(function() {
         $('#recipient-email').val(recipient ? recipient.email : '');
 
         if (!template) {
-            // Only clear subject and body if a template is not selected.
-            // This prevents clearing when only the contact changes.
             if (!selectedTemplateId) {
                 $('#final-subject').val('');
-                quill.root.innerHTML = '';
+                $('#email-body').val(''); // Use .val() for textarea
             }
             return;
         }
@@ -87,47 +67,33 @@ $(document).ready(function() {
         if (recipient) {
             finalBody = finalBody.replace(/\[Recipient Name\]/g, recipient.name);
         }
-        // Convert newlines to <br> for HTML and set editor content
-        quill.root.innerHTML = finalBody.replace(/\n/g, '<br>');
+        $('#email-body').val(finalBody); // Use .val() to set textarea content
     }
 
-    // --- COPY BUTTON LOGIC ---
+    // --- UNIFIED COPY BUTTON LOGIC ---
+    // This single handler now works for all copy buttons, including the body.
     $('.copy-btn').on('click', function() {
-        const textToCopy = $($(this).data('target')).val();
-        copyPlainTextToClipboard(textToCopy);
-    });
+        const targetSelector = $(this).data('target');
+        const textToCopy = $(targetSelector).val();
 
-    $('#copy-body-btn').on('click', function() {
-        copyRichTextToClipboard(quill);
-    });
-
-    function copyPlainTextToClipboard(text) {
-        if (!text) {
+        if (!textToCopy) {
             Swal.fire({ icon: 'warning', title: 'Nothing to Copy', text: 'The field is empty.', timer: 1500, showConfirmButton: false });
             return;
         }
-        navigator.clipboard.writeText(text).then(() => {
-            Swal.fire({ icon: 'success', title: 'Copied!', text: 'Content copied to clipboard.', timer: 1500, showConfirmButton: false });
-        });
-    }
-    
-    function copyRichTextToClipboard(quillInstance) {
-        const htmlContent = quillInstance.root.innerHTML;
-        if (!htmlContent || htmlContent === '<p><br></p>') {
-            Swal.fire({ icon: 'warning', title: 'Nothing to Copy', text: 'The editor is empty.', timer: 1500, showConfirmButton: false });
-            return;
-        }
-        try {
-            const blob = new Blob([htmlContent], { type: 'text/html' });
-            const clipboardItem = new ClipboardItem({ 'text/html': blob });
-            navigator.clipboard.write([clipboardItem]).then(() => {
-                Swal.fire({ icon: 'success', title: 'Copied!', text: 'Formatted text copied to clipboard.', timer: 1500, showConfirmButton: false });
+
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            Swal.fire({
+                icon: 'success',
+                title: 'Copied!',
+                text: 'Content copied to clipboard.',
+                timer: 1500,
+                showConfirmButton: false
             });
-        } catch (error) {
-            console.error('Error with rich text copy:', error);
-            Swal.fire({ icon: 'error', title: 'Copy Failed', text: 'Your browser may not support copying rich text.' });
-        }
-    }
+        }).catch(err => {
+            console.error('Failed to copy: ', err);
+            Swal.fire({ icon: 'error', title: 'Copy Failed', text: 'Could not copy the text.' });
+        });
+    });
     
     // --- RESET BUTTON FUNCTIONALITY ---
     $('#reset-btn').on('click', function() {
@@ -140,7 +106,8 @@ $(document).ready(function() {
                 $('#email-form')[0].reset();
                 $('#contact-select').val("");
                 $('#subject-select').val("");
-                quill.root.innerHTML = ''; // Clear the Quill editor
+                $('#email-body').val(''); // Explicitly clear the textarea
+                
                 Swal.fire({ title: 'Reset!', text: 'The form has been cleared.', icon: 'success', timer: 1500, showConfirmButton: false });
             }
         });
