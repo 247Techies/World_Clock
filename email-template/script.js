@@ -2,29 +2,41 @@ $(document).ready(function() {
     let contactsData = [];
     let templatesData = [];
 
-    // Fetch JSON data
+    // --- INITIALIZE TINYMCE RICH TEXT EDITOR ---
+    tinymce.init({
+        selector: '#email-body',
+        plugins: 'autolink lists link',
+        toolbar: 'undo redo | bold italic underline | bullist numlist | link removeformat',
+        menubar: false,
+        height: 350,
+        placeholder: 'Email body will be generated here...',
+    });
+
+    // --- DATA FETCHING ---
     Promise.all([
         $.getJSON('contacts.json'),
         $.getJSON('templates.json')
     ]).then(function([contacts, templates]) {
         contactsData = contacts;
         templatesData = templates;
-
         populateContactsDropdown();
         populateTemplatesDropdown();
     }).catch(function(error) {
         console.error("Error loading JSON data:", error);
-        Swal.fire({ icon: 'error', title: 'Oops...', text: 'Could not load required data files!' });
+        Swal.fire({ icon: 'error', title: 'Oops...', text: 'Could not load data files!' });
     });
 
     // --- POPULATION FUNCTIONS ---
+    function populateContactsDropdown() { /* No changes */ }
+    function populateTemplatesDropdown() { /* No changes */ }
+
+    // (Functions from previous step - included for completeness)
     function populateContactsDropdown() {
         const select = $('#contact-select');
         contactsData.forEach(contact => {
             select.append(`<option value="${contact.id}">${contact.name}</option>`);
         });
     }
-
     function populateTemplatesDropdown() {
         const select = $('#subject-select');
         templatesData.forEach(template => {
@@ -38,65 +50,102 @@ $(document).ready(function() {
 
     // --- CORE LOGIC ---
     function generateEmail() {
-        // 1. GET ALL CURRENT VALUES
+        // GET VALUES (no changes)
         const selectedRecipientId = $('#contact-select').val();
         const selectedTemplateId = $('#subject-select').val();
         const customerType = $('#customer-type-select').val();
         const customerName = $('#customer-name-input').val().trim();
         const customerEmail = $('#customer-email-input').val().trim();
 
-        // 2. FIND THE DATA OBJECTS
+        // FIND DATA OBJECTS (no changes)
         const recipient = contactsData.find(c => c.id == selectedRecipientId);
         const template = templatesData.find(t => t.id === selectedTemplateId);
         
-        // 3. UPDATE RECIPIENT'S EMAIL FIELD
-        if (recipient) {
-            $('#recipient-email').val(recipient.email);
-        } else {
-             $('#recipient-email').val('');
-        }
+        // UPDATE RECIPIENT'S EMAIL (no changes)
+        $('#recipient-email').val(recipient ? recipient.email : '');
 
-        // Exit if no template is selected
         if (!template) {
+            // If no template, clear fields and editor
             $('#final-subject').val('');
-            $('#email-body').val('');
+            if (tinymce.get('email-body')) {
+                tinymce.get('email-body').setContent('');
+            }
             return;
         }
 
-        // 4. CONSTRUCT THE SUBJECT (Uses "Customer Details" section)
+        // CONSTRUCT SUBJECT (no changes)
         let finalSubject = template.subject;
         if (customerName && customerEmail) {
             finalSubject = `${customerType} CX ${template.title} (${customerName} - ${customerEmail})`;
         }
         $('#final-subject').val(finalSubject);
 
-        // 5. POPULATE THE BODY (Uses recipient from Step 1)
+        // POPULATE THE BODY (Updated for TinyMCE)
         let finalBody = template.body;
-
-        // Replace [Recipient Name] with the person selected in Step 1.
         if (recipient) {
             finalBody = finalBody.replace(/\[Recipient Name\]/g, recipient.name);
         }
-
-        // IMPORTANT: We no longer automatically replace [Your Name].
-        // The user must fill this in manually.
-
-        $('#email-body').val(finalBody);
+        // Use the TinyMCE API to set content
+        if (tinymce.get('email-body')) {
+            tinymce.get('email-body').setContent(finalBody);
+        }
     }
 
-    // --- COPY BUTTON FUNCTIONALITY (No changes needed) ---
+    // --- COPY BUTTON FUNCTIONALITY (Updated for TinyMCE) ---
     $('.copy-btn').on('click', function() {
         const targetSelector = $(this).data('target');
-        const textToCopy = $(targetSelector).val();
+        let textToCopy;
+
+        // Check if we are copying from the rich text editor
+        if (targetSelector === '#email-body') {
+            // Get content as plain text for maximum compatibility
+            textToCopy = tinymce.get('email-body').getContent({ format: 'text' });
+        } else {
+            // For all other fields, use .val()
+            textToCopy = $(targetSelector).val();
+        }
+
         if (!textToCopy) {
             Swal.fire({ icon: 'warning', title: 'Nothing to Copy', text: 'The field is empty.', timer: 1500, showConfirmButton: false });
             return;
         }
         navigator.clipboard.writeText(textToCopy).then(() => {
             Swal.fire({ icon: 'success', title: 'Copied!', text: 'Content copied to clipboard.', timer: 1500, showConfirmButton: false });
-        }).catch(err => {
-            console.error('Failed to copy: ', err);
-            Swal.fire({ icon: 'error', title: 'Copy Failed', text: 'Could not copy the text.' });
+        });
+    });
+
+    // --- NEW: RESET BUTTON FUNCTIONALITY ---
+    $('#reset-btn').on('click', function() {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "This will clear all fields and reset the form.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#0d6efd',
+            cancelButtonColor: '#6c757d',
+            confirmButtonText: 'Yes, reset it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Reset all dropdowns to the first (disabled) option
+                $('#contact-select, #subject-select').prop('selectedIndex', 0);
+                $('#customer-type-select').prop('selectedIndex', 0);
+
+                // Clear all input fields
+                $('#recipient-email, #customer-name-input, #customer-email-input, #final-subject').val('');
+
+                // Clear the TinyMCE editor
+                if (tinymce.get('email-body')) {
+                    tinymce.get('email-body').setContent('');
+                }
+                
+                Swal.fire({
+                    title: 'Reset!',
+                    text: 'The form has been cleared.',
+                    icon: 'success',
+                    timer: 1500,
+                    showConfirmButton: false
+                });
+            }
         });
     });
 });
