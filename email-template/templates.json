@@ -3,7 +3,7 @@
       "id": "update",
       "title": "Project Update",
       "subject": "Project Update: [Enter Project Name]",
-      "body": "Hi [Recipient Name],\n\nI hope you're having a great week.\n\nThis is a quick update regarding the '[Enter Project Name]' project. We have successfully completed the initial phase and are moving on to the next stage.\n\nWe will share a more detailed report by the end of the week.\n\nBest regards,\n\n[Your Name]"
+      "body": "Hi [Recipient Name],\nI hope you're having a great week.\nThis is a quick update regarding the '[Enter Project Name]' project. We have successfully completed the initial phase and are moving on to the next stage.\nWe will share a more detailed report by the end of the week."
     },
     {
       "id": "meeting",
