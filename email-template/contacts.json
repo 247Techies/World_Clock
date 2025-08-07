@@ -1,22 +1,27 @@
 [
     {
       "id": 1,
-      "name": "John Doe",
-      "email": "john.doe@example.com"
+      "name": "Ahsan Razik",
+      "email": "ahsanm@eurekasl.com"
     },
     {
       "id": 2,
-      "name": "Jane Smith",
-      "email": "jane.smith@workplace.com"
+      "name": "Akitha Abeysekara",
+      "email": "akithaa@eurekasl.com"
     },
     {
       "id": 3,
-      "name": "Project Team",
-      "email": "project-team@internal.net"
+      "name": "Rajendran Sham",
+      "email": "shamr@eurekasl.com"
     },
     {
       "id": 4,
-      "name": "Alice Williams",
-      "email": "alice.w@university.edu"
+      "name": "Rizvi Rizmy",
+      "email": "rizvir@eurekasl.com"
+    },
+    {
+      "id": 4,
+      "name": "Thanushyanthan Thamilthasan",
+      "email": "thanushyanthant@eurekasl.com"
     }
   ]
