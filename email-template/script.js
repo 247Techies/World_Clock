@@ -35,67 +35,68 @@ $(document).ready(function() {
     $('#contact-select, #subject-select, #customer-type-select').on('change', generateEmail);
     $('#customer-name-input, #customer-email-input').on('keyup', generateEmail);
 
-    // --- CORE LOGIC (UPGRADED) ---
+    // --- CORE LOGIC ---
     function generateEmail() {
+        // 1. Get all current values from the form.
         const selectedRecipientId = $('#contact-select').val();
         const selectedTemplateId = $('#subject-select').val();
         const customerType = $('#customer-type-select').val();
         const customerName = $('#customer-name-input').val().trim();
         const customerEmail = $('#customer-email-input').val().trim();
 
+        // 2. Find the corresponding data objects.
         const recipient = contactsData.find(c => c.id == selectedRecipientId);
         const template = templatesData.find(t => t.id === selectedTemplateId);
 
+        // 3. Update the recipient's email address field.
         $('#recipient-email').val(recipient ? recipient.email : '');
 
+        // 4. If a template is selected, generate the content.
         if (template) {
+            // Start with the raw text from the template.
             let finalSubject = template.subject;
             let finalBody = template.body;
 
-            // --- NEW: INTELLIGENTLY BUILD THE customerDetails STRING ---
+            // Build the intelligent customerDetails string.
             let customerDetailsString = '';
             if (customerName && customerEmail) {
-                // Both exist: (Name | Email)
                 customerDetailsString = `(${customerName} | ${customerEmail})`;
             } else if (customerName) {
-                // Only Name exists: (Name)
                 customerDetailsString = `(${customerName})`;
             } else if (customerEmail) {
-                // Only Email exists: (Email)
                 customerDetailsString = `(${customerEmail})`;
             }
-            // If neither exists, the string remains empty, and nothing will be added.
 
             // --- SMART REPLACEMENT LOGIC ---
-            // Replace our new composite placeholder
-            finalSubject = finalSubject.replace(/\$\{customerDetails\}/g, customerDetailsString);
-            finalBody = finalBody.replace(/\$\{customerDetails\}/g, customerDetailsString); // Works in body too!
+            // This logic is now applied to BOTH the subject and body.
 
-            // Replace all other simple placeholders
+            // Replace our new composite placeholder.
+            finalSubject = finalSubject.replace(/\$\{customerDetails\}/g, customerDetailsString);
+            finalBody = finalBody.replace(/\$\{customerDetails\}/g, customerDetailsString);
+
+            // Replace all other simple placeholders.
             finalSubject = finalSubject.replace(/\$\{customerType\}/g, customerType);
             finalBody = finalBody.replace(/\$\{customerType\}/g, customerType);
-            finalSubject = finalSubject.replace(/\$\{customerName\}/g, customerName);
-            finalBody = finalBody.replace(/\$\{customerName\}/g, customerName);
-            finalSubject = finalSubject.replace(/\$\{customerEmail\}/g, customerEmail);
-            finalBody = finalBody.replace(/\$\{customerEmail\}/g, customerEmail);
 
+            // Replace the Salutation placeholder using the new field.
             if (recipient) {
-                finalSubject = finalSubject.replace(/\[Recipient Name\]/g, recipient.name);
-                finalBody = finalBody.replace(/\[Recipient Name\]/g, recipient.name);
+                // Use the 'salutation' field, but fall back to the full 'name' if it doesn't exist.
+                const greetingName = recipient.salutation || recipient.name;
+                finalBody = finalBody.replace(/\[Salutation\]/g, greetingName);
             }
 
-            // Set the final, processed text to the form fields
+            // Set the final, processed text to the form fields.
             $('#final-subject').val(finalSubject);
             $('#email-body').val(finalBody);
 
         } else {
-            // No template is selected, clear subject and body
+            // No template is selected, so ensure the subject and body are cleared.
             $('#final-subject').val('');
             $('#email-body').val('');
         }
     }
 
-    // --- BUTTON LOGIC (No changes needed below this line) ---
+    // --- COPY BUTTON LOGIC ---
     $('.copy-btn').on('click', function() {
         const targetSelector = $(this).data('target');
         const textToCopy = $(targetSelector).val();
@@ -108,23 +109,32 @@ $(document).ready(function() {
         });
     });
 
+    // --- SEND BUTTON LOGIC ---
     $('#send-btn').on('click', function() {
         const recipientEmail = $('#recipient-email').val();
         const subject = $('#final-subject').val();
         const body = $('#email-body').val();
+
         if (!recipientEmail) {
             Swal.fire({ icon: 'error', title: 'Missing Recipient', text: 'Please select a recipient first.' });
             return;
         }
+
         const encodedSubject = encodeURIComponent(subject);
         const encodedBody = encodeURIComponent(body);
-        window.location.href = `mailto:${recipientEmail}?subject=${encodedSubject}&body=${encodedBody}`;
+        const mailtoLink = `mailto:${recipientEmail}?subject=${encodedSubject}&body=${encodedBody}`;
+        window.location.href = mailtoLink;
     });
 
+    // --- RESET BUTTON LOGIC ---
     $('#reset-btn').on('click', function() {
         Swal.fire({
-            title: 'Are you sure?', text: "This will clear all fields.", icon: 'warning',
-            showCancelButton: true, confirmButtonColor: '#0d6efd', cancelButtonColor: '#6c757d',
+            title: 'Are you sure?',
+            text: "This will clear all fields.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#0d6efd',
+            cancelButtonColor: '#6c757d',
             confirmButtonText: 'Yes, reset it!'
         }).then((result) => {
             if (result.isConfirmed) {

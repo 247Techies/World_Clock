@@ -12,7 +12,8 @@
     {
       "id": 3,
       "name": "Rajendran Sham",
-      "email": "shamr@eurekasl.com"
+      "email": "shamr@eurekasl.com",
+      "salutation": "Sham"
     },
     {
       "id": 4,
