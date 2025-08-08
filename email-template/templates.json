@@ -16,5 +16,12 @@
       "title": "Request for Feedback",
       "subject": "Request for Feedback on [Enter Document/Feature Name]",
       "body": "Hello [Recipient Name],\n\nCould you please take a moment to provide your valuable feedback on the new [Enter Document/Feature Name]?\n\nYour insights are crucial for us to make improvements. You can find the document/feature at the following link: [Insert Link Here]\n\nThanks in advance for your help!\n\nBest,\n\n[Your Name]"
+    },
+    {
+      "id": "follow_up_reminder",
+      "title": "Assign Follow-Up Reminder",
+      "subject": "Follow-Up Reminder for ${customerType} CX",
+      "body": "Hi [Recipient Name],\n\nCan you please assign the below follow up reminder for the ${customerType} CX? More information is updated and attached in the ticket.\n\nThanks,\n\n[Your Name]"
     }
+
   ]
