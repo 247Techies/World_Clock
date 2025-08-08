@@ -35,7 +35,7 @@ $(document).ready(function() {
     $('#contact-select, #subject-select, #customer-type-select').on('change', generateEmail);
     $('#customer-name-input, #customer-email-input').on('keyup', generateEmail);
 
-    // --- CORE LOGIC (FIXED) ---
+    // --- CORE LOGIC ---
     function generateEmail() {
         // 1. Get all current values from the form.
         const selectedRecipientId = $('#contact-select').val();
@@ -44,32 +44,45 @@ $(document).ready(function() {
         const customerName = $('#customer-name-input').val().trim();
         const customerEmail = $('#customer-email-input').val().trim();
 
-        // 2. Find the corresponding data objects. They will be 'undefined' if not selected, which is okay.
+        // 2. Find the corresponding data objects.
         const recipient = contactsData.find(c => c.id == selectedRecipientId);
         const template = templatesData.find(t => t.id === selectedTemplateId);
 
         // 3. Handle Recipient-related fields.
-        // This will run every time, populating the email field as soon as a recipient is chosen.
         $('#recipient-email').val(recipient ? recipient.email : '');
 
         // 4. Handle Template-related fields.
         if (template) {
-            // A template IS selected, so populate subject and body.
+            // Start with the raw text from the template
             let finalSubject = template.subject;
-            if (customerName && customerEmail) {
-                finalSubject = `${customerType} CX ${template.title} (${customerName} - ${customerEmail})`;
-            }
-            $('#final-subject').val(finalSubject);
-            
             let finalBody = template.body;
-            // IMPORTANT: Only try to replace the name if a recipient has also been selected.
+
+            // --- SMART REPLACEMENT LOGIC ---
+            // This logic is now applied to BOTH subject and body.
+
+            // Replace ${...} style placeholders
+            finalSubject = finalSubject.replace(/\$\{customerType\}/g, customerType);
+            finalBody = finalBody.replace(/\$\{customerType\}/g, customerType);
+
+            // You can easily add more placeholders now! For example:
+            finalSubject = finalSubject.replace(/\$\{customerName\}/g, customerName);
+            finalBody = finalBody.replace(/\$\{customerName\}/g, customerName);
+            
+            finalSubject = finalSubject.replace(/\$\{customerEmail\}/g, customerEmail);
+            finalBody = finalBody.replace(/\$\{customerEmail\}/g, customerEmail);
+
+            // Replace legacy [...] style placeholders for backwards compatibility
             if (recipient) {
+                finalSubject = finalSubject.replace(/\[Recipient Name\]/g, recipient.name);
                 finalBody = finalBody.replace(/\[Recipient Name\]/g, recipient.name);
             }
+
+            // Set the final, processed text to the form fields
+            $('#final-subject').val(finalSubject);
             $('#email-body').val(finalBody);
 
         } else {
-            // NO template is selected, so ensure the subject and body are cleared.
+            // No template is selected, clear subject and body
             $('#final-subject').val('');
             $('#email-body').val('');
         }
