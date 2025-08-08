@@ -35,43 +35,50 @@ $(document).ready(function() {
     $('#contact-select, #subject-select, #customer-type-select').on('change', generateEmail);
     $('#customer-name-input, #customer-email-input').on('keyup', generateEmail);
 
-    // --- CORE LOGIC ---
+    // --- CORE LOGIC (UPGRADED) ---
     function generateEmail() {
-        // 1. Get all current values from the form.
         const selectedRecipientId = $('#contact-select').val();
         const selectedTemplateId = $('#subject-select').val();
         const customerType = $('#customer-type-select').val();
         const customerName = $('#customer-name-input').val().trim();
         const customerEmail = $('#customer-email-input').val().trim();
 
-        // 2. Find the corresponding data objects.
         const recipient = contactsData.find(c => c.id == selectedRecipientId);
         const template = templatesData.find(t => t.id === selectedTemplateId);
 
-        // 3. Handle Recipient-related fields.
         $('#recipient-email').val(recipient ? recipient.email : '');
 
-        // 4. Handle Template-related fields.
         if (template) {
-            // Start with the raw text from the template
             let finalSubject = template.subject;
             let finalBody = template.body;
 
-            // --- SMART REPLACEMENT LOGIC ---
-            // This logic is now applied to BOTH subject and body.
+            // --- NEW: INTELLIGENTLY BUILD THE customerDetails STRING ---
+            let customerDetailsString = '';
+            if (customerName && customerEmail) {
+                // Both exist: (Name | Email)
+                customerDetailsString = `(${customerName} | ${customerEmail})`;
+            } else if (customerName) {
+                // Only Name exists: (Name)
+                customerDetailsString = `(${customerName})`;
+            } else if (customerEmail) {
+                // Only Email exists: (Email)
+                customerDetailsString = `(${customerEmail})`;
+            }
+            // If neither exists, the string remains empty, and nothing will be added.
 
-            // Replace ${...} style placeholders
+            // --- SMART REPLACEMENT LOGIC ---
+            // Replace our new composite placeholder
+            finalSubject = finalSubject.replace(/\$\{customerDetails\}/g, customerDetailsString);
+            finalBody = finalBody.replace(/\$\{customerDetails\}/g, customerDetailsString); // Works in body too!
+
+            // Replace all other simple placeholders
             finalSubject = finalSubject.replace(/\$\{customerType\}/g, customerType);
             finalBody = finalBody.replace(/\$\{customerType\}/g, customerType);
-
-            // You can easily add more placeholders now! For example:
             finalSubject = finalSubject.replace(/\$\{customerName\}/g, customerName);
             finalBody = finalBody.replace(/\$\{customerName\}/g, customerName);
-            
             finalSubject = finalSubject.replace(/\$\{customerEmail\}/g, customerEmail);
             finalBody = finalBody.replace(/\$\{customerEmail\}/g, customerEmail);
 
-            // Replace legacy [...] style placeholders for backwards compatibility
             if (recipient) {
                 finalSubject = finalSubject.replace(/\[Recipient Name\]/g, recipient.name);
                 finalBody = finalBody.replace(/\[Recipient Name\]/g, recipient.name);
@@ -88,7 +95,7 @@ $(document).ready(function() {
         }
     }
 
-    // --- COPY BUTTON LOGIC ---
+    // --- BUTTON LOGIC (No changes needed below this line) ---
     $('.copy-btn').on('click', function() {
         const targetSelector = $(this).data('target');
         const textToCopy = $(targetSelector).val();
@@ -101,24 +108,19 @@ $(document).ready(function() {
         });
     });
 
-    // --- SEND BUTTON LOGIC ---
     $('#send-btn').on('click', function() {
         const recipientEmail = $('#recipient-email').val();
         const subject = $('#final-subject').val();
         const body = $('#email-body').val();
-
         if (!recipientEmail) {
             Swal.fire({ icon: 'error', title: 'Missing Recipient', text: 'Please select a recipient first.' });
             return;
         }
-
         const encodedSubject = encodeURIComponent(subject);
         const encodedBody = encodeURIComponent(body);
-        const mailtoLink = `mailto:${recipientEmail}?subject=${encodedSubject}&body=${encodedBody}`;
-        window.location.href = mailtoLink;
+        window.location.href = `mailto:${recipientEmail}?subject=${encodedSubject}&body=${encodedBody}`;
     });
 
-    // --- RESET BUTTON LOGIC ---
     $('#reset-btn').on('click', function() {
         Swal.fire({
             title: 'Are you sure?', text: "This will clear all fields.", icon: 'warning',
