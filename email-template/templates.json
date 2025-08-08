@@ -26,7 +26,7 @@
     {
       "id": "follow_up_reminder",
       "title": "Follow-Up Reminder Assignment",
-      "subject": "Follow-up reminder for ${customerType} CX",
+      "subject": "Follow-up reminder for ${customerType} CX (${customerName} | $(customerEmail)",
       "body": "Hi [Recipient Name],\n\nCan you please assign the below follow up reminder for the ${customerType} CX? More information is updated and attached in the ticket.\n\nThanks,\n\n[Your Name]"
     }
 
