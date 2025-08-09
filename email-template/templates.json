@@ -6,6 +6,12 @@
       "body": "Hi [Salutation],\n\nCan you please assign the below follow up reminder for the ${customerType} CX. More information is updated and attached in the ticket.\n\nThanks,\n\n"
     },
     {
+      "id": "follow_up_reminder_time",
+      "title": "Follow-Up Reminder Assignment + Date/Time",
+      "subject": "Follow-up reminder for ${customerType} CX ${customerDetails}",
+      "body": "Hi [Salutation],\n\nCan you please assign the below follow up reminder for the ${customerType} CX. More information is updated and attached in the ticket.\n\nThanks,\n\n"
+    },
+    {
       "id": "cx_follow_up",
       "title": "CX Follow-Up Assignment",
       "subject": "${customerType} CX Follow-ups ${customerDetails}",
