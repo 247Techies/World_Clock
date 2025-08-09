@@ -9,7 +9,7 @@
       "id": "follow_up_reminder_time",
       "title": "Follow-Up Reminder Assignment + Date/Time",
       "subject": "Follow-up reminder for ${customerType} CX ${customerDetails}",
-      "body": "Hi [Salutation],\n\nCan you please assign the below follow up reminder for the ${customerType} CX. More information is updated and attached in the ticket.\n\nFollow-Up CX Appointment Details\n\n• CX Date: \n• SL Date: \n• Contact Number: \n\nPlease ensure to call the CX at the above number during the scheduled appointment."
+      "body": "Hi [Salutation],\n\nCan you please assign the below follow up reminder for the ${customerType} CX. More information is updated and attached in the ticket.\n\nFollow-Up CX Appointment Details\n\n📅 CX Date / Time: \n📅 SL Date / Time: \n📞 Contact Number: \n\nPlease ensure to call the CX at the above number during the scheduled appointment."
     },
     {
       "id": "cx_follow_up",
