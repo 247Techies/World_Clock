@@ -11,10 +11,17 @@ body {
 .card-header {
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
-    background: linear-gradient(45deg, #ff2600, #0dcaf0, #6610f2, #6f42c1);
-    background-size: 300% 300%;
-    animation: gradientShift 15s ease infinite;
-    color: white; /* Optional for text contrast */
+    background: linear-gradient(45deg, 
+        #0d6efd,    /* blue */
+        #0dcaf0,    /* cyan */
+        #20c997,    /* teal */
+        #198754,    /* green */
+        #ffc107,    /* amber */
+        #fd7e14     /* orange */
+    );
+    background-size: 400% 400%;
+    animation: gradientShift 30s ease infinite;
+    color: white;
 }
 
 @keyframes gradientShift {
@@ -28,7 +35,6 @@ body {
         background-position: 0% 50%;
     }
 }
-
 
 .form-label {
     color: #495057;
