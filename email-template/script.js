@@ -35,29 +35,23 @@ $(document).ready(function() {
     $('#contact-select, #subject-select, #customer-type-select').on('change', generateEmail);
     $('#customer-name-input, #customer-email-input').on('keyup', generateEmail);
 
-    // --- CORE LOGIC ---
+    // --- CORE LOGIC (CORRECTED) ---
     function generateEmail() {
-        // 1. Get all current values from the form.
         const selectedRecipientId = $('#contact-select').val();
         const selectedTemplateId = $('#subject-select').val();
         const customerType = $('#customer-type-select').val();
         const customerName = $('#customer-name-input').val().trim();
         const customerEmail = $('#customer-email-input').val().trim();
 
-        // 2. Find the corresponding data objects.
         const recipient = contactsData.find(c => c.id == selectedRecipientId);
         const template = templatesData.find(t => t.id === selectedTemplateId);
 
-        // 3. Update the recipient's email address field.
         $('#recipient-email').val(recipient ? recipient.email : '');
 
-        // 4. If a template is selected, generate the content.
         if (template) {
-            // Start with the raw text from the template.
             let finalSubject = template.subject;
             let finalBody = template.body;
 
-            // Build the intelligent customerDetails string.
             let customerDetailsString = '';
             if (customerName && customerEmail) {
                 customerDetailsString = `(${customerName} | ${customerEmail})`;
@@ -70,7 +64,7 @@ $(document).ready(function() {
             // --- SMART REPLACEMENT LOGIC ---
             // This logic is now applied to BOTH the subject and body.
 
-            // Replace our new composite placeholder.
+            // Replace our composite placeholder.
             finalSubject = finalSubject.replace(/\$\{customerDetails\}/g, customerDetailsString);
             finalBody = finalBody.replace(/\$\{customerDetails\}/g, customerDetailsString);
 
@@ -78,9 +72,15 @@ $(document).ready(function() {
             finalSubject = finalSubject.replace(/\$\{customerType\}/g, customerType);
             finalBody = finalBody.replace(/\$\{customerType\}/g, customerType);
 
-            // Replace the Salutation placeholder using the new field.
+            // THE MISSING LINES ARE NOW CORRECTLY ADDED HERE:
+            finalSubject = finalSubject.replace(/\$\{customerName\}/g, customerName);
+            finalBody = finalBody.replace(/\$\{customerName\}/g, customerName);
+
+            finalSubject = finalSubject.replace(/\$\{customerEmail\}/g, customerEmail);
+            finalBody = finalBody.replace(/\$\{customerEmail\}/g, customerEmail);
+
+            // Replace the Salutation placeholder using the 'salutation' field.
             if (recipient) {
-                // Use the 'salutation' field, but fall back to the full 'name' if it doesn't exist.
                 const greetingName = recipient.salutation || recipient.name;
                 finalBody = finalBody.replace(/\[Salutation\]/g, greetingName);
             }
@@ -96,45 +96,28 @@ $(document).ready(function() {
         }
     }
 
-    // --- COPY BUTTON LOGIC ---
+    // --- BUTTON LOGIC (No changes needed below) ---
     $('.copy-btn').on('click', function() {
         const targetSelector = $(this).data('target');
         const textToCopy = $(targetSelector).val();
-        if (!textToCopy) {
-            Swal.fire({ icon: 'warning', title: 'Nothing to Copy', text: 'The field is empty.', timer: 1500, showConfirmButton: false });
-            return;
-        }
-        navigator.clipboard.writeText(textToCopy).then(() => {
-            Swal.fire({ icon: 'success', title: 'Copied!', text: 'Content copied to clipboard.', timer: 1500, showConfirmButton: false });
-        });
+        if (!textToCopy) { Swal.fire({ icon: 'warning', title: 'Nothing to Copy', text: 'The field is empty.', timer: 1500, showConfirmButton: false }); return; }
+        navigator.clipboard.writeText(textToCopy).then(() => { Swal.fire({ icon: 'success', title: 'Copied!', text: 'Content copied to clipboard.', timer: 1500, showConfirmButton: false }); });
     });
 
-    // --- SEND BUTTON LOGIC ---
     $('#send-btn').on('click', function() {
         const recipientEmail = $('#recipient-email').val();
         const subject = $('#final-subject').val();
         const body = $('#email-body').val();
-
-        if (!recipientEmail) {
-            Swal.fire({ icon: 'error', title: 'Missing Recipient', text: 'Please select a recipient first.' });
-            return;
-        }
-
+        if (!recipientEmail) { Swal.fire({ icon: 'error', title: 'Missing Recipient', text: 'Please select a recipient first.' }); return; }
         const encodedSubject = encodeURIComponent(subject);
         const encodedBody = encodeURIComponent(body);
-        const mailtoLink = `mailto:${recipientEmail}?subject=${encodedSubject}&body=${encodedBody}`;
-        window.location.href = mailtoLink;
+        window.location.href = `mailto:${recipientEmail}?subject=${encodedSubject}&body=${encodedBody}`;
     });
 
-    // --- RESET BUTTON LOGIC ---
     $('#reset-btn').on('click', function() {
         Swal.fire({
-            title: 'Are you sure?',
-            text: "This will clear all fields.",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#0d6efd',
-            cancelButtonColor: '#6c757d',
+            title: 'Are you sure?', text: "This will clear all fields.", icon: 'warning',
+            showCancelButton: true, confirmButtonColor: '#0d6efd', cancelButtonColor: '#6c757d',
             confirmButtonText: 'Yes, reset it!'
         }).then((result) => {
             if (result.isConfirmed) {
