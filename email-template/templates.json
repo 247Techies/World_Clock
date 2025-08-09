@@ -1,5 +1,17 @@
 [
     {
+      "id": "follow_up_reminder",
+      "title": "Follow-Up Reminder Assignment",
+      "subject": "Follow-up reminder for ${customerType} CX ${customerDetails}",
+      "body": "Hi [Salutation],\n\nCan you please assign the below follow up reminder for the ${customerType} CX. More information is updated and attached in the ticket.\n\nThanks,\n\n"
+    },
+    {
+      "id": "cx_follow_up",
+      "title": "CX Follow-Up Assignment",
+      "subject": "${customerType} CX Follow-ups ${customerDetails}",
+      "body": "Hi [Salutation],\n\nPlease find below the updates regarding ${customerType} cx follow-ups.\n\n"
+    },
+    {
       "id": "update",
       "title": "Project Update",
       "subject": "Project Update: [Enter Project Name]",
@@ -27,7 +39,7 @@
       "id": "follow_up_reminder",
       "title": "Follow-Up Reminder Assignment",
       "subject": "Follow-up reminder for ${customerType} CX ${customerDetails}",
-      "body": "Hi [Salutation],\n\nCan you please assign the below follow up reminder for the ${customerType} CX? More information is updated and attached in the ticket.\n\nThanks,\n\n[Your Name]"
+      "body": "Hi [Salutation],\n\nCan you please assign the below follow up reminder for the ${customerType} CX. More information is updated and attached in the ticket.\n\nThanks,\n\n"
     }
 
 
