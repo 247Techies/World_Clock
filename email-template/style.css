@@ -11,7 +11,7 @@ body {
 .card-header {
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
-    background: linear-gradient(45deg, #0d6efd, #0dcaf0, #6610f2, #6f42c1);
+    background: linear-gradient(45deg, #ff2600, #0dcaf0, #6610f2, #6f42c1);
     background-size: 300% 300%;
     animation: gradientShift 15s ease infinite;
     color: white; /* Optional for text contrast */
