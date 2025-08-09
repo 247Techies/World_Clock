@@ -18,6 +18,18 @@
       "body": "Hi [Salutation],\n\nPlease find below the updates on the assigned manual CX renewals.\n\n"
     },
     {
+      "id": "auto_renewal_cancelation",
+      "title": "Auto Renewal (AR) Cancelation",
+      "subject": "Auto Renewal (AR) Cancelation ${customerDetails}",
+      "body": "Hi [Salutation],\n\n${customerName} (${customerEmail}) connected via session requesting the cancellation of auto-renewal (AR). The customer also requested a confirmation email for the cancellation.\n\n"
+    },
+    {
+      "id": "auto_renewal_cancelation_refund",
+      "title": "Auto Renewal (AR) Cancelation + Refund",
+      "subject": "Auto Renewal (AR) Cancelation & Refund ${customerDetails}",
+      "body": "Hi [Salutation],\n\n${customerName} (${customerEmail}) connected via call requesting the cancellation of auto-renewal (AR) and a refund for the most recent charge. The customer also requested a confirmation email for the cancellation.\n\n"
+    },
+    {
       "id": "update",
       "title": "Project Update",
       "subject": "Project Update: [Enter Project Name]",
