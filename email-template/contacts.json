@@ -2,12 +2,14 @@
     {
       "id": 1,
       "name": "Ahsan Razik",
-      "email": "ahsanm@eurekasl.com"
+      "email": "ahsanm@eurekasl.com",
+      "salutation": "Ahsan"
     },
     {
       "id": 2,
       "name": "Akitha Abeysekara",
-      "email": "akithaa@eurekasl.com"
+      "email": "akithaa@eurekasl.com",
+      "salutation": "Akitha"
     },
     {
       "id": 3,
@@ -18,11 +20,13 @@
     {
       "id": 4,
       "name": "Rizvi Rizmy",
-      "email": "rizvir@eurekasl.com"
+      "email": "rizvir@eurekasl.com",
+      "salutation": "Rizvi"
     },
     {
       "id": 4,
       "name": "Thanushyanthan Thamilthasan",
-      "email": "thanushyanthant@eurekasl.com"
+      "email": "thanushyanthant@eurekasl.com",
+      "salutation": "Thanush"
     }
   ]
