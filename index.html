@@ -538,7 +538,72 @@
     $conversionTimezoneSelect.on('change', function (e) { const selectedTzIana = $(this).val(); if (selectedTzIana && selectedTzIana !== "") { flatpickrInput.disabled = false; if (flatpickrInstance.selectedDates.length === 0) { flatpickrInstance.setDate(new Date(), false); } conversionOutputsWrapper.style.display = 'none'; } else { flatpickrInput.disabled = true; flatpickrInstance.clear(); } });
     function resetConversionSection() { document.querySelectorAll('.conversion-flag-item').forEach(el => el.classList.remove('selected')); selectedConversionCountry = null; conversionDatetimeSelectionArea.style.display = 'none'; conversionOutputsWrapper.style.display = 'none'; flatpickrInstance.clear(); flatpickrInput.disabled = true; $conversionTimezoneSelect.val("").trigger('change'); conversionErrorText.textContent = ''; sourceTimeText.textContent = '--'; conversionResultText.textContent = '--'; }
     document.getElementById('reset-conversion-btn').addEventListener('click', resetConversionSection);
-    document.getElementById('convert-time-btn').addEventListener('click', function() { const sourceTzIana = $conversionTimezoneSelect.val(); const selectedDates = flatpickrInstance.selectedDates; conversionOutputsWrapper.style.display = 'block'; if (!selectedConversionCountry || !sourceTzIana || sourceTzIana === "" || selectedDates.length === 0) { sourceTimeDisplay.style.display = 'none'; conversionResultDisplayArea.style.display = 'none'; conversionErrorText.textContent = "Please select country, timezone, and date/time."; return; } const fpSelectedDateObj = selectedDates[0]; const dateForOffsetCalc = new Date(fpSelectedDateObj.getFullYear(), fpSelectedDateObj.getMonth(), fpSelectedDateObj.getDate(), 12, 0, 0); const sourceOffsetString = getUTCOffset(dateForOffsetCalc, sourceTzIana); if (!sourceOffsetString || !sourceOffsetString.match(/^[+-]\d{2}:\d{2}$/)) { sourceTimeDisplay.style.display = 'none'; conversionResultDisplayArea.style.display = 'none'; conversionErrorText.textContent = `Error: Invalid timezone offset for ${sourceTzIana}.`; return; } const isoDateTimeString = `${fpSelectedDateObj.getFullYear()}-${pad(fpSelectedDateObj.getMonth() + 1)}-${pad(fpSelectedDateObj.getDate())}T${pad(fpSelectedDateObj.getHours())}:${pad(fpSelectedDateObj.getMinutes())}:00${sourceOffsetString}`; try { const sourceDateEpoch = new Date(isoDateTimeString); if (isNaN(sourceDateEpoch.getTime())) throw new Error("Invalid date from ISO string."); const colomboTimezone = 'Asia/Colombo'; const resultString = `${getFormattedDate(sourceDateEpoch, colomboTimezone)}, ${getFormattedTime(sourceDateEpoch, colomboTimezone)} (${getUTCOffset(sourceDateEpoch, colomboTimezone).replace(/([+-])(\d{2}):(\d{2})/, "UTC$1$2:$3")}) (Asia / Colombo)`; conversionResultText.textContent = resultString; const sourceDisplayString = `${flatpickrInstance.altInput.value} (${selectedConversionCountry.name} / ${$conversionTimezoneSelect.find('option:selected').text()})`; sourceTimeText.textContent = sourceDisplayString; sourceTimeDisplay.style.display = 'block'; conversionResultDisplayArea.style.display = 'block'; conversionErrorText.textContent = ''; } catch (e) { console.error("Error during date conversion:", e); sourceTimeDisplay.style.display = 'none'; conversionResultDisplayArea.style.display = 'none'; conversionErrorText.textContent = "Conversion error. Please check the selected time."; } });
+    
+    // ================== UPDATED CODE BLOCK STARTS HERE ==================
+    document.getElementById('convert-time-btn').addEventListener('click', function() {
+        const sourceTzIana = $conversionTimezoneSelect.val();
+        const selectedDates = flatpickrInstance.selectedDates;
+        
+        // Show the wrapper for all outputs
+        conversionOutputsWrapper.style.display = 'block';
+
+        // Validation check
+        if (!selectedConversionCountry || !sourceTzIana || sourceTzIana === "" || selectedDates.length === 0) {
+            sourceTimeDisplay.style.display = 'none';
+            conversionResultDisplayArea.style.display = 'none';
+            conversionErrorText.textContent = "Please select country, timezone, and date/time.";
+            return;
+        }
+
+        const fpSelectedDateObj = selectedDates[0];
+        const dateForOffsetCalc = new Date(fpSelectedDateObj.getFullYear(), fpSelectedDateObj.getMonth(), fpSelectedDateObj.getDate(), 12, 0, 0);
+        const sourceOffsetString = getUTCOffset(dateForOffsetCalc, sourceTzIana);
+
+        // More specific validation for offset calculation
+        if (!sourceOffsetString || !sourceOffsetString.match(/^[+-]\d{2}:\d{2}$/)) {
+            sourceTimeDisplay.style.display = 'none';
+            conversionResultDisplayArea.style.display = 'none';
+            conversionErrorText.textContent = `Error: Invalid timezone offset for ${sourceTzIana}.`;
+            return;
+        }
+        
+        // --- NEW LOGIC for formatting the source time display ---
+        const sourceFormattedDate = getFormattedDate(fpSelectedDateObj, sourceTzIana);
+        const sourceFormattedTime = getFormattedTime(fpSelectedDateObj, sourceTzIana, true); // true for seconds
+        const sourceOffsetForDisplay = sourceOffsetString.replace(/([+-])(\d{2}):(\d{2})/, "UTC$1$2:$3");
+        const selectedTzName = $conversionTimezoneSelect.find('option:selected').text();
+        const sourceDisplayString = `${sourceFormattedDate}, ${sourceFormattedTime} (${sourceOffsetForDisplay}) (${selectedConversionCountry.name} / ${selectedTzName})`;
+        
+        sourceTimeText.textContent = sourceDisplayString;
+        // --- END NEW LOGIC ---
+
+        // Now, the conversion logic...
+        const isoDateTimeString = `${fpSelectedDateObj.getFullYear()}-${pad(fpSelectedDateObj.getMonth() + 1)}-${pad(fpSelectedDateObj.getDate())}T${pad(fpSelectedDateObj.getHours())}:${pad(fpSelectedDateObj.getMinutes())}:00${sourceOffsetString}`;
+
+        try {
+            const sourceDateEpoch = new Date(isoDateTimeString);
+            if (isNaN(sourceDateEpoch.getTime())) throw new Error("Invalid date from ISO string.");
+
+            const colomboTimezone = 'Asia/Colombo';
+            const colomboOffsetDisplay = getUTCOffset(sourceDateEpoch, colomboTimezone).replace(/([+-])(\d{2}):(\d{2})/, "UTC$1$2:$3");
+            const resultString = `${getFormattedDate(sourceDateEpoch, colomboTimezone)}, ${getFormattedTime(sourceDateEpoch, colomboTimezone)} (${colomboOffsetDisplay}) (Asia / Colombo)`;
+            
+            conversionResultText.textContent = resultString;
+            
+            // Show all output areas and clear errors
+            sourceTimeDisplay.style.display = 'block';
+            conversionResultDisplayArea.style.display = 'block';
+            conversionErrorText.textContent = '';
+
+        } catch (e) {
+            console.error("Error during date conversion:", e);
+            sourceTimeDisplay.style.display = 'none';
+            conversionResultDisplayArea.style.display = 'none';
+            conversionErrorText.textContent = "Conversion error. Please check the selected time.";
+        }
+    });
+    // =================== UPDATED CODE BLOCK ENDS HERE ===================
+
     document.getElementById('copy-source-time-btn').addEventListener('click', function() { const textToCopy = sourceTimeText.textContent; if (textToCopy && textToCopy !== '--') { navigator.clipboard.writeText(textToCopy) .then(() => Swal.fire({ icon: 'success', title: 'Copied!', text: 'Source time details copied.', timer: 2000, showConfirmButton: false })) .catch(err => { console.error('Failed to copy source time: ', err); Swal.fire({icon: 'error', title: 'Copy Failed'}); }); } else { Swal.fire({icon: 'warning', title: 'Nothing to Copy', timer: 2000, showConfirmButton: false}); } });
     document.getElementById('copy-conversion-result-btn').addEventListener('click', function() { const textToCopy = conversionResultText.textContent; if (textToCopy && textToCopy !== '--' && !textToCopy.includes('-- Error --')) { navigator.clipboard.writeText(textToCopy) .then(() => Swal.fire({ icon: 'success', title: 'Copied!', text: 'Converted time copied.', timer: 2000, showConfirmButton: false })) .catch(err => { console.error('Failed to copy result: ', err); Swal.fire({icon: 'error', title: 'Copy Failed'}); }); } else { Swal.fire({icon: 'warning', title: 'Nothing to Copy', timer: 2000, showConfirmButton: false}); } });
     document.getElementById('theme-toggle-btn').addEventListener('click', () => { currentTheme = currentTheme === 'light' ? 'dark' : 'light'; document.documentElement.setAttribute('data-theme', currentTheme); localStorage.setItem('pageTheme', currentTheme); });
