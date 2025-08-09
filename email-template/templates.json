@@ -9,7 +9,7 @@
       "id": "follow_up_reminder_time",
       "title": "Follow-Up Reminder Assignment + Date/Time",
       "subject": "Follow-up reminder for ${customerType} CX ${customerDetails}",
-      "body": "Hi [Salutation],\n\nCan you please assign the below follow up reminder for the ${customerType} CX. More information is updated and attached in the ticket.\n\n<hr>\nFollow-Up CX Appointment Details\n\n• CX Date: September 3, 2025 at 5:00 PM (UK Time – GMT/BST)\n• SL Date: September 3, 2025 at 9:30 PM (UTC+05:30 – Asia/Colombo)\n• Contact Number: +44 7941 108642\n\nPlease ensure to call the CX at the above number during the scheduled appointment.\n<hr>\n\nThanks,\n\n"
+      "body": "Hi [Salutation],\n\nCan you please assign the below follow up reminder for the ${customerType} CX. More information is updated and attached in the ticket.\n\nFollow-Up CX Appointment Details\n\n• CX Date: \n• SL Date: \n• Contact Number: \n\nPlease ensure to call the CX at the above number during the scheduled appointment.\n<hr>\n\nThanks,\n\n"
     },
     {
       "id": "cx_follow_up",
