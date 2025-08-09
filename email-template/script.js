@@ -62,24 +62,32 @@ $(document).ready(function() {
             }
 
             // --- SMART REPLACEMENT LOGIC ---
+
+            // A) Replace placeholders that are ALWAYS there.
+            finalSubject = finalSubject.replace(/\$\{customerType\}/g, customerType);
+            finalBody = finalBody.replace(/\$\{customerType\}/g, customerType);
+            finalSubject = finalSubject.replace(/\$\{customerName\}/g, customerName);
+            finalBody = finalBody.replace(/\$\{customerName\}/g, customerName);
+
+            // B) Handle the CONDITIONAL email placeholder with parentheses.
+            if (customerEmail) {
+                // If email exists, just replace the placeholder inside the parentheses.
+                finalSubject = finalSubject.replace(/\$\{customerEmail\}/g, customerEmail);
+                finalBody = finalBody.replace(/\$\{customerEmail\}/g, customerEmail);
+            } else {
+                // If email DOES NOT exist, remove the placeholder AND the parentheses around it.
+                // The `\s?` removes an optional space before the parentheses to prevent "Name ()" from becoming "Name ".
+                finalSubject = finalSubject.replace(/\s?\(\$\{customerEmail\}\)/g, '');
+                finalBody = finalBody.replace(/\s?\(\$\{customerEmail\}\)/g, '');
+            }
+
+            // C) Handle composite placeholders and recipient details.
             finalSubject = finalSubject.replace(/\$\{customerDetails\}/g, customerDetailsString);
             finalBody = finalBody.replace(/\$\{customerDetails\}/g, customerDetailsString);
             
-            finalSubject = finalSubject.replace(/\$\{customerType\}/g, customerType);
-            finalBody = finalBody.replace(/\$\{customerType\}/g, customerType);
-            
-            finalSubject = finalSubject.replace(/\$\{customerName\}/g, customerName);
-            finalBody = finalBody.replace(/\$\{customerName\}/g, customerName);
-            
-            finalSubject = finalSubject.replace(/\$\{customerEmail\}/g, customerEmail);
-            finalBody = finalBody.replace(/\$\{customerEmail\}/g, customerEmail);
-
             if (recipient) {
-                // Replace the Salutation placeholder.
                 const greetingName = recipient.salutation || recipient.name;
                 finalBody = finalBody.replace(/\[Salutation\]/g, greetingName);
-                
-                // NEW: Replace the Recipient Name (full name) placeholder.
                 finalBody = finalBody.replace(/\[Recipient Name\]/g, recipient.name);
             }
 
