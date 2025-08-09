@@ -12,6 +12,12 @@
       "body": "Hi [Salutation],\n\nPlease find below the updates regarding ${customerType} cx follow-ups.\n\n"
     },
     {
+      "id": "manual_cx_renewal",
+      "title": "Manual CX Renewal",
+      "subject": "Manual Renewal CX",
+      "body": "Hi [Salutation],\n\nPlease find below the updates on the assigned manual CX renewals.\n\n"
+    },
+    {
       "id": "update",
       "title": "Project Update",
       "subject": "Project Update: [Enter Project Name]",
