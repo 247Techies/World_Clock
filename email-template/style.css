@@ -15,10 +15,10 @@ body {
         #0d6efd,    /* blue */
         #0dcaf0,    /* cyan */
         #20c997,    /* teal */
-        #198754,    /* green */
+        #198754     /* green */
     );
-    background-size: 400% 400%;
-    animation: gradientShift 10s ease infinite;
+    background-size: 500% 500%; /* slightly larger for smooth movement */
+    animation: gradientShift 25s ease infinite; /* slower and smooth */
     color: white;
 }
 
