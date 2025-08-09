@@ -35,7 +35,7 @@ $(document).ready(function() {
     $('#contact-select, #subject-select, #customer-type-select').on('change', generateEmail);
     $('#customer-name-input, #customer-email-input').on('keyup', generateEmail);
 
-    // --- CORE LOGIC (CORRECTED) ---
+    // --- CORE LOGIC (UPGRADED) ---
     function generateEmail() {
         const selectedRecipientId = $('#contact-select').val();
         const selectedTemplateId = $('#subject-select').val();
@@ -62,35 +62,31 @@ $(document).ready(function() {
             }
 
             // --- SMART REPLACEMENT LOGIC ---
-            // This logic is now applied to BOTH the subject and body.
-
-            // Replace our composite placeholder.
             finalSubject = finalSubject.replace(/\$\{customerDetails\}/g, customerDetailsString);
             finalBody = finalBody.replace(/\$\{customerDetails\}/g, customerDetailsString);
-
-            // Replace all other simple placeholders.
+            
             finalSubject = finalSubject.replace(/\$\{customerType\}/g, customerType);
             finalBody = finalBody.replace(/\$\{customerType\}/g, customerType);
-
-            // THE MISSING LINES ARE NOW CORRECTLY ADDED HERE:
+            
             finalSubject = finalSubject.replace(/\$\{customerName\}/g, customerName);
             finalBody = finalBody.replace(/\$\{customerName\}/g, customerName);
-
+            
             finalSubject = finalSubject.replace(/\$\{customerEmail\}/g, customerEmail);
             finalBody = finalBody.replace(/\$\{customerEmail\}/g, customerEmail);
 
-            // Replace the Salutation placeholder using the 'salutation' field.
             if (recipient) {
+                // Replace the Salutation placeholder.
                 const greetingName = recipient.salutation || recipient.name;
                 finalBody = finalBody.replace(/\[Salutation\]/g, greetingName);
+                
+                // NEW: Replace the Recipient Name (full name) placeholder.
+                finalBody = finalBody.replace(/\[Recipient Name\]/g, recipient.name);
             }
 
-            // Set the final, processed text to the form fields.
             $('#final-subject').val(finalSubject);
             $('#email-body').val(finalBody);
 
         } else {
-            // No template is selected, so ensure the subject and body are cleared.
             $('#final-subject').val('');
             $('#email-body').val('');
         }
