@@ -34,13 +34,5 @@
       "title": "Introduction for Customer",
       "subject": "Introductory call with ${customerName}",
       "body": "Hi [Recipient Name],\n\nPlease see the details below for our new ${customerType} customer, ${customerName}.\n\nLet's schedule a call.\n\nThanks,\n\n[Your Name]"
-    },
-    {
-      "id": "follow_up_reminder",
-      "title": "Follow-Up Reminder Assignment",
-      "subject": "Follow-up reminder for ${customerType} CX ${customerDetails}",
-      "body": "Hi [Salutation],\n\nCan you please assign the below follow up reminder for the ${customerType} CX. More information is updated and attached in the ticket.\n\nThanks,\n\n"
     }
-
-
   ]
