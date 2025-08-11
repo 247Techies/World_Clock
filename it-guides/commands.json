@@ -962,6 +962,106 @@
         "type": "warning",
         "content": "Force-killing processes may cause unsaved data loss. Only terminate processes you are sure about."
       }
+    },
+    {
+      "id": "list_running_processes",
+      "title": "List Running Processes",
+      "description": "Displays a list of all currently running processes along with their Process ID (PID) and memory usage.",
+      "keywords": ["tasklist", "processes", "running tasks", "pid"],
+      "ticket_template": "Retrieved a list of currently running processes for troubleshooting purposes.",
+      "platform": "windows",
+      "requires_admin": false,
+      "execution": [
+        {
+          "step": "Open Command Prompt or PowerShell.",
+          "command": null
+        },
+        {
+          "step": "Run the following command to display all running processes.",
+          "command": "tasklist"
+        }
+      ],
+      "notice": {
+        "type": "info",
+        "content": "You can use `tasklist /v` for more detailed output, including window titles and status."
+      }
+    },
+    {
+      "id": "reset_tcp_ip",
+      "title": "Reset TCP/IP Stack",
+      "description": "Resets the TCP/IP stack to its default configuration, which can help resolve network connectivity issues.",
+      "keywords": ["netsh", "reset tcp/ip", "network reset", "ip reset"],
+      "ticket_template": "Reset the TCP/IP stack to default settings to resolve possible network configuration issues.",
+      "platform": "windows",
+      "requires_admin": true,
+      "execution": [
+        {
+          "step": "Open Command Prompt as Administrator.",
+          "command": null
+        },
+        {
+          "step": "Run the following command to reset TCP/IP settings.",
+          "command": "netsh int ip reset"
+        },
+        {
+          "step": "Restart the computer to apply the changes.",
+          "command": null
+        }
+      ],
+      "notice": {
+        "type": "warning",
+        "content": "This will reset all custom TCP/IP settings. You may need to reconfigure your network or VPN settings afterward."
+      }
+    },
+    {
+      "id": "disable_hibernation",
+      "title": "Disable Hibernation",
+      "description": "Turns off the hibernation feature, which can free up disk space by removing the hiberfil.sys file.",
+      "keywords": ["powercfg", "disable hibernation", "hiberfil.sys", "power settings"],
+      "ticket_template": "Disabled Windows hibernation to free up disk space and prevent system from entering hibernation mode.",
+      "platform": "windows",
+      "requires_admin": true,
+      "execution": [
+        {
+          "step": "Open Command Prompt as Administrator.",
+          "command": null
+        },
+        {
+          "step": "Run the following command to disable hibernation.",
+          "command": "powercfg /h off"
+        }
+      ],
+      "notice": {
+        "type": "info",
+        "content": "Disabling hibernation will remove the hiberfil.sys file and disable Fast Startup. To re-enable, run `powercfg /h on`."
+      }
+    },
+    {
+      "id": "defrag_optimize",
+      "title": "Defragment and Optimize Drive",
+      "description": "Optimizes and defragments the specified drive to improve performance and consolidate fragmented files.",
+      "keywords": ["defrag", "optimize", "disk", "performance", "fragmentation"],
+      "ticket_template": "Ran disk defragmentation and optimization on the C: drive to improve performance.",
+      "platform": "windows",
+      "requires_admin": true,
+      "execution": [
+        {
+          "step": "Open Command Prompt as Administrator.",
+          "command": null
+        },
+        {
+          "step": "Run the defrag and optimization command for the C: drive.",
+          "command": "defrag C: /O"
+        }
+      ],
+      "notice": {
+        "type": "tip",
+        "content": "The `/O` parameter performs optimization suitable for the media type, including defragmentation on HDDs and retrim on SSDs."
+      }
     }
+
+
+
+
 
   ]
