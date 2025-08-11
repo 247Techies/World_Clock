@@ -939,5 +939,29 @@
         "type": "warning",
         "content": "Running CHKDSK with `/f /r` may take a long time and requires a restart if scanning the system drive. Make sure to save all work before proceeding."
       }
+    },
+    {
+      "id": "kill_process_by_name",
+      "title": "Kill Process by Name",
+      "description": "Forcefully terminates a running process by specifying its executable name.",
+      "keywords": ["taskkill", "kill process", "terminate process", "force close"],
+      "ticket_template": "Forcefully terminated a process by its executable name to stop unresponsive or malicious activity.",
+      "platform": "windows",
+      "requires_admin": true,
+      "execution": [
+        {
+          "step": "Open Command Prompt or PowerShell as Administrator.",
+          "command": null
+        },
+        {
+          "step": "Run the following command, replacing `program.exe` with the exact process name.",
+          "command": "taskkill /IM program.exe /f"
+        }
+      ],
+      "notice": {
+        "type": "warning",
+        "content": "Force-killing processes may cause unsaved data loss. Only terminate processes you are sure about."
+      }
     }
+
   ]
