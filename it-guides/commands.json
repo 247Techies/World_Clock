@@ -1058,10 +1058,194 @@
         "type": "tip",
         "content": "The `/O` parameter performs optimization suitable for the media type, including defragmentation on HDDs and retrim on SSDs."
       }
+    },
+    {
+  "id": "reboot_force",
+  "title": "Force Reboot",
+  "description": "Immediately restarts the computer without any warning and without allowing applications to save their data. '/r' is for reboot, '/f' is for force, and '/t 0' sets the time delay to zero seconds.",
+  "keywords": ["shutdown", "reboot", "force restart", "restart", "command prompt"],
+  "ticket_template": "Executed the 'shutdown /r /f /t 0' command to immediately restart the computer.",
+  "platform": "windows",
+  "requires_admin": false,
+  "execution": [
+    {
+      "step": "Open Command Prompt.",
+      "command": null
+    },
+    {
+      "step": "Run the command to immediately restart the computer.",
+      "command": "shutdown /r /f /t 0"
     }
+  ],
+  "notice": {
+    "type": "warning",
+    "content": "This command will force close all running applications without saving any work. Use with caution to prevent data loss."
+  }
+},
+{
+  "id": "shutdown_force",
+  "title": "Force Shutdown",
+  "description": "Immediately shuts down the computer without any warning and without allowing applications to save their data. '/s' is for shutdown, '/f' is for force, and '/t 0' sets the time delay to zero seconds.",
+  "keywords": ["shutdown", "force shutdown", "restart", "power off", "command prompt"],
+  "ticket_template": "Executed the 'shutdown /s /f /t 0' command to immediately shut down the computer.",
+  "platform": "windows",
+  "requires_admin": false,
+  "execution": [
+    {
+      "step": "Open Command Prompt.",
+      "command": null
+    },
+    {
+      "step": "Run the command to immediately shut down the computer.",
+      "command": "shutdown /s /f /t 0"
+    }
+  ],
+  "notice": {
+    "type": "warning",
+    "content": "This command will force close all running applications without saving any work. Use with caution to prevent data loss."
+  }
+},
+{
+  "id": "systeminfo",
+  "title": "Display System Information",
+  "description": "Displays detailed configuration information about the local computer's operating system, hardware, and network settings.",
+  "keywords": ["systeminfo", "system information", "os version", "hotfix", "processor", "memory", "command prompt"],
+  "ticket_template": "Used the 'systeminfo' command to gather detailed information about the system, including OS version and hotfix data.",
+  "platform": "windows",
+  "requires_admin": false,
+  "execution": [
+    {
+      "step": "Open Command Prompt.",
+      "command": null
+    },
+    {
+      "step": "Run the command to display system information. The process may take a moment to gather all the data.",
+      "command": "systeminfo"
+    }
+  ],
+  "notice": {
+    "type": "tip",
+    "content": "You can redirect the output to a text file for easy sharing or reference by using the command 'systeminfo > system_info.txt'."
+  }
+},
+{
+  "id": "attrib_remove_attributes",
+  "title": "Remove File Attributes",
+  "description": "Removes the hidden, system, and read-only attributes from a specified file or folder, making it visible and modifiable.",
+  "keywords": ["attrib", "attributes", "hidden", "system", "read-only", "file properties", "command prompt"],
+  "ticket_template": "Used 'attrib -h -s -r [filename]' to remove the hidden, system, and read-only attributes from a file.",
+  "platform": "windows",
+  "requires_admin": false,
+  "execution": [
+    {
+      "step": "Open Command Prompt.",
+      "command": null
+    },
+    {
+      "step": "Navigate to the directory where the file is located. Run the command, replacing 'filename' with the actual file name.",
+      "command": "attrib -h -s -r filename"
+    }
+  ],
+  "notice": {
+    "type": "tip",
+    "content": "To perform this action on all files in a directory and its subdirectories, you can use the '/s' and '/d' switches: 'attrib -h -s -r *.* /s /d'. Be careful when removing these attributes from system files."
+  }
+},
+{
+  "id": "netstat_ano",
+  "title": "Show Network Connections and Listening Ports",
+  "description": "Displays all active TCP connections, listening ports, and the Process ID (PID) associated with each connection or port.",
+  "keywords": ["netstat", "network connections", "listening ports", "PID", "troubleshooting", "networking"],
+  "ticket_template": "Ran 'netstat -ano' to troubleshoot network connections and identify the PID of a process using a specific port.",
+  "platform": "windows",
+  "requires_admin": false,
+  "execution": [
+    {
+      "step": "Open Command Prompt.",
+      "command": null
+    },
+    {
+      "step": "Run the command to display network statistics with PIDs.",
+      "command": "netstat -ano"
+    },
+    {
+      "step": "The output will show the Protocol, Local Address, Foreign Address, State, and PID. You can then use the PID with Task Manager or 'tasklist' to identify the process.",
+      "command": null
+    }
+  ],
+  "notice": {
+    "type": "tip",
+    "content": "The 'o' parameter is crucial as it displays the PID, allowing you to link a network connection to a specific process. You can use 'tasklist /svc /fi \"PID eq [PID_number]\"' to find the service associated with the PID."
+  }
+},
+{
+  "id": "net_user_change_password",
+  "title": "Change User Password",
+  "description": "Changes the password for a specified user account. The asterisk (*) prompts for a new password without displaying it on the screen.",
+  "keywords": ["net user", "change password", "user account", "password reset", "command prompt"],
+  "ticket_template": "Used the 'net user [username] *' command to change the password for the '[username]' account.",
+  "platform": "windows",
+  "requires_admin": true,
+  "execution": [
+    {
+      "step": "Open Command Prompt as Administrator.",
+      "command": null
+    },
+    {
+      "step": "Run the command, replacing 'username' with the actual user account name. You will be prompted to enter and confirm a new password.",
+      "command": "net user username *"
+    }
+  ],
+  "notice": {
+    "type": "warning",
+    "content": "This command requires administrative privileges. Replacing 'username' with an actual user account name will change their password. This cannot be undone."
+  }
+},
+{
+  "id": "net_user",
+  "title": "List User Accounts",
+  "description": "Displays a list of all user accounts on the local computer.",
+  "keywords": ["net user", "user accounts", "list users", "user management", "command prompt"],
+  "ticket_template": "Used the 'net user' command to list all user accounts on the system.",
+  "platform": "windows",
+  "requires_admin": false,
+  "execution": [
+    {
+      "step": "Open Command Prompt.",
+      "command": null
+    },
+    {
+      "step": "Run the command to display a list of user accounts.",
+      "command": "net user"
+    }
+  ],
+  "notice": {
+    "type": "tip",
+    "content": "To get detailed information about a specific user, use the command 'net user [username]'."
+  }
+},
+{
+  "id": "cipher_secure_delete",
+  "title": "Securely Delete Free Space",
+  "description": "Securely overwrites and deletes unused free space on a specified drive to prevent recovery of previously deleted files.",
+  "keywords": ["cipher", "secure delete", "free space", "wipe", "data security"],
+  "ticket_template": "Ran the cipher /w:C command to securely wipe free space on the C: drive.",
+  "platform": "windows",
+  "requires_admin": false,
+  "execution": [
+    {
+      "step": "Open Command Prompt.",
+      "command": null
+    },
+    {
+      "step": "Run the cipher command to wipe free space on the C: drive. This process can take a long time.",
+      "command": "cipher /w:C"
+    }
+  ],
+  "notice": {
+    "type": "warning",
+    "content": "This command can take a very long time to complete, depending on the amount of free space on the drive. It will not delete or alter any existing files."
+  }
+}
 
-
-
-
-
-  ]
+]
