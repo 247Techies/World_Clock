@@ -36,6 +36,18 @@
       "body": "Hi [Salutation],\n\n${customerName} (${customerEmail}) connected via call requesting the cancellation of auto-renewal (AR) and a refund for the most recent charge. The customer also requested a confirmation email for the cancellation.\n\n"
     },
     {
+      "id": "leave_request",
+      "title": "Short Leave Request",
+      "subject": "Request for Short Leave on YYYY/MM/DD",
+      "body": "Hi [Salutation],\n\nI hope this message finds you well. I would like to request a short leave on YYYY/MM/DD due to personal reasons. I will ensure that all my responsibilities are managed and any pending work is taken care of in advance.\n\nPlease let me know if you need any further details or if my absence on this day would cause any inconvenience.\n\nThank you for your understanding.\n\nBest regards,\n\n[Your Name]"
+    },
+    {
+      "id": "half_day_leave_request",
+      "title": "Half-Day Leave Request",
+      "subject": "Request for Half-Day Leave on MMM DD, YYYY",
+      "body": "Hi [Salutation],\n\nI hope you're well. I would like to request a half-day leave for the [first/last] half of my shift on MMM DD, YYYY, due to a personal matter.\n\nThank you for your understanding.\n\nBest regards,\n\n[Your Name]"
+    },
+    {
       "id": "update",
       "title": "Project Update",
       "subject": "Project Update: [Enter Project Name]",
