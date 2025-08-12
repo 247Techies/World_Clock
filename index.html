@@ -541,13 +541,13 @@
     
     // ================== UPDATED CODE BLOCK STARTS HERE ==================
     document.getElementById('convert-time-btn').addEventListener('click', function() {
+        // --- 1. Get all inputs and validate ---
         const sourceTzIana = $conversionTimezoneSelect.val();
         const selectedDates = flatpickrInstance.selectedDates;
         
         // Show the wrapper for all outputs
         conversionOutputsWrapper.style.display = 'block';
 
-        // Validation check
         if (!selectedConversionCountry || !sourceTzIana || sourceTzIana === "" || selectedDates.length === 0) {
             sourceTimeDisplay.style.display = 'none';
             conversionResultDisplayArea.style.display = 'none';
@@ -555,42 +555,44 @@
             return;
         }
 
+        // This object only holds the raw date/time numbers picked by the user
         const fpSelectedDateObj = selectedDates[0];
+
+        // --- 2. Create the unambiguous ISO string and the definitive Date object ---
         const dateForOffsetCalc = new Date(fpSelectedDateObj.getFullYear(), fpSelectedDateObj.getMonth(), fpSelectedDateObj.getDate(), 12, 0, 0);
         const sourceOffsetString = getUTCOffset(dateForOffsetCalc, sourceTzIana);
 
-        // More specific validation for offset calculation
         if (!sourceOffsetString || !sourceOffsetString.match(/^[+-]\d{2}:\d{2}$/)) {
             sourceTimeDisplay.style.display = 'none';
             conversionResultDisplayArea.style.display = 'none';
             conversionErrorText.textContent = `Error: Invalid timezone offset for ${sourceTzIana}.`;
             return;
         }
-        
-        // --- NEW LOGIC for formatting the source time display ---
-        const sourceFormattedDate = getFormattedDate(fpSelectedDateObj, sourceTzIana);
-        const sourceFormattedTime = getFormattedTime(fpSelectedDateObj, sourceTzIana, true); // true for seconds
-        const sourceOffsetForDisplay = sourceOffsetString.replace(/([+-])(\d{2}):(\d{2})/, "UTC$1$2:$3");
-        const selectedTzName = $conversionTimezoneSelect.find('option:selected').text();
-        const sourceDisplayString = `${sourceFormattedDate}, ${sourceFormattedTime} (${sourceOffsetForDisplay}) (${selectedConversionCountry.name} / ${selectedTzName})`;
-        
-        sourceTimeText.textContent = sourceDisplayString;
-        // --- END NEW LOGIC ---
 
-        // Now, the conversion logic...
         const isoDateTimeString = `${fpSelectedDateObj.getFullYear()}-${pad(fpSelectedDateObj.getMonth() + 1)}-${pad(fpSelectedDateObj.getDate())}T${pad(fpSelectedDateObj.getHours())}:${pad(fpSelectedDateObj.getMinutes())}:00${sourceOffsetString}`;
 
         try {
-            const sourceDateEpoch = new Date(isoDateTimeString);
-            if (isNaN(sourceDateEpoch.getTime())) throw new Error("Invalid date from ISO string.");
+            // This is the single source of truth for the selected moment in time
+            const sourceDateEpoch = new Date(isoDateTimeString); 
+            if (isNaN(sourceDateEpoch.getTime())) throw new Error("Invalid date created from ISO string. Check for DST issues.");
 
+            // --- 3. Format the "Selected source time" display USING the definitive Date object ---
+            const sourceFormattedDate = getFormattedDate(sourceDateEpoch, sourceTzIana);
+            const sourceFormattedTime = getFormattedTime(sourceDateEpoch, sourceTzIana, true); // true for seconds
+            const sourceOffsetForDisplay = sourceOffsetString.replace(/([+-])(\d{2}):(\d{2})/, "UTC$1$2:$3");
+            const selectedTzName = $conversionTimezoneSelect.find('option:selected').text();
+            const sourceDisplayString = `${sourceFormattedDate}, ${sourceFormattedTime} (${sourceOffsetForDisplay}) (${selectedConversionCountry.name} / ${selectedTzName})`;
+            
+            sourceTimeText.textContent = sourceDisplayString;
+
+            // --- 4. Format the "Converted time" display USING THE SAME definitive Date object ---
             const colomboTimezone = 'Asia/Colombo';
             const colomboOffsetDisplay = getUTCOffset(sourceDateEpoch, colomboTimezone).replace(/([+-])(\d{2}):(\d{2})/, "UTC$1$2:$3");
             const resultString = `${getFormattedDate(sourceDateEpoch, colomboTimezone)}, ${getFormattedTime(sourceDateEpoch, colomboTimezone)} (${colomboOffsetDisplay}) (Asia / Colombo)`;
             
             conversionResultText.textContent = resultString;
             
-            // Show all output areas and clear errors
+            // --- 5. Show all outputs and clear errors ---
             sourceTimeDisplay.style.display = 'block';
             conversionResultDisplayArea.style.display = 'block';
             conversionErrorText.textContent = '';
