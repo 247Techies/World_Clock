@@ -2668,5 +2668,55 @@
     "sentence": "Successfully resolved issues with regards to transcribing an online video.",
     "tag": "Online Video",
     "keywords": "successfully resolved, transcribing, online video"
+  },
+  {
+    "sentence": "Provided assistance with regards to transferring pictures from phone to computer.",
+    "tag": "Transferring Files & Folders",
+    "keywords": "provided assistance, transferring pictures, phone to computer"
+  },
+  {
+    "sentence": "Assisted in transferring pictures from phone to computer.",
+    "tag": "Transferring Files & Folders",
+    "keywords": "assisted, transferring pictures, phone to computer"
+  },
+  {
+    "sentence": "Offered support with regards to moving pictures from phone to computer.",
+    "tag": "Transferring Files & Folders",
+    "keywords": "offered support, moving pictures, phone to computer"
+  },
+  {
+    "sentence": "Helped in completing the transfer of pictures from phone to computer.",
+    "tag": "Transferring Files & Folders",
+    "keywords": "helped, completing transfer, pictures, phone to computer"
+  },
+  {
+    "sentence": "Guided through the process of transferring pictures from phone to computer.",
+    "tag": "Transferring Files & Folders",
+    "keywords": "guided, transferring pictures, phone to computer"
+  },
+  {
+    "sentence": "Resolved issues with regards to desktop icon size and wallpaper.",
+    "tag": "Desktop Customization",
+    "keywords": "resolved issue, desktop icon size, wallpaper"
+  },
+  {
+    "sentence": "Addressed and resolved problems related to desktop icon size and wallpaper.",
+    "tag": "Desktop Customization",
+    "keywords": "addressed problem, resolved, desktop icon size, wallpaper"
+  },
+  {
+    "sentence": "Troubleshot and fixed desktop icon size and wallpaper issues.",
+    "tag": "Desktop Customization",
+    "keywords": "troubleshot, fixed, desktop icon size, wallpaper"
+  },
+  {
+    "sentence": "Diagnosed and resolved desktop icon size and wallpaper problems.",
+    "tag": "Desktop Customization",
+    "keywords": "diagnosed, resolved, desktop icon size, wallpaper"
+  },
+  {
+    "sentence": "Successfully resolved issues with regards to desktop icon size and wallpaper.",
+    "tag": "Desktop Customization",
+    "keywords": "successfully resolved, desktop icon size, wallpaper"
   }
 ]
