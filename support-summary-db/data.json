@@ -2718,5 +2718,30 @@
     "sentence": "Successfully resolved issues with regards to desktop icon size and wallpaper.",
     "tag": "Desktop Customization",
     "keywords": "successfully resolved, desktop icon size, wallpaper"
+  },
+  {
+    "sentence": "Resolved issues with regards to installing a website as an app.",
+    "tag": "Install Site as App",
+    "keywords": "resolved issues, installing, website as app"
+  },
+  {
+    "sentence": "Addressed and resolved problems related to installing a website as an app.",
+    "tag": "Install Site as App",
+    "keywords": "addressed problems, resolved, installing, website as app"
+  },
+  {
+    "sentence": "Successfully resolved issues with regards to installing a website as an app.",
+    "tag": "Install Site as App",
+    "keywords": "successfully resolved, installing, website as app"
+  },
+  {
+    "sentence": "Troubleshot and fixed issues related to installing a website as an app.",
+    "tag": "Install Site as App",
+    "keywords": "troubleshot, fixed, issues, installing, website as app"
+  },
+  {
+    "sentence": "Diagnosed and resolved installation issues for setting up a website as an app.",
+    "tag": "Install Site as App",
+    "keywords": "diagnosed, resolved, installation, setting up, website as app"
   }
 ]
