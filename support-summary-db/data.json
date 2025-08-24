@@ -2743,5 +2743,30 @@
     "sentence": "Diagnosed and resolved installation issues for setting up a website as an app.",
     "tag": "Install Site as App",
     "keywords": "diagnosed, resolved, installation, setting up, website as app"
+  },
+  {
+    "sentence": "Resolved issues with regards to missing document.",
+    "tag": "Missing Document",
+    "keywords": "resolved issues, missing document"
+  },
+  {
+    "sentence": "Successfully recovered and resolved issues related to a missing document.",
+    "tag": "Missing Document",
+    "keywords": "successfully recovered, resolved issues, missing document"
+  },
+  {
+    "sentence": "Addressed and resolved problems concerning a missing document.",
+    "tag": "Missing Document",
+    "keywords": "addressed problems, resolved, missing document"
+  },
+  {
+    "sentence": "Troubleshot and fixed issues with regards to locating a missing document.",
+    "tag": "Missing Document",
+    "keywords": "troubleshot, fixed, locating, missing document"
+  },
+  {
+    "sentence": "Identified and resolved issues related to missing document retrieval.",
+    "tag": "Missing Document",
+    "keywords": "identified, resolved, issues, document retrieval"
   }
 ]
