@@ -2818,5 +2818,55 @@
     "sentence": "Helped in successfully sharing a file online.",
     "tag": "Online File Sharing",
     "keywords": "helped, successfully sharing, file online"
+  },
+  {
+    "sentence": "Provided assistance with regards to creating, editing, and using a signature in Outlook.",
+    "tag": "Email Signature",
+    "keywords": "provided assistance, creating, editing, using, signature, Outlook"
+  },
+  {
+    "sentence": "Assisted with the setup and customization of an email signature in Outlook.",
+    "tag": "Email Signature",
+    "keywords": "assisted, setup, customization, email signature, Outlook"
+  },
+  {
+    "sentence": "Offered support with regards to creating and managing a signature for Outlook.",
+    "tag": "Email Signature",
+    "keywords": "offered support, creating, managing, signature, Outlook"
+  },
+  {
+    "sentence": "Guided through the process of creating, editing, and applying a signature in Outlook.",
+    "tag": "Email Signature",
+    "keywords": "guided process, creating, editing, applying, signature, Outlook"
+  },
+  {
+    "sentence": "Provided assistance with configuring and using an email signature in Outlook.",
+    "tag": "Email Signature",
+    "keywords": "provided assistance, configuring, using, email signature, Outlook"
+  },
+  {
+    "sentence": "Performed tasks with regards to setting up a new application.",
+    "tag": "Setup Application",
+    "keywords": "performed tasks, setting up, new application"
+  },
+  {
+    "sentence": "Completed the setup process for a new application.",
+    "tag": "Setup Application",
+    "keywords": "completed, setup process, new application"
+  },
+  {
+    "sentence": "Successfully performed tasks related to new application setup.",
+    "tag": "Setup Application",
+    "keywords": "successfully performed, tasks, application setup"
+  },
+  {
+    "sentence": "Handled the configuration and setup of a new application.",
+    "tag": "Setup Application",
+    "keywords": "handled, configuration, setup, new application"
+  },
+  {
+    "sentence": "Performed tasks required for installing and setting up a new application.",
+    "tag": "Setup Application",
+    "keywords": "performed tasks, installing, setting up, new application"
   }
 ]
