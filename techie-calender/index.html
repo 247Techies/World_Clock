@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Ticket & Call Tracker</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <!-- Google Fonts for a nicer look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- NEW: SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container my-4">
+        <!-- Header: Month Navigation and Action Buttons -->
+        <header class="d-flex justify-content-between align-items-center mb-4 p-3 bg-light rounded shadow-sm">
+            <div class="d-flex align-items-center">
+                 <button id="prev-month-btn" class="btn btn-outline-primary"><i class="fas fa-chevron-left"></i></button>
+                 <h2 id="month-year-header" class="mx-4 mb-0"></h2>
+                 <button id="next-month-btn" class="btn btn-outline-primary"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            
+            <div>
+                <button id="reset-month-btn" class="btn btn-warning me-2" title="Reset Current Month">
+                    <i class="fas fa-calendar-times me-1"></i> Reset Month
+                </button>
+                <button id="reset-year-btn" class="btn btn-danger me-2" title="Reset Current Year">
+                    <i class="fas fa-trash-alt me-1"></i> Reset Year
+                </button>
+                <button id="print-btn" class="btn btn-secondary">
+                    <i class="fas fa-print me-2"></i>Print Month
+                </button>
+            </div>
+        </header>
+
+        <!-- Calendar Grid -->
+        <main>
+            <!-- Date cards will be injected here by JavaScript -->
+            <div id="calendar-body" class="calendar-grid"></div>
+        </main>
+
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- NEW: SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
