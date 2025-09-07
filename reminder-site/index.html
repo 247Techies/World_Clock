@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reminder App</title>
+    <!-- Use Inter font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/20W5A/h3/o2O5p6o2lq5A2m0b2c34/L6D6D5e/m/t/h/j/s/c/N/q/u/A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- SweetAlert2 for modern pop-ups -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .text-purple-300 {
+            color: #d1b4ff;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-900 text-gray-100 flex items-center justify-center min-h-screen p-4">
+
+    <div class="bg-gray-800 rounded-2xl shadow-xl w-full max-w-2xl p-6 md:p-8">
+        <header class="mb-6 md:mb-8 text-center">
+            <h1 class="text-3xl md:text-4xl font-bold text-white mb-2">My Reminders</h1>
+        </header>
+
+        <!-- New Reminder Form -->
+        <div class="mb-6 p-4 bg-gray-700 rounded-xl shadow-inner">
+            <h2 class="text-lg md:text-xl font-semibold mb-3 text-white">Add a New Reminder</h2>
+            <div class="flex flex-col md:flex-row gap-4 mb-4">
+                <input type="text" id="reminder-text" placeholder="e.g., Call the doctor"
+                    class="flex-1 p-3 rounded-lg bg-gray-800 text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-600">
+                <select id="reminder-type"
+                    class="p-3 rounded-lg bg-gray-800 text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-600">
+                    <option value="call-and-check">Call and Check</option>
+                    <option value="follow-up">Follow-up (Date/Time)</option>
+                </select>
+            </div>
+            <div id="date-time-container" class="date-time-container flex flex-col md:flex-row gap-4 mb-4" style="display: none;">
+                <input type="date" id="reminder-date"
+                    class="flex-1 p-3 rounded-lg bg-gray-800 text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-600">
+                <input type="time" id="reminder-time"
+                    class="flex-1 p-3 rounded-lg bg-gray-800 text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-600">
+            </div>
+            <!-- New URL field -->
+            <div class="mb-4">
+                <input type="url" id="reminder-url" placeholder="e.g., https://example.com/ticket-123"
+                    class="w-full p-3 rounded-lg bg-gray-800 text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-600">
+            </div>
+            <button id="add-reminder-btn"
+                class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors duration-200 shadow-md">
+                Add Reminder
+            </button>
+        </div>
+
+        <!-- Reminders List -->
+        <div>
+            <h2 class="text-lg md:text-xl font-semibold mb-3 text-white">Your Reminders</h2>
+            <div id="loading" class="text-center text-gray-400 hidden">Loading reminders...</div>
+            <ul id="reminders-list" class="space-y-4">
+                <!-- Reminders will be dynamically added here -->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // --- UI Element References ---
+        const reminderTextEl = document.getElementById('reminder-text');
+        const reminderTypeEl = document.getElementById('reminder-type');
+        const dateTimeContainerEl = document.getElementById('date-time-container');
+        const reminderDateEl = document.getElementById('reminder-date');
+        const reminderTimeEl = document.getElementById('reminder-time');
+        const reminderUrlEl = document.getElementById('reminder-url');
+        const addReminderBtn = document.getElementById('add-reminder-btn');
+        const remindersListEl = document.getElementById('reminders-list');
+        const loadingEl = document.getElementById('loading');
+
+        // --- Event Listeners ---
+        reminderTypeEl.addEventListener('change', (e) => {
+            if (e.target.value === 'follow-up') {
+                dateTimeContainerEl.style.display = 'flex';
+            } else {
+                dateTimeContainerEl.style.display = 'none';
+            }
+        });
+
+        addReminderBtn.addEventListener('click', addReminder);
+
+        // --- Data Operations (using localStorage) ---
+        function getReminders() {
+            try {
+                const reminders = JSON.parse(localStorage.getItem('reminders')) || [];
+                return reminders;
+            } catch (e) {
+                console.error("Error parsing reminders from localStorage:", e);
+                return [];
+            }
+        }
+
+        function saveReminders(reminders) {
+            localStorage.setItem('reminders', JSON.stringify(reminders));
+        }
+
+        function addReminder() {
+            const text = reminderTextEl.value.trim();
+            const type = reminderTypeEl.value;
+            const date = reminderDateEl.value;
+            const time = reminderTimeEl.value;
+            const url = reminderUrlEl.value.trim();
+
+            if (text === "") {
+                Swal.fire({
+                    title: 'Input Error',
+                    text: 'Please enter a reminder.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+                return;
+            }
+
+            const reminders = getReminders();
+            const newReminder = {
+                id: Date.now().toString(), // Use timestamp as a simple unique ID
+                text: text,
+                type: type,
+                date: type === 'follow-up' ? date : '',
+                time: type === 'follow-up' ? time : '',
+                url: url,
+                createdAt: new Date(),
+                completed: false
+            };
+
+            reminders.push(newReminder);
+            saveReminders(reminders);
+            renderReminders(reminders);
+
+            // Clear form inputs
+            reminderTextEl.value = '';
+            reminderDateEl.value = '';
+            reminderTimeEl.value = '';
+            reminderUrlEl.value = '';
+            reminderTypeEl.value = 'call-and-check';
+            dateTimeContainerEl.style.display = 'none';
+        }
+
+        function toggleCompleted(id, currentStatus) {
+            const reminders = getReminders();
+            const updatedReminders = reminders.map(reminder =>
+                reminder.id === id ? { ...reminder, completed: !currentStatus } : reminder
+            );
+            saveReminders(updatedReminders);
+            renderReminders(updatedReminders);
+        }
+
+        function deleteReminder(id) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const reminders = getReminders();
+                    const updatedReminders = reminders.filter(reminder => reminder.id !== id);
+                    saveReminders(updatedReminders);
+                    renderReminders(updatedReminders);
+                    Swal.fire(
+                        'Deleted!',
+                        'Your reminder has been deleted.',
+                        'success'
+                    );
+                }
+            });
+        }
+
+        // --- UI Rendering ---
+        function renderReminders(reminders) {
+            loadingEl.style.display = 'none';
+            remindersListEl.innerHTML = '';
+            if (reminders.length === 0) {
+                remindersListEl.innerHTML = '<li class="text-center text-gray-500 p-4">You have no reminders. Add one above!</li>';
+                return;
+            }
+
+            // Sort by creation date (newest first)
+            reminders.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+            reminders.forEach(reminder => {
+                const listItem = document.createElement('li');
+                listItem.className = `p-4 rounded-xl shadow-md flex items-start gap-4 transition-colors duration-200 ${
+                    reminder.completed ? 'bg-gray-600 text-gray-400 line-through' : 'bg-gray-700 text-white'
+                }`;
+
+                const reminderContent = document.createElement('div');
+                reminderContent.className = 'flex-1';
+                let dateInfo = '';
+                if (reminder.type === 'follow-up' && (reminder.date || reminder.time)) {
+                    dateInfo = `
+                        <p class="text-xs text-purple-300 mt-1 flex items-center gap-1">
+                            ${reminder.date ? `<i class="fa-regular fa-calendar-alt"></i> ${reminder.date}` : ''}
+                            ${reminder.date && reminder.time ? ' at ' : ''}
+                            ${reminder.time ? `<i class="fa-regular fa-clock"></i> ${reminder.time}` : ''}
+                        </p>
+                    `;
+                }
+
+                reminderContent.innerHTML = `
+                    <p class="font-medium">${reminder.text}</p>
+                    <span class="text-xs font-semibold text-gray-400 mt-1 block">${reminder.type.replace('-', ' ')}</span>
+                    ${dateInfo}
+                `;
+
+                const actionButtons = document.createElement('div');
+                actionButtons.className = 'flex flex-col md:flex-row gap-2';
+
+                // New Ticket button
+                if (reminder.url) {
+                    const ticketBtn = document.createElement('a');
+                    ticketBtn.href = reminder.url;
+                    ticketBtn.target = "_blank"; // Open in new tab
+                    ticketBtn.className = 'p-2 rounded-full bg-blue-500 hover:bg-blue-600 text-white transition-colors duration-200 shadow-sm flex items-center justify-center';
+                    ticketBtn.innerHTML = '<i class="fa-solid fa-link"></i>';
+                    actionButtons.appendChild(ticketBtn);
+                }
+
+                const completeBtn = document.createElement('button');
+                completeBtn.className = `p-2 rounded-full ${
+                    reminder.completed ? 'bg-green-500 hover:bg-green-600' : 'bg-gray-600 hover:bg-gray-500'
+                } text-white transition-colors duration-200 shadow-sm`;
+                completeBtn.innerHTML = reminder.completed ? '<i class="fa-solid fa-check"></i>' : '<i class="fa-solid fa-check"></i>';
+                completeBtn.onclick = () => toggleCompleted(reminder.id, reminder.completed);
+
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'p-2 rounded-full bg-red-500 hover:bg-red-600 text-white transition-colors duration-200 shadow-sm';
+                deleteBtn.innerHTML = '<i class="fa-solid fa-trash-alt"></i>';
+                deleteBtn.onclick = () => deleteReminder(reminder.id);
+
+                actionButtons.appendChild(completeBtn);
+                actionButtons.appendChild(deleteBtn);
+                listItem.appendChild(reminderContent);
+                listItem.appendChild(actionButtons);
+                remindersListEl.appendChild(listItem);
+            });
+        }
+
+        window.onload = function () {
+            // Load reminders from localStorage when the page loads
+            const reminders = getReminders();
+            renderReminders(reminders);
+        };
+    </script>
+</body>
+</html>
