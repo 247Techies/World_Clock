@@ -1246,6 +1246,87 @@
     "type": "warning",
     "content": "This command can take a very long time to complete, depending on the amount of free space on the drive. It will not delete or alter any existing files."
   }
+},
+{
+  "id": "battery_report",
+  "title": "Generate Battery Report",
+  "description": "Creates a detailed battery usage and health report, saved as an HTML file on your system.",
+  "keywords": ["powercfg", "battery report", "battery health", "power usage"],
+  "ticket_template": "Generated a detailed battery report to review battery health and usage history.",
+  "platform": "windows",
+  "requires_admin": true,
+  "execution": [
+    {
+      "step": "Open Command Prompt or PowerShell as Administrator.",
+      "command": null
+    },
+    {
+      "step": "Run the following command to generate a battery report.",
+      "command": "powercfg /batteryreport"
+    },
+    {
+      "step": "The report will be saved as `battery-report.html` in the current user directory. Open it in a web browser to view details.",
+      "command": null
+    }
+  ],
+  "notice": {
+    "type": "info",
+    "content": "The battery report provides information about battery capacity, recent usage, and charge cycles. Useful for diagnosing battery performance issues."
+  }
+},
+{
+  "id": "energy_report",
+  "title": "Generate Energy Efficiency Report",
+  "description": "Analyzes the system for common energy efficiency and battery-related issues, saving the results in an HTML file.",
+  "keywords": ["powercfg", "energy report", "power efficiency", "battery usage"],
+  "ticket_template": "Generated an energy efficiency report to analyze system power-related issues and optimization opportunities.",
+  "platform": "windows",
+  "requires_admin": true,
+  "execution": [
+    {
+      "step": "Open Command Prompt or PowerShell as Administrator.",
+      "command": null
+    },
+    {
+      "step": "Run the following command to analyze energy efficiency.",
+      "command": "powercfg /energy"
+    },
+    {
+      "step": "After 60 seconds, an HTML report named `energy-report.html` will be created in the current user directory. Open it in a web browser to review the findings.",
+      "command": null
+    }
+  ],
+  "notice": {
+    "type": "info",
+    "content": "The report highlights issues like device drivers preventing sleep, inefficient power settings, and other energy-related warnings."
+  }
+},
+{
+  "id": "sleepstudy_report",
+  "title": "Generate Sleep Study Report",
+  "description": "Creates a detailed report of system sleep states and power usage during standby, saved as an HTML file.",
+  "keywords": ["powercfg", "sleep study", "standby", "sleep report", "power usage"],
+  "ticket_template": "Generated a Sleep Study report to analyze system power consumption and behavior during standby.",
+  "platform": "windows",
+  "requires_admin": true,
+  "execution": [
+    {
+      "step": "Open Command Prompt or PowerShell as Administrator.",
+      "command": null
+    },
+    {
+      "step": "Run the following command to generate a Sleep Study report.",
+      "command": "powercfg /sleepstudy"
+    },
+    {
+      "step": "The report will be saved as `sleepstudy-report.html` in the current user directory. Open it in a web browser to view details.",
+      "command": null
+    }
+  ],
+  "notice": {
+    "type": "info",
+    "content": "Sleep Study is only available on systems that support Modern Standby. It helps identify apps, devices, or drivers that drain power during sleep."
+  }
 }
 
 ]
