@@ -1327,6 +1327,30 @@
     "type": "info",
     "content": "Sleep Study is only available on systems that support Modern Standby. It helps identify apps, devices, or drivers that drain power during sleep."
   }
+},
+{
+  "id": "open_startup_folder",
+  "title": "Open Startup Folder",
+  "description": "Opens the Startup folder where you can add or remove program shortcuts that run automatically when Windows starts.",
+  "keywords": ["shell:startup", "startup folder", "startup programs", "autostart"],
+  "ticket_template": "Accessed the Startup folder to review and manage programs that launch automatically at Windows startup.",
+  "platform": "windows",
+  "requires_admin": false,
+  "execution": [
+    {
+      "step": "Open the Run dialog by pressing `Win + R`.",
+      "command": null
+    },
+    {
+      "step": "Type the following command and press Enter to open the Startup folder.",
+      "command": "shell:startup"
+    }
+  ],
+  "notice": {
+    "type": "info",
+    "content": "Adding shortcuts here will make programs start automatically with Windows. Removing them will stop automatic startup for that program."
+  }
 }
+
 
 ]
