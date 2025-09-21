@@ -1350,7 +1350,52 @@
     "type": "info",
     "content": "Adding shortcuts here will make programs start automatically with Windows. Removing them will stop automatic startup for that program."
   }
+},
+{
+  "id": "open_applications_folder",
+  "title": "Open Applications Folder",
+  "description": "Opens the Applications folder, which displays all installed apps and programs in one place for management or shortcut creation.",
+  "keywords": ["shell:appsfolder", "applications folder", "installed apps", "programs"],
+  "ticket_template": "Accessed the Applications folder to review or manage installed apps and programs.",
+  "platform": "windows",
+  "requires_admin": false,
+  "execution": [
+    {
+      "step": "Open the Run dialog by pressing `Win + R`.",
+      "command": null
+    },
+    {
+      "step": "Type the following command and press Enter to open the Applications folder.",
+      "command": "shell:appsfolder"
+    }
+  ],
+  "notice": {
+    "type": "info",
+    "content": "From this folder, you can create shortcuts, pin apps to Start or Taskbar, or quickly launch installed applications."
+  }
+},
+{
+  "id": "open_sendto_folder",
+  "title": "Open SendTo Folder",
+  "description": "Opens the SendTo folder, which controls the options shown in the 'Send to' menu when right-clicking files or folders.",
+  "keywords": ["shell:SendTo", "send to menu", "context menu", "shortcuts"],
+  "ticket_template": "Accessed the SendTo folder to review or customize the shortcuts available in the right-click 'Send to' menu.",
+  "platform": "windows",
+  "requires_admin": false,
+  "execution": [
+    {
+      "step": "Open the Run dialog by pressing `Win + R`.",
+      "command": null
+    },
+    {
+      "step": "Type the following command and press Enter to open the SendTo folder.",
+      "command": "shell:SendTo"
+    }
+  ],
+  "notice": {
+    "type": "info",
+    "content": "You can add or remove shortcuts here to customize the 'Send to' menu, such as sending files directly to specific folders, apps, or drives."
+  }
 }
-
 
 ]
