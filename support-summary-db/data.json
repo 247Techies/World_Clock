@@ -2868,5 +2868,55 @@
     "sentence": "Performed tasks required for installing and setting up a new application.",
     "tag": "Setup Application",
     "keywords": "performed tasks, installing, setting up, new application"
+  },
+  {
+    "sentence": "Performed tasks with regards to setting up a new computer.",
+    "tag": "Setting Up New Computer",
+    "keywords": "performed tasks, setting up, new computer"
+  },
+  {
+    "sentence": "Completed the setup process for a new computer.",
+    "tag": "Setting Up New Computer",
+    "keywords": "completed, setup process, new computer"
+  },
+  {
+    "sentence": "Successfully performed tasks related to new computer setup.",
+    "tag": "Setting Up New Computer",
+    "keywords": "successfully performed, tasks, new computer setup"
+  },
+  {
+    "sentence": "Handled the configuration and initial setup of a new computer.",
+    "tag": "Setting Up New Computer",
+    "keywords": "handled, configuration, initial setup, new computer"
+  },
+  {
+    "sentence": "Performed tasks required for preparing and setting up a new computer.",
+    "tag": "Setting Up New Computer",
+    "keywords": "performed tasks, preparing, setting up, new computer"
+  },
+  {
+    "sentence": "Provided assistance with regards to creating desktop shortcuts.",
+    "tag": "Desktop Shortcuts",
+    "keywords": "provided assistance, creating, desktop shortcuts"
+  },
+  {
+    "sentence": "Assisted in the process of creating desktop shortcuts.",
+    "tag": "Desktop Shortcuts",
+    "keywords": "assisted, process, creating, desktop shortcuts"
+  },
+  {
+    "sentence": "Offered support with regards to setting up desktop shortcuts.",
+    "tag": "Desktop Shortcuts",
+    "keywords": "offered support, setting up, desktop shortcuts"
+  },
+  {
+    "sentence": "Guided through the steps to create desktop shortcuts.",
+    "tag": "Desktop Shortcuts",
+    "keywords": "guided, steps, create, desktop shortcuts"
+  },
+  {
+    "sentence": "Helped in creating and managing desktop shortcuts.",
+    "tag": "Desktop Shortcuts",
+    "keywords": "helped, creating, managing, desktop shortcuts"
   }
 ]
