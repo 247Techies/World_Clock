@@ -1396,6 +1396,34 @@
     "type": "info",
     "content": "You can add or remove shortcuts here to customize the 'Send to' menu, such as sending files directly to specific folders, apps, or drives."
   }
+},
+{
+  "id": "run_mrt",
+  "title": "Run Microsoft Malicious Software Removal Tool",
+  "description": "Launches the Microsoft Malicious Software Removal Tool (MRT) to scan and remove specific prevalent malware from Windows systems.",
+  "keywords": ["mrt", "malware removal tool", "malicious software removal", "virus scan"],
+  "ticket_template": "Ran Microsoft Malicious Software Removal Tool (MRT) to check for and remove malicious software.",
+  "platform": "windows",
+  "requires_admin": true,
+  "execution": [
+    {
+      "step": "Open the Run dialog by pressing `Win + R`.",
+      "command": null
+    },
+    {
+      "step": "Type the following command and press Enter to launch the Malicious Software Removal Tool.",
+      "command": "mrt"
+    },
+    {
+      "step": "Follow the on-screen instructions to perform a Quick, Full, or Customized scan.",
+      "command": null
+    }
+  ],
+  "notice": {
+    "type": "info",
+    "content": "MRT is updated monthly via Windows Update. It is not a replacement for real-time antivirus software but can help remove common malware infections."
+  }
 }
+
 
 ]
