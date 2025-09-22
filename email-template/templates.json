@@ -38,7 +38,7 @@
     {
       "id": "customer_pricing_inquiry",
       "title": "Customer Renew Pricing Verification",
-      "subject": "Customer Renew Pricing Inquiry (${customerName} | ${customerEmail}) – Verification Required",
+      "subject": "Customer Renew Pricing Inquiry (${customerDetails}) - Verification Required",
       "body": "Hi Rizvi,\n\nI just had a session with the subjected CX. The customer mentioned that they recently received an email quoting $199.75 for six months. The customer also stated that last year they paid $149.75 USD for one year. The CX is asking whether we can match/offer a similar price.\n\nCould you please review this case and confirm if we can provide the price adjustment or clarify the correct pricing to inform the customer?\n\nThanks,\n\n[Your Name]"
     },
     {
