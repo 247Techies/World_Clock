@@ -348,6 +348,32 @@
     "username": "Your full RoadRunner email address",
     "password": "Your RoadRunner mail account password"
   }
+},
+"talktalk.net": {
+  "provider": "TalkTalk Mail",
+  "imap": {
+    "server": "mail.talktalk.net",
+    "port": "993",
+    "security": "SSL / TLS",
+    "username": "Your full TalkTalk address",
+    "password": "Your TalkTalk password or App Password"
+  },
+  "pop3": {
+    "server": "N/A",
+    "port": "N/A",
+    "security": "N/A",
+    "username": "N/A",
+    "password": "N/A"
+  },
+  "smtp": {
+    "server": "smtp.talktalk.net",
+    "port": "587",
+    "security": "STARTTLS",
+    "authentication": "Yes",
+    "username": "Your full TalkTalk address",
+    "password": "Your TalkTalk password or App Password"
+  }
 }
+
 
 }
