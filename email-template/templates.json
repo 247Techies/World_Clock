@@ -48,6 +48,12 @@
       "body": "Hi [Salutation],\n\nI just had a session with the subjected customer regarding their subscription renewal. During the conversation, the customer raised a concern about the pricing and requested either a discount, a price adjustment, or a match to a previous rate.\n\nCustomer Request/Concern: [Insert Here]\n\nCould you please review this case and confirm if we can provide a discount, adjustment, or clarify the correct pricing so I can inform the customer accordingly?"
     },
     {
+      "id": "old_payment_statement_request",
+      "title": "Request for Old Subscription Payment Statement",
+      "subject": "Request - Detailed Statement of Old Subscription Payments ${customerDetails}",
+      "body": "Hi [Salutation],\n\nThe subjected customer has requested a copy of their old support subscription payments. Could you please send the detailed payment report directly to them?\n\nPlease confirm once it has been sent."
+    },
+    {
       "id": "leave_request",
       "title": "Short Leave Request",
       "subject": "Request for Short Leave on YYYY/MM/DD",
