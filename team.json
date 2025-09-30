@@ -62,5 +62,29 @@
     "position": "Techie",
     "icon": "fa-solid fa-users-gear",
     "email": "vihangaj@eurekasl.com"
+  },
+  {
+    "name": "Kevin",
+    "ext": "0000",
+    "TeamsName": "Thisara",
+    "position": "TL - Eureka",
+    "icon": "fa-solid fa-users-gear",
+    "email": "thisaraw@eurekasl.com"
+  },
+  {
+    "name": "Andrew",
+    "ext": "0000",
+    "TeamsName": "Ahamed",
+    "position": "Techie - Eureka",
+    "icon": "fa-solid fa-users-gear",
+    "email": "ahamedt@eurekasl.com"
+  },
+  {
+    "name": "Ryan",
+    "ext": "0000",
+    "TeamsName": "Ranuka",
+    "position": "Techie - Eureka",
+    "icon": "fa-solid fa-users-gear",
+    "email": "ranukas@eurekasl.com"
   }
 ]
