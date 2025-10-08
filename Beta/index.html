@@ -439,6 +439,8 @@
 
             let pressTimers = {};
             let longPressDetected = {};
+            // NEW: Flag to detect if a touch event has just handled the click
+            let touchHandled = false;
 
             function getBadgeCount(activity) {
                 const badge = document.getElementById(`badge-${activity}`);
@@ -529,11 +531,13 @@
                 const activity = button.dataset.activity;
                 longPressDetected[activity] = false;
 
+                // --- MOUSE EVENTS ---
                 button.addEventListener('mousedown', (e) => {
-                    if (e.button === 0) {
+                    // Only process mousedown if a touch hasn't just handled it
+                    if (e.button === 0 && !touchHandled) {
                         longPressDetected[activity] = false;
                         pressTimers[activity] = setTimeout(() => {
-                            updateCounter(activity, false);
+                            updateCounter(activity, false); // Decrement
                             addHistoryItemToDOM({
                                 text: `${activity} count reduced. New count: ${getBadgeCount(activity)}`,
                                 timestamp: new Date().toISOString()
@@ -545,16 +549,23 @@
                 });
 
                 button.addEventListener('mouseup', () => {
-                    clearTimeout(pressTimers[activity]);
-                    if (!longPressDetected[activity]) {
-                        updateCounter(activity, true);
-                        addHistoryItemToDOM({
-                            text: `${activity} recorded. New count: ${getBadgeCount(activity)}`,
-                            timestamp: new Date().toISOString()
-                        });
-                        saveState();
+                    if (!touchHandled) { // Only process mouseup if a touch hasn't just handled it
+                        clearTimeout(pressTimers[activity]);
+                        if (!longPressDetected[activity]) { // If not a long press
+                            updateCounter(activity, true); // Increment
+                            addHistoryItemToDOM({
+                                text: `${activity} recorded. New count: ${getBadgeCount(activity)}`,
+                                timestamp: new Date().toISOString()
+                            });
+                            saveState();
+                        }
                     }
-                    longPressDetected[activity] = false;
+                    // Reset touchHandled flag after a short delay to allow subsequent mouse events
+                    // to fire normally if they are true mouse events. This is tricky.
+                    // A better pattern is to re-evaluate the flag per event or use event.preventDefault extensively.
+                    // For now, we'll keep it simple and just reset.
+                    setTimeout(() => touchHandled = false, 300); // Give a brief window (e.g., 300ms) for touch events to complete
+                    longPressDetected[activity] = false; // Always reset long press flag
                 });
 
                 button.addEventListener('mouseleave', () => {
@@ -563,13 +574,15 @@
                 });
 
                 button.addEventListener('contextmenu', (e) => {
-                    e.preventDefault();
+                    e.preventDefault(); // Prevent right-click context menu
                 });
 
                 let touchStartTime;
                 const LONG_PRESS_THRESHOLD = 700;
 
+                // --- TOUCH EVENTS ---
                 button.addEventListener('touchstart', (e) => {
+                    touchHandled = true; // Set flag: a touch event is starting/handling this interaction
                     touchStartTime = new Date().getTime();
                     longPressDetected[activity] = false;
                     pressTimers[activity] = setTimeout(() => {
@@ -580,11 +593,11 @@
                         });
                         saveState();
                         longPressDetected[activity] = true;
-                        e.preventDefault();
+                        e.preventDefault(); // Prevent default mobile behavior like text selection/zoom and mousedown from firing
                     }, LONG_PRESS_THRESHOLD);
-                }, { passive: false });
+                }, { passive: false }); // `passive: false` allows `preventDefault` to work on touchstart
 
-                button.addEventListener('touchend', () => {
+                button.addEventListener('touchend', (e) => {
                     clearTimeout(pressTimers[activity]);
                     const touchEndTime = new Date().getTime();
                     const touchDuration = touchEndTime - touchStartTime;
@@ -598,11 +611,14 @@
                         saveState();
                     }
                     longPressDetected[activity] = false;
+                    // touchHandled will remain true for a short duration controlled by mouseup's setTimeout
+                    e.preventDefault(); // Prevent phantom click event after touchend
                 });
 
                 button.addEventListener('touchcancel', () => {
                     clearTimeout(pressTimers[activity]);
                     longPressDetected[activity] = false;
+                    touchHandled = false; // Reset if touch is cancelled
                 });
             });
 
