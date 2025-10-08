@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity Tracker</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome 5 CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.min.css">
+
+    <style>
+        /* Essential for full height layout */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0; /* Ensure no default browser padding */
+            box-sizing: border-box; /* Global box-sizing for consistency */
+        }
+        *, *::before, *::after {
+            box-sizing: inherit;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        /* Main application wrapper to contain sidebar and main content for desktop */
+        #app-wrapper {
+            display: flex; /* Default to horizontal flex for desktop */
+            height: 100vh; /* Consistent viewport height */
+            width: 100%;
+            position: fixed; /* Ensures it's always fixed to the viewport top/left */
+            top: 0;
+            left: 0;
+            overflow: hidden; /* Prevent body scroll, content areas will scroll */
+        }
+
+        .sidebar {
+            width: 300px;
+            background-color: #343a40;
+            color: white;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            flex-shrink: 0; /* Prevent sidebar from shrinking */
+            transition: width 0.3s ease; /* For potential future sidebar collapse/expand */
+        }
+        .sidebar-header {
+            margin-bottom: 20px;
+            flex-shrink: 0;
+        }
+        .history-log-container {
+            flex-grow: 1;
+            overflow-y: auto; /* Scrollable only when content overflows */
+            padding-right: 5px; /* Space for scrollbar */
+            min-height: 0; /* Crucial: allows flex item to shrink below its content size */
+        }
+        .history-item {
+            background-color: #495057;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            word-wrap: break-word;
+        }
+        .history-item small {
+            color: #adb5bd;
+            display: block;
+            margin-top: 5px;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            padding: 40px;
+            overflow-y: auto; /* Main content can scroll if it gets too long */
+            height: 100%; /* Ensure main content also takes full height to allow its own scroll */
+            display: flex; /* Make main-content a flex container */
+            flex-direction: column; /* Stack its children vertically */
+            align-items: center; /* Center items horizontally */
+        }
+        .main-content h1 {
+            font-size: 2.5rem; /* Desktop heading size */
+            margin-bottom: 50px; /* Desktop heading margin */
+            text-align: center;
+        }
+
+        /* Custom button styling - Desktop defaults */
+        .btn-custom {
+            width: 200px;
+            height: 150px;
+            margin: 15px;
+            font-size: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: all 0.2s ease-in-out;
+            position: relative; /* Crucial for badge positioning */
+            color: white;
+            text-decoration: none;
+            flex-shrink: 0; /* Prevent buttons from shrinking if space is tight */
+        }
+        .btn-custom:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            color: white;
+        }
+        .btn-custom .fa, .btn-custom .fas {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        /* Bootstrap 5 specific button colors - using bg- classes */
+        .btn-resolved { background-color: #28a745; }
+        .btn-resolved:hover { background-color: #218838; }
+        .btn-pending { background-color: #ffc107; color: #212529;}
+        .btn-pending:hover { background-color: #e0a800; }
+        .btn-call { background-color: #007bff; }
+        .btn-call:hover { background-color: #0069d9; }
+        .btn-call-log { background-color: #dc3545; }
+        .btn-call-log:hover { background-color: #c82333; }
+        .btn-info-request { background-color: #17a2b8; }
+        .btn-info-request:hover { background-color: #138496; }
+
+        /* Notification badge styling */
+        .notification-badge {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            background-color: #dc3545; /* Red color, common for notifications */
+            color: white;
+            border-radius: 50%; /* Perfect circle */
+            padding: 0.2em 0.5em; /* Use em for scaling with font-size */
+            font-size: 0.85rem; /* Slightly smaller font */
+            min-width: 1.8em; /* Min width to ensure roundness, scales with font-size */
+            height: 1.8em; /* Min height to ensure roundness, scales with font-size */
+            display: flex; /* Use flex to center content horizontally and vertically */
+            align-items: center;
+            justify-content: center;
+            text-align: center; /* Fallback for older browsers */
+            box-shadow: 0 0 0 2px #f8f9fa; /* White border matching body background */
+            z-index: 10;
+            display: none; /* Initially hidden, shown by JS */
+        }
+
+        /* Specific styles for button layout in main-content */
+        .button-row {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 15px;
+            width: auto; /* Default auto width for desktop behavior */
+        }
+        .button-col {
+            flex: 0 0 auto;
+            padding: 0 15px;
+        }
+        .full-width-button-container {
+            display: flex;
+            justify-content: center;
+            padding: 0 15px;
+            width: auto; /* Default auto width */
+        }
+        .btn-call.full-width {
+            width: calc(200px * 2 + 15px * 2 + 30px); /* Desktop width */
+            max-width: 100%;
+            margin: 0;
+        }
+
+        .copy-button-container {
+            margin-top: 20px;
+            text-align: center;
+            flex-shrink: 0;
+            padding-top: 20px;
+            padding-bottom: 0; /* Reset for desktop */
+            border-top: 1px solid #495057;
+        }
+        .copy-button {
+            background-color: #0d6efd;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            border: none;
+            width: auto; /* Desktop default */
+        }
+        .copy-button:hover {
+            background-color: #0b5ed7;
+        }
+
+        .reset-btn-container {
+            margin-top: 20px; /* Default desktop margin */
+            padding-top: 20px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .reset-btn {
+            background-color: #6c757d;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            border: none;
+            width: auto; /* Desktop default */
+        }
+        .reset-btn:hover {
+            background-color: #5a6268;
+        }
+
+
+        /* --- MOBILE RESPONSIBLE STYLES (max-width: 768px) --- */
+        @media (max-width: 768px) {
+            #app-wrapper {
+                flex-direction: column; /* Stack sidebar and main content vertically */
+                position: static; /* Allow it to flow naturally */
+                height: auto; /* Auto height to allow vertical scrolling of entire page */
+                overflow-y: visible; /* Allow entire page to scroll on mobile */
+            }
+
+            body {
+                background-color: #f8f9fa; /* Ensure body background is consistent */
+            }
+
+            .sidebar {
+                width: 100%; /* Sidebar takes full width */
+                height: auto; /* Auto height */
+                padding: 15px; /* Slightly less padding */
+                box-shadow: none; /* Remove shadow when stacked */
+                border-top: 8px solid #f0f0f0; /* Clearer visual separator */
+                order: 2; /* Sidebar appears AFTER main content */
+            }
+            .sidebar-header {
+                margin-bottom: 15px;
+            }
+            .history-log-container {
+                max-height: 200px; /* Constrain height for history log on mobile */
+                border-bottom: 1px solid #495057; /* Add a bottom border */
+                padding-bottom: 15px;
+                margin-bottom: 0; /* Remove extra margin */
+            }
+            .history-item {
+                 padding: 8px; /* Slightly smaller padding for log items */
+                 margin-bottom: 8px;
+            }
+
+            .main-content {
+                padding: 20px; /* Reduced padding */
+                height: auto; /* Auto height for main content */
+                overflow-y: visible; /* Allow content to push height */
+                order: 1; /* Main content appears BEFORE sidebar */
+            }
+            .main-content h1 {
+                font-size: 1.8rem; /* Smaller heading */
+                margin-top: 10px; /* Less top margin for heading */
+                margin-bottom: 30px !important; /* Adjust margin */
+            }
+
+            .btn-custom {
+                width: 100%; /* Buttons take full width of their immediate container */
+                margin: 8px 0; /* Stack vertically with optimized margin */
+                height: 90px; /* Slightly smaller height for buttons */
+                font-size: 1.1rem; /* Smaller font size on buttons */
+                border-radius: 10px; /* Slightly smaller border radius */
+            }
+            .btn-custom .fa, .btn-custom .fas {
+                font-size: 2.2rem; /* Smaller icon size */
+                margin-bottom: 5px;
+            }
+
+            .button-row {
+                flex-direction: column; /* Stack buttons vertically within rows */
+                align-items: center; /* Center stacked buttons */
+                margin-bottom: 0; /* No row-specific bottom margin if buttons stack */
+                width: 100%; /* Ensure row takes full width */
+            }
+            .button-col {
+                width: 100%; /* Column takes full width for stacking */
+                padding: 0; /* No horizontal padding on cols when stacking */
+            }
+            .full-width-button-container {
+                width: 100%; /* Ensure container takes full width */
+                padding: 0; /* No padding */
+            }
+            .btn-call.full-width {
+                width: 100%; /* Full width for the call button too */
+                margin: 8px 0; /* Match other buttons */
+            }
+
+            .notification-badge {
+                top: -6px; /* Adjust badge position for smaller buttons */
+                left: -6px;
+                font-size: 0.7rem; /* Even smaller font on badge */
+                min-width: 1.5em;
+                height: 1.5em;
+                box-shadow: none; /* Remove box-shadow */
+                border: 1px solid #f8f9fa; /* Use actual border for mobile */
+            }
+
+            .copy-button-container, .reset-btn-container {
+                margin-top: 15px; /* Reduced top margin */
+                padding-top: 15px;
+                padding-bottom: 0; /* No bottom padding here */
+                border-top: 1px solid #5a6268; /* Slightly lighter border */
+            }
+            .reset-btn-container {
+                margin-top: 10px; /* Closer to copy button */
+                padding-top: 15px; /* Consistent border/padding */
+                border-top: 1px solid #5a6268;
+            }
+            .copy-button, .reset-btn {
+                width: 100%; /* Full width for sidebar buttons */
+                font-size: 1rem; /* Smaller font */
+                padding: 10px 15px; /* Adjusted padding */
+            }
+
+            /* Responsive tweaks for wider mobile/tablet landscape modes */
+            @media (min-width: 480px) and (max-width: 768px) {
+                .btn-custom {
+                    height: 110px;
+                    font-size: 1.3rem;
+                }
+                .btn-custom .fa, .btn-custom .fas {
+                    font-size: 2.8rem;
+                }
+                .notification-badge {
+                    top: -8px;
+                    left: -8px;
+                    font-size: 0.8rem;
+                    min-width: 1.6em;
+                    height: 1.6em;
+                }
+                .history-log-container {
+                    max-height: 300px;
+                }
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app-wrapper">
+        <div class="main-content"> <!-- Main content first for mobile screen readers/flow -->
+            <h1 class="text-center mb-5">Activity Tracker Dashboard</h1>
+            <div class="d-flex flex-column align-items-center" style="width: 100%;"> <!-- Added width:100% here -->
+
+                <!-- First Row: Pending and Resolved -->
+                <div class="button-row">
+                    <div class="button-col">
+                        <button class="btn btn-custom btn-pending" data-activity="Pending Issue">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span>Pending Issue</span>
+                            <span class="notification-badge" id="badge-Pending Issue">0</span>
+                        </button>
+                    </div>
+                    <div class="button-col">
+                        <button class="btn btn-custom btn-resolved" data-activity="Resolved Issue">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Resolved Issue</span>
+                            <span class="notification-badge" id="badge-Resolved Issue">0</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Second Row: Information Request and Call Log -->
+                <div class="button-row">
+                    <div class="button-col">
+                        <button class="btn btn-custom btn-info-request" data-activity="Information Request">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Information Request</span>
+                            <span class="notification-badge" id="badge-Information Request">0</span>
+                        </button>
+                    </div>
+                    <div class="button-col">
+                        <button class="btn btn-custom btn-call-log" data-activity="Call Log">
+                            <i class="fas fa-address-book"></i>
+                            <span>Call Log</span>
+                            <span class="notification-badge" id="badge-Call Log">0</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Third Row: Call (full width) -->
+                <div class="full-width-button-container">
+                    <button class="btn btn-custom btn-call full-width" data-activity="Call">
+                        <i class="fas fa-phone"></i>
+                        <span>Call</span>
+                        <span class="notification-badge" id="badge-Call">0</span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="sidebar"> <!-- Placed AFTER main-content in HTML, reordered by CSS for desktop -->
+            <div class="sidebar-header">
+                <h3 class="text-center text-white mb-0">Activity Log</h3>
+            </div>
+            <div class="history-log-container">
+                <div id="historyLog">
+                    <!-- History items will be inserted here -->
+                </div>
+            </div>
+            <div class="copy-button-container">
+                <button class="btn copy-button" id="copyCounts">
+                    <i class="fas fa-copy me-2"></i>Copy Counts
+                </button>
+            </div>
+            <div class="reset-btn-container">
+                <button class="btn reset-btn" id="resetTracker">
+                    <i class="fas fa-redo-alt me-2"></i>Reset Tracker
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS, Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.all.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const activityButtons = document.querySelectorAll('.btn-custom');
+            const historyLog = document.getElementById('historyLog');
+            const resetTrackerBtn = document.getElementById('resetTracker');
+            const copyCountsBtn = document.getElementById('copyCounts');
+
+            let pressTimers = {};
+            let longPressDetected = {};
+            // NEW: Flag to detect if a touch event has just handled the click
+            let touchHandled = false;
+
+            function getBadgeCount(activity) {
+                const badge = document.getElementById(`badge-${activity}`);
+                return parseInt(badge.textContent) || 0;
+            }
+
+            function loadState() {
+                const counters = JSON.parse(localStorage.getItem('activityCounters')) || {};
+                const history = JSON.parse(localStorage.getItem('activityHistory')) || [];
+
+                activityButtons.forEach(button => {
+                    const activity = button.dataset.activity;
+                    const badge = button.querySelector('.notification-badge');
+                    if (counters[activity]) {
+                        badge.textContent = counters[activity];
+                        badge.style.display = 'flex';
+                    } else {
+                        badge.textContent = '0';
+                        badge.style.display = 'none';
+                    }
+                });
+
+                historyLog.innerHTML = '';
+                [...history].reverse().forEach(item => addHistoryItemToDOM(item, false));
+            }
+
+            function saveState() {
+                const counters = {};
+                activityButtons.forEach(button => {
+                    const activity = button.dataset.activity;
+                    const badge = button.querySelector('.notification-badge');
+                    if (parseInt(badge.textContent) > 0) {
+                        counters[activity] = parseInt(badge.textContent);
+                    }
+                });
+                localStorage.setItem('activityCounters', JSON.stringify(counters));
+
+                const historyItems = [];
+                Array.from(historyLog.querySelectorAll('.history-item')).reverse().forEach(item => {
+                    historyItems.push({
+                        text: item.querySelector('span').textContent,
+                        timestamp: item.querySelector('small').dataset.timestamp
+                    });
+                });
+                localStorage.setItem('activityHistory', JSON.stringify(historyItems));
+            }
+
+            function addHistoryItemToDOM(item, prepend = true) {
+                const historyItemDiv = document.createElement('div');
+                historyItemDiv.classList.add('history-item');
+
+                const itemText = document.createElement('span');
+                itemText.textContent = item.text;
+
+                const itemTimestamp = document.createElement('small');
+                const date = new Date(item.timestamp);
+                itemTimestamp.textContent = date.toLocaleString();
+                itemTimestamp.dataset.timestamp = item.timestamp;
+
+                historyItemDiv.appendChild(itemText);
+                historyItemDiv.appendChild(itemTimestamp);
+
+                if (prepend) {
+                    historyLog.prepend(historyItemDiv);
+                    while (historyLog.children.length > 100) {
+                        historyLog.removeChild(historyLog.lastChild);
+                    }
+                } else {
+                    historyLog.appendChild(historyItemDiv);
+                }
+            }
+
+            function updateCounter(activity, increment) {
+                const badge = document.getElementById(`badge-${activity}`);
+                let count = parseInt(badge.textContent);
+                if (increment) {
+                    count++;
+                } else {
+                    if (count > 0) {
+                        count--;
+                    }
+                }
+                badge.textContent = count;
+                badge.style.display = count > 0 ? 'flex' : 'none';
+            }
+
+            activityButtons.forEach(button => {
+                const activity = button.dataset.activity;
+                longPressDetected[activity] = false;
+
+                // --- MOUSE EVENTS ---
+                button.addEventListener('mousedown', (e) => {
+                    // Only process mousedown if a touch hasn't just handled it
+                    if (e.button === 0 && !touchHandled) {
+                        longPressDetected[activity] = false;
+                        pressTimers[activity] = setTimeout(() => {
+                            updateCounter(activity, false); // Decrement
+                            addHistoryItemToDOM({
+                                text: `${activity} count reduced. New count: ${getBadgeCount(activity)}`,
+                                timestamp: new Date().toISOString()
+                            });
+                            saveState();
+                            longPressDetected[activity] = true;
+                        }, 700);
+                    }
+                });
+
+                button.addEventListener('mouseup', () => {
+                    if (!touchHandled) { // Only process mouseup if a touch hasn't just handled it
+                        clearTimeout(pressTimers[activity]);
+                        if (!longPressDetected[activity]) { // If not a long press
+                            updateCounter(activity, true); // Increment
+                            addHistoryItemToDOM({
+                                text: `${activity} recorded. New count: ${getBadgeCount(activity)}`,
+                                timestamp: new Date().toISOString()
+                            });
+                            saveState();
+                        }
+                    }
+                    // Reset touchHandled flag after a short delay to allow subsequent mouse events
+                    // to fire normally if they are true mouse events. This is tricky.
+                    // A better pattern is to re-evaluate the flag per event or use event.preventDefault extensively.
+                    // For now, we'll keep it simple and just reset.
+                    setTimeout(() => touchHandled = false, 300); // Give a brief window (e.g., 300ms) for touch events to complete
+                    longPressDetected[activity] = false; // Always reset long press flag
+                });
+
+                button.addEventListener('mouseleave', () => {
+                    clearTimeout(pressTimers[activity]);
+                    longPressDetected[activity] = false;
+                });
+
+                button.addEventListener('contextmenu', (e) => {
+                    e.preventDefault(); // Prevent right-click context menu
+                });
+
+                let touchStartTime;
+                const LONG_PRESS_THRESHOLD = 700;
+
+                // --- TOUCH EVENTS ---
+                button.addEventListener('touchstart', (e) => {
+                    touchHandled = true; // Set flag: a touch event is starting/handling this interaction
+                    touchStartTime = new Date().getTime();
+                    longPressDetected[activity] = false;
+                    pressTimers[activity] = setTimeout(() => {
+                        updateCounter(activity, false);
+                        addHistoryItemToDOM({
+                            text: `${activity} count reduced. New count: ${getBadgeCount(activity)}`,
+                            timestamp: new Date().toISOString()
+                        });
+                        saveState();
+                        longPressDetected[activity] = true;
+                        e.preventDefault(); // Prevent default mobile behavior like text selection/zoom and mousedown from firing
+                    }, LONG_PRESS_THRESHOLD);
+                }, { passive: false }); // `passive: false` allows `preventDefault` to work on touchstart
+
+                button.addEventListener('touchend', (e) => {
+                    clearTimeout(pressTimers[activity]);
+                    const touchEndTime = new Date().getTime();
+                    const touchDuration = touchEndTime - touchStartTime;
+
+                    if (!longPressDetected[activity] && touchDuration < LONG_PRESS_THRESHOLD) {
+                        updateCounter(activity, true);
+                        addHistoryItemToDOM({
+                            text: `${activity} recorded. New count: ${getBadgeCount(activity)}`,
+                            timestamp: new Date().toISOString()
+                        });
+                        saveState();
+                    }
+                    longPressDetected[activity] = false;
+                    // touchHandled will remain true for a short duration controlled by mouseup's setTimeout
+                    e.preventDefault(); // Prevent phantom click event after touchend
+                });
+
+                button.addEventListener('touchcancel', () => {
+                    clearTimeout(pressTimers[activity]);
+                    longPressDetected[activity] = false;
+                    touchHandled = false; // Reset if touch is cancelled
+                });
+            });
+
+            resetTrackerBtn.addEventListener('click', () => {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this! All activity data will be lost.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Yes, reset it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        localStorage.removeItem('activityCounters');
+                        localStorage.removeItem('activityHistory');
+                        loadState();
+                        Swal.fire(
+                            'Reset!',
+                            'Your activity tracker data has been reset.',
+                            'success'
+                        );
+                    }
+                });
+            });
+
+            copyCountsBtn.addEventListener('click', async () => {
+                const pendingCount = getBadgeCount("Pending Issue");
+                const infoRequestCount = getBadgeCount("Information Request");
+                const callLogCount = getBadgeCount("Call Log");
+                const resolvedCount = getBadgeCount("Resolved Issue");
+                const callCount = getBadgeCount("Call");
+
+                const infoAndCallLogTotal = infoRequestCount + callLogCount;
+
+                const dataToCopy = `${pendingCount}\t${infoAndCallLogTotal}\t${resolvedCount}\t${callCount}`;
+
+                const tableHtml = `
+                    <div style="text-align: left; margin-top: 20px;">
+                        <p><strong>Counts Copied:</strong></p>
+                        <table class="table table-bordered table-sm" style="width: auto; margin: 0 auto;">
+                            <thead>
+                                <tr>
+                                    <th>Pending</th>
+                                    <th>Info & Call Log</th>
+                                    <th>Resolved</th>
+                                    <th>Call</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>${pendingCount}</td>
+                                    <td>${infoAndCallLogTotal}</td>
+                                    <td>${resolvedCount}</td>
+                                    <td>${callCount}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p style="margin-top: 15px;">Paste this into Excel or Google Sheets (Ctrl+V or Cmd+V) to get values in separate columns.</p>
+                    </div>
+                `;
+
+                try {
+                    await navigator.clipboard.writeText(dataToCopy);
+                    Swal.fire({
+                        title: 'Copied to Clipboard!',
+                        html: tableHtml,
+                        icon: 'success',
+                        confirmButtonText: 'Got It!'
+                    });
+                } catch (err) {
+                    console.error('Failed to copy: ', err);
+                    Swal.fire({
+                        title: 'Copy Failed!',
+                        text: 'Unable to copy counts to clipboard. Your browser might be blocking clipboard access or an error occurred. Please try again.',
+                        icon: 'error',
+                        confirmButtonText: 'Okay'
+                    });
+                }
+            });
+
+            loadState();
+        });
+    </script>
+</body>
+</html>
