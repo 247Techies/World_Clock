@@ -1423,7 +1423,131 @@
     "type": "info",
     "content": "MRT is updated monthly via Windows Update. It is not a replacement for real-time antivirus software but can help remove common malware infections."
   }
+},
+{
+  "id": "show_wifi_profiles",
+  "title": "Show Saved Wi-Fi Profiles",
+  "description": "Lists all saved wireless network profiles stored on the computer, including their names (SSIDs).",
+  "keywords": ["netsh", "wifi profiles", "wlan", "saved networks", "wireless settings"],
+  "ticket_template": "Displayed all saved Wi-Fi profiles on the system for review or troubleshooting connectivity issues.",
+  "platform": "windows",
+  "requires_admin": false,
+  "execution": [
+    {
+      "step": "Open Command Prompt or PowerShell.",
+      "command": null
+    },
+    {
+      "step": "Run the following command to list all saved Wi-Fi profiles.",
+      "command": "netsh wlan show profiles"
+    }
+  ],
+  "notice": {
+    "type": "info",
+    "content": "You can view details of a specific Wi-Fi profile using `netsh wlan show profile name=\"ProfileName\" key=clear` to reveal its saved password and settings."
+  }
+},
+{
+  "id": "delete_wifi_profile",
+  "title": "Delete Saved Wi-Fi Profile",
+  "description": "Removes a saved wireless network profile from the computer, which can help fix connectivity issues or reset Wi-Fi settings for that network.",
+  "keywords": ["netsh", "delete wifi profile", "remove wlan profile", "network reset"],
+  "ticket_template": "Deleted a saved Wi-Fi profile to reset its settings or resolve connectivity problems.",
+  "platform": "windows",
+  "requires_admin": false,
+  "execution": [
+    {
+      "step": "Open Command Prompt or PowerShell.",
+      "command": null
+    },
+    {
+      "step": "Run the following command, replacing `ProfileName` with the actual Wi-Fi name (SSID).",
+      "command": "netsh wlan delete profile name=\"ProfileName\""
+    }
+  ],
+  "notice": {
+    "type": "info",
+    "content": "Deleting a Wi-Fi profile removes its saved password and settings. The network will need to be reconnected manually afterward."
+  }
+},
+{
+  "id": "delete_all_wifi_profiles",
+  "title": "Delete All Saved Wi-Fi Profiles",
+  "description": "Removes all saved wireless network profiles from the computer, clearing all stored SSIDs and passwords.",
+  "keywords": ["netsh", "delete wifi profiles", "remove all wlan profiles", "network reset"],
+  "ticket_template": "Cleared all saved Wi-Fi profiles from the system to reset wireless network configurations.",
+  "platform": "windows",
+  "requires_admin": false,
+  "execution": [
+    {
+      "step": "Open Command Prompt or PowerShell.",
+      "command": null
+    },
+    {
+      "step": "Run the following command to delete all saved Wi-Fi profiles from all interfaces.",
+      "command": "netsh wlan delete profile name=* i=*"
+    }
+  ],
+  "notice": {
+    "type": "warning",
+    "content": "This will remove **all** saved Wi-Fi networks and passwords. You’ll need to reconnect manually to each network afterward."
+  }
+},
+{
+  "id": "windows_defender_offline_scan",
+  "title": "Run Windows Defender Offline Scan",
+  "description": "Initiates an offline scan using Microsoft Defender to detect and remove persistent or hard-to-remove malware outside the normal Windows environment.",
+  "keywords": ["Start-MpWDOScan", "defender offline scan", "malware removal", "virus scan", "powershell"],
+  "ticket_template": "Ran a Windows Defender Offline Scan to detect and remove deeply embedded or persistent malware.",
+  "platform": "windows",
+  "requires_admin": true,
+  "execution": [
+    {
+      "step": "Open PowerShell as Administrator.",
+      "command": null
+    },
+    {
+      "step": "Run the following command to initiate a Windows Defender Offline Scan.",
+      "command": "Start-MpWDOScan"
+    },
+    {
+      "step": "The system will restart automatically and perform the offline scan before booting back into Windows.",
+      "command": null
+    }
+  ],
+  "notice": {
+    "type": "warning",
+    "content": "The computer will restart immediately after this command. Save all work before proceeding. The scan runs outside of Windows and may take several minutes."
+  }
+},
+{
+  "id": "windows_defender_quick_scan",
+  "title": "Run Windows Defender Quick Scan",
+  "description": "Performs a quick scan using Microsoft Defender to check common malware locations such as startup folders, system memory, and registry entries.",
+  "keywords": ["Start-MpScan", "defender quick scan", "malware scan", "virus scan", "powershell"],
+  "ticket_template": "Performed a Windows Defender Quick Scan to check for active threats in common system areas.",
+  "platform": "windows",
+  "requires_admin": true,
+  "execution": [
+    {
+      "step": "Open PowerShell as Administrator.",
+      "command": null
+    },
+    {
+      "step": "Run the following command to start a Windows Defender Quick Scan.",
+      "command": "Start-MpScan -ScanType QuickScan"
+    },
+    {
+      "step": "Wait for the scan to complete. Results will be displayed once the process finishes.",
+      "command": null
+    }
+  ],
+  "notice": {
+    "type": "info",
+    "content": "Quick Scan checks areas where threats are most likely to be found. For a deeper check, use `Start-MpScan -ScanType FullScan`."
+  }
 }
+
 
 
 ]
