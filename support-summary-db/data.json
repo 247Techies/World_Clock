@@ -2918,5 +2918,106 @@
     "sentence": "Helped in creating and managing desktop shortcuts.",
     "tag": "Desktop Shortcuts",
     "keywords": "helped, creating, managing, desktop shortcuts"
+  },
+  {
+    "sentence": "Provided assistance with regards to printing an email.",
+    "tag": "Print Email",
+    "keywords": "provided assistance, printing, email"
+  },
+  {
+    "sentence": "Assisted in the process of printing an email.",
+    "tag": "Print Email",
+    "keywords": "assisted, process, printing, email"
+  },
+  {
+    "sentence": "Offered support with regards to printing an email.",
+    "tag": "Print Email",
+    "keywords": "offered support, printing, email"
+  },
+  {
+    "sentence": "Guided through the steps to print an email.",
+    "tag": "Print Email",
+    "keywords": "guided, steps, print, email"
+  },
+  {
+    "sentence": "Helped in printing an email successfully.",
+    "tag": "Print Email",
+    "keywords": "helped, printing, email, successfully"
+  },
+  {
+    "sentence": "Performed tasks with regards to closing error notification popups.",
+    "tag": "Error Notifications",
+    "keywords": "performed tasks, closing, error notification popups"
+  },
+  {
+    "sentence": "Handled and closed recurring error notification popups.",
+    "tag": "Error Notifications",
+    "keywords": "handled, closed, recurring, error notification popups"
+  },
+  {
+    "sentence": "Completed tasks related to managing and closing error notification popups.",
+    "tag": "Error Notifications",
+    "keywords": "completed tasks, managing, closing, error notification popups"
+  },
+  {
+    "sentence": "Performed troubleshooting steps to close error notification popups.",
+    "tag": "Error Notifications",
+    "keywords": "performed troubleshooting, close, error notification popups"
+  },
+  {
+    "sentence": "Successfully performed tasks to remove and close error notification popups.",
+    "tag": "Error Notifications",
+    "keywords": "successfully performed, remove, close, error notification popups"
+  },
+  {
+    "sentence": "Printed documents with the correct settings.",
+    "tag": "Print with Settings",
+    "keywords": "printed documents, correct settings"
+  },
+  {
+    "sentence": "Ensured documents were printed using the correct settings.",
+    "tag": "Print with Settings",
+    "keywords": "ensured, printed, correct settings"
+  },
+  {
+    "sentence": "Adjusted and printed using proper print settings.",
+    "tag": "Print with Settings",
+    "keywords": "adjusted, printed, proper print settings"
+  },
+  {
+    "sentence": "Verified and completed printing with correct configuration.",
+    "tag": "Print with Settings",
+    "keywords": "verified, completed printing, correct configuration"
+  },
+  {
+    "sentence": "Printed successfully after applying the correct settings.",
+    "tag": "Print with Settings",
+    "keywords": "printed successfully, correct settings"
+  },
+  {
+    "sentence": "Provided assistance with regards to identifying and eliminating phishing emails.",
+    "tag": "Phishing Emails",
+    "keywords": "provided assistance, identifying, eliminating, phishing emails"
+  },
+  {
+    "sentence": "Assisted in detecting and removing phishing emails.",
+    "tag": "Phishing Emails",
+    "keywords": "assisted, detecting, removing, phishing emails"
+  },
+  {
+    "sentence": "Offered support with regards to recognizing and deleting phishing emails.",
+    "tag": "Phishing Emails",
+    "keywords": "offered support, recognizing, deleting, phishing emails"
+  },
+  {
+    "sentence": "Helped in identifying and eliminating potential phishing emails.",
+    "tag": "Phishing Emails",
+    "keywords": "helped, identifying, eliminating, potential phishing emails"
+  },
+  {
+    "sentence": "Guided through the process of detecting and removing phishing emails.",
+    "tag": "Phishing Emails",
+    "keywords": "guided process, detecting, removing, phishing emails"
   }
+
 ]
