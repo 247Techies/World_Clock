@@ -1546,8 +1546,113 @@
     "type": "info",
     "content": "Quick Scan checks areas where threats are most likely to be found. For a deeper check, use `Start-MpScan -ScanType FullScan`."
   }
+},
+{
+  "id": "winget_upgrade",
+  "title": "Check and Upgrade Installed Apps with Winget",
+  "description": "Lists available updates for installed applications and allows upgrading them using the Windows Package Manager (Winget).",
+  "keywords": ["winget", "app update", "software upgrade", "package manager", "windows update"],
+  "ticket_template": "Checked and upgraded installed applications using Winget to ensure all software is up to date.",
+  "platform": "windows",
+  "requires_admin": true,
+  "execution": [
+    {
+      "step": "Open Command Prompt or PowerShell as Administrator.",
+      "command": null
+    },
+    {
+      "step": "Run the following command to view available application updates.",
+      "command": "winget upgrade"
+    },
+    {
+      "step": "To upgrade all apps automatically, run the following command.",
+      "command": "winget upgrade --all"
+    }
+  ],
+  "notice": {
+    "type": "info",
+    "content": "Winget simplifies software maintenance by automatically checking for updates. Some apps may require a restart or manual confirmation during upgrade."
+  }
+},
+{
+  "id": "winget_install_app",
+  "title": "Search and Install an App with Winget",
+  "description": "Uses the Windows Package Manager (Winget) to search for and install specific applications from the official repositories.",
+  "keywords": ["winget", "install app", "software install", "package manager", "windows apps"],
+  "ticket_template": "Searched and installed a specific application using the Windows Package Manager (Winget).",
+  "platform": "windows",
+  "requires_admin": true,
+  "execution": [
+    {
+      "step": "Open Command Prompt or PowerShell as Administrator.",
+      "command": null
+    },
+    {
+      "step": "Run the following command to search for the desired application by name.",
+      "command": "winget search appname"
+    },
+    {
+      "step": "Once found, run the following command to install the application.",
+      "command": "winget install appname"
+    }
+  ],
+  "notice": {
+    "type": "info",
+    "content": "Winget installs applications from trusted sources. Some installations may prompt for confirmation or require a system restart."
+  }
+},
+{
+  "id": "winget_uninstall_app",
+  "title": "Uninstall an App with Winget",
+  "description": "Removes an installed application from Windows using the Windows Package Manager (Winget).",
+  "keywords": ["winget", "uninstall app", "remove program", "package manager", "software removal"],
+  "ticket_template": "Uninstalled an application using the Windows Package Manager (Winget).",
+  "platform": "windows",
+  "requires_admin": true,
+  "execution": [
+    {
+      "step": "Open Command Prompt or PowerShell as Administrator.",
+      "command": null
+    },
+    {
+      "step": "Run the following command, replacing `appname` with the actual name of the application to uninstall.",
+      "command": "winget uninstall appname"
+    },
+    {
+      "step": "Confirm the uninstallation if prompted and wait for the process to complete.",
+      "command": null
+    }
+  ],
+  "notice": {
+    "type": "info",
+    "content": "Winget simplifies app removal, but some applications may leave residual files or settings. For a complete cleanup, check for leftover folders in Program Files or AppData."
+  }
+},
+{
+  "id": "winget_install_powershell",
+  "title": "Install PowerShell via Winget",
+  "description": "Installs the latest version of Microsoft PowerShell from the official Winget repository.",
+  "keywords": ["winget", "install powershell", "microsoft powershell", "package manager", "windows terminal"],
+  "ticket_template": "Installed or updated Microsoft PowerShell using the Windows Package Manager (Winget).",
+  "platform": "windows",
+  "requires_admin": true,
+  "execution": [
+    {
+      "step": "Open Command Prompt or PowerShell as Administrator.",
+      "command": null
+    },
+    {
+      "step": "Run the following command to install the latest version of PowerShell.",
+      "command": "winget install --id Microsoft.PowerShell --source winget"
+    },
+    {
+      "step": "After installation, search for 'PowerShell' in the Start Menu to open the updated version.",
+      "command": null
+    }
+  ],
+  "notice": {
+    "type": "info",
+    "content": "If PowerShell is already installed, this command will update it to the latest available version. A system restart may be required to complete the setup."
+  }
 }
-
-
-
 ]
