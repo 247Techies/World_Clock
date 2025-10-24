@@ -1654,5 +1654,45 @@
     "type": "info",
     "content": "If PowerShell is already installed, this command will update it to the latest available version. A system restart may be required to complete the setup."
   }
+},
+{
+  "id": "remote_tool_removal_001",
+  "title": "Remove Hidden Remote Access Tools (ConnectWise or ScreenConnect)",
+  "description": "Removes malicious or hidden remote connection clients that cannot be uninstalled normally from Programs and Features or found in Program Files.",
+  "keywords": ["remote access", "scammer", "ConnectWise", "ScreenConnect", "malware removal", "hidden service"],
+  "ticket_template": "User reported unauthorized remote access or hidden remote tool installed. Performed manual cleanup and service removal.",
+  "platform": "Windows",
+  "requires_admin": true,
+  "execution": [
+    {
+      "step": "Open the Windows Services Manager.",
+      "command": "Press Windows + R → type services.msc → press Enter."
+    },
+    {
+      "step": "Locate the malicious service.",
+      "command": "Look for a service named 'ConnectWise Control Client' or 'ScreenConnect Client' (it may include random letters/numbers)."
+    },
+    {
+      "step": "Stop the service.",
+      "command": "Right-click the identified service → click Stop."
+    },
+    {
+      "step": "Open an elevated Command Prompt.",
+      "command": "Search for 'cmd', right-click Command Prompt, and select 'Run as administrator'."
+    },
+    {
+      "step": "Delete the service.",
+      "command": "sc delete \"ConnectWise Control Client (xxxxxxxx)\" or sc delete \"ScreenConnect Client (xxxxxxxx)\""
+    },
+    {
+      "step": "Verify service removal.",
+      "command": "Reopen services.msc and confirm the service no longer appears in the list."
+    }
+  ],
+  "notice": {
+    "type": "warning",
+    "content": "Make sure to verify with the user before deleting any service. Malicious remote tools often disguise themselves with random names—double-check the service path and description before removal."
+  }
 }
+
 ]
