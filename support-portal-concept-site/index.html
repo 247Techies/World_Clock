@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Showcase & Download System</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for the new color scheme */
+        :root {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Set scroll behavior for smooth transitions */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* General card styling for modern look */
+        .representative-card {
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+        .representative-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(255, 111, 0, 0.1), 0 10px 10px -5px rgba(255, 111, 0, 0.04);
+        }
+
+        /* Keyframes for the download icon bounce effect */
+        @keyframes bounce-pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.15);
+                box-shadow: 0 0 20px rgba(255, 111, 0, 0.7);
+            }
+        }
+
+        .download-icon.active {
+            animation: bounce-pulse 0.6s ease-out;
+        }
+
+        /* Initial state of the SVG arrow */
+        #download-arrow {
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        /* Styling for the notification message */
+        #notification {
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+            transform: translateY(100px);
+            opacity: 0;
+        }
+        #notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Popover specific styles */
+        #downloadHistoryPopover {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: opacity 0.2s ease-out, transform 0.2s ease-out, visibility 0.2s;
+        }
+        #downloadHistoryPopover.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Icon styling */
+        .lucide {
+            display: inline-block;
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+    </style>
+    <!-- Configure Tailwind for the new color scheme -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary-orange': '#ff6f00',
+                        'light-bg': '#ebebf3',
+                        'card-bg': '#ffffff',
+                        'secondary-gray': '#696a6a',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-light-bg text-gray-800 min-h-screen">
+
+    <!-- SVG Layer for Animated Arrow (Fixed, covers entire screen) -->
+    <svg id="arrow-canvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-50">
+        <!-- The path element for the drawing animation -->
+        <path id="download-arrow" stroke="#ff6f00" stroke-width="3" fill="none" stroke-linecap="round"></path>
+    </svg>
+
+    <!-- Header / Navigation -->
+    <header class="sticky top-0 z-40 bg-light-bg/95 backdrop-blur-sm shadow-lg p-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-6">
+                <img src="247logon.png" alt="247 Logo" class="h-[77px] w-[220px] object-contain">
+                <h1 class="text-3xl font-bold text-secondary-gray">Support Portal - Concept Site</h1>
+            </div>
+            <!-- Download Indicator with Popover -->
+            <div class="relative">
+                <div id="download-indicator" class="relative group cursor-pointer p-2 rounded-full bg-primary-orange/20 hover:bg-primary-orange/30 transition duration-300" onclick="toggleDownloadHistoryPopover(event)">
+                    <!-- Download Icon SVG -->
+                    <svg id="download-icon-element" class="w-6 h-6 text-primary-orange download-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    <span class="absolute top-full right-0 mt-2 p-2 bg-secondary-gray text-xs text-white rounded opacity-0 group-hover:opacity-100 transition duration-300 pointer-events-none whitespace-nowrap">
+                        View Downloads
+                    </span>
+                </div>
+
+                <!-- Download History Popover -->
+                <div id="downloadHistoryPopover" class="absolute right-0 mt-3 w-72 bg-card-bg p-4 rounded-lg shadow-xl border border-primary-orange/30 z-50">
+                    <h3 class="text-lg font-bold text-secondary-gray mb-3">Download History</h3>
+                    <ul id="downloadHistoryList" class="list-none text-secondary-gray max-h-48 overflow-y-auto mb-3">
+                        <!-- Downloaded items will be inserted here -->
+                    </ul>
+                    <div class="flex justify-end space-x-2">
+                        <button class="px-3 py-1 bg-secondary-gray text-white text-sm rounded hover:bg-secondary-gray/80 transition" onclick="clearDownloadHistory()">Clear</button>
+                        <button class="px-3 py-1 bg-primary-orange text-white text-sm rounded hover:bg-primary-orange/80 transition" onclick="toggleDownloadHistoryPopover()">Close</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="max-w-7xl mx-auto p-4 sm:p-8">
+        <section class="text-center py-12">
+            <h2 class="text-5xl font-bold mb-4 text-secondary-gray">Our Key Representatives</h2>
+            <p class="text-secondary-gray text-lg max-w-3xl mx-auto">Connect with our trusted specialists who are always ready to assist you with reliable, personalized technical support and quick issue resolution.</p>
+        </section>
+
+        <!-- Representatives Grid -->
+        <section class="flex flex-wrap justify-center gap-10 pb-20 mx-auto max-w-7xl">
+
+            <!-- Representative Card 1 -->
+            <div class="representative-card bg-card-bg p-8 rounded-2xl border border-primary-orange/40 shadow-xl w-80 flex flex-col items-center text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl" data-name="Thomas">
+                <div class="w-28 h-28 mb-5">
+                    <img src="https://placehold.co/150x150/ebebf3/ff6f00?text=TT" alt="Thomas" class="rounded-full w-full h-full object-cover border-4 border-primary-orange shadow-md">
+                </div>
+                <h3 class="text-2xl font-semibold text-secondary-gray mb-2">Thomas</h3>
+                <p class="text-primary-orange font-medium mb-4">Tech Support</p>
+                <p class="text-sm text-secondary-gray leading-relaxed">
+                    
+                </p>
+                <button class="mt-6 w-full bg-primary-orange/20 text-primary-orange hover:bg-primary-orange hover:text-white font-semibold py-2.5 rounded-lg transition duration-300" onclick="handleDownload(this)">
+                    Connect
+                </button>
+            </div>
+
+            <!-- Representative Card 2 -->
+            <div class="representative-card bg-card-bg p-8 rounded-2xl border border-primary-orange/40 shadow-xl w-80 flex flex-col items-center text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl" data-name="Richard">
+                <div class="w-28 h-28 mb-5">
+                    <img src="https://placehold.co/150x150/ebebf3/ff6f00?text=RR" alt="Richard" class="rounded-full w-full h-full object-cover border-4 border-primary-orange shadow-md">
+                </div>
+                <h3 class="text-2xl font-semibold text-secondary-gray mb-2">Richard</h3>
+                <p class="text-primary-orange font-medium mb-4">Tech Support</p>
+                <p class="text-sm text-secondary-gray leading-relaxed">
+                    
+                </p>
+                <button class="mt-6 w-full bg-primary-orange/20 text-primary-orange hover:bg-primary-orange hover:text-white font-semibold py-2.5 rounded-lg transition duration-300" onclick="handleDownload(this)">
+                    Connect
+                </button>
+            </div>
+
+            <!-- Representative Card 3 -->
+            <div class="representative-card bg-card-bg p-8 rounded-2xl border border-primary-orange/40 shadow-xl w-80 flex flex-col items-center text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl" data-name="Ron">
+                <div class="w-28 h-28 mb-5">
+                    <img src="https://placehold.co/150x150/ebebf3/ff6f00?text=RS" alt="Ron" class="rounded-full w-full h-full object-cover border-4 border-primary-orange shadow-md">
+                </div>
+                <h3 class="text-2xl font-semibold text-secondary-gray mb-2">Ron</h3>
+                <p class="text-primary-orange font-medium mb-4">Tech Support</p>
+                <p class="text-sm text-secondary-gray leading-relaxed">
+                    
+                </p>
+                <button class="mt-6 w-full bg-primary-orange/20 text-primary-orange hover:bg-primary-orange hover:text-white font-semibold py-2.5 rounded-lg transition duration-300" onclick="handleDownload(this)">
+                    Connect
+                </button>
+            </div>
+
+        </section>
+
+
+
+        <!-- Session Key Input Section -->
+        <section class="max-w-2xl mx-auto mt-2 mb-12">
+            <div class="bg-card-bg p-8 rounded-xl border border-primary-orange/30 shadow-lg">
+                <h3 class="text-2xl font-bold text-secondary-gray mb-4 text-center">Enter Session Key</h3>
+                <p class="text-secondary-gray text-center mb-6">Please enter your session key in the format: XXXX XXX</p>
+                <form onsubmit="handleSessionKeySubmit(event)" class="space-y-4">
+                    <div>
+                        <input 
+                            type="text" 
+                            id="sessionKeyInput" 
+                            placeholder="XXXX XXX" 
+                            maxlength="8"
+                            class="w-full px-4 py-3 border-2 border-primary-orange/30 rounded-lg focus:outline-none focus:border-primary-orange transition duration-300 text-center text-lg tracking-wider font-mono"
+                            required
+                        >
+                    </div>
+                    <button 
+                        type="submit" 
+                        class="w-full bg-primary-orange text-white font-semibold py-3 rounded-lg hover:bg-primary-orange/90 transition duration-300"
+                    >
+                        Submit Session Key
+                    </button>
+                </form>
+                <div id="sessionKeyMessage" class="mt-4 text-center text-sm hidden">
+                    <!-- Success/Error messages will appear here -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Floating Notification Box -->
+    <div id="notification" class="fixed bottom-4 right-4 bg-green-600 text-white p-4 rounded-lg shadow-2xl z-50">
+        <p class="flex items-center">
+            <!-- Check Circle Icon SVG -->
+            <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+            <span id="notification-message">File downloaded successfully!</span>
+        </p>
+    </div>
+
+    <script>
+        // Array to store downloaded file names
+        const downloadedFiles = [];
+
+        // Get necessary elements immediately (script is at bottom of body)
+        const arrowPath = document.getElementById('download-arrow');
+        const downloadIndicator = document.getElementById('download-indicator');
+        const downloadIconEl = document.getElementById('download-icon-element');
+        const notificationEl = document.getElementById('notification');
+        const notificationMessageEl = document.getElementById('notification-message');
+        const downloadHistoryPopover = document.getElementById('downloadHistoryPopover');
+        const downloadHistoryList = document.getElementById('downloadHistoryList');
+
+        /**
+         * Calculates the center coordinates of an element relative to the viewport.
+         * @param {HTMLElement} element 
+         * @returns {{x: number, y: number}}
+         */
+        function getElementCenter(element) {
+            const rect = element.getBoundingClientRect();
+            return {
+                x: rect.left + rect.width / 2,
+                y: rect.top + rect.height / 2
+            };
+        }
+
+        /**
+         * Handles the download animation and mock file download process.
+         * @param {HTMLElement} button - The button that was clicked.
+         */
+        function handleDownload(button) {
+            // Make sure elements are initialized
+            if (!downloadHistoryPopover) {
+                console.error('Elements not initialized yet');
+                return;
+            }
+
+            // Ensure popover is closed if a download starts
+            if (downloadHistoryPopover.classList.contains('show')) {
+                toggleDownloadHistoryPopover();
+            }
+
+            // Disable the button temporarily
+            button.disabled = true;
+            button.textContent = "Downloading...";
+
+            const card = button.closest('.representative-card');
+            const repName = card.dataset.name || 'Representative';
+            const fileName = `Portfolio for ${repName}.pdf`; // Mock file name
+
+            // 1. Calculate Start and End Points
+            const startPoint = getElementCenter(card);
+            const endPoint = getElementCenter(downloadIndicator);
+
+            // Adjust end point slightly to aim for the icon center
+            const downloadIconRect = downloadIndicator.getBoundingClientRect();
+            endPoint.x = downloadIconRect.left + downloadIconRect.width * 0.7; // Aim slightly right of center
+            endPoint.y = downloadIconRect.top + downloadIconRect.height * 0.7; // Aim slightly below center
+
+            // 2. Define the SVG Path
+            // A simple path from start to end, using a mild curve (Bezier control points)
+            const controlX = startPoint.x + (endPoint.x - startPoint.x) * 0.3;
+            const controlY = startPoint.y - 300; // Curve upwards/away from the card
+
+            const dPath = `M ${startPoint.x} ${startPoint.y} C ${controlX} ${controlY}, ${endPoint.x} ${controlY}, ${endPoint.x} ${endPoint.y}`;
+            
+            arrowPath.setAttribute('d', dPath);
+
+            // 3. Setup for Drawing Animation
+            const pathLength = arrowPath.getTotalLength();
+            
+            // Set dash array and offset to hide the path initially
+            arrowPath.style.transition = 'none';
+            arrowPath.style.strokeDasharray = pathLength + ' ' + pathLength;
+            arrowPath.style.strokeDashoffset = pathLength;
+            arrowPath.style.opacity = 1;
+
+            // Force reflow/repaint to apply initial offset
+            arrowPath.getBoundingClientRect(); 
+
+            // 4. Start the Drawing Animation
+            // Add transition for the drawing effect
+            arrowPath.style.transition = 'stroke-dashoffset 1s ease-in, opacity 0.2s';
+            arrowPath.style.strokeDashoffset = 0;
+            
+            // Trigger the download icon bounce
+            downloadIconEl.classList.add('active');
+
+            // 5. Completion Logic (Mock Download and Cleanup)
+            setTimeout(() => {
+                // Add to downloaded files history
+                downloadedFiles.unshift({ name: fileName, timestamp: new Date().toLocaleString() }); // Add to beginning
+                if (downloadedFiles.length > 5) downloadedFiles.pop(); // Keep only last 5 items
+
+                // Mock Download: Log to console
+                console.log(`${fileName} downloaded (Simulated).`);
+
+                // Display notification
+                notificationMessageEl.textContent = `${fileName} successfully downloaded!`;
+                notificationEl.classList.add('show');
+                
+                // Reset arrow animation (Fade out)
+                arrowPath.style.transition = 'opacity 0.5s ease-out';
+                arrowPath.style.opacity = 0;
+
+                // Stop icon bounce
+                downloadIconEl.classList.remove('active');
+
+                // Re-enable button
+                button.disabled = false;
+                button.textContent = "Download Portfolio";
+
+                // Hide notification after 3 seconds
+                setTimeout(() => {
+                    notificationEl.classList.remove('show');
+                }, 3000);
+
+            }, 1000); // 1 second for the arrow to draw
+        }
+
+        /**
+         * Toggles the visibility of the download history popover.
+         */
+        function toggleDownloadHistoryPopover(event) {
+            if (event) {
+                event.stopPropagation(); // Prevent click from bubbling up to document and closing immediately
+            }
+
+            if (downloadHistoryPopover.classList.contains('show')) {
+                downloadHistoryPopover.classList.remove('show');
+            } else {
+                updateDownloadHistoryList();
+                downloadHistoryPopover.classList.add('show');
+            }
+        }
+
+        /**
+         * Populates the download history list in the popover.
+         */
+        function updateDownloadHistoryList() {
+            downloadHistoryList.innerHTML = ''; // Clear existing list
+            if (downloadedFiles.length === 0) {
+                downloadHistoryList.innerHTML = '<li class="text-gray-400 text-sm italic">No downloads yet.</li>';
+            } else {
+                downloadedFiles.forEach(file => {
+                    const listItem = document.createElement('li');
+                    listItem.classList.add('py-1', 'text-sm');
+                    listItem.innerHTML = `<span class="text-primary-orange font-medium block">${file.name}</span> <span class="text-gray-500 text-xs">${file.timestamp}</span>`;
+                    downloadHistoryList.appendChild(listItem);
+                });
+            }
+        }
+
+        /**
+         * Clears the downloaded files history.
+         */
+        function clearDownloadHistory() {
+            downloadedFiles.length = 0; // Clear the array
+            updateDownloadHistoryList(); // Update the popover
+        }
+
+        /**
+         * Setup all event listeners
+         */
+        function setupEventListeners() {
+            // Close the popover if the user clicks anywhere outside of it
+            document.addEventListener('click', function(event) {
+                if (downloadHistoryPopover && downloadHistoryPopover.classList.contains('show') && !downloadHistoryPopover.contains(event.target) && !downloadIndicator.contains(event.target)) {
+                    downloadHistoryPopover.classList.remove('show');
+                }
+            });
+
+            // Auto-format session key input - FIXED VERSION
+            const sessionKeyInput = document.getElementById('sessionKeyInput');
+            if (sessionKeyInput) {
+                sessionKeyInput.addEventListener('input', function(e) {
+                    // Get the current value and remove any existing spaces
+                    let value = e.target.value.replace(/\s/g, '').toUpperCase();
+                    
+                    // Store cursor position
+                    let cursorPos = e.target.selectionStart;
+                    let hadSpace = e.target.value.charAt(4) === ' ';
+                    
+                    // Add space after 4th character if we have more than 4 characters
+                    if (value.length > 4) {
+                        value = value.slice(0, 4) + ' ' + value.slice(4, 7);
+                    }
+                    
+                    // Update the input value
+                    e.target.value = value;
+                    
+                    // Adjust cursor position if space was just added
+                    if (value.length === 5 && !hadSpace && cursorPos === 4) {
+                        e.target.setSelectionRange(5, 5);
+                    } else if (cursorPos > 4 && value.charAt(4) === ' ') {
+                        // If cursor is after the space position, account for the space
+                        e.target.setSelectionRange(cursorPos, cursorPos);
+                    }
+                });
+            }
+        }
+
+        /**
+         * Handles session key form submission
+         * @param {Event} event - Form submit event
+         */
+        function handleSessionKeySubmit(event) {
+            event.preventDefault();
+            
+            const input = document.getElementById('sessionKeyInput');
+            const messageEl = document.getElementById('sessionKeyMessage');
+            const sessionKey = input.value.trim().toUpperCase();
+            
+            // Validate format: XXXX XXX (4 characters, space, 3 characters)
+            const formatRegex = /^[A-Z0-9]{4}\s[A-Z0-9]{3}$/;
+            
+            if (formatRegex.test(sessionKey)) {
+                // Success
+                messageEl.textContent = `Session key ${sessionKey} submitted successfully!`;
+                messageEl.className = 'mt-4 text-center text-sm text-green-600 font-medium';
+                messageEl.classList.remove('hidden');
+                
+                // Log to console (in real app, this would send to server)
+                console.log('Session Key Submitted:', sessionKey);
+                
+                // Clear input after 3 seconds
+                setTimeout(() => {
+                    input.value = '';
+                    messageEl.classList.add('hidden');
+                }, 3000);
+            } else {
+                // Error
+                messageEl.textContent = 'Invalid format! Please use format: XXXX XXX';
+                messageEl.className = 'mt-4 text-center text-sm text-red-600 font-medium';
+                messageEl.classList.remove('hidden');
+            }
+        }
+
+        // Initialize event listeners when page loads
+        setupEventListeners();
+
+    </script>
+
+</body>
+</html>
