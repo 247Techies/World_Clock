@@ -1693,6 +1693,42 @@
     "type": "warning",
     "content": "Make sure to verify with the user before deleting any service. Malicious remote tools often disguise themselves with random names—double-check the service path and description before removal."
   }
+},
+{
+  "id": "remote_tool_removal_001",
+  "title": "Remove Hidden Remote Access Tools (ConnectWise or ScreenConnect)",
+  "description": "Removes malicious or hidden remote access clients like ConnectWise Control or ScreenConnect that scammers install. These may not appear in Programs and Features, Program Files, or Revo Uninstaller.",
+  "keywords": ["remote access", "scammer", "ConnectWise", "ScreenConnect", "malware removal", "hidden service", "registry cleanup", "task scheduler", "startup", "network cleanup"],
+  "ticket_template": "User reported unauthorized remote connection or hidden remote control tool installed. Performed manual cleanup by stopping and deleting the related service, removing registry entries, cleaning up scheduled tasks and leftover folders, and verifying startup and network components.",
+  "platform": "Windows",
+  "requires_admin": true,
+  "execution": [
+    {
+      "step": "Step 1: Stop and Delete the Service",
+      "command": "Press Windows + R → type services.msc → press Enter.\nLocate any service named 'ConnectWise Control Client' or 'ScreenConnect Client' (sometimes with random characters).\nRight-click → Stop.\nThen open Command Prompt as administrator and type:\nsc delete \"ConnectWise Control Client (xxxxxxxx)\"\nor\nsc delete \"ScreenConnect Client (xxxxxxxx)\"\nPress Enter and verify '[SC] DeleteService SUCCESS'."
+    },
+    {
+      "step": "Step 2: Remove Registry Entries",
+      "command": "Press Windows + R → type regedit → press Enter.\nNavigate to the following keys and check for 'ConnectWise Control' or 'ScreenConnect':\nHKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\nHKEY_LOCAL_MACHINE\\SOFTWARE\nHKEY_CURRENT_USER\\SOFTWARE\nIf found, right-click the folder related to the remote tool → Delete.\n(Optional) Use Ctrl+F to search for 'ScreenConnect' or 'ConnectWise' and remove all related entries."
+    },
+    {
+      "step": "Step 3: Delete Related Files and Scheduled Tasks",
+      "command": "Press Windows + R → type %ProgramData% and press Enter.\nDelete any folder related to 'ScreenConnect Client' or 'ConnectWise Control'.\nThen check:\nC:\\Program Files\nC:\\Program Files (x86)\nC:\\Users\\Public\nDelete any leftover folders if found.\nNext, open Task Scheduler → check under Task Scheduler Library for unknown or suspicious tasks referencing ScreenConnect or ConnectWise → right-click → Delete."
+    },
+    {
+      "step": "Step 4: Restart and Verify",
+      "command": "Restart the computer.\nReopen services.msc, Task Manager, and Task Scheduler to confirm no suspicious services or processes are running.\nOptionally, run a full Microsoft Defender scan or Windows Security Offline Scan."
+    },
+    {
+      "step": "Step 5: Network and Startup Cleanup",
+      "command": "Press Ctrl + Shift + Esc → open Task Manager → go to the Startup tab → disable any unknown or suspicious entries.\nPress Windows + R → type msconfig → open the Startup tab → verify the same.\nPress Windows + R → type ncpa.cpl → check for any unknown virtual network adapters (e.g., related to remote tools) → right-click → Disable.\nOpen Command Prompt as admin and run:\nnetstat -ano\nReview for suspicious active connections or unknown listening ports.\n(Optional) Reset network settings with:\nnetsh winsock reset\nnetsh int ip reset"
+    }
+  ],
+  "notice": {
+    "type": "warning",
+    "content": "Be cautious when disabling startup items or network adapters—verify the process names and file paths before removal. After cleanup, it’s strongly recommended to change all passwords, enable two-factor authentication, and run a complete antivirus and antimalware scan (e.g., Microsoft Defender Offline, Malwarebytes, or ESET Online Scanner)."
+  }
 }
+
 
 ]
