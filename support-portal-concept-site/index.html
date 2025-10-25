@@ -110,11 +110,22 @@
     <!-- Header / Navigation -->
     <header class="sticky top-0 z-40 bg-light-bg/95 backdrop-blur-sm shadow-lg p-4">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
+            
+            <!-- Left: Logo + Title -->
             <div class="flex items-center gap-6">
                 <img src="247logon.png" alt="247 Logo" class="h-[77px] w-[220px] object-contain">
                 <h1 class="text-3xl font-bold text-secondary-gray">Support Portal - Concept Site</h1>
             </div>
-            <!-- Download Indicator with Popover -->
+
+            <!-- Center: Navigation Links -->
+            <nav class="hidden md:flex items-center space-x-6">
+                <a href="leaderboard.html" class="text-secondary-gray hover:text-primary-orange font-medium transition duration-200">Leaderboard</a>
+                <a href="" class="text-secondary-gray hover:text-primary-orange font-medium transition duration-200">Support</a>
+                <a href="" class="text-secondary-gray hover:text-primary-orange font-medium transition duration-200">Resources</a>
+                <a href="" class="text-secondary-gray hover:text-primary-orange font-medium transition duration-200">Contact</a>
+            </nav>
+
+            <!-- Right: Download Indicator -->
             <div class="relative">
                 <div id="download-indicator" class="relative group cursor-pointer p-2 rounded-full bg-primary-orange/20 hover:bg-primary-orange/30 transition duration-300" onclick="toggleDownloadHistoryPopover(event)">
                     <!-- Download Icon SVG -->
@@ -129,7 +140,7 @@
                 </div>
 
                 <!-- Download History Popover -->
-                <div id="downloadHistoryPopover" class="absolute right-0 mt-3 w-72 bg-card-bg p-4 rounded-lg shadow-xl border border-primary-orange/30 z-50">
+                <div id="downloadHistoryPopover" class="absolute right-0 mt-3 w-72 bg-card-bg p-4 rounded-lg shadow-xl border border-primary-orange/30 z-50 hidden">
                     <h3 class="text-lg font-bold text-secondary-gray mb-3">Download History</h3>
                     <ul id="downloadHistoryList" class="list-none text-secondary-gray max-h-48 overflow-y-auto mb-3">
                         <!-- Downloaded items will be inserted here -->
@@ -140,9 +151,9 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </header>
+
 
     <!-- Main Content Area -->
     <main class="max-w-7xl mx-auto p-4 sm:p-8">
