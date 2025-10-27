@@ -1728,7 +1728,89 @@
     "type": "warning",
     "content": "Be cautious when disabling startup items or network adapters—verify the process names and file paths before removal. After cleanup, it’s strongly recommended to change all passwords, enable two-factor authentication, and run a complete antivirus and antimalware scan (e.g., Microsoft Defender Offline, Malwarebytes, or ESET Online Scanner)."
   }
+},
+{
+  "id": "delete_windows_service",
+  "title": "Delete a Windows Service",
+  "description": "Removes a specified Windows service from the system. Useful for cleaning up leftover or malicious service entries.",
+  "keywords": ["sc delete", "windows service", "remove service", "service cleanup"],
+  "ticket_template": "Deleted a specific Windows service entry from the system using the Service Control (sc) command.",
+  "platform": "windows",
+  "requires_admin": true,
+  "execution": [
+    {
+      "step": "Open Command Prompt as Administrator.",
+      "command": null
+    },
+    {
+      "step": "Run the following command, replacing `ServiceName` with the exact name of the service to delete.",
+      "command": "sc delete \"ServiceName\""
+    },
+    {
+      "step": "Restart the computer to ensure the service entry is fully removed from the system.",
+      "command": null
+    }
+  ],
+  "notice": {
+    "type": "warning",
+    "content": "Deleting services can impact system functionality. Only remove services you are sure are unnecessary or malicious."
+  }
+},
+{
+  "id": "disable_windows_service",
+  "title": "Disable a Windows Service",
+  "description": "Prevents a specific Windows service from starting automatically by changing its startup type to 'Disabled'.",
+  "keywords": ["sc config", "disable service", "windows service", "stop auto start"],
+  "ticket_template": "Disabled a Windows service by setting its startup type to 'Disabled' using the Service Control (sc) command.",
+  "platform": "windows",
+  "requires_admin": true,
+  "execution": [
+    {
+      "step": "Open Command Prompt as Administrator.",
+      "command": null
+    },
+    {
+      "step": "Run the following command, replacing `ServiceName` with the exact name of the service you want to disable.",
+      "command": "sc config ServiceName start= disabled"
+    },
+    {
+      "step": "Optionally, stop the service immediately if it’s currently running.",
+      "command": "net stop ServiceName"
+    }
+  ],
+  "notice": {
+    "type": "info",
+    "content": "Disabling a service prevents it from starting automatically. Ensure the service is not critical to system operations before applying this change."
+  }
+},
+{
+  "id": "enable_windows_service",
+  "title": "Enable a Windows Service",
+  "description": "Re-enables a Windows service by setting its startup type to 'Automatic', allowing it to start automatically with Windows.",
+  "keywords": ["sc config", "enable service", "start service", "windows service", "auto start"],
+  "ticket_template": "Enabled a Windows service by setting its startup type to 'Automatic' using the Service Control (sc) command.",
+  "platform": "windows",
+  "requires_admin": true,
+  "execution": [
+    {
+      "step": "Open Command Prompt as Administrator.",
+      "command": null
+    },
+    {
+      "step": "Run the following command, replacing `ServiceName` with the exact name of the service to enable.",
+      "command": "sc config ServiceName start= auto"
+    },
+    {
+      "step": "Optionally, start the service immediately after enabling it.",
+      "command": "net start ServiceName"
+    }
+  ],
+  "notice": {
+    "type": "info",
+    "content": "Setting a service to 'Automatic' allows it to start with Windows. Use this for essential or trusted services only."
+  }
 }
+
 
 
 ]
