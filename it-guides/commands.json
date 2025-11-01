@@ -1809,8 +1809,52 @@
     "type": "info",
     "content": "Setting a service to 'Automatic' allows it to start with Windows. Use this for essential or trusted services only."
   }
+},
+{
+  "id": "taskkill_exe",
+  "title": "Force Close a Running Task",
+  "description": "Terminates a running process or application using TaskKill. The /f flag forces termination even if the process is unresponsive.",
+  "keywords": ["taskkill", "end task", "close process", "force stop", "kill process"],
+  "ticket_template": "Forcefully closed a running or unresponsive process using TaskKill command.",
+  "platform": "windows",
+  "requires_admin": true,
+  "execution": [
+    {
+      "step": "Open Command Prompt as Administrator.",
+      "command": null
+    },
+    {
+      "step": "Run the command below, replacing 'taskname.exe' with the name of the process to terminate.",
+      "command": "taskkill.exe /im taskname.exe /f"
+    }
+  ],
+  "notice": {
+    "type": "warning",
+    "content": "Forcefully ending system-critical or background processes may cause system instability. Use TaskKill with caution."
+  }
+},
+{
+  "id": "restart_explorer",
+  "title": "Restart Windows Explorer",
+  "description": "Restarts the Windows Explorer process, which controls the taskbar, desktop, and file management interface. This can resolve UI glitches or frozen desktop issues.",
+  "keywords": ["explorer", "restart explorer", "taskkill", "windows shell", "desktop fix"],
+  "ticket_template": "Restarted Windows Explorer to fix unresponsive taskbar or desktop display issues.",
+  "platform": "windows",
+  "requires_admin": true,
+  "execution": [
+    {
+      "step": "Open Command Prompt as Administrator.",
+      "command": null
+    },
+    {
+      "step": "Run the following command to forcefully close and restart Windows Explorer.",
+      "command": "taskkill /f /im explorer.exe && start explorer.exe"
+    }
+  ],
+  "notice": {
+    "type": "info",
+    "content": "Restarting Explorer will temporarily close the taskbar and desktop before restoring them. It’s safe and useful for refreshing the Windows interface."
+  }
 }
-
-
 
 ]
