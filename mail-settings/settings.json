@@ -373,7 +373,33 @@
     "username": "Your full TalkTalk address",
     "password": "Your TalkTalk password or App Password"
   }
+},
+"emailsrvr.com": {
+  "provider": "Rackspace Email Hosting",
+  "imap": {
+    "server": "secure.emailsrvr.com",
+    "port": "993",
+    "security": "SSL / TLS",
+    "username": "Your full Emailsrvr.com address",
+    "password": "Your Emailsrvr.com password"
+  },
+  "pop3": {
+    "server": "pop.emailsrvr.com",
+    "port": "995",
+    "security": "SSL / TLS",
+    "username": "Your full Emailsrvr.com address",
+    "password": "Your Emailsrvr.com password"
+  },
+  "smtp": {
+    "server": "secure.emailsrvr.com",
+    "port": "465",
+    "security": "SSL / TLS",
+    "authentication": "Yes",
+    "username": "Your full Emailsrvr.com address",
+    "password": "Your Emailsrvr.com password"
+  }
 }
+
 
 
 }
