@@ -57,7 +57,7 @@
       "id": "subscription_payment_failure",
       "title": "Customer Subscription Payment Failure",
       "subject": "Customer Subscription Payment Failure",
-      "body": "Hi [Salutation],\n\nI would like to inform you that an existing customer's subscription payment has failed and the customer has left for now. The subscription has expired, and they may consider returning later if we reach out or offer an alternative payment option. Please see the CX details below for further processing.\n\nCX Name:\nCX Email:\n\nCX Mobile:\n\n"
+      "body": "Hi [Salutation],\n\nI ${customerName} would like to inform you that an existing customer's subscription payment has failed and the customer has left for now. The subscription has expired, and they may consider returning later if we reach out or offer an alternative payment option. Please see the CX details below for further processing.\n\nCX Name:\nCX Email:\n\nCX Mobile:\n\n"
     },
     {
       "id": "leave_request",
