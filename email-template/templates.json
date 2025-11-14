@@ -51,7 +51,7 @@
       "id": "old_payment_statement_request",
       "title": "Request for Old Subscription Payment Statement",
       "subject": "Request - Detailed Statement of Old Subscription Payments ${customerDetails}",
-      "body": "Hi [Salutation],\n\nThe subjected customer has requested ${customerName} a copy of their old support subscription payments. Could you please send the detailed payment report directly to them?\n\nPlease confirm once it has been sent."
+      "body": "Hi [Salutation],\n\nThe subjected customer has requested a copy of their old support subscription payments. Could you please send the detailed payment report directly to them?\n\nPlease confirm once it has been sent."
     },
     {
       "id": "subscription_payment_failure",
