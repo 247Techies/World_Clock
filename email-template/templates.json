@@ -54,6 +54,12 @@
       "body": "Hi [Salutation],\n\nThe subjected customer has requested a copy of their old support subscription payments. Could you please send the detailed payment report directly to them?\n\nPlease confirm once it has been sent."
     },
     {
+      "id": "subscription_payment_failure",
+      "title": "Customer Subscription Payment Failure",
+      "subject": "Customer Subscription Payment Failure",
+      "body": "Hi [Manager's Name],\n\nI would like to inform you that an existing customer's subscription payment has failed and the customer has left for now. The subscription has expired, and they may consider returning later if we reach out or offer an alternative payment option. Please see the CX details below for further processing.\n\nCX Name:\nCX Email:\n\nCX Mobile:\n\n"
+    },
+    {
       "id": "leave_request",
       "title": "Short Leave Request",
       "subject": "Request for Short Leave on YYYY/MM/DD",
