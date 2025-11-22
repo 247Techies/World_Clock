@@ -3018,6 +3018,55 @@
     "sentence": "Guided through the process of detecting and removing phishing emails.",
     "tag": "Phishing Emails",
     "keywords": "guided process, detecting, removing, phishing emails"
+  },
+  {
+    "sentence": "Resolved issues with regards to Windows Update.",
+    "tag": "Updates",
+    "keywords": "resolved issues, Windows Update"
+  },
+  {
+    "sentence": "Troubleshot and resolved problems related to Windows Update.",
+    "tag": "Updates",
+    "keywords": "troubleshot, resolved problems, Windows Update"
+  },
+  {
+    "sentence": "Addressed and fixed issues preventing Windows from updating.",
+    "tag": "Updates",
+    "keywords": "addressed, fixed issues, Windows updating"
+  },
+  {
+    "sentence": "Identified and resolved Windows Update errors.",
+    "tag": "Updates",
+    "keywords": "identified, resolved, Windows Update errors"
+  },
+  {
+    "sentence": "Successfully resolved issues affecting Windows Update functionality.",
+    "tag": "Updates",
+    "keywords": "successfully resolved, Windows Update functionality"
+  },
+  {
+    "sentence": "Performed tasks with regards to updating Office applications.",
+    "tag": "Updates",
+    "keywords": "performed tasks, updating Office applications"
+  },
+  {
+    "sentence": "Completed the process of updating Office applications.",
+    "tag": "Updates",
+    "keywords": "completed process, updating Office applications"
+  },
+  {
+    "sentence": "Successfully performed tasks related to Office application updates.",
+    "tag": "Updates",
+    "keywords": "successfully performed, Office application updates"
+  },
+  {
+    "sentence": "Handled the update and maintenance of Office applications.",
+    "tag": "Updates",
+    "keywords": "handled update, maintenance, Office applications"
+  },
+  {
+    "sentence": "Performed tasks required to update Office applications to the latest version.",
+    "tag": "Updates",
+    "keywords": "performed tasks, update Office applications, latest version"
   }
-
 ]
