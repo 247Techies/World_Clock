@@ -1855,6 +1855,98 @@
     "type": "info",
     "content": "Restarting Explorer will temporarily close the taskbar and desktop before restoring them. It’s safe and useful for refreshing the Windows interface."
   }
+},
+{
+  "id": "export_driver_list",
+  "title": "Export Installed Drivers List Information to File",
+  "description": "Generates a list of all installed device drivers on the system and saves it to a text file for review or troubleshooting.",
+  "keywords": ["driverquery", "drivers", "driver list", "export drivers", "system info"],
+  "ticket_template": "Exported the list of all installed drivers using driverquery and saved it to a text file for diagnostics.",
+  "platform": "windows",
+  "requires_admin": false,
+  "execution": [
+    {
+      "step": "Open Command Prompt.",
+      "command": null
+    },
+    {
+      "step": "Run the following command to export the driver list to a text file.",
+      "command": "driverquery > driver_info.txt"
+    }
+  ],
+  "notice": {
+    "type": "info",
+    "content": "The output file (driver_info.txt) will be created in the current directory unless a full path is specified."
+  }
+},
+{
+  "id": "export_network_config",
+  "title": "Export Full Network Configuration to File",
+  "description": "Captures the complete network configuration details including adapters, MAC addresses, DNS, DHCP, and IP settings, and saves the information to a text file.",
+  "keywords": ["ipconfig", "network info", "export network settings", "ipconfig all"],
+  "ticket_template": "Exported full network configuration using ipconfig /all and saved the output to a text file for diagnostics.",
+  "platform": "windows",
+  "requires_admin": false,
+  "execution": [
+    {
+      "step": "Open Command Prompt.",
+      "command": null
+    },
+    {
+      "step": "Run the following command to export all network configuration details to a text file.",
+      "command": "ipconfig /all > network_info.txt"
+    }
+  ],
+  "notice": {
+    "type": "info",
+    "content": "The output file (network_info.txt) will be created in the current directory unless a full path is specified."
+  }
+},
+{
+  "id": "get_computer_system_info",
+  "title": "Get Computer System Information",
+  "description": "Retrieves key system details such as the computer model, manufacturer, and device name using WMIC.",
+  "keywords": ["wmic", "system info", "computer model", "manufacturer", "device name"],
+  "ticket_template": "Retrieved computer system information including model, manufacturer, and system name using WMIC.",
+  "platform": "windows",
+  "requires_admin": false,
+  "execution": [
+    {
+      "step": "Open Command Prompt.",
+      "command": null
+    },
+    {
+      "step": "Run the following command to view basic computer system details.",
+      "command": "wmic computersystem get model,manufacturer,name"
+    }
+  ],
+  "notice": {
+    "type": "info",
+    "content": "WMIC is deprecated in newer Windows versions, but still works on most systems. PowerShell alternatives are recommended long-term."
+  }
+},
+{
+  "id": "get_memory_chip_info",
+  "title": "Get Memory (RAM) Slot Information",
+  "description": "Retrieves details of installed RAM modules, including their capacity and the slot (Device Locator) they occupy.",
+  "keywords": ["wmic", "memory", "RAM", "memorychip", "capacity", "device locator"],
+  "ticket_template": "Checked installed memory modules and their slot locations using WMIC.",
+  "platform": "windows",
+  "requires_admin": false,
+  "execution": [
+    {
+      "step": "Open Command Prompt.",
+      "command": null
+    },
+    {
+      "step": "Run the following command to list memory module capacity and slot location.",
+      "command": "wmic memorychip get capacity,devicelocator"
+    }
+  ],
+  "notice": {
+    "type": "info",
+    "content": "Reported capacity is shown in bytes. Divide by 1,073,741,824 to convert to GB (e.g., 8589934592 = 8 GB)."
+  }
 }
 
 ]
