@@ -1947,6 +1947,33 @@
     "type": "info",
     "content": "Reported capacity is shown in bytes. Divide by 1,073,741,824 to convert to GB (e.g., 8589934592 = 8 GB)."
   }
+},
+{
+  "id": "dxdiag_save",
+  "title": "Save DirectX Diagnostic (DxDiag) Report",
+  "description": "Generates and saves a full DirectX Diagnostic Tool report, including system, display, sound, and driver details.",
+  "keywords": ["dxdiag", "directx", "diagnostic", "system report", "graphics info"],
+  "ticket_template": "Collected system diagnostic information by generating a DxDiag report file.",
+  "platform": "windows",
+  "requires_admin": false,
+  "execution": [
+    {
+      "step": "Open the Run dialog by pressing Windows + R.",
+      "command": null
+    },
+    {
+      "step": "Run the DxDiag tool.",
+      "command": "dxdiag"
+    },
+    {
+      "step": "Click 'Save All Information...' in the DxDiag window and choose a location to save the report (typically as DxDiag.txt).",
+      "command": null
+    }
+  ],
+  "notice": {
+    "type": "info",
+    "content": "The DxDiag report includes hardware, driver versions, DirectX information, and diagnostic notes. Useful for troubleshooting graphics, sound, and system performance issues."
+  }
 }
 
 ]
