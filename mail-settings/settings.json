@@ -398,8 +398,31 @@
     "username": "Your full Emailsrvr.com address",
     "password": "Your Emailsrvr.com password"
   }
+},
+"murtamail.ca": {
+  "provider": "MurtaMail",
+  "imap": {
+    "server": "mail.murtamail.ca",
+    "port": "993",
+    "security": "SSL / TLS",
+    "username": "Your full MurtaMail address",
+    "password": "Your MurtaMail email account password"
+  },
+  "pop3": {
+    "server": "mail.murtamail.ca",
+    "port": "995",
+    "security": "SSL / TLS",
+    "username": "Your full MurtaMail address",
+    "password": "Your MurtaMail email account password"
+  },
+  "smtp": {
+    "server": "mail.murtamail.ca",
+    "port": "587",
+    "security": "STARTTLS",
+    "authentication": "Yes",
+    "username": "Your full MurtaMail address",
+    "password": "Your MurtaMail email account password"
+  }
 }
-
-
 
 }
