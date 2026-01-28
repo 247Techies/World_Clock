@@ -423,6 +423,32 @@
     "username": "Your full MurtaMail address",
     "password": "Your MurtaMail email account password"
   }
+},
+"cougarelec.com": {
+  "provider": "iPage Email Hosting",
+  "imap": {
+    "server": "imap.ipage.com",
+    "port": "993",
+    "security": "SSL / TLS",
+    "username": "Your full iPage email address",
+    "password": "Your iPage email password"
+  },
+  "pop3": {
+    "server": "pop.ipage.com",
+    "port": "995",
+    "security": "SSL / TLS",
+    "username": "Your full iPage email address",
+    "password": "Your iPage email password"
+  },
+  "smtp": {
+    "server": "smtp.ipage.com",
+    "port": "587",
+    "security": "STARTTLS",
+    "authentication": "Yes",
+    "username": "Your full iPage email address",
+    "password": "Your iPage email password"
+  }
 }
+
 
 }
