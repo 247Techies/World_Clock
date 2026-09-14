@@ -104,7 +104,19 @@
     {
       "id": "manual_renewal_usa_cx",
       "title": "Manual Renewal of USA CX - Month",
-      "subject": "Manual Renewal of USA CX - ${month}",
+      "subject": "Manual Renewal of USA CX - Month",
       "body": "Hi [Salutation],\n\nComplete these follow-ups between 08.00 PM to 04.00 AM.\n\nCall and explain CX about their subscription expiry and inform them that they can renew their subscription (if it’s 1 PC, then 199.75 USD for 6 months of unlimited support).\n\nWe have already sent reminder emails this week on Tuesday and Thursday. The payment link will be available in the CX’s email. If the email is unavailable, then use the renewal link:\n\nhttps://feedback2.247techies.tech/cx_renewalpage6mz_ua\n\nPlease make sure to check CX information before calling, as some CXs have multiple PCs to be renewed. Do not call the CX if they have already renewed.\n\nIf the call goes to VM, leave a VM asking them to complete the renewal through email.\n\nAlso, make sure to renew the desktop icon and update the details in ZOHO once the subscription is renewed.\n\nThanks,\n\n"
+    },
+    {
+      "id": "manual_renewal_uk_cx",
+      "title": "Manual Renewal of UK CX - Month",
+      "subject": "Manual Renewal of UK CX - Month",
+      "body": "Hi [Salutation],\n\nComplete these follow-ups between 03.30 PM to 12.00 AM.\n\nCall and explain CX about their subscription expiry and inform them that they can renew their subscription (if it’s 1 PC, then 129.75 GBP for 6 months of unlimited support).\n\nWe have already sent reminder emails this week on Tuesday and Thursday. The payment link will be available in the CX’s email. If the email is unavailable, then use the renewal link:\n\nhttps://feedback2.247techies.tech/cx_renewalpage6mz_ua\n\nPlease make sure to check CX information before calling, as some CXs have multiple PCs to be renewed. Do not call the CX if they have already renewed.\n\nIf the call goes to VM, leave a VM asking them to complete the renewal through email.\n\nAlso, make sure to renew the desktop icon and update the details in ZOHO once the subscription is renewed.\n\nThanks,\n\n"
+    },
+    {
+      "id": "manual_renewal_aus_cx",
+      "title": "Manual Renewal of AUS CX - Month",
+      "subject": "Manual Renewal of AUS CX - Month",
+      "body": "Hi [Salutation],\n\nComplete these follow-ups between 05.30 AM to 01.00 PM.\n\nCall and explain CX about their subscription expiry and inform them that they can renew their subscription (if it’s 1 PC, then 199.75 AUD for 6 months of unlimited support).\n\nWe have already sent reminder emails this week on Tuesday and Thursday. The payment link will be available in the CX’s email. If the email is unavailable, then use the renewal link:\n\nhttps://feedback2.247techies.tech/cx_renewalpage6mz_ua\n\nPlease make sure to check CX information before calling, as some CXs have multiple PCs to be renewed. Do not call the CX if they have already renewed.\n\nIf the call goes to VM, leave a VM asking them to complete the renewal through email.\n\nAlso, make sure to renew the desktop icon and update the details in ZOHO once the subscription is renewed.\n\nThanks,\n\n"
     }
   ]
